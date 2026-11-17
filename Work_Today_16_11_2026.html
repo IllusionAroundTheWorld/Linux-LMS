@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Introduction to Linux &amp; Open Source | IST Learn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #17202c;
+  --blue: #1571ba;
+  --blue-d: #105c98;
+  --mut: #5d6470;
+  --line: #dfe3e8;
+  --tint: #eef6fc;
+  --tint-bd: #c5d6f0;
+  --panel: #f7f8fa;
+  --ok: #0d8a55;
+  --ok-bg: #e6f4ec;
+  --warn: #b7791f;
+  --warn-bg: #fef3c7;
+  --bad: #c0392b;
+  --bad-bg: #fbeceb;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--navy);
+  font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.top-nav {
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  padding: 8px 20px;
+}
+.top-nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.top-pill {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--blue);
+  background: var(--tint);
+  border: 1px solid var(--tint-bd);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px 20px 20px;
+}
+.eye {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 0 0 3px;
+}
+h1 {
+  font-size: clamp(20px, 3.2vw, 25px);
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+p { margin: 0 0 5px; }
+.sm { color: var(--mut); font-size: 12.5px; }
+
+/* CARD & SECTION HEADINGS */
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 16px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(23,32,44,0.03);
+}
+.sh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 5px;
+  font-size: 13.5px;
+  font-weight: 800;
+}
+.sh:first-child { margin-top: 0; }
+.st {
+  background: var(--blue);
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11.5px;
+  font-weight: 800;
+}
+
+/* NOTE CALLOUT */
+.note {
+  background: var(--tint);
+  border-left: 3.5px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  padding: 6px 11px;
+  font-size: 13px;
+  margin: 3px 0 5px;
+}
+
+/* CREATOR STRIP */
+.creator-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 5px 11px;
+  margin: 4px 0 5px;
+}
+.creator-img-box {
+  width: 66px;
+  height: 50px;
+  background: var(--tint);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid var(--tint-bd);
+}
+.creator-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* TWO COLUMN STUDIO */
+.two {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 12px;
+  align-items: start;
+}
+@media (max-width: 820px) {
+  .two { grid-template-columns: 1fr; }
+}
+.box {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 11px;
+}
+.lab {
+  font-weight: 800;
+  font-size: 11px;
+  margin: 0 0 4px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--mut);
+}
+
+/* CHIPS */
+.chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 3px 0 5px; }
+.chip {
+  background: #fff;
+  border: 1px solid var(--tint-bd);
+  color: var(--navy);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-weight: 700;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+.chip:hover { background: var(--tint); }
+.chip.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.chip.ok { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); }
+.chip.bad { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+/* CODE & RESULTS */
+pre {
+  background: var(--navy);
+  color: #e8f0ff;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font: 11px/1.45 var(--font-mono);
+  margin: 3px 0 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+code { font-family: var(--font-mono); font-size: 92%; }
+.res {
+  margin-top: 5px;
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-weight: 700;
+  font-size: 12px;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.res.ok { color: var(--ok); background: var(--ok-bg); border-color: #a7f3d0; }
+.res.bad { color: var(--bad); background: var(--bad-bg); border-color: #fecaca; }
+
+/* SVG FLOWCHART */
+.chart-card {
+  background: #fff;
+  border: 1.5px solid var(--tint-bd);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-top: 6px;
+  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
+}
+.svg-flowchart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+.node-rect {
+  rx: 6px;
+  ry: 6px;
+  stroke-width: 2px;
+  transition: all 0.22s ease;
+}
+.flow-line {
+  stroke-width: 2px;
+  stroke-linecap: round;
+  transition: all 0.22s ease;
+}
+.node-text {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+.node-mono {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+.branch-label {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+.st-active { fill: var(--tint); stroke: var(--blue); }
+.st-active text { fill: var(--blue-d); }
+.st-pass { fill: var(--ok-bg); stroke: var(--ok); filter: drop-shadow(0 1px 3px rgba(13,138,85,0.15)); }
+.st-pass text { fill: var(--ok); }
+.line-blue { stroke: var(--blue); }
+.line-pass { stroke: var(--ok); }
+
+/* FOOTER */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 2px;
+}
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ok);
+  background: var(--ok-bg);
+  border: 1px solid #a7f3d0;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="top-nav-inner">
+    <a href="https://www.inovatesolutiontechnology.in/" target="_blank" rel="noopener" class="brand-link" aria-label="Inovate Solution Technology Website">
+      <img src="ist-logo.png" alt="Inovate Solution Technology" height="28" onerror="this.style.display='none'; document.getElementById('ist-fallback').style.display='inline-flex';">
+      <span id="ist-fallback" style="display:none;font-weight:800;color:var(--navy);font-size:14px;">Inovate Solution Technology</span>
+    </a>
+    <span class="top-pill">Module 1 &bull; Level 1</span>
+  </div>
+</header>
+
+<main>
+  <p class="eye">Module 1 &middot; Level 1 &middot; Interactive System Lab</p>
+  <h1>Introduction to Linux &amp; Open Source</h1>
+
+  <div class="card" id="stage">
+    <!-- SECTION 1: SIMPLE IDEA -->
+    <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
+    <div class="note"><b>In plain words:</b> Linux is a free, open source operating system kernel anyone can inspect, modify, and share.</div>
+
+    <div class="creator-strip">
+      <div class="creator-img-box">
+        <img src="Linus Tor.jpeg" alt="Linus Torvalds" class="creator-img" onerror="if (this.src.indexOf('Linus%20Tor.jpeg') === -1) { this.src = 'Linus%20Tor.jpeg'; } else if (this.src.indexOf('linus-torvalds.jpg') === -1) { this.src = 'linus-torvalds.jpg'; } else { this.onerror=null; this.src = 'https://upload.wikimedia.org/wikipedia/commons/0/01/LinuxCon_Europe_Linus_Torvalds_03_%28cropped%29.jpg'; }">
+      </div>
+      <div>
+        <b style="font-size:12.5px;color:var(--navy)">Linus Torvalds (1991 &bull; University of Helsinki)</b>
+        <p class="sm" style="margin:2px 0 0">Created the open-source Linux kernel in 1991 as a collaborative alternative to Unix.</p>
+      </div>
+    </div>
+
+    <p class="sm"><b>Remember:</b> The GNU General Public License ensures Linux source code remains permanently free for all global developers.</p>
+
+    <!-- SECTION 2: TRY IT -->
+    <h2 class="sh"><span class="st">2</span>Try It: Interactive Linux &amp; Open Source Architecture Studio</h2>
+    <div class="two">
+      <div>
+        <div class="box">
+          <label class="lab">Select Exploration Mode:</label>
+          <div class="chips">
+            <button type="button" class="chip on" data-a="md" data-m="origin">1. 1991 Origin &amp; Linus</button>
+            <button type="button" class="chip" data-a="md" data-m="gpl">2. GNU GPL Open Source</button>
+            <button type="button" class="chip" data-a="md" data-m="arch">3. 4-Layer Architecture</button>
+          </div>
+
+          <!-- Architecture 4-Level Selector (Only visible when arch mode active) -->
+          <div id="arch_chips" style="display:none;margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+            <label class="lab" style="font-size:10px">Select Architectural Level:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="lvl" data-l="all">All 4 Levels</button>
+              <button type="button" class="chip" data-a="lvl" data-l="app">Application</button>
+              <button type="button" class="chip" data-a="lvl" data-l="shell">Shell</button>
+              <button type="button" class="chip" data-a="lvl" data-l="kernel">Kernel</button>
+              <button type="button" class="chip" data-a="lvl" data-l="hw">Hardware</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <!-- 1991 Origin & GPL Flowchart View -->
+          <div id="fc_box">
+            <span class="lab">System Flowchart (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 360 162">
+              <!-- Node 1 -->
+              <rect id="fl_n1" x="55" y="4" width="250" height="28" class="node-rect st-active" />
+              <text x="180" y="18" class="node-mono" id="fl_t1">Linus Torvalds (Helsinki)</text>
+
+              <path id="fl_l1" d="M 180 32 L 180 54" class="flow-line line-blue" />
+              <text x="236" y="43" class="branch-label" id="fl_lbl1" fill="var(--blue)">starts hobby project</text>
+
+              <!-- Node 2 -->
+              <rect id="fl_n2" x="55" y="54" width="250" height="34" class="node-rect st-pass" />
+              <text x="180" y="66" class="node-text" id="fl_t2">Milestone: Aug 25, 1991</text>
+              <text x="180" y="78" class="node-mono" id="fl_sub2">comp.os.minix Usenet Post</text>
+
+              <path id="fl_l2" d="M 180 88 L 180 110" class="flow-line line-pass" />
+              <text x="236" y="99" class="branch-label" id="fl_lbl2" fill="var(--ok)">compiles C code</text>
+
+              <!-- Node 3 -->
+              <rect id="fl_n3" x="55" y="110" width="250" height="34" class="node-rect st-pass" />
+              <text x="180" y="122" class="node-text" id="fl_t3">Linux Kernel Engine</text>
+              <text x="180" y="134" class="node-mono" id="fl_sub3">Controls Hardware &amp; Memory</text>
+
+              <rect x="55" y="148" width="250" height="14" rx="4" fill="var(--panel)" stroke="var(--line)" />
+              <text x="180" y="155" class="node-mono" id="fl_foot" fill="var(--navy)">Status: Free Unix Alternative</text>
+            </svg>
+          </div>
+
+          <!-- Pure 4-Level Architecture Flowchart View (Hardware, Kernel, Shell, Application) -->
+          <div id="arch_box" style="display:none;">
+            <span class="lab">4-Level Architecture Flowchart (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 360 174">
+              <!-- Level 4: APPLICATION -->
+              <rect id="af_n4" x="45" y="4" width="270" height="28" class="node-rect st-active" data-a="lvl" data-l="app" style="cursor:pointer;" />
+              <text x="180" y="18" class="node-text" id="af_t4">Level 4: APPLICATION</text>
+
+              <!-- Flow Line 3 to 4 -->
+              <path id="af_l3" d="M 180 32 L 180 48" class="flow-line line-blue" />
+
+              <!-- Level 3: SHELL -->
+              <rect id="af_n3" x="45" y="48" width="270" height="28" class="node-rect st-active" data-a="lvl" data-l="shell" style="cursor:pointer;" />
+              <text x="180" y="62" class="node-text" id="af_t3">Level 3: SHELL</text>
+
+              <!-- Flow Line 2 to 3 -->
+              <path id="af_l2" d="M 180 76 L 180 92" class="flow-line line-pass" />
+
+              <!-- Level 2: KERNEL -->
+              <rect id="af_n2" x="45" y="92" width="270" height="28" class="node-rect st-pass" data-a="lvl" data-l="kernel" style="cursor:pointer;" />
+              <text x="180" y="106" class="node-text" id="af_t2">Level 2: KERNEL</text>
+
+              <!-- Flow Line 1 to 2 -->
+              <path id="af_l1" d="M 180 120 L 180 136" class="flow-line line-pass" />
+
+              <!-- Level 1: HARDWARE -->
+              <rect id="af_n1" x="45" y="136" width="270" height="28" rx="6" fill="var(--navy)" data-a="lvl" data-l="hw" style="cursor:pointer;" />
+              <text x="180" y="150" class="node-mono" fill="#fff" id="af_t1">Level 1: HARDWARE</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <span class="lab" id="insp_lab">Historical Record &amp; Code Inspector</span>
+        <pre><code id="insp_code"></code></pre>
+        <div class="res ok" id="insp_res"></div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: QUICK CHECK -->
+    <h2 class="sh"><span class="st">3</span>Quick Check</h2>
+    <div class="box">
+      <p style="margin:0 0 5px"><b>Who created the Linux kernel in 1991, and under which open-source license was it published?</b></p>
+      <div class="chips" id="qc_chips">
+        <button type="button" class="chip" data-a="qc" data-o="0"><code>Linus Torvalds under GNU GPL</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="1"><code>Steve Jobs under Apple EULA</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="2"><code>Bill Gates under Windows OEM</code></button>
+      </div>
+      <div class="res" id="qc_res" style="display:none"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="status-badge">Level 1 Complete</span>
+      <a href="Work_Today_17_11_2026.html" class="status-badge" style="text-decoration:none;background:var(--blue);color:#fff;border-color:var(--blue);">Proceed to Level 2 &rarr;</a>
+    </div>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let activeMode = "origin";
+let archLevel = "all";
+
+const MODES = {
+  origin: {
+    lab: "Historical Record & Code Inspector",
+    n1: "Linus Torvalds (Helsinki)",
+    lbl1: "starts hobby project",
+    t2: "Milestone: Aug 25, 1991",
+    sub2: "comp.os.minix Usenet Post",
+    lbl2: "compiles C code",
+    t3: "Linux Kernel Engine",
+    sub3: "Controls Hardware & Memory",
+    foot: "Status: Free Unix Alternative",
+    code: `// From: Linus Torvalds\n// Date: 25 Aug 1991\n// Subject: What would you like to see most in minix?\n\n"I'm doing a (free) operating system (just a hobby,\nwon't be big and professional like gnu) for 386 AT clones."`,
+    explain: "Linus Torvalds announced his free hobby operating system publicly on the comp.os.minix Usenet group."
+  },
+  gpl: {
+    lab: "Open Source Legal & License Inspector",
+    n1: "Source Code Published",
+    lbl1: "applies license",
+    t2: "GNU GPLv2 Copyleft",
+    sub2: "General Public License",
+    lbl2: "protects freedom",
+    t3: "4 Software Freedoms",
+    sub3: "Inspect, Modify & Distribute",
+    foot: "Status: 100% Free Open Source",
+    code: `// GNU General Public License (GPLv2)\n// Freedom 1: Anyone can inspect and study source code.\n// Freedom 2: Anyone can modify and improve the code.\n// Freedom 3: Anyone can distribute copies to help others.`,
+    explain: "The GNU General Public License guarantees everyone legal freedom to inspect, edit, and distribute code."
+  }
+};
+
+const ARCH_LEVELS = {
+  all: {
+    lab: "Overview: 4 Architecture Levels",
+    code: `Level 4: APPLICATION  • Runs user software (Browser, Editor)\nLevel 3: SHELL        • Translates typed commands for system\nLevel 2: KERNEL       • Core engine managing CPU and memory\nLevel 1: HARDWARE     • Physical machine (Processor, RAM, SSD)`,
+    explain: "Linux architecture cleanly separates user programs from hardware across four distinct, coordinated levels."
+  },
+  app: {
+    lab: "Level 4: APPLICATION",
+    code: `Role     : Runs user programs and desktop tools\nExamples : Web browser, text editor, media player\nGoal     : Interacts directly with human users`,
+    explain: "Applications provide the friendly tools and software that people use every single day."
+  },
+  shell: {
+    lab: "Level 3: SHELL",
+    code: `Role     : Translates user commands for the system\nExamples : Bash shell, Zsh, command line terminal\nGoal     : Bridges user software to the kernel`,
+    explain: "The shell listens to user input and translates it into clear system requests."
+  },
+  kernel: {
+    lab: "Level 2: KERNEL",
+    code: `Role     : Controls CPU, memory, and devices\nExamples : Linux Kernel 6.8 engine\nGoal     : Allocates physical computer resources safely`,
+    explain: "The kernel is the core engine managing computer memory, processor power, and hardware."
+  },
+  hw: {
+    lab: "Level 1: HARDWARE",
+    code: `Role     : Executes electrical binary calculations\nExamples : CPU processor, RAM memory, SSD storage\nGoal     : Provides the physical electronic power`,
+    explain: "Hardware represents the physical electronic parts like the processor, memory chips, and storage."
+  }
+};
+
+function updateStudio() {
+  document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeMode));
+
+  if (activeMode === "arch") {
+    $("fc_box").style.display = "none";
+    $("arch_box").style.display = "block";
+    $("arch_chips").style.display = "block";
+    updateArchLevel();
+  } else {
+    $("fc_box").style.display = "block";
+    $("arch_box").style.display = "none";
+    $("arch_chips").style.display = "none";
+
+    const m = MODES[activeMode];
+    $("insp_lab").textContent = m.lab;
+    $("fl_t1").textContent = m.n1;
+    $("fl_lbl1").textContent = m.lbl1;
+    $("fl_t2").textContent = m.t2;
+    $("fl_sub2").textContent = m.sub2;
+    $("fl_lbl2").textContent = m.lbl2;
+    $("fl_t3").textContent = m.t3;
+    $("fl_sub3").textContent = m.sub3;
+    $("fl_foot").textContent = m.foot;
+    $("insp_code").textContent = m.code;
+    const res = $("insp_res");
+    res.textContent = m.explain;
+    res.className = "res ok";
+  }
+}
+
+function updateArchLevel() {
+  document.querySelectorAll("[data-a='lvl']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.l === archLevel);
+  });
+
+  const data = ARCH_LEVELS[archLevel] || ARCH_LEVELS.all;
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").textContent = data.code;
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+
+  // Visual highlight for the 4 flowchart nodes
+  const nodes = {
+    app: $("af_n4"),
+    shell: $("af_n3"),
+    kernel: $("af_n2"),
+    hw: $("af_n1")
+  };
+
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    if (archLevel === "all" || archLevel === k) {
+      if (k === "hw") {
+        el.setAttribute("fill", archLevel === k ? "var(--ok)" : "var(--navy)");
+      } else {
+        el.setAttribute("class", "node-rect " + (archLevel === k ? "st-pass" : "st-active"));
+      }
+    } else {
+      if (k === "hw") {
+        el.setAttribute("fill", "#64748b");
+      } else {
+        el.setAttribute("class", "node-rect st-active");
+        el.style.opacity = "0.45";
+      }
+    }
+    if (archLevel === "all" || archLevel === k) el.style.opacity = "1";
+  });
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-a]");
+  if (!t) return;
+  const a = t.dataset.a;
+
+  if (a === "md") {
+    activeMode = t.dataset.m;
+    updateStudio();
+  } else if (a === "lvl") {
+    archLevel = t.dataset.l;
+    updateArchLevel();
+  } else if (a === "qc") {
+    const opt = +t.dataset.o;
+    const chips = $("qc_chips").querySelectorAll(".chip");
+    chips.forEach((c, idx) => {
+      c.classList.remove("ok", "bad");
+      if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
+    });
+    const qcRes = $("qc_res");
+    qcRes.style.display = "flex";
+    if (opt === 0) {
+      qcRes.className = "res ok";
+      qcRes.textContent = "Correct! Linus Torvalds released the Linux kernel under the free GNU General Public License.";
+    } else {
+      qcRes.className = "res bad";
+      qcRes.textContent = "Not quite. Linus Torvalds created the Linux kernel under the GNU General Public License.";
+    }
+  }
+});
+
+updateStudio();
+</script>
+</body>
+</html>

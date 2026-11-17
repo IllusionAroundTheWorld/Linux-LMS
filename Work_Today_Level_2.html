@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>History of Linux, Kernel &amp; Distributions | IST Learn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #17202c;
+  --blue: #1571ba;
+  --blue-d: #105c98;
+  --mut: #5d6470;
+  --line: #dfe3e8;
+  --tint: #eef6fc;
+  --tint-bd: #c5d6f0;
+  --panel: #f7f8fa;
+  --ok: #0d8a55;
+  --ok-bg: #e6f4ec;
+  --warn: #b7791f;
+  --warn-bg: #fef3c7;
+  --bad: #c0392b;
+  --bad-bg: #fbeceb;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--navy);
+  font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.top-nav {
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  padding: 8px 20px;
+}
+.top-nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.top-pill {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--blue);
+  background: var(--tint);
+  border: 1px solid var(--tint-bd);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px 20px 20px;
+}
+.eye {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 0 0 3px;
+}
+h1 {
+  font-size: clamp(20px, 3.2vw, 25px);
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+p { margin: 0 0 5px; }
+.sm { color: var(--mut); font-size: 12.5px; }
+
+/* CARD & SECTION HEADINGS */
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 16px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(23,32,44,0.03);
+}
+.sh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 5px;
+  font-size: 13.5px;
+  font-weight: 800;
+}
+.sh:first-child { margin-top: 0; }
+.st {
+  background: var(--blue);
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11.5px;
+  font-weight: 800;
+}
+
+/* NOTE CALLOUT */
+.note {
+  background: var(--tint);
+  border-left: 3.5px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  padding: 6px 11px;
+  font-size: 13px;
+  margin: 3px 0 5px;
+}
+
+/* LINEAGE STRIP */
+.lineage-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 5px 11px;
+  margin: 4px 0 5px;
+}
+.lineage-icon-box {
+  width: 66px;
+  height: 50px;
+  background: var(--tint);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid var(--tint-bd);
+}
+
+/* TWO COLUMN STUDIO */
+.two {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 12px;
+  align-items: start;
+}
+@media (max-width: 820px) {
+  .two { grid-template-columns: 1fr; }
+}
+.box {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 11px;
+}
+.lab {
+  font-weight: 800;
+  font-size: 11px;
+  margin: 0 0 4px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--mut);
+}
+
+/* CHIPS */
+.chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 3px 0 5px; }
+.chip {
+  background: #fff;
+  border: 1px solid var(--tint-bd);
+  color: var(--navy);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-weight: 700;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+.chip:hover { background: var(--tint); }
+.chip.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.chip.ok { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); }
+.chip.bad { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+/* CODE & RESULTS */
+pre {
+  background: var(--navy);
+  color: #e8f0ff;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font: 11px/1.45 var(--font-mono);
+  margin: 3px 0 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+code { font-family: var(--font-mono); font-size: 92%; }
+.res {
+  margin-top: 5px;
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-weight: 700;
+  font-size: 12px;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.res.ok { color: var(--ok); background: var(--ok-bg); border-color: #a7f3d0; }
+.res.bad { color: var(--bad); background: var(--bad-bg); border-color: #fecaca; }
+
+/* SVG FLOWCHART */
+.chart-card {
+  background: #fff;
+  border: 1.5px solid var(--tint-bd);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-top: 6px;
+  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
+}
+.svg-flowchart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+.node-rect {
+  rx: 6px;
+  ry: 6px;
+  stroke-width: 2px;
+  transition: all 0.22s ease;
+}
+.flow-line {
+  stroke-width: 2px;
+  stroke-linecap: round;
+  transition: all 0.22s ease;
+}
+.node-text {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+.node-mono {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+.branch-label {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+.st-active { fill: var(--tint); stroke: var(--blue); }
+.st-active text { fill: var(--blue-d); }
+.st-pass { fill: var(--ok-bg); stroke: var(--ok); filter: drop-shadow(0 1px 3px rgba(13,138,85,0.15)); }
+.st-pass text { fill: var(--ok); }
+.line-blue { stroke: var(--blue); }
+.line-pass { stroke: var(--ok); }
+
+/* FOOTER */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 2px;
+}
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ok);
+  background: var(--ok-bg);
+  border: 1px solid #a7f3d0;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="top-nav-inner">
+    <a href="https://www.inovatesolutiontechnology.in/" target="_blank" rel="noopener" class="brand-link" aria-label="Inovate Solution Technology Website">
+      <img src="ist-logo.png" alt="Inovate Solution Technology" height="28" onerror="this.style.display='none'; document.getElementById('ist-fallback').style.display='inline-flex';">
+      <span id="ist-fallback" style="display:none;font-weight:800;color:var(--navy);font-size:14px;">Inovate Solution Technology</span>
+    </a>
+    <span class="top-pill">Module 1 &bull; Level 2</span>
+  </div>
+</header>
+
+<main>
+  <p class="eye">Module 1 &middot; Level 2 &middot; Interactive System Lab</p>
+  <h1>History of Linux, Kernel &amp; Distributions</h1>
+
+  <div class="card" id="stage">
+    <!-- SECTION 1: SIMPLE IDEA -->
+    <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
+    <div class="note"><b>In plain words:</b> A Linux distribution combines the core kernel with software packages to create a complete operating system.</div>
+
+    <div class="lineage-strip">
+      <div class="lineage-icon-box">
+        <svg viewBox="0 0 48 36" width="48" height="36" aria-label="Linux Distributions Tree">
+          <circle cx="24" cy="8" r="5" fill="var(--blue)" />
+          <path d="M 24 13 L 24 20 M 24 20 L 10 28 M 24 20 L 24 28 M 24 20 L 38 28" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" fill="none" />
+          <circle cx="10" cy="28" r="4" fill="var(--ok)" />
+          <circle cx="24" cy="28" r="4" fill="var(--warn)" />
+          <circle cx="38" cy="28" r="4" fill="var(--navy)" />
+        </svg>
+      </div>
+      <div>
+        <b style="font-size:12.5px;color:var(--navy)">Linux Distribution Lineage (Debian &bull; Red Hat &bull; Arch)</b>
+        <p class="sm" style="margin:2px 0 0">Thousands of specialized operating systems built on the single shared open-source Linux kernel engine.</p>
+      </div>
+    </div>
+
+    <p class="sm"><b>Remember:</b> All Linux distributions share the same central kernel engine while utilizing distinct package management systems.</p>
+
+    <!-- SECTION 2: TRY IT -->
+    <h2 class="sh"><span class="st">2</span>Try It: Interactive Distribution &amp; Kernel Studio</h2>
+    <div class="two">
+      <div>
+        <div class="box">
+          <label class="lab">Select Exploration Topic:</label>
+          <div class="chips">
+            <button type="button" class="chip on" data-a="md" data-m="families">1. Distro Families</button>
+            <button type="button" class="chip" data-a="md" data-m="kernel">2. Kernel Milestones</button>
+            <button type="button" class="chip" data-a="md" data-m="formula">3. Distro Formula</button>
+          </div>
+
+          <!-- Sub-chips for Distro Families -->
+          <div id="sub_chips_fam" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+            <label class="lab" style="font-size:10px">Select Distribution Family:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="fam" data-f="all">All Families</button>
+              <button type="button" class="chip" data-a="fam" data-f="debian">Debian / Ubuntu</button>
+              <button type="button" class="chip" data-a="fam" data-f="rhel">Red Hat / Fedora</button>
+              <button type="button" class="chip" data-a="fam" data-f="arch">Arch / Minimal</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <!-- Distro Families Flowchart -->
+          <div id="fc_fam">
+            <span class="lab">Distribution Lineage Flowchart (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 360 174">
+              <!-- Top Common Root: Linux Kernel -->
+              <rect x="75" y="4" width="210" height="28" class="node-rect st-active" />
+              <text x="180" y="18" class="node-text">Common Core: Linux Kernel Engine</text>
+
+              <!-- Connector Lines -->
+              <path d="M 180 32 L 180 48 M 180 48 L 65 64 M 180 48 L 180 64 M 180 48 L 295 64" class="flow-line line-blue" fill="none" />
+
+              <!-- Family 1: Debian -->
+              <rect id="fam_n_deb" x="12" y="64" width="105" height="32" class="node-rect st-pass" data-a="fam" data-f="debian" style="cursor:pointer;" />
+              <text x="64" y="75" class="node-text">Debian Family</text>
+              <text x="64" y="87" class="node-mono" fill="var(--ok)">.deb &bull; APT</text>
+
+              <path d="M 64 96 L 64 116" class="flow-line line-pass" />
+              <rect id="fam_sub_deb" x="12" y="116" width="105" height="26" class="node-rect st-active" />
+              <text x="64" y="129" class="node-mono">Ubuntu &bull; Mint</text>
+
+              <!-- Family 2: Red Hat -->
+              <rect id="fam_n_rhel" x="128" y="64" width="104" height="32" class="node-rect st-pass" data-a="fam" data-f="rhel" style="cursor:pointer;" />
+              <text x="180" y="75" class="node-text">Red Hat Family</text>
+              <text x="180" y="87" class="node-mono" fill="var(--ok)">.rpm &bull; DNF</text>
+
+              <path d="M 180 96 L 180 116" class="flow-line line-pass" />
+              <rect id="fam_sub_rhel" x="128" y="116" width="104" height="26" class="node-rect st-active" />
+              <text x="180" y="129" class="node-mono">RHEL &bull; Fedora</text>
+
+              <!-- Family 3: Arch -->
+              <rect id="fam_n_arch" x="243" y="64" width="105" height="32" class="node-rect st-pass" data-a="fam" data-f="arch" style="cursor:pointer;" />
+              <text x="295" y="75" class="node-text">Arch / Rolling</text>
+              <text x="295" y="87" class="node-mono" fill="var(--ok)">pacman &bull; AUR</text>
+
+              <path d="M 295 96 L 295 116" class="flow-line line-pass" />
+              <rect id="fam_sub_arch" x="243" y="116" width="105" height="26" class="node-rect st-active" />
+              <text x="295" y="129" class="node-mono">Arch &bull; Manjaro</text>
+
+              <!-- Bottom Summary Strip -->
+              <rect x="12" y="152" width="336" height="16" rx="4" fill="var(--panel)" stroke="var(--line)" />
+              <text x="180" y="160" class="node-mono" fill="var(--navy)">All distros share the same kernel with unique package managers</text>
+            </svg>
+          </div>
+
+          <!-- Kernel Milestones Flowchart -->
+          <div id="fc_kernel" style="display:none;">
+            <span class="lab">Kernel Evolution Timeline (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 360 174">
+              <!-- 1991 -->
+              <rect x="35" y="4" width="290" height="28" class="node-rect st-active" />
+              <text x="180" y="14" class="node-text">1991: Linux Kernel v0.01</text>
+              <text x="180" y="24" class="node-mono">10,239 lines of C &bull; Linus Torvalds</text>
+
+              <path d="M 180 32 L 180 48" class="flow-line line-blue" />
+
+              <!-- 1994 -->
+              <rect x="35" y="48" width="290" height="28" class="node-rect st-pass" />
+              <text x="180" y="58" class="node-text">1994: Linux Kernel v1.0</text>
+              <text x="180" y="68" class="node-mono">TCP/IP networking &amp; multi-filesystem support</text>
+
+              <path d="M 180 76 L 180 92" class="flow-line line-pass" />
+
+              <!-- 1996 -->
+              <rect x="35" y="92" width="290" height="28" class="node-rect st-pass" />
+              <text x="180" y="102" class="node-text">1996: Linux Kernel v2.0</text>
+              <text x="180" y="112" class="node-mono">Multi-processor SMP &amp; official Tux mascot</text>
+
+              <path d="M 180 120 L 180 136" class="flow-line line-pass" />
+
+              <!-- Modern -->
+              <rect x="35" y="136" width="290" height="28" rx="6" fill="var(--navy)" />
+              <text x="180" y="146" class="node-mono" fill="#fff">Modern Era: Kernel v6.x</text>
+              <text x="180" y="156" class="node-mono" fill="#93c5fd">Millions of lines &bull; Powers 90%+ of cloud servers</text>
+            </svg>
+          </div>
+
+          <!-- Distro Formula Flowchart -->
+          <div id="fc_formula" style="display:none;">
+            <span class="lab">The Complete Distro Formula (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 360 174">
+              <!-- Block 1: Kernel -->
+              <rect x="25" y="6" width="145" height="28" class="node-rect st-pass" />
+              <text x="97" y="20" class="node-mono">1. Linux Kernel</text>
+
+              <!-- Plus -->
+              <text x="180" y="20" font-weight="800" font-size="14" fill="var(--blue)" text-anchor="middle">+</text>
+
+              <!-- Block 2: GNU -->
+              <rect x="190" y="6" width="145" height="28" class="node-rect st-active" />
+              <text x="262" y="20" class="node-mono">2. GNU Coreutils</text>
+
+              <!-- Plus -->
+              <text x="180" y="47" font-weight="800" font-size="14" fill="var(--blue)" text-anchor="middle">+</text>
+
+              <!-- Block 3: Package Mgr -->
+              <rect x="25" y="58" width="145" height="28" class="node-rect st-active" />
+              <text x="97" y="72" class="node-mono">3. Package Manager</text>
+
+              <!-- Plus -->
+              <text x="180" y="72" font-weight="800" font-size="14" fill="var(--blue)" text-anchor="middle">+</text>
+
+              <!-- Block 4: Desktop UI -->
+              <rect x="190" y="58" width="145" height="28" class="node-rect st-active" />
+              <text x="262" y="72" class="node-mono">4. Desktop UI (GUI)</text>
+
+              <!-- Arrow down -->
+              <path d="M 180 88 L 180 110" class="flow-line line-pass" />
+              <text x="236" y="99" class="branch-label" fill="var(--ok)">assembles into</text>
+
+              <!-- Complete OS -->
+              <rect x="45" y="110" width="270" height="34" rx="8" fill="var(--navy)" />
+              <text x="180" y="122" class="node-mono" fill="#fff">Bootable Linux Distribution (.iso)</text>
+              <text x="180" y="134" class="node-mono" fill="#93c5fd">Ready to install on PC, Cloud, or Server</text>
+
+              <rect x="45" y="152" width="270" height="15" rx="4" fill="var(--panel)" stroke="var(--line)" />
+              <text x="180" y="159" class="node-mono" fill="var(--navy)">Result: Complete, independent operating system</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <span class="lab" id="insp_lab">Overview: Linux Distribution Families</span>
+        <pre><code id="insp_code"></code></pre>
+        <div class="res ok" id="insp_res"></div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: QUICK CHECK -->
+    <h2 class="sh"><span class="st">3</span>Quick Check</h2>
+    <div class="box">
+      <p style="margin:0 0 5px"><b>Which core component is shared by all Linux distributions such as Ubuntu, Fedora, and Arch?</b></p>
+      <div class="chips" id="qc_chips">
+        <button type="button" class="chip" data-a="qc" data-o="0"><code>The Linux Kernel</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="1"><code>The Windows Registry</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="2"><code>The Apple Darwin Engine</code></button>
+      </div>
+      <div class="res" id="qc_res" style="display:none"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <a href="Work_Today_16_11_2026.html" class="status-badge" style="text-decoration:none;background:var(--tint);border-color:var(--tint-bd);color:var(--blue);">&larr; Return to Level 1</a>
+    <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
+    <span class="status-badge">Level 2 Complete</span>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let activeTopic = "families";
+let activeFam = "all";
+
+const FAMILIES = {
+  all: {
+    lab: "Overview: Linux Distribution Families",
+    code: `Debian Family   • Ubuntu, Linux Mint  (Package: .deb / APT)\nRed Hat Family  • RHEL, Fedora, Rocky (Package: .rpm / DNF)\nArch Lineage    • Arch Linux, Manjaro (Package: pacman / AUR)\nAlpine Lineage  • Alpine Linux        (Package: apk / musl)`,
+    explain: "Linux distributions package the central kernel with software tools to power diverse global computer systems."
+  },
+  debian: {
+    lab: "Debian & Ubuntu Family",
+    code: `Role     : Focuses on stability, hardware compatibility, and ease of use\nExamples : Ubuntu Desktop, Ubuntu Server, Debian GNU/Linux, Linux Mint\nGoal     : Empowers beginners and cloud container environments reliably`,
+    explain: "Debian family distributions prioritize package stability and provide user-friendly operating systems like Ubuntu and Mint."
+  },
+  rhel: {
+    lab: "Red Hat & Fedora Family",
+    code: `Role     : Powers enterprise corporate business infrastructure and banks\nExamples : Red Hat Enterprise Linux (RHEL), Fedora, Rocky Linux, CentOS\nGoal     : Delivers enterprise-grade security and corporate technical support`,
+    explain: "Red Hat family distributions power corporate enterprise servers and mission-critical cloud computing workloads worldwide."
+  },
+  arch: {
+    lab: "Arch & Minimalist Lineage",
+    code: `Role     : Provides rolling release bleeding-edge software customization\nExamples : Arch Linux, Manjaro, Alpine Linux\nGoal     : Grants experienced developers complete modular control over their OS`,
+    explain: "Arch Linux delivers a rolling release model allowing experienced users to build customized minimalist operating systems."
+  }
+};
+
+const TOPICS = {
+  kernel: {
+    lab: "Kernel Milestones Evolution",
+    code: `1991: Kernel v0.01 • 10,239 lines of C code by Linus Torvalds\n1994: Kernel v1.0  • Official network socket and file system release\n1996: Kernel v2.0  • Multi-core processor SMP support and Tux logo\n2026: Kernel v6.x  • Millions of code lines powering cloud and AI servers`,
+    explain: "Linux evolved from a university hobby project into the backbone powering modern global digital infrastructure."
+  },
+  formula: {
+    lab: "Modular Linux OS Formula",
+    code: `Linux Kernel     • Hardware memory management and device drivers\nGNU Utilities    • Shell interpreter, compilers, and core commands\nPackage Manager  • Installs and updates verified applications safely\nDesktop/Server   • GUI desktop environment or headless cloud shell`,
+    explain: "A complete distribution unites the Linux kernel with GNU utilities, software packages, and graphical interfaces."
+  }
+};
+
+function updateStudio() {
+  document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeTopic));
+
+  if (activeTopic === "families") {
+    $("fc_fam").style.display = "block";
+    $("fc_kernel").style.display = "none";
+    $("fc_formula").style.display = "none";
+    $("sub_chips_fam").style.display = "block";
+    updateFamily();
+  } else if (activeTopic === "kernel") {
+    $("fc_fam").style.display = "none";
+    $("fc_kernel").style.display = "block";
+    $("fc_formula").style.display = "none";
+    $("sub_chips_fam").style.display = "none";
+    const data = TOPICS.kernel;
+    $("insp_lab").textContent = data.lab;
+    $("insp_code").textContent = data.code;
+    const res = $("insp_res");
+    res.textContent = data.explain;
+    res.className = "res ok";
+  } else {
+    $("fc_fam").style.display = "none";
+    $("fc_kernel").style.display = "none";
+    $("fc_formula").style.display = "block";
+    $("sub_chips_fam").style.display = "none";
+    const data = TOPICS.formula;
+    $("insp_lab").textContent = data.lab;
+    $("insp_code").textContent = data.code;
+    const res = $("insp_res");
+    res.textContent = data.explain;
+    res.className = "res ok";
+  }
+}
+
+function updateFamily() {
+  document.querySelectorAll("[data-a='fam']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.f === activeFam);
+  });
+
+  const data = FAMILIES[activeFam] || FAMILIES.all;
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").textContent = data.code;
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+
+  const nodes = {
+    deb: $("fam_n_deb"),
+    rhel: $("fam_n_rhel"),
+    arch: $("fam_n_arch")
+  };
+
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    const isSelected = activeFam === "all" || (activeFam === "debian" && k === "deb") || (activeFam === "rhel" && k === "rhel") || (activeFam === "arch" && k === "arch");
+    el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
+    el.style.opacity = isSelected ? "1" : "0.45";
+  });
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-a]");
+  if (!t) return;
+  const a = t.dataset.a;
+
+  if (a === "md") {
+    activeTopic = t.dataset.m;
+    updateStudio();
+  } else if (a === "fam") {
+    activeFam = t.dataset.f;
+    updateFamily();
+  } else if (a === "qc") {
+    const opt = +t.dataset.o;
+    const chips = $("qc_chips").querySelectorAll(".chip");
+    chips.forEach((c, idx) => {
+      c.classList.remove("ok", "bad");
+      if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
+    });
+    const qcRes = $("qc_res");
+    qcRes.style.display = "flex";
+    if (opt === 0) {
+      qcRes.className = "res ok";
+      qcRes.textContent = "Correct! All Linux distributions share the identical core open-source Linux kernel operating system engine.";
+    } else {
+      qcRes.className = "res bad";
+      qcRes.textContent = "Not quite. Every Linux distribution relies upon the shared open-source Linux kernel operating system engine.";
+    }
+  }
+});
+
+updateStudio();
+</script>
+</body>
+</html>
