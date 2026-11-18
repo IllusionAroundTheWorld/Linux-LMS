@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Systemd Targets, Runlevels &amp; Boot Diagnostics | IST Learn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="top-nav-inner">
+    <a href="https://www.inovatesolutiontechnology.in/" target="_blank" rel="noopener" class="brand-link" aria-label="Inovate Solution Technology Website">
+      <img src="ist-logo.png" alt="Inovate Solution Technology" height="28" onerror="this.style.display='none'; document.getElementById('ist-fallback').style.display='inline-flex';">
+      <span id="ist-fallback" style="display:none;font-weight:800;color:var(--ink);font-size:14px;">Inovate Solution Technology</span>
+    </a>
+    <span class="top-pill">Module 1 &bull; Level 8</span>
+  </div>
+</header>
+
+<main>
+  <p class="eye">Module 1 &middot; Level 8 &middot; Interactive System Lab</p>
+  <h1>Systemd Targets, Runlevels &amp; Boot Diagnostics</h1>
+
+  <div class="card" id="stage">
+    <!-- SECTION 1: SIMPLE IDEA -->
+    <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
+    <div class="note"><b>In plain words:</b> Systemd uses targets instead of legacy runlevels to coordinate which system services start automatically.</div>
+
+    <p class="sm"><b>Remember:</b> The systemd-analyze utility pinpoints slow-starting system services to accelerate overall server boot duration.</p>
+
+    <!-- SECTION 2: TRY IT -->
+    <h2 class="sh"><span class="st">2</span>Try It: Interactive Systemd Targets &amp; Boot Diagnostics Studio</h2>
+    <div class="two">
+      <div>
+        <div class="box">
+          <label class="lab">Select Systemd View:</label>
+          <div class="chips">
+            <button type="button" class="chip on" data-a="md" data-m="targets">1. System Targets</button>
+            <button type="button" class="chip" data-a="md" data-m="switching">2. Target Control</button>
+            <button type="button" class="chip" data-a="md" data-m="diagnostics">3. Boot Diagnostics</button>
+          </div>
+
+          <!-- Targets Subchips -->
+          <div id="sub_chips_tgt" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+            <label class="lab" style="font-size:10px">Inspect Specific Target:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="tgt" data-t="all">All Targets</button>
+              <button type="button" class="chip" data-a="tgt" data-t="multi">multi-user (L3)</button>
+              <button type="button" class="chip" data-a="tgt" data-t="graphical">graphical (L5)</button>
+              <button type="button" class="chip" data-a="tgt" data-t="rescue">rescue (L1)</button>
+              <button type="button" class="chip" data-a="tgt" data-t="emergency">emergency</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <!-- Targets Flowchart -->
+          <div id="fc_targets">
+            <span class="lab">systemd Target Dependency Hierarchy (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
+              <!-- Tier 1: sysinit.target -->
+              <rect x="30" y="8" width="460" height="28" class="node-rect st-active" />
+              <text x="260" y="22" class="node-mono">1. sysinit.target &bull; Mounts /proc, /sys &amp; initializes crypto disks</text>
+
+              <path d="M 260 36 L 260 48" class="flow-line line-blue" />
+
+              <!-- Tier 2: basic.target -->
+              <rect x="30" y="48" width="460" height="28" class="node-rect st-pass" />
+              <text x="260" y="62" class="node-mono">2. basic.target &bull; Sockets, timers &amp; core system device paths</text>
+
+              <path d="M 260 76 L 260 88" class="flow-line line-pass" />
+
+              <!-- Tier 3: multi-user.target (Server Default) -->
+              <rect id="tg_b_multi" x="30" y="88" width="460" height="40" class="node-rect st-pass" data-a="tgt" data-t="multi" style="cursor:pointer;" />
+              <text x="260" y="103" class="node-text">3. multi-user.target &bull; Headless Server Environment (Runlevel 3)</text>
+              <text x="260" y="117" class="node-mono">Networking &bull; OpenSSH &bull; Nginx &bull; MySQL &bull; Multi-User Shells</text>
+
+              <path d="M 260 128 L 260 140" class="flow-line line-blue" />
+
+              <!-- Tier 4: graphical.target (Desktop Default) -->
+              <rect id="tg_b_graphical" x="30" y="140" width="460" height="42" rx="6" fill="var(--ink)" data-a="tgt" data-t="graphical" style="cursor:pointer;" />
+              <text x="260" y="155" class="node-mono" fill="#fff">4. graphical.target &bull; Desktop Workstation (Runlevel 5)</text>
+              <text x="260" y="171" class="node-mono" fill="#93c5fd">GNOME / KDE Display Manager + all multi-user.target background services</text>
+            </svg>
+          </div>
+
+          <!-- Target Switching Flowchart -->
+          <div id="fc_switching">
+            <span class="lab">Runtime Isolation &amp; Default Target Commands (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
+              <!-- Switch Default Box -->
+              <rect x="30" y="10" width="460" height="46" class="node-rect st-active" />
+              <text x="260" y="27" class="node-mono" fill="var(--primary-dark)">sudo systemctl set-default multi-user.target</text>
+              <text x="260" y="44" class="node-text">Changes default boot target permanently by rewriting /etc/systemd/system/default.target</text>
+
+              <!-- Arrow -->
+              <path d="M 260 56 L 260 72" class="flow-line line-blue" />
+
+              <!-- Current Query -->
+              <rect x="30" y="72" width="460" height="42" class="node-rect st-pass" />
+              <text x="260" y="88" class="node-mono" fill="var(--ok)">systemctl get-default</text>
+              <text x="260" y="103" class="node-text">Inspects active default target &bull; Output: multi-user.target</text>
+
+              <!-- Arrow -->
+              <path d="M 260 114 L 260 130" class="flow-line line-pass" />
+
+              <!-- Live Isolation Box -->
+              <rect x="30" y="130" width="460" height="48" rx="6" fill="var(--ink)" />
+              <text x="260" y="147" class="node-mono" fill="#fff">sudo systemctl isolate rescue.target</text>
+              <text x="260" y="166" class="node-mono" fill="#93c5fd">Switches runtime state immediately to maintenance mode without restarting host</text>
+            </svg>
+          </div>
+
+          <!-- Diagnostics Flowchart -->
+          <div id="fc_diagnostics" style="display:none;">
+            <span class="lab">Boot Diagnostics: systemd-analyze blame (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
+              <!-- Total Boot Time -->
+              <rect x="30" y="8" width="460" height="26" rx="5" fill="var(--ink)" />
+              <text x="260" y="21" class="node-mono" fill="#fff">Startup finished in: 1.84s (firmware) + 2.12s (kernel) + 1.63s (userspace)</text>
+
+              <!-- Bar 1 -->
+              <rect x="30" y="42" width="460" height="28" class="node-rect st-pass" />
+              <rect x="30" y="42" width="240" height="28" rx="4" fill="var(--ok-bg)" />
+              <text x="45" y="56" class="node-mono" text-anchor="start" fill="var(--ink)">1.240s &bull; snapd.service (Application packages &amp; confinement)</text>
+
+              <!-- Bar 2 -->
+              <rect x="30" y="76" width="460" height="28" class="node-rect st-active" />
+              <rect x="30" y="76" width="180" height="28" rx="4" fill="var(--tint)" />
+              <text x="45" y="90" class="node-mono" text-anchor="start" fill="var(--ink)">0.890s &bull; systemd-networkd-wait-online.service (Network sync)</text>
+
+              <!-- Bar 3 -->
+              <rect x="30" y="110" width="460" height="28" class="node-rect st-pass" />
+              <rect x="30" y="110" width="120" height="28" rx="4" fill="var(--ok-bg)" />
+              <text x="45" y="124" class="node-mono" text-anchor="start" fill="var(--ink)">0.450s &bull; nginx.service (Reverse proxy web daemon)</text>
+
+              <!-- Bar 4 -->
+              <rect x="30" y="144" width="460" height="28" class="node-rect st-pass" />
+              <rect x="30" y="144" width="75" height="28" rx="4" fill="var(--ok-bg)" />
+              <text x="45" y="158" class="node-mono" text-anchor="start" fill="var(--ink)">0.180s &bull; ssh.service (OpenSSH daemon)</text>
+
+              <!-- Footer info -->
+              <rect x="30" y="178" width="460" height="22" rx="4" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="193" class="node-mono" fill="var(--muted)">Command: systemd-analyze critical-chain prints the slowest dependency tree</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <span class="lab" id="insp_lab">Overview: Systemd System Targets</span>
+        <pre><code id="insp_code"></code></pre>
+        <div class="res ok" id="insp_res"></div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: QUICK CHECK -->
+    <h2 class="sh"><span class="st">3</span>Quick Check</h2>
+    <div class="box">
+      <p style="margin:0 0 5px"><b>Which modern systemd target corresponds directly to legacy SysV Runlevel 3 for headless enterprise servers?</b></p>
+      <div class="chips" id="qc_chips">
+        <button type="button" class="chip" data-a="qc" data-o="0"><code>multi-user.target</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="1"><code>graphical.target</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="2"><code>reboot.target</code></button>
+      </div>
+      <div class="res" id="qc_res" style="display:none"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <a href="Level_7.html" class="status-badge" style="text-decoration:none;background:var(--tint);border-color:var(--tint-bd);color:var(--primary);">&larr; Return to Level 7</a>
+    <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="status-badge">Level 8 Complete</span>
+      <span class="status-badge" style="background:var(--ok);color:#fff;border-color:var(--ok);">Module 1 Completed &bull; 8 of 8 Levels</span>
+    </div>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let activeTopic = "targets";
+let activeTgt = "all";
+
+const TARGETS = {
+  all: {
+    lab: "Overview: Systemd System Targets",
+    code: `multi-user.target • Runlevel 3: Headless server with networking & SSH\ngraphical.target  • Runlevel 5: Multi-user environment plus GUI display\nrescue.target     • Runlevel 1: Single-user root shell with disks mounted\nemergency.target  • Minimal read-only root shell without services`,
+    explain: "Systemd targets group related background services together to define system states without numbered runlevels."
+  },
+  multi: {
+    lab: "multi-user.target (Legacy Runlevel 3)",
+    code: `Role     : Provides standard non-graphical multi-user network server environment\nExamples : CLI server installations, cloud instances, SSH access`,
+    explain: "Multi-user target powers standard headless enterprise servers without consuming memory on graphical interfaces."
+  },
+  graphical: {
+    lab: "graphical.target (Legacy Runlevel 5)",
+    code: `Role     : Launches full multi-user environment plus display manager desktop\nExamples : GNOME Display Manager, KDE Plasma, workstation laptops`,
+    explain: "Graphical target starts desktop window managers alongside standard multi-user network and security services."
+  },
+  rescue: {
+    lab: "rescue.target (Legacy Runlevel 1 / Single)",
+    code: `Role     : Mounts local disks in single-user maintenance mode\nExamples : Root password recovery, repairing damaged disk configurations`,
+    explain: "Rescue target provides a single-user root shell with local filesystems mounted for emergency repairs."
+  },
+  emergency: {
+    lab: "emergency.target (Minimal Recovery)",
+    code: `Role     : Minimal root shell with readonly root and no services\nExamples : Severe filesystem corruption, critical initramfs failure`,
+    explain: "Emergency target provides the most minimal diagnostic root shell with only read-only disk access."
+  }
+};
+
+const TOPICS = {
+  switching: {
+    lab: "Systemd Target Switching Commands",
+    code: `Check Default    • systemctl get-default\nSet Server CLI   • sudo systemctl set-default multi-user.target\nSet Desktop GUI  • sudo systemctl set-default graphical.target\nLive Switch      • sudo systemctl isolate multi-user.target`,
+    explain: "Administrators manage default boot states using systemctl commands to switch between headless and desktop."
+  },
+  diagnostics: {
+    lab: "Boot Time Diagnostics & Bottlenecks",
+    code: `Overall Timing   • systemd-analyze (Displays kernel, initrd, userspace times)\nBlame Slow Units • systemd-analyze blame (Lists slowest units in descending order)\nCritical Chain   • systemd-analyze critical-chain (Plots slowest startup branch)`,
+    explain: "The systemd-analyze suite diagnoses slow services to optimize operating system startup performance effectively."
+  }
+};
+
+function updateStudio() {
+  document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeTopic));
+
+  if (activeTopic === "targets") {
+    $("fc_targets").style.display = "block";
+    $("fc_switching").style.display = "none";
+    $("fc_diagnostics").style.display = "none";
+    $("sub_chips_tgt").style.display = "block";
+    updateTarget();
+  } else if (activeTopic === "switching") {
+    $("fc_targets").style.display = "none";
+    $("fc_switching").style.display = "block";
+    $("fc_diagnostics").style.display = "none";
+    $("sub_chips_tgt").style.display = "none";
+    const data = TOPICS.switching;
+    $("insp_lab").textContent = data.lab;
+    $("insp_code").textContent = data.code;
+    const res = $("insp_res");
+    res.textContent = data.explain;
+    res.className = "res ok";
+  } else {
+    $("fc_targets").style.display = "none";
+    $("fc_switching").style.display = "none";
+    $("fc_diagnostics").style.display = "block";
+    $("sub_chips_tgt").style.display = "none";
+    const data = TOPICS.diagnostics;
+    $("insp_lab").textContent = data.lab;
+    $("insp_code").textContent = data.code;
+    const res = $("insp_res");
+    res.textContent = data.explain;
+    res.className = "res ok";
+  }
+}
+
+function updateTarget() {
+  document.querySelectorAll("[data-a='tgt']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.t === activeTgt);
+  });
+
+  const data = TARGETS[activeTgt] || TARGETS.all;
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").textContent = data.code;
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+
+  const nodes = {
+    multi: $("tg_b_multi"),
+    graphical: $("tg_b_graphical")
+  };
+
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    const isSelected = activeTgt === "all" || activeTgt === k;
+    if (k === "graphical") {
+      el.setAttribute("fill", isSelected ? (activeTgt === k ? "var(--ok)" : "var(--ink)") : "#64748b");
+    } else {
+      el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
+      el.style.opacity = isSelected ? "1" : "0.45";
+    }
+  });
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-a]");
+  if (!t) return;
+  const a = t.dataset.a;
+
+  if (a === "md") {
+    activeTopic = t.dataset.m;
+    updateStudio();
+  } else if (a === "tgt") {
+    activeTgt = t.dataset.t;
+    updateTarget();
+  } else if (a === "qc") {
+    const opt = +t.dataset.o;
+    const chips = $("qc_chips").querySelectorAll(".chip");
+    chips.forEach((c, idx) => {
+      c.classList.remove("ok", "bad");
+      if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
+    });
+    const qcRes = $("qc_res");
+    qcRes.style.display = "flex";
+    if (opt === 0) {
+      qcRes.className = "res ok";
+      qcRes.textContent = "Correct! The multi-user.target provides standard non-graphical multi-user server operation matching legacy Runlevel 3.";
+    } else {
+      qcRes.className = "res bad";
+      qcRes.textContent = "Not quite. The multi-user.target is the modern systemd replacement for legacy headless Runlevel 3.";
+    }
+  }
+});
+
+updateStudio();
+</script>
+</body>
+</html>

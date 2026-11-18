@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Virtual Machines, Hypervisors &amp; Dual Boot | IST Learn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="top-nav-inner">
+    <a href="https://www.inovatesolutiontechnology.in/" target="_blank" rel="noopener" class="brand-link" aria-label="Inovate Solution Technology Website">
+      <img src="ist-logo.png" alt="Inovate Solution Technology" height="28" onerror="this.style.display='none'; document.getElementById('ist-fallback').style.display='inline-flex';">
+      <span id="ist-fallback" style="display:none;font-weight:800;color:var(--ink);font-size:14px;">Inovate Solution Technology</span>
+    </a>
+    <span class="top-pill">Module 1 &bull; Level 5</span>
+  </div>
+</header>
+
+<main>
+  <p class="eye">Module 1 &middot; Level 5 &middot; Interactive System Lab</p>
+  <h1>Virtual Machines, Hypervisors &amp; Dual Boot</h1>
+
+  <div class="card" id="stage">
+    <!-- SECTION 1: SIMPLE IDEA -->
+    <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
+    <div class="note"><b>In plain words:</b> Virtual machines enable developers to run multiple isolated Linux environments safely upon a single physical computer.</div>
+
+    <p class="sm"><b>Remember:</b> Bridged networking assigns each virtual machine a unique dedicated IP address on your physical local network.</p>
+
+    <!-- SECTION 2: TRY IT -->
+    <h2 class="sh"><span class="st">2</span>Try It: Interactive Virtual Machine &amp; Network Studio</h2>
+    <div class="two">
+      <div>
+        <div class="box">
+          <label class="lab">Select Exploration Topic:</label>
+          <div class="chips">
+            <button type="button" class="chip on" data-a="md" data-m="networking">1. Network Modes</button>
+            <button type="button" class="chip" data-a="md" data-m="hypervisors">2. Hypervisor Types</button>
+            <button type="button" class="chip" data-a="md" data-m="snapshots">3. Snapshots &amp; State</button>
+          </div>
+
+          <!-- Network Modes Subchips -->
+          <div id="sub_chips_net" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+            <label class="lab" style="font-size:10px">Select Network Mode:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="net" data-n="all">All Modes</button>
+              <button type="button" class="chip" data-a="net" data-n="nat">NAT</button>
+              <button type="button" class="chip" data-a="net" data-n="bridged">Bridged</button>
+              <button type="button" class="chip" data-a="net" data-n="hostonly">Host-Only</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <!-- Network Modes Flowchart -->
+          <div id="fc_networking">
+            <span class="lab">Virtual Machine Networking Topologies (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
+              <!-- Physical Network Switch -->
+              <rect x="20" y="8" width="480" height="34" rx="7" fill="var(--ink)" />
+              <text x="260" y="25" class="node-mono" fill="#fff">Physical LAN Router &bull; 192.168.1.0/24 Subnet</text>
+
+              <!-- Connection Lines -->
+              <path d="M 95 42 L 95 66 M 260 42 L 260 66 M 425 42 L 425 66" class="flow-line line-blue" fill="none" />
+
+              <!-- NAT Mode Box -->
+              <rect id="net_b_nat" x="20" y="66" width="150" height="48" class="node-rect st-active" data-a="net" data-n="nat" style="cursor:pointer;" />
+              <text x="95" y="82" class="node-text">NAT Mode</text>
+              <text x="95" y="100" class="node-mono">10.0.2.15/24</text>
+
+              <!-- Bridged Mode Box -->
+              <rect id="net_b_bridged" x="185" y="66" width="150" height="48" class="node-rect st-pass" data-a="net" data-n="bridged" style="cursor:pointer;" />
+              <text x="260" y="82" class="node-text">Bridged Mode</text>
+              <text x="260" y="100" class="node-mono">192.168.1.150</text>
+
+              <!-- Host-Only Mode Box -->
+              <rect id="net_b_hostonly" x="350" y="66" width="150" height="48" class="node-rect st-active" data-a="net" data-n="hostonly" style="cursor:pointer;" />
+              <text x="425" y="82" class="node-text">Host-Only Mode</text>
+              <text x="425" y="100" class="node-mono">192.168.56.101</text>
+
+              <!-- Lower Target Nodes -->
+              <path d="M 95 114 L 95 124 M 260 114 L 260 124 M 425 114 L 425 124" class="flow-line line-pass" />
+              <rect x="20" y="124" width="150" height="30" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="95" y="139" class="node-mono">Outbound Internet Only</text>
+
+              <rect x="185" y="124" width="150" height="30" rx="6" fill="var(--tint)" stroke="var(--primary)" />
+              <text x="260" y="139" class="node-mono" fill="var(--primary-dark)">Full Direct LAN Access</text>
+
+              <rect x="350" y="124" width="150" height="30" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="425" y="139" class="node-mono">Host &harr; VM Isolated</text>
+
+              <rect x="20" y="166" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="179" class="node-mono" fill="var(--ink)">Bridged mode grants direct SSH and server accessibility across your network</text>
+            </svg>
+          </div>
+
+          <!-- Hypervisors Flowchart -->
+          <div id="fc_hypervisors" style="display:none;">
+            <span class="lab">Type 1 vs Type 2 Hypervisor Stacks (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
+              <!-- Type 1 Bare Metal Column -->
+              <rect x="20" y="8" width="230" height="32" class="node-rect st-pass" />
+              <text x="135" y="24" class="node-text">Type 1: Bare Metal</text>
+
+              <rect x="20" y="44" width="230" height="34" rx="6" fill="var(--ok-bg)" stroke="var(--ok)" />
+              <text x="135" y="61" class="node-mono" fill="var(--ok)">KVM &bull; Proxmox &bull; VMware ESXi</text>
+
+              <rect x="20" y="82" width="230" height="42" rx="6" fill="var(--ink)" />
+              <text x="135" y="96" class="node-mono" fill="#fff">Direct Physical Hardware</text>
+              <text x="135" y="112" class="node-mono" fill="#93c5fd">Zero Host OS Overhead Layer</text>
+
+              <rect x="20" y="128" width="230" height="34" rx="6" fill="var(--tint)" stroke="var(--primary)" />
+              <text x="135" y="140" class="node-mono" fill="var(--primary-dark)">Maximum Performance &bull; Near Native</text>
+              <text x="135" y="152" class="node-mono" fill="var(--muted)">Standard for Data Centers &amp; Cloud</text>
+
+              <!-- Type 2 Hosted Column -->
+              <rect x="270" y="8" width="230" height="32" class="node-rect st-active" />
+              <text x="385" y="24" class="node-text">Type 2: Hosted</text>
+
+              <rect x="270" y="44" width="230" height="34" rx="6" fill="var(--tint)" stroke="var(--tint-bd)" />
+              <text x="385" y="61" class="node-mono" fill="var(--primary-dark)">VirtualBox &bull; VMware Workstation</text>
+
+              <rect x="270" y="82" width="230" height="42" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="385" y="96" class="node-mono" fill="var(--ink)">Runs Inside Existing Host OS</text>
+              <text x="385" y="112" class="node-mono" fill="var(--muted)">Windows / macOS / Ubuntu Desktop</text>
+
+              <rect x="270" y="128" width="230" height="34" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="385" y="140" class="node-mono">Quick Graphical Installation</text>
+              <text x="385" y="152" class="node-mono" fill="var(--muted)">Ideal for Learning &amp; Local Labs</text>
+
+              <rect x="20" y="172" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="185" class="node-mono" fill="var(--ink)">Type 1 runs directly on hardware; Type 2 executes as an app in host OS</text>
+            </svg>
+          </div>
+
+          <!-- Snapshots Flowchart -->
+          <div id="fc_snapshots" style="display:none;">
+            <span class="lab">VM Snapshot &amp; Rollback Lifecycle (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
+              <!-- State 1: Clean Install -->
+              <rect x="25" y="6" width="470" height="34" rx="7" class="node-rect st-active" />
+              <text x="260" y="23" class="node-text">Base State: Fresh Ubuntu Server Installation</text>
+
+              <path d="M 260 40 L 260 56" class="flow-line line-blue" />
+              <text x="345" y="48" class="branch-label" fill="var(--primary)">take snapshot 1</text>
+
+              <!-- State 2: Snapshot Saved -->
+              <rect x="25" y="56" width="470" height="34" rx="7" class="node-rect st-pass" />
+              <text x="260" y="73" class="node-text">Snapshot 1: "Pre-Update Clean Milestone"</text>
+
+              <path d="M 260 90 L 260 106" class="flow-line line-pass" />
+              <text x="345" y="98" class="branch-label" fill="var(--ok)">apply test packages</text>
+
+              <!-- State 3: Corrupted Test State -->
+              <rect x="25" y="106" width="470" height="34" rx="7" class="node-rect st-active" />
+              <text x="260" y="123" class="node-text">Broken State: System Package Crash Occurred</text>
+
+              <!-- Revert Curve -->
+              <path d="M 45 123 C 15 95, 15 73, 40 73" class="flow-line line-pass" stroke-dasharray="4 3" fill="none" />
+              <text x="75" y="98" class="branch-label" fill="var(--ok)">instant revert</text>
+
+              <rect x="25" y="152" width="470" height="34" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="166" class="node-mono" fill="var(--ink)">Snapshots allow instant zero-downtime rollback during risky administrative experiments</text>
+              <text x="260" y="179" class="node-mono" fill="var(--ok)">Eliminates the requirement to re-install guest operating systems from scratch</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <span class="lab" id="insp_lab">Overview: VM Network Modes</span>
+        <pre><code id="insp_code"></code></pre>
+        <div class="res ok" id="insp_res"></div>
+      </div>
+    </div>
+
+    <!-- VIDEO REFERENCE -->
+    <h2 class="sh"><span class="st">&bull;</span>Video Reference: Install Ubuntu on Virtual Machine (VMware)</h2>
+    <div class="box" style="padding:14px;">
+      <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;">
+        <iframe 
+          src="https://www.youtube-nocookie.com/embed/4vGspukBcys" 
+          title="Ubuntu on VMware in Minutes! How to Download &amp; Install Ubuntu Desktop Step-by-Step" 
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-top:10px;">
+        <div>
+          <b style="font-size:13.5px;color:var(--ink)">Ubuntu on VMware in Minutes! (r2schools)</b>
+          <p class="sm" style="margin:2px 0 0;">Step-by-step practical guide demonstrating how to create and configure an Ubuntu virtual machine inside VMware Workstation.</p>
+        </div>
+        <a href="https://www.youtube.com/watch?v=4vGspukBcys" target="_blank" rel="noopener noreferrer" class="status-badge" style="text-decoration:none;background:var(--tint);color:var(--primary);border-color:var(--tint-bd);">Watch on YouTube &rarr;</a>
+      </div>
+    </div>
+
+    <!-- SECTION 3: QUICK CHECK -->
+    <h2 class="sh"><span class="st">3</span>Quick Check</h2>
+    <div class="box">
+      <p style="margin:0 0 5px"><b>Which virtual machine networking mode assigns the guest operating system a direct IP address on your physical local area network?</b></p>
+      <div class="chips" id="qc_chips">
+        <button type="button" class="chip" data-a="qc" data-o="0"><code>Bridged Networking</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="1"><code>NAT (Network Address Translation)</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="2"><code>Isolated Loopback Mode</code></button>
+      </div>
+      <div class="res" id="qc_res" style="display:none"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <a href="Level_4.html" class="status-badge" style="text-decoration:none;background:var(--tint);border-color:var(--tint-bd);color:var(--primary);">&larr; Return to Level 4</a>
+    <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="status-badge">Level 5 Complete</span>
+      <a href="Level_6.html" class="status-badge" style="text-decoration:none;background:var(--primary);color:#fff;border-color:var(--primary);">Proceed to Level 6 &rarr;</a>
+    </div>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let activeTopic = "networking";
+let activeNet = "all";
+
+const NETWORKS = {
+  all: {
+    lab: "Overview: VM Network Modes",
+    code: `NAT Mode     • Shares host IP; allows outbound internet access only\nBridged Mode • Assigns dedicated local network IP address to the VM\nHost-Only    • Completely isolated sandbox network between host & VM`,
+    explain: "Virtual machine network drivers determine how guest Linux operating systems communicate with external network devices."
+  },
+  nat: {
+    lab: "NAT (Network Address Translation)",
+    code: `Role     : Translates guest outbound packets through host IP\nExamples : 10.0.2.15/24 default IP; safe internet browsing`,
+    explain: "NAT mode allows guest virtual machines to access the internet while isolating them from inbound traffic."
+  },
+  bridged: {
+    lab: "Bridged Adapter Mode",
+    code: `Role     : Attaches virtual NIC directly into physical network switch\nExamples : 192.168.1.150/24; direct SSH and web server hosting`,
+    explain: "Bridged mode assigns the virtual machine a distinct IP address directly from your physical router."
+  },
+  hostonly: {
+    lab: "Host-Only Networking",
+    code: `Role     : Restricts traffic strictly to an internal virtual loopback\nExamples : 192.168.56.101/24; isolated cybersecurity malware lab`,
+    explain: "Host-only networking restricts communication strictly between the host computer and designated virtual machines."
+  }
+};
+
+const TOPICS = {
+  hypervisors: {
+    lab: "Hypervisors: Type 1 vs Type 2",
+    code: `Type 1 (Bare Metal) • KVM, VMware ESXi, Proxmox (Runs on hardware)\nType 2 (Hosted)     • VirtualBox, VMware Workstation (Runs on host OS)\nHardware Virt Tech  • Intel VT-x and AMD-V CPU virtualization acceleration`,
+    explain: "Hypervisors abstract physical processor cores and memory to run concurrent guest operating systems safely."
+  },
+  snapshots: {
+    lab: "VM Snapshots & Disaster Recovery",
+    code: `State Preservation • Freezes virtual hard disk and RAM execution state\nDelta Disk Differ  • Writes new disk mutations to a separate overlay file\nInstant Rollback   • Restores clean operating system snapshot in seconds`,
+    explain: "Snapshots capture current system state allowing instant rollback before performing hazardous administrative operations."
+  }
+};
+
+function updateStudio() {
+  document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeTopic));
+
+  if (activeTopic === "networking") {
+    $("fc_networking").style.display = "block";
+    $("fc_hypervisors").style.display = "none";
+    $("fc_snapshots").style.display = "none";
+    $("sub_chips_net").style.display = "block";
+    updateNet();
+  } else if (activeTopic === "hypervisors") {
+    $("fc_networking").style.display = "none";
+    $("fc_hypervisors").style.display = "block";
+    $("fc_snapshots").style.display = "none";
+    $("sub_chips_net").style.display = "none";
+    const data = TOPICS.hypervisors;
+    $("insp_lab").textContent = data.lab;
+    $("insp_code").textContent = data.code;
+    const res = $("insp_res");
+    res.textContent = data.explain;
+    res.className = "res ok";
+  } else {
+    $("fc_networking").style.display = "none";
+    $("fc_hypervisors").style.display = "none";
+    $("fc_snapshots").style.display = "block";
+    $("sub_chips_net").style.display = "none";
+    const data = TOPICS.snapshots;
+    $("insp_lab").textContent = data.lab;
+    $("insp_code").textContent = data.code;
+    const res = $("insp_res");
+    res.textContent = data.explain;
+    res.className = "res ok";
+  }
+}
+
+function updateNet() {
+  document.querySelectorAll("[data-a='net']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.n === activeNet);
+  });
+
+  const data = NETWORKS[activeNet] || NETWORKS.all;
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").textContent = data.code;
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+
+  const nodes = {
+    nat: $("net_b_nat"),
+    bridged: $("net_b_bridged"),
+    hostonly: $("net_b_hostonly")
+  };
+
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    const isSelected = activeNet === "all" || activeNet === k;
+    el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
+    el.style.opacity = isSelected ? "1" : "0.45";
+  });
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-a]");
+  if (!t) return;
+  const a = t.dataset.a;
+
+  if (a === "md") {
+    activeTopic = t.dataset.m;
+    updateStudio();
+  } else if (a === "net") {
+    activeNet = t.dataset.n;
+    updateNet();
+  } else if (a === "qc") {
+    const opt = +t.dataset.o;
+    const chips = $("qc_chips").querySelectorAll(".chip");
+    chips.forEach((c, idx) => {
+      c.classList.remove("ok", "bad");
+      if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
+    });
+    const qcRes = $("qc_res");
+    qcRes.style.display = "flex";
+    if (opt === 0) {
+      qcRes.className = "res ok";
+      qcRes.textContent = "Correct! Bridged networking assigns the virtual machine an independent local IP address matching your physical network.";
+    } else {
+      qcRes.className = "res bad";
+      qcRes.textContent = "Not quite. Bridged networking provides an independent local IP address directly from your physical network router.";
+    }
+  }
+});
+
+updateStudio();
+</script>
+</body>
+</html>

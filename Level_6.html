@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terminal, Shell Consoles &amp; Desktop Environments | IST Learn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="top-nav-inner">
+    <a href="https://www.inovatesolutiontechnology.in/" target="_blank" rel="noopener" class="brand-link" aria-label="Inovate Solution Technology Website">
+      <img src="ist-logo.png" alt="Inovate Solution Technology" height="28" onerror="this.style.display='none'; document.getElementById('ist-fallback').style.display='inline-flex';">
+      <span id="ist-fallback" style="display:none;font-weight:800;color:var(--ink);font-size:14px;">Inovate Solution Technology</span>
+    </a>
+    <span class="top-pill">Module 1 &bull; Level 6</span>
+  </div>
+</header>
+
+<main>
+  <p class="eye">Module 1 &middot; Level 6 &middot; Interactive System Lab</p>
+  <h1>Terminal, Shell Consoles &amp; Desktop Environments</h1>
+
+  <div class="card" id="stage">
+    <!-- SECTION 1: SIMPLE IDEA -->
+    <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
+    <div class="note"><b>In plain words:</b> Linux provides both graphic desktop interfaces and powerful command line virtual consoles for administrative management.</div>
+
+    <p class="sm"><b>Remember:</b> Virtual TTY consoles let system administrators troubleshoot damaged desktop sessions by switching keyboard shortcuts directly.</p>
+
+    <!-- SECTION 2: TRY IT -->
+    <h2 class="sh"><span class="st">2</span>Try It: Interactive Terminal &amp; Desktop Console Studio</h2>
+    <div class="two">
+      <div>
+        <div class="box">
+          <label class="lab">Select Console View:</label>
+          <div class="chips">
+            <button type="button" class="chip on" data-a="md" data-m="consoles">1. TTY Consoles (1-6)</button>
+            <button type="button" class="chip" data-a="md" data-m="desktops">2. Desktop GUI Stacks</button>
+            <button type="button" class="chip" data-a="md" data-m="ssh">3. SSH Remote Console</button>
+          </div>
+
+          <!-- TTY Consoles Subchips -->
+          <div id="sub_chips_tty" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+            <label class="lab" style="font-size:10px">Select Console Channel:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="tty" data-t="all">All Channels</button>
+              <button type="button" class="chip" data-a="tty" data-t="tty1">TTY1 (Wayland / GUI)</button>
+              <button type="button" class="chip" data-a="tty" data-t="tty2">TTY2-6 (Text CLI)</button>
+              <button type="button" class="chip" data-a="tty" data-t="pts">PTS (SSH / Terminal)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <!-- TTY Consoles Flowchart -->
+          <div id="fc_consoles">
+            <span class="lab">Linux Virtual Consoles (TTY) Architecture (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
+              <!-- Physical Keyboard Input -->
+              <rect x="20" y="8" width="480" height="34" rx="7" fill="var(--ink)" />
+              <text x="260" y="25" class="node-mono" fill="#fff">Physical Hardware &bull; Keyboard, Mouse &amp; Display Monitor</text>
+
+              <!-- Switcher Lines -->
+              <path d="M 95 42 L 95 66 M 260 42 L 260 66 M 425 42 L 425 66" class="flow-line line-blue" fill="none" />
+
+              <!-- TTY1 Box -->
+              <rect id="tty_b_1" x="20" y="66" width="150" height="48" class="node-rect st-pass" data-a="tty" data-t="tty1" style="cursor:pointer;" />
+              <text x="95" y="82" class="node-text">/dev/tty1 (GUI)</text>
+              <text x="95" y="100" class="node-mono">Ctrl + Alt + F1</text>
+
+              <!-- TTY2-6 Box -->
+              <rect id="tty_b_2" x="185" y="66" width="150" height="48" class="node-rect st-active" data-a="tty" data-t="tty2" style="cursor:pointer;" />
+              <text x="260" y="82" class="node-text">/dev/tty2..6 (CLI)</text>
+              <text x="260" y="100" class="node-mono">Ctrl + Alt + F2..F6</text>
+
+              <!-- PTS Box -->
+              <rect id="tty_b_pts" x="350" y="66" width="150" height="48" class="node-rect st-active" data-a="tty" data-t="pts" style="cursor:pointer;" />
+              <text x="425" y="82" class="node-text">/dev/pts/X (PTY)</text>
+              <text x="425" y="100" class="node-mono">SSH / GUI Terminal</text>
+
+              <!-- Lower Target Nodes -->
+              <path d="M 95 114 L 95 124 M 260 114 L 260 124 M 425 114 L 425 124" class="flow-line line-pass" />
+              <rect x="20" y="124" width="150" height="30" rx="6" fill="var(--tint)" stroke="var(--primary)" />
+              <text x="95" y="139" class="node-mono" fill="var(--primary-dark)">GNOME / Wayland</text>
+
+              <rect x="185" y="124" width="150" height="30" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="139" class="node-mono">agetty Text Login</text>
+
+              <rect x="350" y="124" width="150" height="30" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="425" y="139" class="node-mono">sshd Daemon Session</text>
+
+              <rect x="20" y="166" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="179" class="node-mono" fill="var(--ink)">Switch between text consoles and GUI with Ctrl + Alt + F1 through F6</text>
+            </svg>
+          </div>
+
+          <!-- Desktops Flowchart -->
+          <div id="fc_desktops" style="display:none;">
+            <span class="lab">Linux Graphical Desktop Stack (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
+              <!-- Tier 1: User Apps -->
+              <rect x="20" y="6" width="480" height="34" rx="7" class="node-rect st-active" />
+              <text x="260" y="23" class="node-text">Desktop Environment (GNOME 46 &bull; KDE Plasma 6 &bull; XFCE)</text>
+
+              <path d="M 260 40 L 260 52" class="flow-line line-blue" />
+
+              <!-- Tier 2: Compositor / Window Mgr -->
+              <rect x="20" y="52" width="480" height="34" rx="7" class="node-rect st-pass" />
+              <text x="260" y="69" class="node-text">Display Compositor &bull; Mutter (GNOME) / KWin (KDE)</text>
+
+              <path d="M 260 86 L 260 98" class="flow-line line-pass" />
+
+              <!-- Tier 3: Display Server Protocol -->
+              <rect x="20" y="98" width="480" height="34" rx="7" class="node-rect st-pass" />
+              <text x="260" y="115" class="node-text">Display Server Protocol &bull; Wayland (Modern) / X11 (Legacy)</text>
+
+              <path d="M 260 132 L 260 144" class="flow-line line-pass" />
+
+              <!-- Tier 4: Kernel GPU Driver -->
+              <rect x="20" y="144" width="480" height="42" rx="7" fill="var(--ink)" />
+              <text x="260" y="158" class="node-mono" fill="#fff">Kernel DRM / KMS &bull; Graphics Card GPU Hardware</text>
+              <text x="260" y="174" class="node-mono" fill="#93c5fd">Direct Rendering Manager handles framebuffer rendering safely</text>
+            </svg>
+          </div>
+
+          <!-- SSH Console Flowchart -->
+          <div id="fc_ssh" style="display:none;">
+            <span class="lab">Remote SSH Secure Terminal Architecture (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
+              <!-- Remote Admin PC -->
+              <rect x="20" y="8" width="190" height="48" rx="8" class="node-rect st-active" />
+              <text x="115" y="25" class="node-text">Admin Workstation</text>
+              <text x="115" y="43" class="node-mono">ssh user@server_ip</text>
+
+              <!-- Connection Arrow -->
+              <path d="M 210 32 L 310 32" class="flow-line line-blue" />
+              <text x="260" y="22" class="branch-label" fill="var(--primary)">TCP:22 (SSH)</text>
+
+              <!-- Remote Server sshd -->
+              <rect x="310" y="8" width="190" height="48" rx="8" class="node-rect st-pass" />
+              <text x="405" y="25" class="node-text">Linux Server (sshd)</text>
+              <text x="405" y="43" class="node-mono">Listening daemon</text>
+
+              <!-- Downward flow to PTS -->
+              <path d="M 405 56 L 405 76" class="flow-line line-pass" />
+              <text x="340" y="68" class="branch-label" fill="var(--ok)">forks PTY</text>
+
+              <!-- Pseudo-terminal -->
+              <rect x="280" y="76" width="220" height="38" rx="7" class="node-rect st-active" />
+              <text x="390" y="95" class="node-text">Pseudo-Terminal (/dev/pts/0)</text>
+
+              <path d="M 390 114 L 390 130" class="flow-line line-pass" />
+
+              <!-- Target Shell -->
+              <rect x="280" y="130" width="220" height="42" rx="7" fill="var(--ink)" />
+              <text x="390" y="145" class="node-mono" fill="#fff">Interactive Bash Shell</text>
+              <text x="390" y="161" class="node-mono" fill="#93c5fd">stdin &bull; stdout &bull; stderr</text>
+
+              <!-- Architecture explanation on left -->
+              <rect x="20" y="76" width="240" height="96" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="140" y="98" class="node-mono" fill="var(--primary-dark)">Secure Tunnel Transport</text>
+              <text x="140" y="118" class="node-mono" fill="var(--ink)">End-to-End Cryptography</text>
+              <text x="140" y="138" class="node-mono" fill="var(--ok)">Ed25519 Key Verification</text>
+              <text x="140" y="156" class="node-mono" fill="var(--muted)">Direct Shell Virtualization</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <span class="lab" id="insp_lab">Overview: Linux Console Channels</span>
+        <pre><code id="insp_code"></code></pre>
+        <div class="res ok" id="insp_res"></div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: QUICK CHECK -->
+    <h2 class="sh"><span class="st">3</span>Quick Check</h2>
+    <div class="box">
+      <p style="margin:0 0 5px"><b>Which keyboard shortcut allows a Linux administrator to switch from a desktop interface into text console TTY3?</b></p>
+      <div class="chips" id="qc_chips">
+        <button type="button" class="chip" data-a="qc" data-o="0"><code>Ctrl + Alt + F3</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="1"><code>Alt + F4</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="2"><code>Ctrl + Shift + Esc</code></button>
+      </div>
+      <div class="res" id="qc_res" style="display:none"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <a href="Level_5.html" class="status-badge" style="text-decoration:none;background:var(--tint);border-color:var(--tint-bd);color:var(--primary);">&larr; Return to Level 5</a>
+    <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="status-badge">Level 6 Complete</span>
+      <a href="Level_7.html" class="status-badge" style="text-decoration:none;background:var(--primary);color:#fff;border-color:var(--primary);">Proceed to Level 7 &rarr;</a>
+    </div>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let activeTopic = "consoles";
+let activeTty = "all";
+
+const CONSOLES = {
+  all: {
+    lab: "Overview: Linux Console Channels",
+    code: `/dev/tty1    • Graphical desktop session (GDM display manager)\n/dev/tty2..6 • Fullscreen text-mode virtual consoles for recovery\n/dev/pts/X   • Dynamic pseudo-terminals for SSH and terminal windows`,
+    explain: "Linux terminal consoles enable administrators to issue commands directly to the underlying shell environment."
+  },
+  tty1: {
+    lab: "TTY1: Graphical Desktop Session",
+    code: `Role     : Hosts primary graphical display server and login manager\nExamples : GDM login greeter, Wayland compositor, GNOME session`,
+    explain: "TTY1 traditionally runs the graphical user session and modern Wayland desktop environment on Linux."
+  },
+  tty2: {
+    lab: "TTY2-TTY6: Virtual Text Consoles",
+    code: `Role     : Provides headless full-screen text-mode virtual console logins\nExamples : Emergency system recovery, headless terminal administrative work`,
+    explain: "Virtual text consoles provide emergency terminal logins when graphical user interfaces crash or freeze."
+  },
+  pts: {
+    lab: "PTS: Pseudo-Terminal Devices",
+    code: `Role     : Allocates virtual pseudo-terminal devices for network sessions\nExamples : SSH remote logins, GNOME Terminal windows, tmux panes`,
+    explain: "Pseudo-terminals emulate hardware teletype devices to support multiple simultaneous remote SSH connections."
+  }
+};
+
+const TOPICS = {
+  desktops: {
+    lab: "Desktop Environments: GNOME vs KDE vs XFCE",
+    code: `GNOME Desktop  • Default on Ubuntu and RHEL; modern gesture workflow\nKDE Plasma     • Highly customizable Windows-like interface with Qt\nXFCE Desktop   • Minimal lightweight environment for low-spec cloud VMs\nWayland Server • Modern secure display protocol replacing legacy X11`,
+    explain: "Desktop environments layer graphical windows over the operating system for productive visual desktop multitasking."
+  },
+  ssh: {
+    lab: "OpenSSH Remote Console Administration",
+    code: `SSH Client      • Connects securely using command: ssh user@host_ip\nSSH Server      • Runs background daemon sshd listening on port 22\nSecurity Keys   • Uses Ed25519 or RSA cryptographic keys instead of passwords\nConfig File     • Configured globally inside /etc/ssh/sshd_config`,
+    explain: "Secure Shell protocols protect administrative command line access across insecure public and enterprise networks."
+  }
+};
+
+function updateStudio() {
+  document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeTopic));
+
+  if (activeTopic === "consoles") {
+    $("fc_consoles").style.display = "block";
+    $("fc_desktops").style.display = "none";
+    $("fc_ssh").style.display = "none";
+    $("sub_chips_tty").style.display = "block";
+    updateTty();
+  } else if (activeTopic === "desktops") {
+    $("fc_consoles").style.display = "none";
+    $("fc_desktops").style.display = "block";
+    $("fc_ssh").style.display = "none";
+    $("sub_chips_tty").style.display = "none";
+    const data = TOPICS.desktops;
+    $("insp_lab").textContent = data.lab;
+    $("insp_code").textContent = data.code;
+    const res = $("insp_res");
+    res.textContent = data.explain;
+    res.className = "res ok";
+  } else {
+    $("fc_consoles").style.display = "none";
+    $("fc_desktops").style.display = "none";
+    $("fc_ssh").style.display = "block";
+    $("sub_chips_tty").style.display = "none";
+    const data = TOPICS.ssh;
+    $("insp_lab").textContent = data.lab;
+    $("insp_code").textContent = data.code;
+    const res = $("insp_res");
+    res.textContent = data.explain;
+    res.className = "res ok";
+  }
+}
+
+function updateTty() {
+  document.querySelectorAll("[data-a='tty']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.t === activeTty);
+  });
+
+  const data = CONSOLES[activeTty] || CONSOLES.all;
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").textContent = data.code;
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+
+  const nodes = {
+    tty1: $("tty_b_1"),
+    tty2: $("tty_b_2"),
+    pts: $("tty_b_pts")
+  };
+
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    const isSelected = activeTty === "all" || activeTty === k;
+    el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
+    el.style.opacity = isSelected ? "1" : "0.45";
+  });
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-a]");
+  if (!t) return;
+  const a = t.dataset.a;
+
+  if (a === "md") {
+    activeTopic = t.dataset.m;
+    updateStudio();
+  } else if (a === "tty") {
+    activeTty = t.dataset.t;
+    updateTty();
+  } else if (a === "qc") {
+    const opt = +t.dataset.o;
+    const chips = $("qc_chips").querySelectorAll(".chip");
+    chips.forEach((c, idx) => {
+      c.classList.remove("ok", "bad");
+      if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
+    });
+    const qcRes = $("qc_res");
+    qcRes.style.display = "flex";
+    if (opt === 0) {
+      qcRes.className = "res ok";
+      qcRes.textContent = "Correct! Pressing shortcut Ctrl + Alt + F3 switches directly into virtual text console TTY3.";
+    } else {
+      qcRes.className = "res bad";
+      qcRes.textContent = "Not quite. Pressing shortcut Ctrl + Alt + F3 switches directly into virtual text console TTY3.";
+    }
+  }
+});
+
+updateStudio();
+</script>
+</body>
+</html>

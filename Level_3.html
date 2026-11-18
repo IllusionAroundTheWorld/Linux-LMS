@@ -3,307 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Linux Architecture &amp; System Components | IST Learn</title>
+<title>Linux Architecture &amp; Core Components | IST Learn</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --navy: #17202c;
-  --blue: #1571ba;
-  --blue-d: #105c98;
-  --mut: #5d6470;
-  --line: #dfe3e8;
-  --tint: #eef6fc;
-  --tint-bd: #c5d6f0;
-  --panel: #f7f8fa;
-  --ok: #0d8a55;
-  --ok-bg: #e6f4ec;
-  --warn: #b7791f;
-  --warn-bg: #fef3c7;
-  --bad: #c0392b;
-  --bad-bg: #fbeceb;
-  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
-  color-scheme: light;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: #fff;
-  color: var(--navy);
-  font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-.top-nav {
-  background: #ffffff;
-  border-bottom: 1px solid var(--line);
-  padding: 8px 20px;
-}
-.top-nav-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.brand-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-.top-pill {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--blue);
-  background: var(--tint);
-  border: 1px solid var(--tint-bd);
-  padding: 3px 10px;
-  border-radius: 999px;
-}
-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 12px 20px 20px;
-}
-.eye {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin: 0 0 3px;
-}
-h1 {
-  font-size: clamp(20px, 3.2vw, 25px);
-  line-height: 1.2;
-  letter-spacing: -.02em;
-  font-weight: 800;
-  margin: 0 0 8px;
-}
-p { margin: 0 0 5px; }
-.sm { color: var(--mut); font-size: 12.5px; }
-
-/* CARD & SECTION HEADINGS */
-.card {
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px 16px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(23,32,44,0.03);
-}
-.sh {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 10px 0 5px;
-  font-size: 13.5px;
-  font-weight: 800;
-}
-.sh:first-child { margin-top: 0; }
-.st {
-  background: var(--blue);
-  color: #fff;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11.5px;
-  font-weight: 800;
-}
-
-/* NOTE CALLOUT */
-.note {
-  background: var(--tint);
-  border-left: 3.5px solid var(--blue);
-  border-radius: 0 8px 8px 0;
-  padding: 6px 11px;
-  font-size: 13px;
-  margin: 3px 0 5px;
-}
-
-/* COMPONENT STRIP */
-.component-strip {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  padding: 5px 11px;
-  margin: 4px 0 5px;
-}
-.component-icon-box {
-  width: 66px;
-  height: 50px;
-  background: var(--tint);
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  border: 1px solid var(--tint-bd);
-}
-
-/* TWO COLUMN STUDIO */
-.two {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 12px;
-  align-items: start;
-}
-@media (max-width: 820px) {
-  .two { grid-template-columns: 1fr; }
-}
-.box {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 9px 11px;
-}
-.lab {
-  font-weight: 800;
-  font-size: 11px;
-  margin: 0 0 4px;
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  color: var(--mut);
-}
-
-/* CHIPS */
-.chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 3px 0 5px; }
-.chip {
-  background: #fff;
-  border: 1px solid var(--tint-bd);
-  color: var(--navy);
-  border-radius: 999px;
-  padding: 3px 10px;
-  font-weight: 700;
-  font-size: 11.5px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  font-family: inherit;
-}
-.chip:hover { background: var(--tint); }
-.chip.on { background: var(--blue); border-color: var(--blue); color: #fff; }
-.chip.ok { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); }
-.chip.bad { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
-
-/* CODE & RESULTS */
-pre {
-  background: var(--navy);
-  color: #e8f0ff;
-  border-radius: 8px;
-  padding: 7px 10px;
-  font: 11px/1.45 var(--font-mono);
-  margin: 3px 0 0;
-  overflow-x: auto;
-  white-space: pre-wrap;
-}
-code { font-family: var(--font-mono); font-size: 92%; }
-.res {
-  margin-top: 5px;
-  padding: 5px 9px;
-  border-radius: 8px;
-  background: #fff;
-  border: 1px solid var(--line);
-  font-weight: 700;
-  font-size: 12px;
-  min-height: 30px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.res.ok { color: var(--ok); background: var(--ok-bg); border-color: #a7f3d0; }
-.res.bad { color: var(--bad); background: var(--bad-bg); border-color: #fecaca; }
-
-/* SVG FLOWCHART */
-.chart-card {
-  background: #fff;
-  border: 1.5px solid var(--tint-bd);
-  border-radius: 10px;
-  padding: 8px 10px;
-  margin-top: 6px;
-  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
-}
-.svg-flowchart {
-  width: 100%;
-  height: auto;
-  display: block;
-  overflow: visible;
-}
-.node-rect {
-  rx: 6px;
-  ry: 6px;
-  stroke-width: 2px;
-  transition: all 0.22s ease;
-}
-.flow-line {
-  stroke-width: 2px;
-  stroke-linecap: round;
-  transition: all 0.22s ease;
-}
-.node-text {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: 10.5px;
-  font-weight: 700;
-  text-anchor: middle;
-  dominant-baseline: central;
-  pointer-events: none;
-}
-.node-mono {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 700;
-  text-anchor: middle;
-  dominant-baseline: central;
-  pointer-events: none;
-}
-.branch-label {
-  font-family: var(--font-mono);
-  font-size: 8.5px;
-  font-weight: 800;
-  text-anchor: middle;
-}
-.st-active { fill: var(--tint); stroke: var(--blue); }
-.st-active text { fill: var(--blue-d); }
-.st-pass { fill: var(--ok-bg); stroke: var(--ok); filter: drop-shadow(0 1px 3px rgba(13,138,85,0.15)); }
-.st-pass text { fill: var(--ok); }
-.line-blue { stroke: var(--blue); }
-.line-pass { stroke: var(--ok); }
-
-/* FOOTER */
-.foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-  padding-top: 2px;
-}
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--ok);
-  background: var(--ok-bg);
-  border: 1px solid #a7f3d0;
-  padding: 3px 9px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -311,7 +15,7 @@ code { font-family: var(--font-mono); font-size: 92%; }
   <div class="top-nav-inner">
     <a href="https://www.inovatesolutiontechnology.in/" target="_blank" rel="noopener" class="brand-link" aria-label="Inovate Solution Technology Website">
       <img src="ist-logo.png" alt="Inovate Solution Technology" height="28" onerror="this.style.display='none'; document.getElementById('ist-fallback').style.display='inline-flex';">
-      <span id="ist-fallback" style="display:none;font-weight:800;color:var(--navy);font-size:14px;">Inovate Solution Technology</span>
+      <span id="ist-fallback" style="display:none;font-weight:800;color:var(--ink);font-size:14px;">Inovate Solution Technology</span>
     </a>
     <span class="top-pill">Module 1 &bull; Level 3</span>
   </div>
@@ -319,28 +23,12 @@ code { font-family: var(--font-mono); font-size: 92%; }
 
 <main>
   <p class="eye">Module 1 &middot; Level 3 &middot; Interactive System Lab</p>
-  <h1>Linux Architecture &amp; System Components</h1>
+  <h1>Linux Architecture &amp; Core Components</h1>
 
   <div class="card" id="stage">
     <!-- SECTION 1: SIMPLE IDEA -->
     <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
     <div class="note"><b>In plain words:</b> Linux architecture separates user software from hardware using protected layers to guarantee system stability and security.</div>
-
-    <div class="component-strip">
-      <div class="component-icon-box">
-        <svg viewBox="0 0 48 36" width="48" height="36" aria-label="User Space and Kernel Space Layers">
-          <rect x="6" y="4" width="36" height="12" rx="3" fill="var(--tint)" stroke="var(--blue)" stroke-width="1.5" />
-          <text x="24" y="11" font-size="6" font-weight="800" fill="var(--blue)" text-anchor="middle">USER SPACE</text>
-          <line x1="6" y1="18" x2="42" y2="18" stroke="var(--ok)" stroke-width="1.5" stroke-dasharray="2 2" />
-          <rect x="6" y="20" width="36" height="12" rx="3" fill="var(--ok-bg)" stroke="var(--ok)" stroke-width="1.5" />
-          <text x="24" y="27" font-size="6" font-weight="800" fill="var(--ok)" text-anchor="middle">KERNEL SPACE</text>
-        </svg>
-      </div>
-      <div>
-        <b style="font-size:12.5px;color:var(--navy)">System Space Isolation (Ring 3 User &bull; Ring 0 Kernel)</b>
-        <p class="sm" style="margin:2px 0 0">The CPU Ring 0 and Ring 3 boundary shields critical operating system memory from crashing.</p>
-      </div>
-    </div>
 
     <p class="sm"><b>Remember:</b> User applications cannot touch hardware directly and must request access through the system call interface.</p>
 
@@ -370,85 +58,85 @@ code { font-family: var(--font-mono); font-size: 92%; }
         </div>
 
         <div class="chart-card">
-          <!-- 4 Core Tiers Flowchart -->
+          <!-- 4 Core Tiers Concentric Onion Rings View -->
           <div id="fc_tiers">
-            <span class="lab">Concentric Tier Hierarchy Flowchart (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 360 174">
-              <!-- Tier 4: Application -->
-              <rect id="t_n4" x="45" y="4" width="270" height="28" class="node-rect st-active" data-a="tier" data-t="app" style="cursor:pointer;" />
-              <text x="180" y="18" class="node-text">Tier 4: APPLICATION (User Software)</text>
+            <span class="lab">Concentric Onion Ring Hierarchy (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 500 210">
+              <!-- Tier 4: Application (Outer Ring) -->
+              <rect id="t_n4" x="10" y="6" width="480" height="198" rx="16" class="node-rect st-active" data-a="tier" data-t="app" style="cursor:pointer;" />
+              <text x="250" y="24" class="node-text" style="font-weight:800;">Tier 4: APPLICATION (Outer Ring &bull; User Software)</text>
 
-              <path d="M 180 32 L 180 48" class="flow-line line-blue" />
+              <!-- Tier 3: Shell (Third Ring) -->
+              <rect id="t_n3" x="40" y="40" width="420" height="152" rx="14" class="node-rect st-active" data-a="tier" data-t="shell" style="cursor:pointer;" />
+              <text x="250" y="58" class="node-text" style="font-weight:700;">Tier 3: SHELL (Command Interpreter &bull; CLI)</text>
 
-              <!-- Tier 3: Shell -->
-              <rect id="t_n3" x="45" y="48" width="270" height="28" class="node-rect st-active" data-a="tier" data-t="shell" style="cursor:pointer;" />
-              <text x="180" y="62" class="node-text">Tier 3: SHELL (System Interpreter)</text>
+              <!-- Tier 2: Kernel (Second Ring) -->
+              <rect id="t_n2" x="75" y="76" width="350" height="106" rx="12" class="node-rect st-pass" data-a="tier" data-t="kernel" style="cursor:pointer;" />
+              <text x="250" y="94" class="node-text" style="font-weight:700;">Tier 2: KERNEL (Core OS Engine &bull; Ring 0)</text>
 
-              <path d="M 180 76 L 180 92" class="flow-line line-pass" />
-
-              <!-- Tier 2: Kernel -->
-              <rect id="t_n2" x="45" y="92" width="270" height="28" class="node-rect st-pass" data-a="tier" data-t="kernel" style="cursor:pointer;" />
-              <text x="180" y="106" class="node-text">Tier 2: KERNEL (Core OS Engine)</text>
-
-              <path d="M 180 120 L 180 136" class="flow-line line-pass" />
-
-              <!-- Tier 1: Hardware -->
-              <rect id="t_n1" x="45" y="136" width="270" height="28" rx="6" fill="var(--navy)" data-a="tier" data-t="hw" style="cursor:pointer;" />
-              <text x="180" y="150" class="node-mono" fill="#fff">Tier 1: HARDWARE (Physical Base)</text>
+              <!-- Tier 1: Hardware (Center Core) -->
+              <rect id="t_n1" x="115" y="114" width="270" height="58" rx="8" fill="var(--ink)" data-a="tier" data-t="hw" style="cursor:pointer;" />
+              <text x="250" y="134" class="node-mono" fill="#fff" style="font-weight:700;">Tier 1: HARDWARE (Physical Base)</text>
+              <text x="250" y="152" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">CPU &bull; RAM &bull; Storage &bull; System Buses</text>
             </svg>
           </div>
 
           <!-- Memory Spaces Flowchart -->
           <div id="fc_spaces" style="display:none;">
             <span class="lab">Memory Isolation Domain Flowchart (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 360 174">
+            <svg class="svg-flowchart" viewBox="0 0 500 210">
               <!-- User Space Block -->
-              <rect x="35" y="6" width="290" height="52" rx="8" class="node-rect st-active" />
-              <text x="180" y="24" class="node-text">User Space Domain (CPU Ring 3)</text>
-              <text x="180" y="42" class="node-mono">Unprivileged &bull; Web Browser, Editors, Shell &bull; Process Isolated</text>
+              <rect x="20" y="8" width="460" height="64" rx="8" class="node-rect st-active" />
+              <text x="250" y="28" class="node-text">User Space Domain (CPU Ring 3)</text>
+              <text x="250" y="46" class="node-mono">Unprivileged &bull; Web Browser, Editors, Shell &bull; Process Isolated</text>
+              <text x="250" y="60" class="node-mono" fill="var(--muted)">Standard applications execute here safely without crashing kernel</text>
 
               <!-- Syscall Divider Boundary -->
-              <line x1="35" y1="72" x2="325" y2="72" stroke="var(--blue)" stroke-width="2" stroke-dasharray="4 3" />
-              <text x="180" y="84" class="branch-label" fill="var(--blue)">Protected System Call Boundary</text>
+              <line x1="20" y1="84" x2="480" y2="84" stroke="var(--primary)" stroke-width="2" stroke-dasharray="5 3" />
+              <text x="250" y="96" class="branch-label" fill="var(--primary)">Protected System Call Boundary (Trap Interface)</text>
 
               <!-- Kernel Space Block -->
-              <rect x="35" y="96" width="290" height="54" rx="8" class="node-rect st-pass" />
-              <text x="180" y="114" class="node-text">Kernel Space Domain (CPU Ring 0)</text>
-              <text x="180" y="132" class="node-mono">Privileged &bull; Memory Management, CPU Schedules, Drivers</text>
+              <rect x="20" y="108" width="460" height="64" rx="8" class="node-rect st-pass" />
+              <text x="250" y="128" class="node-text">Kernel Space Domain (CPU Ring 0)</text>
+              <text x="250" y="146" class="node-mono">Privileged &bull; Memory Management, CPU Schedules, Hardware Drivers</text>
+              <text x="250" y="160" class="node-mono" fill="var(--ok)">Full unrestricted CPU execution controlling physical components</text>
 
-              <rect x="35" y="156" width="290" height="15" rx="4" fill="var(--panel)" stroke="var(--line)" />
-              <text x="180" y="163" class="node-mono" fill="var(--navy)">Result: User program crashes cannot crash physical system</text>
+              <rect x="20" y="180" width="460" height="22" rx="5" fill="var(--paper)" stroke="var(--line)" />
+              <text x="250" y="191" class="node-mono" fill="var(--ink)">Result: User program crashes cannot crash physical system</text>
             </svg>
           </div>
 
           <!-- System Call Bridge Flowchart -->
           <div id="fc_syscall" style="display:none;">
             <span class="lab">System Call Execution Flowchart (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 360 174">
+            <svg class="svg-flowchart" viewBox="0 0 500 210">
               <!-- Step 1 -->
-              <rect x="40" y="6" width="280" height="28" class="node-rect st-active" />
-              <text x="180" y="20" class="node-mono">1. User Program issues request (e.g., read file)</text>
+              <rect x="30" y="6" width="440" height="32" rx="7" class="node-rect st-active" />
+              <text x="250" y="22" class="node-mono">1. User Program issues request (e.g., read file)</text>
 
-              <path d="M 180 34 L 180 50" class="flow-line line-blue" />
-              <text x="245" y="42" class="branch-label" fill="var(--blue)">passes to glibc</text>
+              <path d="M 250 38 L 250 54" class="flow-line line-blue" />
+              <text x="340" y="46" class="branch-label" fill="var(--primary)">passes to glibc</text>
 
               <!-- Step 2 -->
-              <rect x="40" y="50" width="280" height="28" class="node-rect st-active" />
-              <text x="180" y="64" class="node-mono">2. C Library prepares system call trap</text>
+              <rect x="30" y="54" width="440" height="32" rx="7" class="node-rect st-active" />
+              <text x="250" y="70" class="node-mono">2. C Library prepares system call trap (syscall)</text>
 
-              <path d="M 180 78 L 180 94" class="flow-line line-pass" />
-              <text x="248" y="86" class="branch-label" fill="var(--ok)">switches to Ring 0</text>
+              <path d="M 250 86 L 250 102" class="flow-line line-pass" />
+              <text x="340" y="94" class="branch-label" fill="var(--ok)">switches to Ring 0</text>
 
               <!-- Step 3 -->
-              <rect x="40" y="94" width="280" height="28" class="node-rect st-pass" />
-              <text x="180" y="108" class="node-mono">3. Linux Kernel validates permissions</text>
+              <rect x="30" y="102" width="440" height="32" rx="7" class="node-rect st-pass" />
+              <text x="250" y="118" class="node-mono">3. Linux Kernel validates permissions &amp; routes to driver</text>
 
-              <path d="M 180 122 L 180 138" class="flow-line line-pass" />
-              <text x="248" y="130" class="branch-label" fill="var(--ok)">hardware I/O</text>
+              <path d="M 250 134 L 250 150" class="flow-line line-pass" />
+              <text x="340" y="142" class="branch-label" fill="var(--ok)">hardware I/O</text>
 
               <!-- Step 4 -->
-              <rect x="40" y="138" width="280" height="28" rx="6" fill="var(--navy)" />
-              <text x="180" y="152" class="node-mono" fill="#fff">4. Physical storage hardware returns binary data</text>
+              <rect x="30" y="150" width="440" height="34" rx="7" fill="var(--ink)" />
+              <text x="250" y="167" class="node-mono" fill="#fff">4. Physical storage hardware returns binary data</text>
+
+              <rect x="30" y="188" width="440" height="18" rx="4" fill="var(--paper)" stroke="var(--line)" />
+              <text x="250" y="197" class="node-mono" fill="var(--ink)">System call bridge securely isolates software from raw hardware</text>
             </svg>
           </div>
         </div>
@@ -475,11 +163,11 @@ code { font-family: var(--font-mono); font-size: 92%; }
   </div>
 
   <div class="foot">
-    <a href="Work_Today_17_11_2026.html" class="status-badge" style="text-decoration:none;background:var(--tint);border-color:var(--tint-bd);color:var(--blue);">&larr; Return to Level 2</a>
+    <a href="Level_2.html" class="status-badge" style="text-decoration:none;background:var(--tint);border-color:var(--tint-bd);color:var(--primary);">&larr; Return to Level 2</a>
     <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
     <div style="display:flex;gap:8px;align-items:center;">
       <span class="status-badge">Level 3 Complete</span>
-      <a href="Level_4.html" class="status-badge" style="text-decoration:none;background:var(--blue);color:#fff;border-color:var(--blue);">Proceed to Level 4 &rarr;</a>
+      <a href="Level_4.html" class="status-badge" style="text-decoration:none;background:var(--primary);color:#fff;border-color:var(--primary);">Proceed to Level 4 &rarr;</a>
     </div>
   </div>
 </main>
@@ -492,27 +180,27 @@ let activeTier = "all";
 const TIERS = {
   all: {
     lab: "Overview: 4 Architecture Tiers",
-    code: `Tier 4: APPLICATION  • Runs user software (Web browser, Editor)\nTier 3: SHELL        • Translates typed commands for system\nTier 2: KERNEL       • Core engine managing CPU and memory\nTier 1: HARDWARE     • Physical machine (Processor, RAM, SSD)`,
+    code: `Tier 4: APPLICATION • Runs user software (Web browser, Editor)\nTier 3: SHELL       • Translates typed commands for system\nTier 2: KERNEL      • Core engine managing CPU and memory\nTier 1: HARDWARE    • Physical machine (Processor, RAM, SSD)`,
     explain: "Linux architecture cleanly separates user programs from hardware across four distinct, coordinated levels."
   },
   app: {
     lab: "Tier 4: APPLICATION Details",
-    code: `Role     : Runs user programs and desktop tools\nExamples : Web browser, text editor, media player\nGoal     : Interacts directly with human users`,
+    code: `Role     : Runs user programs and desktop tools\nExamples : Web browser, text editor, media player`,
     explain: "Applications provide the friendly tools and software that people use every single day."
   },
   shell: {
     lab: "Tier 3: SHELL Details",
-    code: `Role     : Translates user commands for the system\nExamples : Bash shell, Zsh, command line terminal\nGoal     : Bridges user software to the kernel`,
+    code: `Role     : Translates user commands for the system\nExamples : Bash shell, Zsh, command line terminal`,
     explain: "The shell listens to user input and translates it into clear system requests."
   },
   kernel: {
     lab: "Tier 2: KERNEL Details",
-    code: `Role     : Controls CPU, memory, and devices\nExamples : Linux Kernel 6.8 engine\nGoal     : Allocates physical computer resources safely`,
+    code: `Role     : Controls CPU, memory, and devices\nExamples : Linux Kernel 6.8 engine, system drivers`,
     explain: "The kernel is the core engine managing computer memory, processor power, and hardware."
   },
   hw: {
     lab: "Tier 1: HARDWARE Details",
-    code: `Role     : Executes electrical binary calculations\nExamples : CPU processor, RAM memory, SSD storage\nGoal     : Provides the physical electronic power`,
+    code: `Role     : Executes electrical binary calculations\nExamples : CPU processor, RAM memory, SSD storage`,
     explain: "Hardware represents the physical electronic parts like the processor, memory chips, and storage."
   }
 };
@@ -587,7 +275,7 @@ function updateTier() {
     if (!el) return;
     const isSelected = activeTier === "all" || activeTier === k;
     if (k === "hw") {
-      el.setAttribute("fill", isSelected ? (activeTier === k ? "var(--ok)" : "var(--navy)") : "#64748b");
+      el.setAttribute("fill", isSelected ? (activeTier === k ? "var(--ok)" : "var(--ink)") : "#64748b");
     } else {
       el.setAttribute("class", "node-rect " + (isSelected ? (activeTier === k ? "st-pass" : "st-active") : "st-active"));
       el.style.opacity = isSelected ? "1" : "0.45";

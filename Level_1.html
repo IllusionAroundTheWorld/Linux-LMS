@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Introduction to Linux &amp; Open Source | IST Learn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-nav">
+  <div class="top-nav-inner">
+    <a href="https://www.inovatesolutiontechnology.in/" target="_blank" rel="noopener" class="brand-link" aria-label="Inovate Solution Technology Website">
+      <img src="ist-logo.png" alt="Inovate Solution Technology" height="28" onerror="this.style.display='none'; document.getElementById('ist-fallback').style.display='inline-flex';">
+      <span id="ist-fallback" style="display:none;font-weight:800;color:var(--ink);font-size:14px;">Inovate Solution Technology</span>
+    </a>
+    <span class="top-pill">Module 1 &bull; Level 1</span>
+  </div>
+</header>
+
+<main>
+  <p class="eye">Module 1 &middot; Level 1 &middot; Interactive System Lab</p>
+  <h1>Introduction to Linux &amp; Open Source</h1>
+
+  <div class="card" id="stage">
+    <!-- SECTION 1: SIMPLE IDEA -->
+    <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
+    <div class="note"><b>In plain words:</b> Linux is a free, open source operating system kernel anyone can inspect, modify, and share.</div>
+
+    <div class="creator-strip">
+      <div class="creator-img-box">
+        <img src="linus-torvalds.jpg" alt="Linus Torvalds" class="creator-img" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/0/01/LinuxCon_Europe_Linus_Torvalds_03_%28cropped%29.jpg';">
+      </div>
+      <div>
+        <b style="font-size:12.5px;color:var(--ink)">Linus Torvalds (1991 &bull; University of Helsinki)</b>
+        <p class="sm" style="margin:2px 0 0">Created the open-source Linux kernel in 1991 as a collaborative alternative to Unix.</p>
+      </div>
+    </div>
+
+    <p class="sm"><b>Remember:</b> The GNU General Public License ensures Linux source code remains permanently free for all global developers.</p>
+
+    <!-- SECTION 2: TRY IT -->
+    <h2 class="sh"><span class="st">2</span>Try It: Interactive Linux &amp; Open Source Architecture Studio</h2>
+    <div class="two">
+      <div>
+        <div class="box">
+          <label class="lab">Select Exploration Mode:</label>
+          <div class="chips">
+            <button type="button" class="chip on" data-a="md" data-m="origin">1. 1991 Origin &amp; Linus</button>
+            <button type="button" class="chip" data-a="md" data-m="gpl">2. GNU GPL Open Source</button>
+            <button type="button" class="chip" data-a="md" data-m="arch">3. 4-Layer Architecture</button>
+          </div>
+
+          <!-- Architecture 4-Level Selector (Only visible when arch mode active) -->
+          <div id="arch_chips" style="display:none;margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+            <label class="lab" style="font-size:10px">Select Architectural Level:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="lvl" data-l="all">All 4 Levels</button>
+              <button type="button" class="chip" data-a="lvl" data-l="app">Application</button>
+              <button type="button" class="chip" data-a="lvl" data-l="shell">Shell</button>
+              <button type="button" class="chip" data-a="lvl" data-l="kernel">Kernel</button>
+              <button type="button" class="chip" data-a="lvl" data-l="hw">Hardware</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <!-- 1991 Origin & GPL Flowchart View -->
+          <div id="fc_box">
+            <span class="lab">System Flowchart (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 500 210">
+              <!-- Node 1 -->
+              <rect id="fl_n1" x="80" y="8" width="340" height="34" class="node-rect st-active" />
+              <text x="250" y="25" class="node-mono" id="fl_t1">Linus Torvalds (Helsinki)</text>
+
+              <path id="fl_l1" d="M 250 42 L 250 64" class="flow-line line-blue" />
+              <text x="335" y="53" class="branch-label" id="fl_lbl1" fill="var(--primary)">starts hobby project</text>
+
+              <!-- Node 2 -->
+              <rect id="fl_n2" x="80" y="64" width="340" height="42" class="node-rect st-pass" />
+              <text x="250" y="77" class="node-text" id="fl_t2">Milestone: Aug 25, 1991</text>
+              <text x="250" y="93" class="node-mono" id="fl_sub2">comp.os.minix Usenet Post</text>
+
+              <path id="fl_l2" d="M 250 106 L 250 128" class="flow-line line-pass" />
+              <text x="335" y="117" class="branch-label" id="fl_lbl2" fill="var(--ok)">compiles C code</text>
+
+              <!-- Node 3 -->
+              <rect id="fl_n3" x="80" y="128" width="340" height="42" class="node-rect st-pass" />
+              <text x="250" y="141" class="node-text" id="fl_t3">Linux Kernel Engine</text>
+              <text x="250" y="157" class="node-mono" id="fl_sub3">Controls Hardware &amp; Memory</text>
+
+              <rect x="80" y="178" width="340" height="24" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="250" y="190" class="node-mono" id="fl_foot" fill="var(--ink)">Status: Free Unix Alternative</text>
+            </svg>
+          </div>
+
+          <!-- Pure 4-Level Architecture Onion Rings View (Hardware, Kernel, Shell, Application) -->
+          <div id="arch_box" style="display:none;">
+            <span class="lab">4-Layer Architecture Onion Rings (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 500 210">
+              <!-- Level 4: APPLICATION (Outer Ring) -->
+              <rect id="af_n4" x="10" y="6" width="480" height="198" rx="16" class="node-rect st-active" data-a="lvl" data-l="app" style="cursor:pointer;" />
+              <text x="250" y="24" class="node-text" id="af_t4" style="font-weight:800;">Level 4: APPLICATION (User Software &amp; Desktop Tools)</text>
+
+              <!-- Level 3: SHELL (Middle Outer Ring) -->
+              <rect id="af_n3" x="40" y="40" width="420" height="152" rx="14" class="node-rect st-active" data-a="lvl" data-l="shell" style="cursor:pointer;" />
+              <text x="250" y="58" class="node-text" id="af_t3" style="font-weight:700;">Level 3: SHELL (Command Interpreter &amp; CLI)</text>
+
+              <!-- Level 2: KERNEL (Middle Inner Ring) -->
+              <rect id="af_n2" x="75" y="76" width="350" height="106" rx="12" class="node-rect st-pass" data-a="lvl" data-l="kernel" style="cursor:pointer;" />
+              <text x="250" y="94" class="node-text" id="af_t2" style="font-weight:700;">Level 2: KERNEL (Core OS Engine &amp; Drivers)</text>
+
+              <!-- Level 1: HARDWARE (Center Core) -->
+              <rect id="af_n1" x="115" y="114" width="270" height="58" rx="8" fill="var(--ink)" data-a="lvl" data-l="hw" style="cursor:pointer;" />
+              <text x="250" y="134" class="node-mono" fill="#fff" id="af_t1" style="font-weight:700;">Level 1: HARDWARE</text>
+              <text x="250" y="152" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">CPU &bull; RAM &bull; Disks &bull; Physical Machine</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <span class="lab" id="insp_lab">Historical Record &amp; Code Inspector</span>
+        <pre><code id="insp_code"></code></pre>
+        <div class="res ok" id="insp_res"></div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: QUICK CHECK -->
+    <h2 class="sh"><span class="st">3</span>Quick Check</h2>
+    <div class="box">
+      <p style="margin:0 0 5px"><b>Who created the Linux kernel in 1991, and under which open-source license was it published?</b></p>
+      <div class="chips" id="qc_chips">
+        <button type="button" class="chip" data-a="qc" data-o="0"><code>Linus Torvalds under GNU GPL</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="1"><code>Steve Jobs under Apple EULA</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="2"><code>Bill Gates under Windows OEM</code></button>
+      </div>
+      <div class="res" id="qc_res" style="display:none"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="status-badge">Level 1 Complete</span>
+      <a href="Level_2.html" class="status-badge" style="text-decoration:none;background:var(--primary);color:#fff;border-color:var(--primary);">Proceed to Level 2 &rarr;</a>
+    </div>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let activeMode = "origin";
+let archLevel = "all";
+
+const MODES = {
+  origin: {
+    lab: "Historical Record & Code Inspector",
+    n1: "Linus Torvalds (Helsinki)",
+    lbl1: "starts hobby project",
+    t2: "Milestone: Aug 25, 1991",
+    sub2: "comp.os.minix Usenet Post",
+    lbl2: "compiles C code",
+    t3: "Linux Kernel Engine",
+    sub3: "Controls Hardware & Memory",
+    foot: "Status: Free Unix Alternative",
+    code: `// From: Linus Torvalds\n// Date: 25 Aug 1991\n// Subject: What would you like to see most in minix?\n\n"I'm doing a (free) operating system (just a hobby,\nwon't be big and professional like gnu) for 386 AT clones."`,
+    explain: "Linus Torvalds announced his free hobby operating system publicly on the comp.os.minix Usenet group."
+  },
+  gpl: {
+    lab: "Open Source Legal & License Inspector",
+    n1: "Source Code Published",
+    lbl1: "applies license",
+    t2: "GNU GPLv2 Copyleft",
+    sub2: "General Public License",
+    lbl2: "protects freedom",
+    t3: "4 Software Freedoms",
+    sub3: "Inspect, Modify & Distribute",
+    foot: "Status: 100% Free Open Source",
+    code: `// GNU General Public License (GPLv2)\n// Freedom 1: Anyone can inspect and study source code.\n// Freedom 2: Anyone can modify and improve the code.\n// Freedom 3: Anyone can distribute copies to help others.`,
+    explain: "The GNU General Public License guarantees everyone legal freedom to inspect, edit, and distribute code."
+  }
+};
+
+const ARCH_LEVELS = {
+  all: {
+    lab: "Overview: 4 Architecture Levels",
+    code: `Level 4: APPLICATION • Runs user software (Browser, Editor)\nLevel 3: SHELL       • Translates typed commands for system\nLevel 2: KERNEL      • Core engine managing CPU and memory\nLevel 1: HARDWARE    • Physical machine (Processor, RAM, SSD)`,
+    explain: "Linux architecture cleanly separates user programs from hardware across four distinct, coordinated levels."
+  },
+  app: {
+    lab: "Level 4: APPLICATION",
+    code: `Role     : Runs user programs and desktop tools\nExamples : Web browser, text editor, media player`,
+    explain: "Applications provide the friendly tools and software that people use every single day."
+  },
+  shell: {
+    lab: "Level 3: SHELL",
+    code: `Role     : Translates user commands for the system\nExamples : Bash shell, Zsh, command line terminal`,
+    explain: "The shell listens to user input and translates it into clear system requests."
+  },
+  kernel: {
+    lab: "Level 2: KERNEL",
+    code: `Role     : Controls CPU, memory, and devices\nExamples : Linux Kernel 6.8 engine, device drivers`,
+    explain: "The kernel is the core engine managing computer memory, processor power, and hardware."
+  },
+  hw: {
+    lab: "Level 1: HARDWARE",
+    code: `Role     : Executes electrical binary calculations\nExamples : CPU processor, RAM memory, SSD storage`,
+    explain: "Hardware represents the physical electronic parts like the processor, memory chips, and storage."
+  }
+};
+
+function updateStudio() {
+  document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeMode));
+
+  if (activeMode === "arch") {
+    $("fc_box").style.display = "none";
+    $("arch_box").style.display = "block";
+    $("arch_chips").style.display = "block";
+    updateArchLevel();
+  } else {
+    $("fc_box").style.display = "block";
+    $("arch_box").style.display = "none";
+    $("arch_chips").style.display = "none";
+
+    const m = MODES[activeMode];
+    $("insp_lab").textContent = m.lab;
+    $("fl_t1").textContent = m.n1;
+    $("fl_lbl1").textContent = m.lbl1;
+    $("fl_t2").textContent = m.t2;
+    $("fl_sub2").textContent = m.sub2;
+    $("fl_lbl2").textContent = m.lbl2;
+    $("fl_t3").textContent = m.t3;
+    $("fl_sub3").textContent = m.sub3;
+    $("fl_foot").textContent = m.foot;
+    $("insp_code").textContent = m.code;
+    const res = $("insp_res");
+    res.textContent = m.explain;
+    res.className = "res ok";
+  }
+}
+
+function updateArchLevel() {
+  document.querySelectorAll("[data-a='lvl']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.l === archLevel);
+  });
+
+  const data = ARCH_LEVELS[archLevel] || ARCH_LEVELS.all;
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").textContent = data.code;
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+
+  // Visual highlight for the 4 concentric onion nodes
+  const nodes = {
+    app: $("af_n4"),
+    shell: $("af_n3"),
+    kernel: $("af_n2"),
+    hw: $("af_n1")
+  };
+
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    const isSelected = archLevel === "all" || archLevel === k;
+    if (k === "hw") {
+      el.setAttribute("fill", isSelected ? (archLevel === k ? "var(--ok)" : "var(--ink)") : "#64748b");
+    } else {
+      el.setAttribute("class", "node-rect " + (isSelected ? (archLevel === k ? "st-pass" : "st-active") : "st-active"));
+      el.style.opacity = isSelected ? "1" : "0.45";
+    }
+  });
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-a]");
+  if (!t) return;
+  const a = t.dataset.a;
+
+  if (a === "md") {
+    activeMode = t.dataset.m;
+    updateStudio();
+  } else if (a === "lvl") {
+    archLevel = t.dataset.l;
+    updateArchLevel();
+  } else if (a === "qc") {
+    const opt = +t.dataset.o;
+    const chips = $("qc_chips").querySelectorAll(".chip");
+    chips.forEach((c, idx) => {
+      c.classList.remove("ok", "bad");
+      if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
+    });
+    const qcRes = $("qc_res");
+    qcRes.style.display = "flex";
+    if (opt === 0) {
+      qcRes.className = "res ok";
+      qcRes.textContent = "Correct! Linus Torvalds released the Linux kernel under the free GNU General Public License.";
+    } else {
+      qcRes.className = "res bad";
+      qcRes.textContent = "Not quite. Linus Torvalds created the Linux kernel under the GNU General Public License.";
+    }
+  }
+});
+
+updateStudio();
+</script>
+</body>
+</html>

@@ -6,304 +6,8 @@
 <title>Installing Linux: Storage, Partitions &amp; Setup | IST Learn</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --navy: #17202c;
-  --blue: #1571ba;
-  --blue-d: #105c98;
-  --mut: #5d6470;
-  --line: #dfe3e8;
-  --tint: #eef6fc;
-  --tint-bd: #c5d6f0;
-  --panel: #f7f8fa;
-  --ok: #0d8a55;
-  --ok-bg: #e6f4ec;
-  --warn: #b7791f;
-  --warn-bg: #fef3c7;
-  --bad: #c0392b;
-  --bad-bg: #fbeceb;
-  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
-  color-scheme: light;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: #fff;
-  color: var(--navy);
-  font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-.top-nav {
-  background: #ffffff;
-  border-bottom: 1px solid var(--line);
-  padding: 8px 20px;
-}
-.top-nav-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.brand-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-.top-pill {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--blue);
-  background: var(--tint);
-  border: 1px solid var(--tint-bd);
-  padding: 3px 10px;
-  border-radius: 999px;
-}
-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 12px 20px 20px;
-}
-.eye {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin: 0 0 3px;
-}
-h1 {
-  font-size: clamp(20px, 3.2vw, 25px);
-  line-height: 1.2;
-  letter-spacing: -.02em;
-  font-weight: 800;
-  margin: 0 0 8px;
-}
-p { margin: 0 0 5px; }
-.sm { color: var(--mut); font-size: 12.5px; }
-
-/* CARD & SECTION HEADINGS */
-.card {
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px 16px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(23,32,44,0.03);
-}
-.sh {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 10px 0 5px;
-  font-size: 13.5px;
-  font-weight: 800;
-}
-.sh:first-child { margin-top: 0; }
-.st {
-  background: var(--blue);
-  color: #fff;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11.5px;
-  font-weight: 800;
-}
-
-/* NOTE CALLOUT */
-.note {
-  background: var(--tint);
-  border-left: 3.5px solid var(--blue);
-  border-radius: 0 8px 8px 0;
-  padding: 6px 11px;
-  font-size: 13px;
-  margin: 3px 0 5px;
-}
-
-/* INSTALLATION STRIP */
-.install-strip {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  padding: 5px 11px;
-  margin: 4px 0 5px;
-}
-.install-icon-box {
-  width: 66px;
-  height: 50px;
-  background: var(--tint);
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  border: 1px solid var(--tint-bd);
-}
-
-/* TWO COLUMN STUDIO */
-.two {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 12px;
-  align-items: start;
-}
-@media (max-width: 820px) {
-  .two { grid-template-columns: 1fr; }
-}
-.box {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 9px 11px;
-}
-.lab {
-  font-weight: 800;
-  font-size: 11px;
-  margin: 0 0 4px;
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  color: var(--mut);
-}
-
-/* CHIPS */
-.chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 3px 0 5px; }
-.chip {
-  background: #fff;
-  border: 1px solid var(--tint-bd);
-  color: var(--navy);
-  border-radius: 999px;
-  padding: 3px 10px;
-  font-weight: 700;
-  font-size: 11.5px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  font-family: inherit;
-}
-.chip:hover { background: var(--tint); }
-.chip.on { background: var(--blue); border-color: var(--blue); color: #fff; }
-.chip.ok { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); }
-.chip.bad { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
-
-/* CODE & RESULTS */
-pre {
-  background: var(--navy);
-  color: #e8f0ff;
-  border-radius: 8px;
-  padding: 7px 10px;
-  font: 11px/1.45 var(--font-mono);
-  margin: 3px 0 0;
-  overflow-x: auto;
-  white-space: pre-wrap;
-}
-code { font-family: var(--font-mono); font-size: 92%; }
-.res {
-  margin-top: 5px;
-  padding: 5px 9px;
-  border-radius: 8px;
-  background: #fff;
-  border: 1px solid var(--line);
-  font-weight: 700;
-  font-size: 12px;
-  min-height: 30px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.res.ok { color: var(--ok); background: var(--ok-bg); border-color: #a7f3d0; }
-.res.bad { color: var(--bad); background: var(--bad-bg); border-color: #fecaca; }
-
-/* SVG FLOWCHART */
-.chart-card {
-  background: #fff;
-  border: 1.5px solid var(--tint-bd);
-  border-radius: 10px;
-  padding: 8px 10px;
-  margin-top: 6px;
-  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
-}
-.svg-flowchart {
-  width: 100%;
-  height: auto;
-  display: block;
-  overflow: visible;
-}
-.node-rect {
-  rx: 6px;
-  ry: 6px;
-  stroke-width: 2px;
-  transition: all 0.22s ease;
-}
-.flow-line {
-  stroke-width: 2px;
-  stroke-linecap: round;
-  transition: all 0.22s ease;
-}
-.node-text {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: 10.5px;
-  font-weight: 700;
-  text-anchor: middle;
-  dominant-baseline: central;
-  pointer-events: none;
-}
-.node-mono {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 700;
-  text-anchor: middle;
-  dominant-baseline: central;
-  pointer-events: none;
-}
-.branch-label {
-  font-family: var(--font-mono);
-  font-size: 8.5px;
-  font-weight: 800;
-  text-anchor: middle;
-}
-.st-active { fill: var(--tint); stroke: var(--blue); }
-.st-active text { fill: var(--blue-d); }
-.st-pass { fill: var(--ok-bg); stroke: var(--ok); filter: drop-shadow(0 1px 3px rgba(13,138,85,0.15)); }
-.st-pass text { fill: var(--ok); }
-.line-blue { stroke: var(--blue); }
-.line-pass { stroke: var(--ok); }
-
-/* FOOTER */
-.foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-  padding-top: 2px;
-}
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--ok);
-  background: var(--ok-bg);
-  border: 1px solid #a7f3d0;
-  padding: 3px 9px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -311,7 +15,7 @@ code { font-family: var(--font-mono); font-size: 92%; }
   <div class="top-nav-inner">
     <a href="https://www.inovatesolutiontechnology.in/" target="_blank" rel="noopener" class="brand-link" aria-label="Inovate Solution Technology Website">
       <img src="ist-logo.png" alt="Inovate Solution Technology" height="28" onerror="this.style.display='none'; document.getElementById('ist-fallback').style.display='inline-flex';">
-      <span id="ist-fallback" style="display:none;font-weight:800;color:var(--navy);font-size:14px;">Inovate Solution Technology</span>
+      <span id="ist-fallback" style="display:none;font-weight:800;color:var(--ink);font-size:14px;">Inovate Solution Technology</span>
     </a>
     <span class="top-pill">Module 1 &bull; Level 4</span>
   </div>
@@ -325,23 +29,6 @@ code { font-family: var(--font-mono); font-size: 92%; }
     <!-- SECTION 1: SIMPLE IDEA -->
     <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
     <div class="note"><b>In plain words:</b> Installing Linux involves preparing disk partitions, choosing a filesystem, and configuring essential system user accounts.</div>
-
-    <div class="install-strip">
-      <div class="install-icon-box">
-        <svg viewBox="0 0 48 36" width="48" height="36" aria-label="Linux Storage Disk Partitioning">
-          <rect x="4" y="6" width="40" height="24" rx="4" fill="var(--tint)" stroke="var(--blue)" stroke-width="1.5" />
-          <line x1="14" y1="6" x2="14" y2="30" stroke="var(--blue)" stroke-width="1.5" />
-          <line x1="32" y1="6" x2="32" y2="30" stroke="var(--blue)" stroke-width="1.5" />
-          <text x="9" y="19" font-size="6" font-weight="800" fill="var(--blue)" text-anchor="middle">EFI</text>
-          <text x="23" y="19" font-size="7" font-weight="800" fill="var(--ok)" text-anchor="middle">ROOT /</text>
-          <text x="38" y="19" font-size="6" font-weight="800" fill="var(--warn)" text-anchor="middle">SWAP</text>
-        </svg>
-      </div>
-      <div>
-        <b style="font-size:12.5px;color:var(--navy)">Storage Architecture &amp; Installer Engine (Ubuntu &bull; RHEL)</b>
-        <p class="sm" style="margin:2px 0 0">Modern Linux installers support both automated disk layout and custom manual partitioning for enterprise servers.</p>
-      </div>
-    </div>
 
     <p class="sm"><b>Remember:</b> Every Linux installation requires at least a root partition and an EFI system boot partition.</p>
 
@@ -374,104 +61,133 @@ code { font-family: var(--font-mono); font-size: 92%; }
           <!-- Partitions Scheme Flowchart -->
           <div id="fc_partitions">
             <span class="lab">Storage Drive Partition Layout (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 360 174">
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
               <!-- Physical Disk Box -->
-              <rect x="15" y="4" width="330" height="28" rx="6" fill="var(--navy)" />
-              <text x="180" y="18" class="node-mono" fill="#fff">Physical Storage Drive (/dev/nvme0n1 or /dev/sda)</text>
+              <rect x="20" y="8" width="480" height="34" rx="7" fill="var(--ink)" />
+              <text x="260" y="25" class="node-mono" fill="#fff">Physical Storage Drive (/dev/nvme0n1 or /dev/sda)</text>
 
               <!-- Connector Lines -->
-              <path d="M 180 32 L 180 48 M 180 48 L 50 64 M 180 48 L 135 64 M 180 48 L 225 64 M 180 48 L 310 64" class="flow-line line-blue" fill="none" />
+              <path d="M 260 42 L 260 56 M 260 56 L 78 66 M 260 56 L 198 66 M 260 56 L 318 66 M 260 56 L 438 66" class="flow-line line-blue" fill="none" />
 
               <!-- Part 1: EFI -->
-              <rect id="pt_efi" x="12" y="64" width="76" height="42" class="node-rect st-active" data-a="part" data-p="efi" style="cursor:pointer;" />
-              <text x="50" y="78" class="node-text">/boot/efi</text>
-              <text x="50" y="94" class="node-mono">512 MB</text>
+              <rect id="pt_efi" x="21" y="66" width="114" height="50" class="node-rect st-active" data-a="part" data-p="efi" style="cursor:pointer;" />
+              <text x="78" y="83" class="node-text">/boot/efi</text>
+              <text x="78" y="101" class="node-mono">512 MB &bull; FAT32</text>
 
               <!-- Part 2: ROOT -->
-              <rect id="pt_root" x="96" y="64" width="80" height="42" class="node-rect st-pass" data-a="part" data-p="root" style="cursor:pointer;" />
-              <text x="136" y="78" class="node-text">/ (Root)</text>
-              <text x="136" y="94" class="node-mono">50+ GB</text>
+              <rect id="pt_root" x="141" y="66" width="114" height="50" class="node-rect st-pass" data-a="part" data-p="root" style="cursor:pointer;" />
+              <text x="198" y="83" class="node-text">/ (Root)</text>
+              <text x="198" y="101" class="node-mono">50+ GB &bull; ext4/XFS</text>
 
               <!-- Part 3: SWAP -->
-              <rect id="pt_swap" x="184" y="64" width="80" height="42" class="node-rect st-active" data-a="part" data-p="swap" style="cursor:pointer;" />
-              <text x="224" y="78" class="node-text">swap</text>
-              <text x="224" y="94" class="node-mono">4 to 8 GB</text>
+              <rect id="pt_swap" x="261" y="66" width="114" height="50" class="node-rect st-active" data-a="part" data-p="swap" style="cursor:pointer;" />
+              <text x="318" y="83" class="node-text">swap</text>
+              <text x="318" y="101" class="node-mono">4 to 8 GB RAM</text>
 
               <!-- Part 4: HOME -->
-              <rect id="pt_home" x="272" y="64" width="76" height="42" class="node-rect st-active" data-a="part" data-p="home" style="cursor:pointer;" />
-              <text x="310" y="78" class="node-text">/home</text>
-              <text x="310" y="94" class="node-mono">Remaining</text>
+              <rect id="pt_home" x="381" y="66" width="114" height="50" class="node-rect st-active" data-a="part" data-p="home" style="cursor:pointer;" />
+              <text x="438" y="83" class="node-text">/home</text>
+              <text x="438" y="101" class="node-mono">User Documents</text>
 
               <!-- Summary Foot -->
-              <rect x="12" y="118" width="336" height="48" rx="6" fill="var(--panel)" stroke="var(--line)" />
-              <text x="180" y="132" class="node-mono" fill="var(--navy)">GPT Partition Table &bull; UEFI Secure Boot Compatible</text>
-              <text x="180" y="150" class="node-mono" fill="var(--ok)">Root contains system binaries, libraries, and kernel</text>
+              <rect x="20" y="126" width="480" height="28" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="140" class="node-mono" fill="var(--ink)">Standard Partition Table: GPT (GUID Partition Table)</text>
+
+              <rect x="20" y="160" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="173" class="node-mono" fill="var(--ink)">Filesystems: ext4 (Standard) &bull; XFS (Enterprise High Scale)</text>
             </svg>
           </div>
 
-          <!-- Filesystems Comparison Flowchart -->
+          <!-- Filesystems Flowchart -->
           <div id="fc_filesystems" style="display:none;">
-            <span class="lab">Linux Filesystems Comparison (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 360 174">
-              <!-- Left: ext4 -->
-              <rect x="18" y="6" width="156" height="136" rx="8" class="node-rect st-pass" />
-              <text x="96" y="22" class="node-text">ext4 Filesystem</text>
-              <text x="96" y="38" class="node-mono" fill="var(--ok)">Default: Ubuntu &bull; Debian</text>
-              <line x1="28" y1="48" x2="164" y2="48" stroke="var(--line)" />
-              <text x="96" y="62" class="node-mono">• Journaling protection</text>
-              <text x="96" y="78" class="node-mono">• 16 TB file size max</text>
-              <text x="96" y="94" class="node-mono">• Fast fsck repair check</text>
-              <text x="96" y="110" class="node-mono">• Standard desktop default</text>
+            <span class="lab">Linux Storage Filesystems Comparison (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
+              <!-- Column 1: ext4 -->
+              <rect x="20" y="8" width="230" height="32" class="node-rect st-pass" />
+              <text x="135" y="24" class="node-text">ext4 Filesystem</text>
 
-              <!-- Right: XFS -->
-              <rect x="186" y="6" width="156" height="136" rx="8" class="node-rect st-active" />
-              <text x="264" y="22" class="node-text">XFS Filesystem</text>
-              <text x="264" y="38" class="node-mono" fill="var(--blue)">Default: RHEL &bull; Fedora</text>
-              <line x1="196" y1="48" x2="332" y2="48" stroke="var(--line)" />
-              <text x="264" y="62" class="node-mono">• High-concurrency I/O</text>
-              <text x="264" y="78" class="node-mono">• 8 Exabyte volume scale</text>
-              <text x="264" y="94" class="node-mono">• Dynamic inode allocation</text>
-              <text x="264" y="110" class="node-mono">• Enterprise server default</text>
+              <rect x="20" y="44" width="230" height="118" rx="6" fill="var(--tint)" stroke="var(--tint-bd)" />
+              <text x="135" y="62" class="node-mono" fill="var(--primary-dark)">Default for Ubuntu &amp; Debian</text>
+              <text x="135" y="82" class="node-mono" fill="var(--ink)">Built-in Data Journaling</text>
+              <text x="135" y="102" class="node-mono" fill="var(--ink)">Max 1 EB storage volume</text>
+              <text x="135" y="122" class="node-mono" fill="var(--ok)">Rock-solid backward compatibility</text>
+              <text x="135" y="142" class="node-mono" fill="var(--muted)">Best for: Desktops &amp; VPS</text>
 
-              <rect x="18" y="150" width="324" height="16" rx="4" fill="var(--panel)" stroke="var(--line)" />
-              <text x="180" y="158" class="node-mono" fill="var(--navy)">Both filesystems provide crash resistance and high reliability</text>
+              <!-- Column 2: XFS -->
+              <rect x="270" y="8" width="230" height="32" class="node-rect st-active" />
+              <text x="385" y="24" class="node-text">XFS Filesystem</text>
+
+              <rect x="270" y="44" width="230" height="118" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="385" y="62" class="node-mono" fill="var(--primary-dark)">Default for RHEL &amp; Rocky</text>
+              <text x="385" y="82" class="node-mono" fill="var(--ink)">High parallel I/O scaling</text>
+              <text x="385" y="102" class="node-mono" fill="var(--ink)">Max 8 EB storage volume</text>
+              <text x="385" y="122" class="node-mono" fill="var(--ok)">Enterprise database optimized</text>
+              <text x="385" y="142" class="node-mono" fill="var(--muted)">Best for: Big Data &amp; DBs</text>
+
+              <rect x="20" y="170" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="183" class="node-mono" fill="var(--ink)">Both filesystems provide crash resistance through metadata journaling</text>
             </svg>
           </div>
 
-          <!-- Installation Flow Steps -->
+          <!-- Installation Flowchart -->
           <div id="fc_steps" style="display:none;">
             <span class="lab">4-Step Installation Pipeline (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 360 174">
+            <svg class="svg-flowchart" viewBox="0 0 520 210">
               <!-- Step 1 -->
-              <rect x="35" y="4" width="290" height="28" class="node-rect st-active" />
-              <text x="180" y="18" class="node-mono">1. Boot Live USB Media (UEFI Mode)</text>
+              <rect x="20" y="6" width="480" height="36" class="node-rect st-active" />
+              <text x="260" y="19" class="node-text">1. Boot Live Media</text>
+              <text x="260" y="32" class="node-mono">Insert USB stick &bull; Boot UEFI into RAM memory</text>
 
-              <path d="M 180 32 L 180 48" class="flow-line line-blue" />
+              <path d="M 260 42 L 260 54" class="flow-line line-blue" />
 
               <!-- Step 2 -->
-              <rect x="35" y="48" width="290" height="28" class="node-rect st-pass" />
-              <text x="180" y="62" class="node-mono">2. Partition Storage Disk (Root / and EFI)</text>
+              <rect x="20" y="54" width="480" height="36" class="node-rect st-pass" />
+              <text x="260" y="67" class="node-text">2. Partition Storage Disk</text>
+              <text x="260" y="80" class="node-mono">Configure /boot/efi, Root (/), and optional swap</text>
 
-              <path d="M 180 76 L 180 92" class="flow-line line-pass" />
+              <path d="M 260 90 L 260 102" class="flow-line line-pass" />
 
               <!-- Step 3 -->
-              <rect x="35" y="92" width="290" height="28" class="node-rect st-pass" />
-              <text x="180" y="106" class="node-mono">3. Install Linux Packages &amp; GRUB Bootloader</text>
+              <rect x="20" y="102" width="480" height="36" class="node-rect st-pass" />
+              <text x="260" y="115" class="node-text">3. Extract OS &amp; Install GRUB</text>
+              <text x="260" y="128" class="node-mono">Copy kernel modules, coreutils, and bootloader</text>
 
-              <path d="M 180 120 L 180 136" class="flow-line line-pass" />
+              <path d="M 260 138 L 260 150" class="flow-line line-pass" />
 
               <!-- Step 4 -->
-              <rect x="35" y="136" width="290" height="28" rx="6" fill="var(--navy)" />
-              <text x="180" y="150" class="node-mono" fill="#fff">4. Configure System User Accounts &amp; Network</text>
+              <rect x="20" y="150" width="480" height="42" rx="7" fill="var(--ink)" />
+              <text x="260" y="164" class="node-mono" fill="#fff">4. User Account &amp; Network Setup</text>
+              <text x="260" y="180" class="node-mono" fill="#93c5fd">Set root password &bull; Configure DHCP network &bull; Reboot into system</text>
             </svg>
           </div>
         </div>
       </div>
 
       <div class="box">
-        <span class="lab" id="insp_lab">Overview: Storage Partitioning</span>
+        <span class="lab" id="insp_lab">Overview: Storage Partitioning Scheme</span>
         <pre><code id="insp_code"></code></pre>
         <div class="res ok" id="insp_res"></div>
+      </div>
+    </div>
+
+    <!-- VIDEO REFERENCE -->
+    <h2 class="sh"><span class="st">&bull;</span>Video Reference: Dual Boot Ubuntu 24.04 &amp; Windows 11</h2>
+    <div class="box" style="padding:14px;">
+      <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;">
+        <iframe 
+          src="https://www.youtube-nocookie.com/embed/alFosqQ1ang" 
+          title="How to Dual Boot Ubuntu 24.04 LTS and Windows 11" 
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-top:10px;">
+        <div>
+          <b style="font-size:13.5px;color:var(--ink)">How to Dual Boot Ubuntu 24.04 LTS and Windows 11 (KSK ROYAL)</b>
+          <p class="sm" style="margin:2px 0 0;">Step-by-step practical guide demonstrating UEFI disk preparation, EFI partition setup, and dual-boot configuration.</p>
+        </div>
+        <a href="https://www.youtube.com/watch?v=alFosqQ1ang" target="_blank" rel="noopener noreferrer" class="status-badge" style="text-decoration:none;background:var(--tint);color:var(--primary);border-color:var(--tint-bd);">Watch on YouTube &rarr;</a>
       </div>
     </div>
 
@@ -489,9 +205,12 @@ code { font-family: var(--font-mono); font-size: 92%; }
   </div>
 
   <div class="foot">
-    <a href="Level_3.html" class="status-badge" style="text-decoration:none;background:var(--tint);border-color:var(--tint-bd);color:var(--blue);">&larr; Return to Level 3</a>
+    <a href="Level_3.html" class="status-badge" style="text-decoration:none;background:var(--tint);border-color:var(--tint-bd);color:var(--primary);">&larr; Return to Level 3</a>
     <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
-    <span class="status-badge">Level 4 Complete</span>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="status-badge">Level 4 Complete</span>
+      <a href="Level_5.html" class="status-badge" style="text-decoration:none;background:var(--primary);color:#fff;border-color:var(--primary);">Proceed to Level 5 &rarr;</a>
+    </div>
   </div>
 </main>
 
@@ -508,22 +227,22 @@ const PARTITIONS = {
   },
   root: {
     lab: "Root Partition (/)",
-    code: `Role     : Mount point holding all system directories\nExamples : /bin, /usr, /lib, /etc, and /var\nGoal     : Contains the core operating system files`,
+    code: `Role     : Mount point holding all system directories\nExamples : /bin, /usr, /lib, /etc, and /var`,
     explain: "The root directory slash contains all essential operating system files and directories."
   },
   efi: {
     lab: "EFI System Partition (/boot/efi)",
-    code: `Role     : Stores UEFI bootloader code like GRUB\nExamples : /boot/efi/EFI/ubuntu/grubx64.efi\nGoal     : Boots computer hardware safely before loading kernel`,
+    code: `Role     : Stores UEFI bootloader code like GRUB\nExamples : /boot/efi/EFI/ubuntu/grubx64.efi`,
     explain: "The EFI partition contains the bootloader files that launch the Linux kernel."
   },
   swap: {
     lab: "Swap Space Partition",
-    code: `Role     : Serves as virtual memory overflow when RAM fills\nExamples : Swap partition or /swapfile\nGoal     : Prevents out-of-memory kernel crashes under heavy load`,
+    code: `Role     : Serves as virtual memory overflow when RAM fills\nExamples : Swap partition or /swapfile`,
     explain: "Swap space provides emergency memory storage whenever physical system memory becomes full."
   },
   home: {
     lab: "Home Partition (/home)",
-    code: `Role     : Holds user personal files, downloads, and configs\nExamples : /home/admin/documents, /home/user/.bashrc\nGoal     : Preserves user files across operating system upgrades`,
+    code: `Role     : Holds user personal files, downloads, and configs\nExamples : /home/admin/documents, /home/user/.bashrc`,
     explain: "The home partition isolates personal user documents safely from operating system updates."
   }
 };
