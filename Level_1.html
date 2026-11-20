@@ -43,7 +43,7 @@
     <p class="sm"><b>Remember:</b> The GNU General Public License ensures Linux source code remains permanently free for all global developers.</p>
 
     <!-- SECTION 2: TRY IT -->
-    <h2 class="sh"><span class="st">2</span>Try It: Interactive Linux &amp; Open Source Architecture Studio</h2>
+    <h2 class="sh"><span class="st">2</span>Try It: Interactive Linux &amp; Open Source Studio</h2>
     <div class="two">
       <div>
         <div class="box">
@@ -51,19 +51,7 @@
           <div class="chips">
             <button type="button" class="chip on" data-a="md" data-m="origin">1. 1991 Origin &amp; Linus</button>
             <button type="button" class="chip" data-a="md" data-m="gpl">2. GNU GPL Open Source</button>
-            <button type="button" class="chip" data-a="md" data-m="arch">3. 4-Layer Architecture</button>
-          </div>
-
-          <!-- Architecture 4-Level Selector (Only visible when arch mode active) -->
-          <div id="arch_chips" style="display:none;margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
-            <label class="lab" style="font-size:10px">Select Architectural Level:</label>
-            <div class="chips" style="margin:0">
-              <button type="button" class="chip on" data-a="lvl" data-l="all">All 4 Levels</button>
-              <button type="button" class="chip" data-a="lvl" data-l="app">Application</button>
-              <button type="button" class="chip" data-a="lvl" data-l="shell">Shell</button>
-              <button type="button" class="chip" data-a="lvl" data-l="kernel">Kernel</button>
-              <button type="button" class="chip" data-a="lvl" data-l="hw">Hardware</button>
-            </div>
+            <button type="button" class="chip" data-a="md" data-m="compare">3. Open Source vs Proprietary</button>
           </div>
         </div>
 
@@ -97,26 +85,39 @@
             </svg>
           </div>
 
-          <!-- Pure 4-Level Architecture Onion Rings View (Hardware, Kernel, Shell, Application) -->
-          <div id="arch_box" style="display:none;">
-            <span class="lab">4-Layer Architecture Onion Rings (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 500 210">
-              <!-- Level 4: APPLICATION (Outer Ring) -->
-              <rect id="af_n4" x="10" y="6" width="480" height="198" rx="16" class="node-rect st-active" data-a="lvl" data-l="app" style="cursor:pointer;" />
-              <text x="250" y="24" class="node-text" id="af_t4" style="font-weight:800;">Level 4: APPLICATION (User Software &amp; Desktop Tools)</text>
+          <!-- Open Source vs Proprietary Software Comparison (SVG) -->
+          <div id="compare_box" style="display:none;">
+            <span class="lab">Open Source vs Proprietary Software (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <!-- Left Column: Open Source -->
+              <rect x="15" y="8" width="248" height="44" class="node-rect st-pass" />
+              <text x="139" y="24" class="node-text">Open Source (GNU / Linux)</text>
+              <text x="139" y="40" class="node-mono" fill="var(--ok)">100% Free - Community Driven</text>
 
-              <!-- Level 3: SHELL (Middle Outer Ring) -->
-              <rect id="af_n3" x="40" y="40" width="420" height="152" rx="14" class="node-rect st-active" data-a="lvl" data-l="shell" style="cursor:pointer;" />
-              <text x="250" y="58" class="node-text" id="af_t3" style="font-weight:700;">Level 3: SHELL (Command Interpreter &amp; CLI)</text>
+              <rect x="15" y="60" width="248" height="188" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="28" y="82" class="node-left" fill="var(--ink)">1. Source - Fully Open &amp; Auditable</text>
+              <text x="28" y="106" class="node-left">2. Modify - Freely Customizable</text>
+              <text x="28" y="130" class="node-left">3. Share - Unlimited Distribution</text>
+              <text x="28" y="154" class="node-left">4. Cost - Permanently Free (GPL)</text>
+              <text x="28" y="178" class="node-left" fill="var(--ok)">5. Audit - Public Peer Review</text>
 
-              <!-- Level 2: KERNEL (Middle Inner Ring) -->
-              <rect id="af_n2" x="75" y="76" width="350" height="106" rx="12" class="node-rect st-pass" data-a="lvl" data-l="kernel" style="cursor:pointer;" />
-              <text x="250" y="94" class="node-text" id="af_t2" style="font-weight:700;">Level 2: KERNEL (Core OS Engine &amp; Drivers)</text>
+              <rect x="25" y="198" width="228" height="26" rx="5" fill="var(--ok-bg)" stroke="var(--ok)" stroke-width="0.8" />
+              <text x="139" y="211" class="node-mono" fill="var(--ok)" style="font-weight:700;">Examples: Linux - Ubuntu - Android</text>
 
-              <!-- Level 1: HARDWARE (Center Core) -->
-              <rect id="af_n1" x="115" y="114" width="270" height="58" rx="8" fill="var(--ink)" data-a="lvl" data-l="hw" style="cursor:pointer;" />
-              <text x="250" y="134" class="node-mono" fill="#fff" id="af_t1" style="font-weight:700;">Level 1: HARDWARE</text>
-              <text x="250" y="152" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">CPU &bull; RAM &bull; Disks &bull; Physical Machine</text>
+              <!-- Right Column: Proprietary -->
+              <rect x="277" y="8" width="248" height="44" class="node-rect st-active" />
+              <text x="401" y="24" class="node-text">Proprietary (Closed Source)</text>
+              <text x="401" y="40" class="node-mono">Commercial EULA - Vendor Locked</text>
+
+              <rect x="277" y="60" width="248" height="188" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="290" y="82" class="node-left" fill="var(--ink)">1. Source - Hidden Binary Files</text>
+              <text x="290" y="106" class="node-left">2. Modify - Strictly Prohibited</text>
+              <text x="290" y="130" class="node-left">3. Share - Copying Prohibited</text>
+              <text x="290" y="154" class="node-left">4. Cost - Expensive Paid Licenses</text>
+              <text x="290" y="178" class="node-left" fill="var(--muted)">5. Audit - Closed Vendor-Only</text>
+
+              <rect x="287" y="198" width="228" height="26" rx="5" fill="var(--tint)" stroke="var(--primary)" stroke-width="0.8" />
+              <text x="401" y="211" class="node-mono" fill="var(--primary)" style="font-weight:700;">Examples: Windows - macOS - iOS</text>
             </svg>
           </div>
         </div>
@@ -182,49 +183,29 @@ const MODES = {
     foot: "Status: 100% Free Open Source",
     code: `// GNU General Public License (GPLv2)\n// Freedom 1: Anyone can inspect and study source code.\n// Freedom 2: Anyone can modify and improve the code.\n// Freedom 3: Anyone can distribute copies to help others.`,
     explain: "The GNU General Public License guarantees everyone legal freedom to inspect, edit, and distribute code."
-  }
-};
-
-const ARCH_LEVELS = {
-  all: {
-    lab: "Overview: 4 Architecture Levels",
-    code: `Level 4: APPLICATION • Runs user software (Browser, Editor)\nLevel 3: SHELL       • Translates typed commands for system\nLevel 2: KERNEL      • Core engine managing CPU and memory\nLevel 1: HARDWARE    • Physical machine (Processor, RAM, SSD)`,
-    explain: "Linux architecture cleanly separates user programs from hardware across four distinct, coordinated levels."
   },
-  app: {
-    lab: "Level 4: APPLICATION",
-    code: `Role     : Runs user programs and desktop tools\nExamples : Web browser, text editor, media player`,
-    explain: "Applications provide the friendly tools and software that people use every single day."
-  },
-  shell: {
-    lab: "Level 3: SHELL",
-    code: `Role     : Translates user commands for the system\nExamples : Bash shell, Zsh, command line terminal`,
-    explain: "The shell listens to user input and translates it into clear system requests."
-  },
-  kernel: {
-    lab: "Level 2: KERNEL",
-    code: `Role     : Controls CPU, memory, and devices\nExamples : Linux Kernel 6.8 engine, device drivers`,
-    explain: "The kernel is the core engine managing computer memory, processor power, and hardware."
-  },
-  hw: {
-    lab: "Level 1: HARDWARE",
-    code: `Role     : Executes electrical binary calculations\nExamples : CPU processor, RAM memory, SSD storage`,
-    explain: "Hardware represents the physical electronic parts like the processor, memory chips, and storage."
+  compare: {
+    lab: "Open Source vs Proprietary Inspector",
+    code: `// Open Source (GNU GPL) vs Proprietary (Closed Source)\n1. Source Code   : 100% Public Access vs Hidden Binary\n2. Modification  : Freely Modifiable vs Strictly Prohibited\n3. Redistribution: Unlimited Free Sharing vs Illegal by Law\n4. License Cost  : Zero Fees (GPL) vs Expensive Subscriptions\n5. Real Examples : Linux, Ubuntu, Android vs Windows, macOS`,
+    explain: "Open source software under GNU GPL guarantees transparent public code inspection and community-driven freedom."
   }
 };
 
 function updateStudio() {
   document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeMode));
 
-  if (activeMode === "arch") {
+  if (activeMode === "compare") {
     $("fc_box").style.display = "none";
-    $("arch_box").style.display = "block";
-    $("arch_chips").style.display = "block";
-    updateArchLevel();
+    $("compare_box").style.display = "block";
+    const m = MODES.compare;
+    $("insp_lab").textContent = m.lab;
+    $("insp_code").textContent = m.code;
+    const res = $("insp_res");
+    res.textContent = m.explain;
+    res.className = "res ok";
   } else {
     $("fc_box").style.display = "block";
-    $("arch_box").style.display = "none";
-    $("arch_chips").style.display = "none";
+    $("compare_box").style.display = "none";
 
     const m = MODES[activeMode];
     $("insp_lab").textContent = m.lab;
@@ -243,38 +224,6 @@ function updateStudio() {
   }
 }
 
-function updateArchLevel() {
-  document.querySelectorAll("[data-a='lvl']").forEach(b => {
-    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.l === archLevel);
-  });
-
-  const data = ARCH_LEVELS[archLevel] || ARCH_LEVELS.all;
-  $("insp_lab").textContent = data.lab;
-  $("insp_code").textContent = data.code;
-  const res = $("insp_res");
-  res.textContent = data.explain;
-  res.className = "res ok";
-
-  // Visual highlight for the 4 concentric onion nodes
-  const nodes = {
-    app: $("af_n4"),
-    shell: $("af_n3"),
-    kernel: $("af_n2"),
-    hw: $("af_n1")
-  };
-
-  Object.entries(nodes).forEach(([k, el]) => {
-    if (!el) return;
-    const isSelected = archLevel === "all" || archLevel === k;
-    if (k === "hw") {
-      el.setAttribute("fill", isSelected ? (archLevel === k ? "var(--ok)" : "var(--ink)") : "#64748b");
-    } else {
-      el.setAttribute("class", "node-rect " + (isSelected ? (archLevel === k ? "st-pass" : "st-active") : "st-active"));
-      el.style.opacity = isSelected ? "1" : "0.45";
-    }
-  });
-}
-
 document.addEventListener("click", e => {
   const t = e.target.closest("[data-a]");
   if (!t) return;
@@ -283,9 +232,6 @@ document.addEventListener("click", e => {
   if (a === "md") {
     activeMode = t.dataset.m;
     updateStudio();
-  } else if (a === "lvl") {
-    archLevel = t.dataset.l;
-    updateArchLevel();
   } else if (a === "qc") {
     const opt = +t.dataset.o;
     const chips = $("qc_chips").querySelectorAll(".chip");

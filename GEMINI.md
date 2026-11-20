@@ -54,3 +54,4 @@ This file contains a growing ruleset that improves over time. **At session start
 22. [UX] Never include the quick checklist section in the course interface - user preference to remove checklists and keep individual level screens clean, breathable, and focused.
 23. [CONTENT] Always format flowchart node content as keyword phrases connected with '-' (e.g., 'Keyword - Keyword') rather than long continuous conversational sentences - improves visual scanability and concise technical clarity.
 24. [UI] Always feature both founding pioneers—Richard Stallman (GNU Project) and Linus Torvalds (Linux Kernel)—in Level 1 with prominent portrait cards (100px width/height with object-fit: contain) - honors GNU/Linux dual origin and guarantees clear visual prominence.
+25. [CONTENT] Never include the Quiz section (Tab 9) in the course module interface - user preference to remove the Module Quiz section and have the course conclude directly with the Summary & Download section.

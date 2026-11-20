@@ -69,7 +69,8 @@
               <text x="62" y="37" class="node-mono" fill="#93c5fd">UEFI</text>
 
               <!-- Line 1 to 2 -->
-              <path d="M 109 29 L 121 29" class="flow-line line-blue" />
+              <path d="M 109 29 L 119 29" class="flow-line line-pass" />
+              <polygon points="121,29 115,25 115,33" fill="var(--ok)" />
 
               <!-- Stage 2: GRUB2 -->
               <rect id="bs_n2" x="121" y="8" width="94" height="42" class="node-rect st-active" data-a="stg" data-s="grub" style="cursor:pointer;" />
@@ -77,7 +78,8 @@
               <text x="168" y="37" class="node-mono">GRUB2</text>
 
               <!-- Line 2 to 3 -->
-              <path d="M 215 29 L 227 29" class="flow-line line-pass" />
+              <path d="M 215 29 L 225 29" class="flow-line line-pass" />
+              <polygon points="227,29 221,25 221,33" fill="var(--ok)" />
 
               <!-- Stage 3: Kernel -->
               <rect id="bs_n3" x="227" y="8" width="94" height="42" class="node-rect st-pass" data-a="stg" data-s="kernel" style="cursor:pointer;" />
@@ -85,7 +87,8 @@
               <text x="274" y="37" class="node-mono">Kernel</text>
 
               <!-- Line 3 to 4 -->
-              <path d="M 321 29 L 333 29" class="flow-line line-pass" />
+              <path d="M 321 29 L 331 29" class="flow-line line-pass" />
+              <polygon points="333,29 327,25 327,33" fill="var(--ok)" />
 
               <!-- Stage 4: initramfs -->
               <rect id="bs_n4" x="333" y="8" width="94" height="42" class="node-rect st-active" data-a="stg" data-s="initramfs" style="cursor:pointer;" />
@@ -93,7 +96,8 @@
               <text x="380" y="37" class="node-mono">initrd</text>
 
               <!-- Line 4 to 5 -->
-              <path d="M 427 29 L 439 29" class="flow-line line-pass" />
+              <path d="M 427 29 L 437 29" class="flow-line line-pass" />
+              <polygon points="439,29 433,25 433,33" fill="var(--ok)" />
 
               <!-- Stage 5: systemd -->
               <rect id="bs_n5" x="439" y="8" width="86" height="42" class="node-rect st-pass" data-a="stg" data-s="systemd" style="cursor:pointer;" />
@@ -148,27 +152,27 @@
               <rect x="25" y="6" width="470" height="34" rx="7" class="node-rect st-active" />
               <text x="260" y="23" class="node-text">1. Kernel decompresses /boot/initrd.img into RAM memory</text>
 
-              <path d="M 260 40 L 260 52" class="flow-line line-blue" />
+              <path d="M 260 40 L 260 51" class="flow-line line-blue" />
+              <polygon points="260,52 256,45 264,45" fill="var(--primary)" />
 
               <!-- Step 2 -->
               <rect x="25" y="52" width="470" height="34" rx="7" class="node-rect st-pass" />
               <text x="260" y="69" class="node-text">2. Temporary root mounts; loads NVMe, LVM &amp; ext4 storage drivers</text>
 
-              <path d="M 260 86 L 260 98" class="flow-line line-pass" />
+              <path d="M 260 86 L 260 97" class="flow-line line-pass" />
+              <polygon points="260,98 256,91 264,91" fill="var(--ok)" />
 
               <!-- Step 3 -->
               <rect x="25" y="98" width="470" height="34" rx="7" class="node-rect st-pass" />
               <text x="260" y="115" class="node-text">3. Locates physical root partition via UUID and mounts read-only</text>
 
-              <path d="M 260 132 L 260 144" class="flow-line line-pass" />
+              <path d="M 260 132 L 260 143" class="flow-line line-pass" />
+              <polygon points="260,144 256,137 264,137" fill="var(--ok)" />
 
               <!-- Step 4 -->
               <rect x="25" y="144" width="470" height="42" rx="7" fill="var(--ink)" />
               <text x="260" y="158" class="node-mono" fill="#fff">4. pivot_root executes &rarr; Unloads initramfs &rarr; Hands off to systemd</text>
               <text x="260" y="174" class="node-mono" fill="#93c5fd">Transition complete: System enters user space process execution</text>
-            </svg>
-          </div>
-              <text x="180" y="152" class="node-mono" fill="#fff">4. pivot_root executes &rarr; Unloads initramfs &rarr; Hands off to systemd</text>
             </svg>
           </div>
         </div>

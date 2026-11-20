@@ -61,91 +61,110 @@
           <!-- Targets Flowchart -->
           <div id="fc_targets">
             <span class="lab">systemd Target Dependency Hierarchy (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
+            <svg class="svg-flowchart" viewBox="0 0 520 220">
               <!-- Tier 1: sysinit.target -->
-              <rect x="30" y="8" width="460" height="28" class="node-rect st-active" />
-              <text x="260" y="22" class="node-mono">1. sysinit.target &bull; Mounts /proc, /sys &amp; initializes crypto disks</text>
+              <rect x="30" y="8" width="460" height="30" class="node-rect st-active" />
+              <text x="260" y="23" class="node-mono">1. sysinit.target - Mounts /proc, /sys - Initializes Encrypted Disks</text>
 
-              <path d="M 260 36 L 260 48" class="flow-line line-blue" />
+              <path d="M 260 38 L 260 51" class="flow-line line-blue" />
+              <polygon points="260,52 256,45 264,45" fill="var(--primary)" />
 
               <!-- Tier 2: basic.target -->
-              <rect x="30" y="48" width="460" height="28" class="node-rect st-pass" />
-              <text x="260" y="62" class="node-mono">2. basic.target &bull; Sockets, timers &amp; core system device paths</text>
+              <rect x="30" y="52" width="460" height="30" class="node-rect st-pass" />
+              <text x="260" y="67" class="node-mono">2. basic.target - Sockets, Timers - Core System Device Paths</text>
 
-              <path d="M 260 76 L 260 88" class="flow-line line-pass" />
+              <path d="M 260 82 L 260 95" class="flow-line line-pass" />
+              <polygon points="260,96 256,89 264,89" fill="var(--ok)" />
 
               <!-- Tier 3: multi-user.target (Server Default) -->
-              <rect id="tg_b_multi" x="30" y="88" width="460" height="40" class="node-rect st-pass" data-a="tgt" data-t="multi" style="cursor:pointer;" />
-              <text x="260" y="103" class="node-text">3. multi-user.target &bull; Headless Server Environment (Runlevel 3)</text>
-              <text x="260" y="117" class="node-mono">Networking &bull; OpenSSH &bull; Nginx &bull; MySQL &bull; Multi-User Shells</text>
+              <rect id="tg_b_multi" x="30" y="96" width="460" height="42" class="node-rect st-pass" data-a="tgt" data-t="multi" style="cursor:pointer;" />
+              <text x="260" y="112" class="node-text">3. multi-user.target - Headless Server Environment (Runlevel 3)</text>
+              <text x="260" y="128" class="node-mono">Networking - OpenSSH - Nginx - MariaDB - Multi-User CLI Shells</text>
 
-              <path d="M 260 128 L 260 140" class="flow-line line-blue" />
+              <path d="M 260 138 L 260 151" class="flow-line line-blue" />
+              <polygon points="260,152 256,145 264,145" fill="var(--primary)" />
 
               <!-- Tier 4: graphical.target (Desktop Default) -->
-              <rect id="tg_b_graphical" x="30" y="140" width="460" height="42" rx="6" fill="var(--ink)" data-a="tgt" data-t="graphical" style="cursor:pointer;" />
-              <text x="260" y="155" class="node-mono" fill="#fff">4. graphical.target &bull; Desktop Workstation (Runlevel 5)</text>
-              <text x="260" y="171" class="node-mono" fill="#93c5fd">GNOME / KDE Display Manager + all multi-user.target background services</text>
+              <rect id="tg_b_graphical" x="30" y="152" width="460" height="56" rx="8" fill="var(--ink)" data-a="tgt" data-t="graphical" style="cursor:pointer;" />
+              <text x="260" y="170" class="node-mono" fill="#fff" style="font-weight:700;">4. graphical.target - Desktop Workstation Environment (Runlevel 5)</text>
+              <text x="260" y="188" class="node-mono" fill="#93c5fd">Display Manager (GDM / LightDM) - Desktop GUI (GNOME / KDE)</text>
+              <text x="260" y="201" class="node-mono" fill="#38bdf8" style="font-size:9.5px;">Seamlessly Inherits All Active multi-user.target Background Daemons</text>
             </svg>
           </div>
 
           <!-- Target Switching Flowchart -->
-          <div id="fc_switching">
+          <div id="fc_switching" style="display:none;">
             <span class="lab">Runtime Isolation &amp; Default Target Commands (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
+            <svg class="svg-flowchart" viewBox="0 0 520 220">
               <!-- Switch Default Box -->
-              <rect x="30" y="10" width="460" height="46" class="node-rect st-active" />
-              <text x="260" y="27" class="node-mono" fill="var(--primary-dark)">sudo systemctl set-default multi-user.target</text>
-              <text x="260" y="44" class="node-text">Changes default boot target permanently by rewriting /etc/systemd/system/default.target</text>
+              <rect x="30" y="8" width="460" height="44" class="node-rect st-active" />
+              <text x="260" y="25" class="node-mono" fill="var(--primary-dark)">sudo systemctl set-default multi-user.target</text>
+              <text x="260" y="42" class="node-text">Rewrites /etc/systemd/system/default.target symlink permanently</text>
 
               <!-- Arrow -->
-              <path d="M 260 56 L 260 72" class="flow-line line-blue" />
+              <path d="M 260 52 L 260 67" class="flow-line line-blue" />
+              <polygon points="260,68 256,61 264,61" fill="var(--primary)" />
 
               <!-- Current Query -->
-              <rect x="30" y="72" width="460" height="42" class="node-rect st-pass" />
-              <text x="260" y="88" class="node-mono" fill="var(--ok)">systemctl get-default</text>
-              <text x="260" y="103" class="node-text">Inspects active default target &bull; Output: multi-user.target</text>
+              <rect x="30" y="68" width="460" height="42" class="node-rect st-pass" />
+              <text x="260" y="86" class="node-mono" fill="var(--ok)">systemctl get-default</text>
+              <text x="260" y="102" class="node-text">Inspects active default target - Output: multi-user.target</text>
 
               <!-- Arrow -->
-              <path d="M 260 114 L 260 130" class="flow-line line-pass" />
+              <path d="M 260 110 L 260 125" class="flow-line line-pass" />
+              <polygon points="260,126 256,119 264,119" fill="var(--ok)" />
 
               <!-- Live Isolation Box -->
-              <rect x="30" y="130" width="460" height="48" rx="6" fill="var(--ink)" />
-              <text x="260" y="147" class="node-mono" fill="#fff">sudo systemctl isolate rescue.target</text>
-              <text x="260" y="166" class="node-mono" fill="#93c5fd">Switches runtime state immediately to maintenance mode without restarting host</text>
+              <rect x="30" y="126" width="460" height="48" rx="6" fill="var(--ink)" />
+              <text x="260" y="145" class="node-mono" fill="#fff">sudo systemctl isolate rescue.target</text>
+              <text x="260" y="164" class="node-mono" fill="#93c5fd">Switches runtime state into single-user recovery without reboot</text>
             </svg>
           </div>
 
           <!-- Diagnostics Flowchart -->
           <div id="fc_diagnostics" style="display:none;">
             <span class="lab">Boot Diagnostics: systemd-analyze blame (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
+            <svg class="svg-flowchart" viewBox="0 0 540 250">
               <!-- Total Boot Time -->
-              <rect x="30" y="8" width="460" height="26" rx="5" fill="var(--ink)" />
-              <text x="260" y="21" class="node-mono" fill="#fff">Startup finished in: 1.84s (firmware) + 2.12s (kernel) + 1.63s (userspace)</text>
+              <rect x="20" y="8" width="500" height="32" rx="8" fill="var(--ink)" />
+              <text x="270" y="24" class="node-mono" fill="#fff" style="font-weight:700;">Total Boot Time: 5.59s (Firmware: 1.84s + Kernel: 2.12s + System: 1.63s)</text>
 
-              <!-- Bar 1 -->
-              <rect x="30" y="42" width="460" height="28" class="node-rect st-pass" />
-              <rect x="30" y="42" width="240" height="28" rx="4" fill="var(--ok-bg)" />
-              <text x="45" y="56" class="node-mono" text-anchor="start" fill="var(--ink)">1.240s &bull; snapd.service (Application packages &amp; confinement)</text>
+              <!-- Downward Indicator -->
+              <path d="M 270 40 L 270 48" class="flow-line line-blue" />
+              <polygon points="270,49 266,42 274,42" fill="var(--primary)" />
 
-              <!-- Bar 2 -->
-              <rect x="30" y="76" width="460" height="28" class="node-rect st-active" />
-              <rect x="30" y="76" width="180" height="28" rx="4" fill="var(--tint)" />
-              <text x="45" y="90" class="node-mono" text-anchor="start" fill="var(--ink)">0.890s &bull; systemd-networkd-wait-online.service (Network sync)</text>
+              <!-- Service 1: snapd -->
+              <rect x="20" y="50" width="500" height="28" rx="6" class="node-rect st-pass" />
+              <rect x="24" y="53" width="70" height="22" rx="4" fill="var(--ok)" />
+              <text x="59" y="64" class="node-mono" fill="#ffffff" style="font-weight:700;">1.24s</text>
+              <text x="105" y="64" class="node-left" fill="var(--ink)">snapd.service - App Store &amp; Package Service (Slowest)</text>
 
-              <!-- Bar 3 -->
-              <rect x="30" y="110" width="460" height="28" class="node-rect st-pass" />
-              <rect x="30" y="110" width="120" height="28" rx="4" fill="var(--ok-bg)" />
-              <text x="45" y="124" class="node-mono" text-anchor="start" fill="var(--ink)">0.450s &bull; nginx.service (Reverse proxy web daemon)</text>
+              <!-- Service 2: network wait -->
+              <rect x="20" y="82" width="500" height="28" rx="6" class="node-rect st-active" />
+              <rect x="24" y="85" width="70" height="22" rx="4" fill="var(--primary)" />
+              <text x="59" y="96" class="node-mono" fill="#ffffff" style="font-weight:700;">0.89s</text>
+              <text x="105" y="96" class="node-left" fill="var(--ink)">systemd-networkd - Internet &amp; Network Connection Sync</text>
 
-              <!-- Bar 4 -->
-              <rect x="30" y="144" width="460" height="28" class="node-rect st-pass" />
-              <rect x="30" y="144" width="75" height="28" rx="4" fill="var(--ok-bg)" />
-              <text x="45" y="158" class="node-mono" text-anchor="start" fill="var(--ink)">0.180s &bull; ssh.service (OpenSSH daemon)</text>
+              <!-- Service 3: nginx -->
+              <rect x="20" y="114" width="500" height="28" rx="6" class="node-rect st-pass" />
+              <rect x="24" y="117" width="70" height="22" rx="4" fill="var(--ok)" />
+              <text x="59" y="128" class="node-mono" fill="#ffffff" style="font-weight:700;">0.45s</text>
+              <text x="105" y="128" class="node-left" fill="var(--ink)">nginx.service - Web Server &amp; Background Daemon</text>
 
-              <!-- Footer info -->
-              <rect x="30" y="178" width="460" height="22" rx="4" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="193" class="node-mono" fill="var(--muted)">Command: systemd-analyze critical-chain prints the slowest dependency tree</text>
+              <!-- Service 4: ssh -->
+              <rect x="20" y="146" width="500" height="28" rx="6" class="node-rect st-pass" />
+              <rect x="24" y="149" width="70" height="22" rx="4" fill="var(--ok)" />
+              <text x="59" y="160" class="node-mono" fill="#ffffff" style="font-weight:700;">0.18s</text>
+              <text x="105" y="160" class="node-left" fill="var(--ink)">ssh.service - Secure Remote Terminal Login (Fastest)</text>
+
+              <!-- Downward Indicator -->
+              <path d="M 270 174 L 270 182" class="flow-line line-blue" />
+              <polygon points="270,183 266,176 274,176" fill="var(--primary)" />
+
+              <!-- Diagnostic Command Box -->
+              <rect x="20" y="184" width="500" height="50" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="270" y="201" class="node-mono" fill="var(--ink)" style="font-weight:700;">Diagnostic Command: systemd-analyze blame</text>
+              <text x="270" y="220" class="node-mono" fill="var(--muted)">Ranks services by startup delay to identify slow boot bottlenecks</text>
             </svg>
           </div>
         </div>
@@ -222,8 +241,8 @@ const TOPICS = {
   },
   diagnostics: {
     lab: "Boot Time Diagnostics & Bottlenecks",
-    code: `Overall Timing   • systemd-analyze (Displays kernel, initrd, userspace times)\nBlame Slow Units • systemd-analyze blame (Lists slowest units in descending order)\nCritical Chain   • systemd-analyze critical-chain (Plots slowest startup branch)`,
-    explain: "The systemd-analyze suite diagnoses slow services to optimize operating system startup performance effectively."
+    code: `Overall Timing   • systemd-analyze (Displays total kernel & userspace boot time)\nBlame Slow Units • systemd-analyze blame (Ranks slowest startup services)\nCritical Chain   • systemd-analyze critical-chain (Plots slowest startup branch)`,
+    explain: "The systemd-analyze tool measures boot timing and reveals slow background services to speed up startup."
   }
 };
 

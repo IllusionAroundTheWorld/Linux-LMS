@@ -60,71 +60,108 @@
           <!-- TTY Consoles Flowchart -->
           <div id="fc_consoles">
             <span class="lab">Linux Virtual Consoles (TTY) Architecture (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <!-- Physical Keyboard Input -->
-              <rect x="20" y="8" width="480" height="34" rx="7" fill="var(--ink)" />
-              <text x="260" y="25" class="node-mono" fill="#fff">Physical Hardware &bull; Keyboard, Mouse &amp; Display Monitor</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 290">
+              <!-- Physical Hardware Header -->
+              <rect x="15" y="8" width="510" height="40" class="node-rect st-active" />
+              <text x="270" y="23" class="node-text">Linux Virtual Consoles Architecture (/dev/tty1 - /dev/tty6)</text>
+              <text x="270" y="38" class="node-mono" fill="var(--primary)">Direct Kernel Terminal Subsystem - Multi-Session Support</text>
 
-              <!-- Switcher Lines -->
-              <path d="M 95 42 L 95 66 M 260 42 L 260 66 M 425 42 L 425 66" class="flow-line line-blue" fill="none" />
+              <!-- Central Trunk down into Multiplexer Badge -->
+              <path d="M 270 48 L 270 61" class="flow-line line-blue" />
+              
+              <!-- Standalone Console Multiplexer Badge -->
+              <rect x="185" y="61" width="170" height="22" rx="11" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.25" />
+              <text x="270" y="72" class="branch-label" fill="var(--primary)" style="font-weight:700;">Console Multiplexer</text>
+
+              <!-- Central Trunk down out of Badge to Distribution Rail -->
+              <path d="M 270 83 L 270 96" class="flow-line line-blue" />
+
+              <!-- Horizontal Distribution Rail -->
+              <path d="M 95 96 L 445 96" class="flow-line line-blue" fill="none" />
+
+              <!-- 3 Downward Branch Lines & Arrowheads -->
+              <path d="M 95 96 L 95 109" class="flow-line line-pass" />
+              <polygon points="95,110 91,103 99,103" fill="var(--ok)" />
+
+              <path d="M 270 96 L 270 109" class="flow-line line-pass" />
+              <polygon points="270,110 266,103 274,103" fill="var(--ok)" />
+
+              <path d="M 445 96 L 445 109" class="flow-line line-blue" />
+              <polygon points="445,110 441,103 449,103" fill="var(--primary)" />
 
               <!-- TTY1 Box -->
-              <rect id="tty_b_1" x="20" y="66" width="150" height="48" class="node-rect st-pass" data-a="tty" data-t="tty1" style="cursor:pointer;" />
-              <text x="95" y="82" class="node-text">/dev/tty1 (GUI)</text>
-              <text x="95" y="100" class="node-mono">Ctrl + Alt + F1</text>
+              <rect id="tty_b_1" x="15" y="110" width="160" height="74" class="node-rect st-pass" data-a="tty" data-t="tty1" style="cursor:pointer;" />
+              <text x="95" y="126" class="node-text">TTY1 (Ctrl+Alt+F1)</text>
+              <text x="95" y="143" class="node-mono" fill="var(--ok)">Display Manager</text>
+              <text x="95" y="159" class="node-mono">Wayland / GDM Graphical</text>
+              <text x="95" y="174" class="node-mono">Primary Desktop Session</text>
 
               <!-- TTY2-6 Box -->
-              <rect id="tty_b_2" x="185" y="66" width="150" height="48" class="node-rect st-active" data-a="tty" data-t="tty2" style="cursor:pointer;" />
-              <text x="260" y="82" class="node-text">/dev/tty2..6 (CLI)</text>
-              <text x="260" y="100" class="node-mono">Ctrl + Alt + F2..F6</text>
+              <rect id="tty_b_2" x="190" y="110" width="160" height="74" class="node-rect st-pass" data-a="tty" data-t="tty2" style="cursor:pointer;" />
+              <text x="270" y="126" class="node-text">TTY2-6 (F2-F6)</text>
+              <text x="270" y="143" class="node-mono" fill="var(--ok)">Text Consoles</text>
+              <text x="270" y="159" class="node-mono">Direct Kernel Logins</text>
+              <text x="270" y="174" class="node-mono">Emergency System Recovery</text>
 
               <!-- PTS Box -->
-              <rect id="tty_b_pts" x="350" y="66" width="150" height="48" class="node-rect st-active" data-a="tty" data-t="pts" style="cursor:pointer;" />
-              <text x="425" y="82" class="node-text">/dev/pts/X (PTY)</text>
-              <text x="425" y="100" class="node-mono">SSH / GUI Terminal</text>
+              <rect id="tty_b_pts" x="365" y="110" width="160" height="74" class="node-rect st-active" data-a="tty" data-t="pts" style="cursor:pointer;" />
+              <text x="445" y="126" class="node-text">PTS (/dev/pts/*)</text>
+              <text x="445" y="143" class="node-mono" fill="var(--primary)">Pseudo-Terminals</text>
+              <text x="445" y="159" class="node-mono">GNOME Terminal / SSH</text>
+              <text x="445" y="174" class="node-mono">Emulated Virtual CLI</text>
 
-              <!-- Lower Target Nodes -->
-              <path d="M 95 114 L 95 124 M 260 114 L 260 124 M 425 114 L 425 124" class="flow-line line-pass" />
-              <rect x="20" y="124" width="150" height="30" rx="6" fill="var(--tint)" stroke="var(--primary)" />
-              <text x="95" y="139" class="node-mono" fill="var(--primary-dark)">GNOME / Wayland</text>
+              <!-- Lines down into Consolidation Rail -->
+              <path d="M 95 184 L 95 200 M 270 184 L 270 200 M 445 184 L 445 200" class="flow-line line-blue" />
 
-              <rect x="185" y="124" width="150" height="30" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="139" class="node-mono">agetty Text Login</text>
+              <!-- Horizontal Consolidation Rail -->
+              <path d="M 95 200 L 445 200" class="flow-line line-blue" fill="none" />
 
-              <rect x="350" y="124" width="150" height="30" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="425" y="139" class="node-mono">sshd Daemon Session</text>
+              <!-- Central Trunk Arrow into Summary -->
+              <path d="M 270 200 L 270 215" class="flow-line line-blue" />
+              <polygon points="270,216 266,209 274,209" fill="var(--ink)" />
 
-              <rect x="20" y="166" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="179" class="node-mono" fill="var(--ink)">Switch between text consoles and GUI with Ctrl + Alt + F1 through F6</text>
+              <!-- Summary Card -->
+              <rect x="15" y="216" width="510" height="62" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="270" y="233" class="node-text" fill="var(--ink)">Emergency System Recovery Hotkeys</text>
+              <text x="270" y="251" class="node-mono" fill="var(--ok)">Ctrl + Alt + F2-F6 - Direct Out-of-Band Text Console Login</text>
+              <text x="270" y="267" class="node-mono" fill="var(--primary)">Kill Frozen Graphical Apps Without Hard Rebooting Physical Machine</text>
             </svg>
           </div>
 
           <!-- Desktops Flowchart -->
           <div id="fc_desktops" style="display:none;">
             <span class="lab">Linux Graphical Desktop Stack (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
+            <svg class="svg-flowchart" viewBox="0 0 520 220">
               <!-- Tier 1: User Apps -->
-              <rect x="20" y="6" width="480" height="34" rx="7" class="node-rect st-active" />
-              <text x="260" y="23" class="node-text">Desktop Environment (GNOME 46 &bull; KDE Plasma 6 &bull; XFCE)</text>
+              <rect x="25" y="8" width="470" height="34" class="node-rect st-active" />
+              <text x="260" y="25" class="node-text">User Applications - Office Suite - Web Browser - Terminal Emulator</text>
 
-              <path d="M 260 40 L 260 52" class="flow-line line-blue" />
+              <!-- Arrow into Tier 2 -->
+              <path d="M 260 42 L 260 55" class="flow-line line-blue" />
+              <polygon points="260,56 256,49 264,49" fill="var(--primary)" />
 
-              <!-- Tier 2: Compositor / Window Mgr -->
-              <rect x="20" y="52" width="480" height="34" rx="7" class="node-rect st-pass" />
-              <text x="260" y="69" class="node-text">Display Compositor &bull; Mutter (GNOME) / KWin (KDE)</text>
+              <!-- Tier 2: Display Server -->
+              <rect x="25" y="56" width="470" height="40" class="node-rect st-pass" />
+              <text x="260" y="70" class="node-text">Display Server &amp; Compositor - Wayland (Secure) vs X11 (Legacy)</text>
+              <text x="260" y="86" class="node-mono">Memory-Isolated Window Buffers - Zero Keystroke Snooping Allowed</text>
 
-              <path d="M 260 86 L 260 98" class="flow-line line-pass" />
+              <!-- Arrow into Tier 3 -->
+              <path d="M 260 96 L 260 109" class="flow-line line-pass" />
+              <polygon points="260,110 256,103 264,103" fill="var(--ok)" />
 
-              <!-- Tier 3: Display Server Protocol -->
-              <rect x="20" y="98" width="480" height="34" rx="7" class="node-rect st-pass" />
-              <text x="260" y="115" class="node-text">Display Server Protocol &bull; Wayland (Modern) / X11 (Legacy)</text>
+              <!-- Tier 3: DRM/KMS -->
+              <rect x="25" y="110" width="470" height="38" class="node-rect st-pass" />
+              <text x="260" y="124" class="node-text">Kernel Direct Rendering Manager (DRM / KMS)</text>
+              <text x="260" y="139" class="node-mono">Direct GPU Memory Management - Hardware-Accelerated 3D Pipelines</text>
 
-              <path d="M 260 132 L 260 144" class="flow-line line-pass" />
+              <!-- Arrow into Tier 4 -->
+              <path d="M 260 148 L 260 161" class="flow-line line-blue" />
+              <polygon points="260,162 256,155 264,155" fill="var(--primary)" />
 
-              <!-- Tier 4: Kernel GPU Driver -->
-              <rect x="20" y="144" width="480" height="42" rx="7" fill="var(--ink)" />
-              <text x="260" y="158" class="node-mono" fill="#fff">Kernel DRM / KMS &bull; Graphics Card GPU Hardware</text>
-              <text x="260" y="174" class="node-mono" fill="#93c5fd">Direct Rendering Manager handles framebuffer rendering safely</text>
+              <!-- Tier 4: Hardware -->
+              <rect x="25" y="162" width="470" height="48" rx="8" fill="var(--ink)" />
+              <text x="260" y="180" class="node-mono" fill="#fff" style="font-weight:700;">Physical Graphics Hardware (GPU Acceleration &amp; Display Panels)</text>
+              <text x="260" y="198" class="node-mono" fill="#93c5fd">HDMI / DisplayPort Interfaces - Real-Time Pixel Scan-Out</text>
             </svg>
           </div>
 

@@ -549,6 +549,14 @@
         dominant-baseline: central;
         pointer-events: none;
       }
+      .node-left {
+        font-family: var(--font-mono);
+        font-size: 9.5px;
+        font-weight: 600;
+        text-anchor: start !important;
+        dominant-baseline: central;
+        pointer-events: none;
+      }
       .node-mono {
         font-family: var(--font-mono);
         font-size: 10px;
@@ -667,17 +675,17 @@
               res: "Milestone: Complete GNU/Linux operating system stack assembled for developers worldwide.",
             },
             {
-              h: "Concentric Layer Stack",
-              p: "User applications call the shell, the shell communicates with the kernel, and the kernel controls hardware.",
-              b: "Verify Layer Hierarchy",
-              res: "Hierarchy Verified: Hardware -> Kernel -> Shell -> Applications working in harmony.",
+              h: "Open Source vs Proprietary",
+              p: "Linux source code is 100% open under GNU GPL, whereas proprietary systems lock users with closed binaries and fees.",
+              b: "Compare Software Models",
+              res: "Comparison Verified: Open Source guarantees full code transparency, free modification, and zero license costs.",
             },
           ],
           video: null,
           check: [
             "Linus Torvalds published the original Linux kernel version 0.01 in 1991",
             "The GNU GPL license guarantees software remains permanently free for modification",
-            "Linux uses concentric layers isolating applications from direct physical hardware access",
+            "Open source software guarantees public code auditability and community-driven freedom",
           ],
           quiz: [
             [
@@ -699,11 +707,11 @@
               0,
             ],
             [
-              "What component forms the central core of every Linux operating system?",
+              "What is a primary distinction of open-source software compared to proprietary software?",
               [
-                "The Linux Kernel engine",
-                "The Web Browser",
-                "The Graphical Desktop Theme",
+                "Complete freedom to inspect, modify, and redistribute source code",
+                "Prohibition against viewing or altering compiled code",
+                "Mandatory recurring commercial license royalties",
               ],
               0,
             ],
@@ -719,6 +727,14 @@
               "A distribution packages the Linux kernel with software, compilers, desktop environments, and easy installation management systems.",
             ],
             [
+              "Why Distro?",
+              "The kernel alone cannot run programs without bundled tools, system libraries, package managers, and desktops.",
+            ],
+            [
+              "4-Layer Architecture",
+              "Linux cleanly separates user applications from physical hardware across four distinct, coordinated concentric tiers.",
+            ],
+            [
               "Debian Lineage (Ubuntu)",
               "Debian prioritizes software stability, while its popular derivative Ubuntu makes Linux accessible and friendly for beginners.",
             ],
@@ -729,10 +745,6 @@
             [
               "Arch Lineage (Minimalist)",
               "Arch Linux provides a rolling-release system where advanced programmers choose and configure every individual component manually.",
-            ],
-            [
-              "Kernel Evolution Milestones",
-              "The kernel evolved from 10,000 code lines in 1991 to over 30 million lines today.",
             ],
           ],
           code: {
@@ -1311,83 +1323,76 @@
       /* Level Flowcharts Definition */
       const FLOWCHARTS = {
         0: {
-          title: "The Birth & History of Linux Flowchart",
-          modes: ["1. The Birth of Linux (1991 Timeline)", "2. 4-Layer Architecture (How It Works)", "3. Open Source vs Proprietary"],
+          title: "The Birth of Linux & Open Source Flowchart",
+          modes: ["1. The Birth of Linux (1991 Timeline)", "2. Open Source vs Proprietary Software"],
           views: [
             `
             <span class="lab">The Birth of Linux: 1991 Milestone Timeline (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 500 210">
-              <rect x="40" y="6" width="420" height="38" class="node-rect st-active" />
-              <text x="250" y="19" class="node-text">1983 - GNU Project - Richard Stallman</text>
-              <text x="250" y="33" class="node-mono">Compilers (gcc) - Shells (bash) - Lacked Kernel Engine</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <rect x="20" y="8" width="500" height="42" class="node-rect st-active" />
+              <text x="270" y="22" class="node-text">1983 - GNU Project - Richard Stallman</text>
+              <text x="270" y="38" class="node-mono">Compilers (gcc) - Shells (bash) - Lacked Kernel Engine</text>
 
-              <path d="M 250 44 L 250 56" class="flow-line line-blue" />
+              <path d="M 270 50 L 270 67" class="flow-line line-blue" />
+              <polygon points="270,68 266,61 274,61" fill="var(--blue)" />
 
-              <rect x="40" y="56" width="420" height="42" class="node-rect st-pass" />
-              <text x="250" y="70" class="node-text">1991 - Linux Kernel - Linus Torvalds</text>
-              <text x="250" y="86" class="node-mono">University of Helsinki - Version 0.01 - Free Hobby Project</text>
+              <rect x="20" y="68" width="500" height="42" class="node-rect st-pass" />
+              <text x="270" y="82" class="node-text">1991 - Linux Kernel - Linus Torvalds</text>
+              <text x="270" y="98" class="node-mono">University of Helsinki - Version 0.01 - Open Hobby Project</text>
 
-              <path d="M 250 98 L 250 110" class="flow-line line-pass" />
+              <path d="M 270 110 L 270 127" class="flow-line line-pass" />
+              <polygon points="270,128 266,121 274,121" fill="var(--ok)" />
 
-              <rect x="40" y="110" width="420" height="42" class="node-rect st-pass" />
-              <text x="250" y="124" class="node-text">GNU Tools + Linux Kernel - Complete Operating System</text>
-              <text x="250" y="140" class="node-mono">GNU GPL License - 100% Free Source Code - Worldwide Access</text>
+              <rect x="20" y="128" width="500" height="42" class="node-rect st-pass" />
+              <text x="270" y="142" class="node-text">GNU Tools + Linux Kernel - Complete Operating System</text>
+              <text x="270" y="158" class="node-mono">GNU GPL License - Free Source Code - Worldwide Collaboration</text>
 
-              <path d="M 250 152 L 250 164" class="flow-line line-pass" />
+              <path d="M 270 170 L 270 187" class="flow-line line-pass" />
+              <polygon points="270,188 266,181 274,181" fill="var(--ok)" />
 
-              <rect x="40" y="164" width="420" height="38" rx="7" fill="var(--navy)" />
-              <text x="250" y="177" class="node-mono" fill="#fff">Modern Era - Global Infrastructure - Computing Dominance</text>
-              <text x="250" y="192" class="node-mono" fill="#93c5fd">Android Smartphones - Cloud Servers - 100% Top 500 Supercomputers</text>
-            </svg>
-            `,
-            `
-            <span class="lab">4-Layer Architecture Onion Rings (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 500 210">
-              <rect x="10" y="6" width="480" height="198" rx="16" class="node-rect st-active" />
-              <text x="250" y="24" class="node-text" style="font-weight:800;">Level 4: APPLICATION - User Software - Desktop Utilities</text>
-
-              <rect x="40" y="40" width="420" height="152" rx="14" class="node-rect st-active" />
-              <text x="250" y="58" class="node-text" style="font-weight:700;">Level 3: SHELL - Command Interpreter - CLI Interface</text>
-
-              <rect x="75" y="76" width="350" height="106" rx="12" class="node-rect st-pass" />
-              <text x="250" y="94" class="node-text" style="font-weight:700;">Level 2: KERNEL - Core OS Engine - Device Drivers</text>
-
-              <rect x="115" y="114" width="270" height="58" rx="8" fill="var(--navy)" />
-              <text x="250" y="134" class="node-mono" fill="#fff" style="font-weight:700;">Level 1: HARDWARE</text>
-              <text x="250" y="152" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">CPU - RAM - Storage Disks - Physical Machine</text>
+              <rect x="20" y="188" width="500" height="58" rx="8" fill="var(--navy)" />
+              <text x="270" y="206" class="node-mono" fill="#fff" style="font-weight:700;">Modern Era - Global Digital Backbone &amp; Dominance</text>
+              <text x="270" y="226" class="node-mono" fill="#93c5fd">Android Smartphones - Cloud Infrastructure - Top 500 Supercomputers</text>
             </svg>
             `,
             `
             <span class="lab">Open Source vs Proprietary Software (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 500 210">
-              <rect x="15" y="8" width="225" height="40" class="node-rect st-pass" />
-              <text x="127" y="24" class="node-text">Open Source - Linux - GNU GPL</text>
-              <text x="127" y="38" class="node-mono" fill="var(--ok)">Complete Freedom - Community Driven</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <!-- Left Column: Open Source -->
+              <rect x="15" y="8" width="248" height="44" class="node-rect st-pass" />
+              <text x="139" y="24" class="node-text">Open Source (GNU / Linux)</text>
+              <text x="139" y="40" class="node-mono" fill="var(--ok)">100% Free - Community Driven</text>
 
-              <rect x="260" y="8" width="225" height="40" class="node-rect st-active" />
-              <text x="372" y="24" class="node-text">Proprietary - Closed Source</text>
-              <text x="372" y="38" class="node-mono">Locked Software - Commercial License</text>
+              <rect x="15" y="60" width="248" height="188" rx="8" fill="var(--panel)" stroke="var(--line)" />
+              <text x="28" y="82" class="node-left" fill="var(--navy)">1. Source - Fully Open &amp; Auditable</text>
+              <text x="28" y="106" class="node-left">2. Modify - Freely Customizable</text>
+              <text x="28" y="130" class="node-left">3. Share - Unlimited Distribution</text>
+              <text x="28" y="154" class="node-left">4. Cost - Permanently Free (GPL)</text>
+              <text x="28" y="178" class="node-left" fill="var(--ok)">5. Audit - Public Peer Review</text>
+              
+              <rect x="25" y="198" width="228" height="26" rx="5" fill="var(--ok-bg)" stroke="var(--ok)" stroke-width="0.8" />
+              <text x="139" y="211" class="node-mono" fill="var(--ok)" style="font-weight:700;">Examples: Linux - Ubuntu - Android</text>
 
-              <rect x="15" y="56" width="225" height="142" rx="8" fill="var(--panel)" stroke="var(--line)" />
-              <text x="127" y="76" class="node-mono" fill="var(--navy)"><b>1. Code Access -</b> Read and study every line</text>
-              <text x="127" y="102" class="node-mono"><b>2. Bug Fixes -</b> Modify and customize system</text>
-              <text x="127" y="128" class="node-mono"><b>3. Community -</b> Share copies without restrictions</text>
-              <text x="127" y="154" class="node-mono"><b>4. Zero Fees -</b> Permanently free open source</text>
-              <text x="127" y="180" class="node-mono" fill="var(--ok)"><b>World Standard - Cloud Servers &amp; AI Clusters</b></text>
+              <!-- Right Column: Proprietary -->
+              <rect x="277" y="8" width="248" height="44" class="node-rect st-active" />
+              <text x="401" y="24" class="node-text">Proprietary (Closed Source)</text>
+              <text x="401" y="40" class="node-mono">Commercial EULA - Vendor Locked</text>
 
-              <rect x="260" y="56" width="225" height="142" rx="8" fill="var(--panel)" stroke="var(--line)" />
-              <text x="372" y="76" class="node-mono" fill="var(--navy)"><b>1. Hidden Code -</b> Black-box proprietary binary</text>
-              <text x="372" y="102" class="node-mono"><b>2. Vendor Lock-In -</b> Cannot modify or customize</text>
-              <text x="372" y="128" class="node-mono"><b>3. Restrictive -</b> Redistribution is legally prohibited</text>
-              <text x="372" y="154" class="node-mono"><b>4. High Cost -</b> Recurring subscriptions &amp; royalties</text>
-              <text x="372" y="180" class="node-mono" fill="var(--blue)"><b>Single Vendor - Restricted Commercial Roadmap</b></text>
+              <rect x="277" y="60" width="248" height="188" rx="8" fill="var(--panel)" stroke="var(--line)" />
+              <text x="290" y="82" class="node-left" fill="var(--navy)">1. Source - Hidden Binary Files</text>
+              <text x="290" y="106" class="node-left">2. Modify - Strictly Prohibited</text>
+              <text x="290" y="130" class="node-left">3. Share - Copying Prohibited</text>
+              <text x="290" y="154" class="node-left">4. Cost - Expensive Paid Licenses</text>
+              <text x="290" y="178" class="node-left" fill="var(--mut)">5. Audit - Closed Vendor-Only</text>
+
+              <rect x="287" y="198" width="228" height="26" rx="5" fill="var(--tint)" stroke="var(--blue)" stroke-width="0.8" />
+              <text x="401" y="211" class="node-mono" fill="var(--blue)" style="font-weight:700;">Examples: Windows - macOS - iOS</text>
             </svg>
             `
           ],
           explains: [
             "1983 GNU Tools - 1991 Linux Kernel - Combined into 100% free Unix operating system.",
-            "Concentric onion layers - Hardware isolated from user software - System crashes safely prevented.",
-            "GNU GPL Freedom - Inspect source code - Modify freely - Zero license fee barrier."
+            "GNU GPL grants complete freedom to inspect source code, modify functionality, and share copies without license fees."
           ]
         },
         1: {
@@ -1396,91 +1401,160 @@
           views: [
             `
             <span class="lab">Major Distribution Families Tree (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="110" y="6" width="300" height="34" class="node-rect st-active" />
-              <text x="260" y="23" class="node-text">Common Core: Linux Kernel Engine</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 270">
+              <!-- Top Root Node -->
+              <rect x="130" y="8" width="280" height="36" class="node-rect st-active" />
+              <text x="270" y="26" class="node-text">Common Core - Linux Kernel Engine</text>
 
-              <path d="M 260 40 L 260 56 M 260 56 L 95 68 M 260 56 L 260 68 M 260 56 L 425 68" class="flow-line line-blue" fill="none" />
+              <!-- Central Trunk down into Distribution Badge -->
+              <path d="M 270 44 L 270 56" class="flow-line line-blue" />
+              
+              <!-- Standalone Distribution Roots Badge -->
+              <rect x="185" y="56" width="170" height="22" rx="11" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.25" />
+              <text x="270" y="67" class="branch-label" fill="var(--blue)" style="font-weight:700;">Distribution Roots</text>
 
-              <rect x="15" y="68" width="160" height="42" class="node-rect st-pass" />
-              <text x="95" y="82" class="node-text">Debian Family</text>
-              <text x="95" y="98" class="node-mono" fill="var(--ok)">.deb &bull; APT</text>
+              <!-- Central Trunk down out of Badge to Distribution Rail -->
+              <path d="M 270 78 L 270 91" class="flow-line line-blue" />
 
-              <path d="M 95 110 L 95 124" class="flow-line line-pass" />
-              <rect x="15" y="124" width="160" height="32" class="node-rect st-active" />
-              <text x="95" y="140" class="node-mono">Ubuntu &bull; Linux Mint</text>
+              <!-- Horizontal Distribution Rail -->
+              <path d="M 95 91 L 445 91" class="flow-line line-blue" fill="none" />
 
-              <rect x="180" y="68" width="160" height="42" class="node-rect st-pass" />
-              <text x="260" y="82" class="node-text">Red Hat Family</text>
-              <text x="260" y="98" class="node-mono" fill="var(--ok)">.rpm &bull; DNF</text>
+              <!-- 3 Downward Branch Lines & Arrowheads -->
+              <path d="M 95 91 L 95 101" class="flow-line line-blue" />
+              <polygon points="95,102 91,95 99,95" fill="var(--blue)" />
 
-              <path d="M 260 110 L 260 124" class="flow-line line-pass" />
-              <rect x="180" y="124" width="160" height="32" class="node-rect st-active" />
-              <text x="260" y="140" class="node-mono">RHEL &bull; Fedora &bull; Rocky</text>
+              <path d="M 270 91 L 270 101" class="flow-line line-blue" />
+              <polygon points="270,102 266,95 274,95" fill="var(--blue)" />
 
-              <rect x="345" y="68" width="160" height="42" class="node-rect st-pass" />
-              <text x="425" y="82" class="node-text">Arch Lineage</text>
-              <text x="425" y="98" class="node-mono" fill="var(--ok)">pacman &bull; AUR</text>
+              <path d="M 445 91 L 445 101" class="flow-line line-blue" />
+              <polygon points="445,102 441,95 449,95" fill="var(--blue)" />
 
-              <path d="M 425 110 L 425 124" class="flow-line line-pass" />
-              <rect x="345" y="124" width="160" height="32" class="node-rect st-active" />
-              <text x="425" y="140" class="node-mono">Arch Linux &bull; Manjaro</text>
+              <!-- Parent Distro 1: Debian -->
+              <rect x="15" y="102" width="160" height="42" class="node-rect st-pass" />
+              <text x="95" y="117" class="node-text">Debian Family</text>
+              <text x="95" y="132" class="node-mono" fill="var(--ok)">.deb - APT Tooling</text>
 
-              <rect x="15" y="168" width="490" height="26" rx="6" fill="var(--panel)" stroke="var(--line)" />
-              <text x="260" y="181" class="node-mono" fill="var(--navy)">All distros share the same kernel with unique package managers</text>
+              <!-- Child Line & Arrow into Ubuntu/Mint -->
+              <path d="M 95 144 L 95 155" class="flow-line line-pass" />
+              <polygon points="95,156 91,149 99,149" fill="var(--ok)" />
+
+              <rect x="15" y="156" width="160" height="32" class="node-rect st-active" />
+              <text x="95" y="172" class="node-mono">Ubuntu - Linux Mint</text>
+
+              <!-- Parent Distro 2: Red Hat -->
+              <rect x="190" y="102" width="160" height="42" class="node-rect st-pass" />
+              <text x="270" y="117" class="node-text">Red Hat Family</text>
+              <text x="270" y="132" class="node-mono" fill="var(--ok)">.rpm - DNF Tooling</text>
+
+              <!-- Child Line & Arrow into RHEL/Fedora -->
+              <path d="M 270 144 L 270 155" class="flow-line line-pass" />
+              <polygon points="270,156 266,149 274,149" fill="var(--ok)" />
+
+              <rect x="190" y="156" width="160" height="32" class="node-rect st-active" />
+              <text x="270" y="172" class="node-mono">RHEL - Fedora - Rocky</text>
+
+              <!-- Parent Distro 3: Arch -->
+              <rect x="365" y="102" width="160" height="42" class="node-rect st-pass" />
+              <text x="445" y="117" class="node-text">Arch Lineage</text>
+              <text x="445" y="132" class="node-mono" fill="var(--ok)">pacman - AUR Tooling</text>
+
+              <!-- Child Line & Arrow into Arch/Manjaro -->
+              <path d="M 445 144 L 445 155" class="flow-line line-pass" />
+              <polygon points="445,156 441,149 449,149" fill="var(--ok)" />
+
+              <rect x="365" y="156" width="160" height="32" class="node-rect st-active" />
+              <text x="445" y="172" class="node-mono">Arch Linux - Manjaro</text>
+
+              <!-- Lines down into Consolidation Rail -->
+              <path d="M 95 188 L 95 202 M 270 188 L 270 202 M 445 188 L 445 202" class="flow-line line-blue" />
+
+              <!-- Horizontal Consolidation Rail -->
+              <path d="M 95 202 L 445 202" class="flow-line line-blue" fill="none" />
+
+              <!-- Central Trunk Arrow into Summary -->
+              <path d="M 270 202 L 270 215" class="flow-line line-blue" />
+              <polygon points="270,216 266,209 274,209" fill="var(--blue)" />
+
+              <!-- Summary Card -->
+              <rect x="15" y="216" width="510" height="46" rx="6" fill="var(--panel)" stroke="var(--line)" />
+              <text x="270" y="232" class="node-mono" fill="var(--navy)">Shared Kernel Core - Distinct Package Managers - Custom Ecosystems</text>
+              <text x="270" y="248" class="node-mono" fill="var(--blue)">Universal Binary Compatibility - Differentiated Support Lifecycles</text>
             </svg>
             `,
             `
-            <span class="lab">The Complete Distro Formula (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="20" y="8" width="220" height="38" class="node-rect st-pass" />
-              <text x="130" y="26" class="node-mono">1. Linux Kernel (Core Engine)</text>
+            <span class="lab">The Complete Distro Formula Flowchart (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 540 295">
+              <!-- Row 1: Kernel + GNU Tools -->
+              <rect x="15" y="12" width="226" height="50" rx="8" class="node-rect st-pass" />
+              <text x="128" y="28" class="node-text">1. Linux Kernel (Engine)</text>
+              <text x="128" y="47" class="node-mono" fill="var(--ok)">Controls CPU, RAM &amp; Devices</text>
 
-              <text x="260" y="27" font-weight="800" font-size="16" fill="var(--blue)" text-anchor="middle">+</text>
+              <rect x="257" y="25" width="26" height="24" rx="6" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.2" />
+              <text x="270" y="37" class="node-text" fill="var(--blue)" font-size="16" font-weight="800">+</text>
 
-              <rect x="280" y="8" width="220" height="38" class="node-rect st-active" />
-              <text x="390" y="26" class="node-mono">2. GNU Core Utilities &amp; Shell</text>
+              <rect x="299" y="12" width="226" height="50" rx="8" class="node-rect st-active" />
+              <text x="412" y="28" class="node-text">2. GNU Tools &amp; Shell</text>
+              <text x="412" y="47" class="node-mono" fill="var(--blue)">Bash Terminal &amp; Core Commands</text>
 
-              <text x="260" y="58" font-weight="800" font-size="16" fill="var(--blue)" text-anchor="middle">+</text>
+              <!-- Central Connector & Vertical Plus Badge -->
+              <path d="M 270 49 L 270 68 M 270 90 L 270 113" class="flow-line line-blue" />
+              <rect x="257" y="68" width="26" height="22" rx="6" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.2" />
+              <text x="270" y="79" class="node-text" fill="var(--blue)" font-size="15" font-weight="800">+</text>
 
-              <rect x="20" y="66" width="220" height="38" class="node-rect st-active" />
-              <text x="130" y="84" class="node-mono">3. Package Manager (APT / DNF)</text>
+              <!-- Row 2: Package Manager + Desktop GUI -->
+              <rect x="15" y="100" width="226" height="50" rx="8" class="node-rect st-active" />
+              <text x="128" y="116" class="node-text">3. Package Manager</text>
+              <text x="128" y="135" class="node-mono" fill="var(--blue)">App Store (APT, DNF, Pacman)</text>
 
-              <text x="260" y="85" font-weight="800" font-size="16" fill="var(--blue)" text-anchor="middle">+</text>
+              <rect x="257" y="113" width="26" height="24" rx="6" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.2" />
+              <text x="270" y="125" class="node-text" fill="var(--blue)" font-size="16" font-weight="800">+</text>
 
-              <rect x="280" y="66" width="220" height="38" class="node-rect st-pass" />
-              <text x="390" y="84" class="node-mono">4. Desktop GUI or Cloud Server</text>
+              <rect x="299" y="100" width="226" height="50" rx="8" class="node-rect st-pass" />
+              <text x="412" y="116" class="node-text">4. Desktop Interface</text>
+              <text x="412" y="135" class="node-mono" fill="var(--ok)">GNOME, KDE &amp; Server Daemons</text>
 
-              <rect x="20" y="124" width="480" height="74" rx="8" fill="var(--navy)" />
-              <text x="260" y="144" class="node-mono" fill="#38bdf8" style="font-size:13px;font-weight:800;">= COMPLETE LINUX DISTRIBUTION (Ubuntu, Fedora, RHEL)</text>
-              <text x="260" y="166" class="node-mono" fill="#fff">Ready-to-use operating system that boots right onto laptops, servers, or VMs</text>
-              <text x="260" y="184" class="node-mono" fill="#93c5fd">Different distributions customize packages, release cycles, and enterprise support</text>
+              <!-- Convergence Rail -->
+              <path d="M 128 150 L 128 168 M 412 150 L 412 168 M 128 168 L 412 168" class="flow-line line-blue" fill="none" />
+              <path d="M 270 168 L 270 185" class="flow-line line-blue" />
+              <polygon points="270,186 266,179 274,179" fill="var(--blue)" />
+
+              <!-- Output Box: Complete Linux Distribution -->
+              <rect x="15" y="186" width="510" height="96" rx="10" fill="var(--navy)" stroke="var(--blue)" stroke-width="1.5" />
+              <text x="270" y="207" class="node-mono" fill="#38bdf8" style="font-size:12.5px;font-weight:800;">= COMPLETE LINUX DISTRIBUTION (DISTRO)</text>
+              <text x="270" y="226" class="node-mono" fill="#ffffff">Ready-to-Use Operating System: Ubuntu, Fedora, Debian, Arch</text>
+              <text x="270" y="244" class="node-mono" fill="#93c5fd">Kernel (Engine) + GNU Shell + Package Store + Desktop GUI</text>
+              <rect x="95" y="255" width="350" height="20" rx="5" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="0.8" />
+              <text x="270" y="266" class="node-mono" fill="#38bdf8" style="font-size:9.5px;font-weight:700;">Formula: Kernel + GNU Tools + Package Store + GUI = OS</text>
             </svg>
             `,
             `
             <span class="lab">Kernel Evolution Milestones (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="20" y="6" width="480" height="38" class="node-rect st-active" />
-              <text x="260" y="19" class="node-text">1991: Linux Kernel v0.01</text>
-              <text x="260" y="33" class="node-mono">10,239 lines of C code &bull; Linus Torvalds</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <rect x="20" y="8" width="500" height="40" class="node-rect st-active" />
+              <text x="270" y="22" class="node-text">1991 - Linux Kernel v0.01</text>
+              <text x="270" y="37" class="node-mono">10,239 Lines of C Code - Linus Torvalds Hobby Project</text>
 
-              <path d="M 260 44 L 260 56" class="flow-line line-blue" />
+              <path d="M 270 48 L 270 65" class="flow-line line-blue" />
+              <polygon points="270,66 266,59 274,59" fill="var(--blue)" />
 
-              <rect x="20" y="56" width="480" height="38" class="node-rect st-pass" />
-              <text x="260" y="69" class="node-text">1994: Linux Kernel v1.0</text>
-              <text x="260" y="83" class="node-mono">TCP/IP network sockets &amp; multi-filesystem support</text>
+              <rect x="20" y="66" width="500" height="40" class="node-rect st-pass" />
+              <text x="270" y="80" class="node-text">1994 - Linux Kernel v1.0</text>
+              <text x="270" y="95" class="node-mono">TCP/IP Network Sockets - Multi-Filesystem Architecture</text>
 
-              <path d="M 260 94 L 260 106" class="flow-line line-pass" />
+              <path d="M 270 106 L 270 123" class="flow-line line-pass" />
+              <polygon points="270,124 266,117 274,117" fill="var(--ok)" />
 
-              <rect x="20" y="106" width="480" height="38" class="node-rect st-pass" />
-              <text x="260" y="119" class="node-text">1996: Linux Kernel v2.0</text>
-              <text x="260" y="133" class="node-mono">Multi-processor SMP support &amp; official Tux mascot</text>
+              <rect x="20" y="124" width="500" height="40" class="node-rect st-pass" />
+              <text x="270" y="138" class="node-text">1996 - Linux Kernel v2.0</text>
+              <text x="270" y="153" class="node-mono">SMP Multi-Processor Support - Official Tux Penguin Mascot</text>
 
-              <path d="M 260 144 L 260 156" class="flow-line line-pass" />
+              <path d="M 270 164 L 270 181" class="flow-line line-pass" />
+              <polygon points="270,182 266,175 274,175" fill="var(--ok)" />
 
-              <rect x="20" y="156" width="480" height="42" rx="7" fill="var(--navy)" />
-              <text x="260" y="169" class="node-mono" fill="#fff">Modern Era: Kernel v6.x</text>
-              <text x="260" y="186" class="node-mono" fill="#93c5fd">Millions of lines &bull; Powers 90%+ of global cloud servers</text>
+              <rect x="20" y="182" width="500" height="66" rx="8" fill="var(--navy)" />
+              <text x="270" y="200" class="node-mono" fill="#fff" style="font-weight:700;">Modern Era - Linux Kernel v6.x Series</text>
+              <text x="270" y="220" class="node-mono" fill="#93c5fd">35M+ Lines of Code - Powers 90%+ of Global Cloud &amp; Supercomputers</text>
+              <text x="270" y="236" class="node-mono" fill="#38bdf8" style="font-size:9.5px;">Collaborative Engineering - Thousands of Worldwide Developers</text>
             </svg>
             `
           ],
@@ -1496,43 +1570,64 @@
           views: [
             `
             <span class="lab">CPU Ring 3 &amp; Ring 0 Memory Separation (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 500 210">
-              <rect x="20" y="8" width="460" height="76" rx="8" class="node-rect st-active" />
-              <text x="250" y="24" class="node-text">USER SPACE (Ring 3 &bull; Restricted Privilege)</text>
-              <text x="250" y="44" class="node-mono">Applications &bull; Shells &bull; System Daemons &bull; Web Browsers</text>
-              <text x="250" y="64" class="node-mono" fill="var(--mut)">Faults are isolated: A crashing application cannot crash the OS</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <!-- User Space Container -->
+              <rect x="20" y="8" width="500" height="82" rx="8" class="node-rect st-active" />
+              <text x="270" y="26" class="node-text" style="font-weight:800;">USER SPACE (Ring 3 - Restricted Privilege)</text>
+              <text x="270" y="48" class="node-mono">Applications - Shells - Web Daemons - Desktop Software</text>
+              <text x="270" y="70" class="node-mono" fill="var(--mut)">Fault Isolated - Application Crashes Cannot Corrupt Operating System</text>
 
-              <path d="M 250 84 L 250 114" class="flow-line line-blue" stroke-dasharray="4 3" />
-              <text x="250" y="99" class="branch-label" fill="var(--blue)">Controlled System Call Interface (read, write, open)</text>
+              <!-- Connector from User Space into Bridge Pill -->
+              <path d="M 270 90 L 270 106" class="flow-line line-blue" />
 
-              <rect x="20" y="114" width="460" height="88" rx="8" fill="var(--navy)" />
-              <text x="250" y="132" class="node-mono" fill="#93c5fd" style="font-weight:800;">KERNEL SPACE (Ring 0 &bull; Complete Hardware Access)</text>
-              <text x="250" y="154" class="node-mono" fill="#fff">Process Scheduler &bull; Memory Management &bull; Device Drivers</text>
-              <text x="250" y="178" class="node-mono" fill="#38bdf8">Directly controls CPU, NVMe Disks, RAM &amp; Network Cards</text>
+              <!-- Solid Pill Badge for System Call Interface (No Floating Text!) -->
+              <rect x="105" y="106" width="330" height="26" rx="6" fill="var(--tint)" stroke="var(--blue)" stroke-width="1.25" />
+              <text x="270" y="119" class="branch-label" fill="var(--blue)" style="font-weight:700;">System Call Interface Bridge (read, write, open)</text>
+
+              <!-- Connector from Bridge Pill into Kernel Space with Arrowhead -->
+              <path d="M 270 132 L 270 149" class="flow-line line-blue" />
+              <polygon points="270,150 266,143 274,143" fill="var(--blue)" />
+
+              <!-- Kernel Space Container -->
+              <rect x="20" y="150" width="500" height="98" rx="8" fill="var(--navy)" />
+              <text x="270" y="172" class="node-mono" fill="#93c5fd" style="font-weight:800;">KERNEL SPACE (Ring 0 - Privileged Hardware Control)</text>
+              <text x="270" y="196" class="node-mono" fill="#fff">Process Scheduler - Memory Management - Device Drivers</text>
+              <text x="270" y="220" class="node-mono" fill="#38bdf8">Direct Control - CPU Cores - NVMe Storage - RAM - Network Cards</text>
             </svg>
             `,
             `
             <span class="lab">System Call Execution Flow (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 500 210">
-              <rect x="30" y="8" width="440" height="34" class="node-rect st-active" />
-              <text x="250" y="25" class="node-text">1. User Application (Calls write() library function)</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <!-- Step 1: User App -->
+              <rect x="25" y="8" width="490" height="38" class="node-rect st-active" />
+              <text x="270" y="27" class="node-text">1. User Application Calls Library Function (e.g., write())</text>
 
-              <path d="M 250 42 L 250 58" class="flow-line line-blue" />
+              <!-- Arrow into Step 2 -->
+              <path d="M 270 46 L 270 63" class="flow-line line-blue" />
+              <polygon points="270,64 266,57 274,57" fill="var(--blue)" />
 
-              <rect x="30" y="58" width="440" height="38" class="node-rect st-pass" />
-              <text x="250" y="72" class="node-text">2. System Call Trap (CPU switches to Ring 0)</text>
-              <text x="250" y="86" class="node-mono">Hardware registers store parameters safely</text>
+              <!-- Step 2: Trap -->
+              <rect x="25" y="64" width="490" height="42" class="node-rect st-pass" />
+              <text x="270" y="79" class="node-text">2. System Call Trap - CPU Switches from Ring 3 to Ring 0</text>
+              <text x="270" y="95" class="node-mono">CPU Registers Safely Pass Arguments to Protected Kernel Memory</text>
 
-              <path d="M 250 96 L 250 112" class="flow-line line-pass" />
+              <!-- Arrow into Step 3 -->
+              <path d="M 270 106 L 270 123" class="flow-line line-pass" />
+              <polygon points="270,124 266,117 274,117" fill="var(--ok)" />
 
-              <rect x="30" y="112" width="440" height="38" class="node-rect st-pass" />
-              <text x="250" y="126" class="node-text">3. Kernel VFS &amp; Hardware Driver Execution</text>
-              <text x="250" y="140" class="node-mono">Kernel verifies permissions and writes data to disk controller</text>
+              <!-- Step 3: Kernel Execution -->
+              <rect x="25" y="124" width="490" height="42" class="node-rect st-pass" />
+              <text x="270" y="139" class="node-text">3. Kernel VFS &amp; Device Driver Execution</text>
+              <text x="270" y="155" class="node-mono">Permission Verified - DMA Block Transfers Data to NVMe Storage</text>
 
-              <path d="M 250 150 L 250 166" class="flow-line line-blue" />
+              <!-- Arrow into Step 4 -->
+              <path d="M 270 166 L 270 183" class="flow-line line-blue" />
+              <polygon points="270,184 266,177 274,177" fill="var(--blue)" />
 
-              <rect x="30" y="166" width="440" height="34" rx="6" fill="var(--panel)" stroke="var(--line)" />
-              <text x="250" y="183" class="node-mono" fill="var(--navy)">4. Control returned safely to User Application in Ring 3</text>
+              <!-- Step 4: Return -->
+              <rect x="25" y="184" width="490" height="62" rx="8" fill="var(--navy)" />
+              <text x="270" y="204" class="node-mono" fill="#fff" style="font-weight:700;">4. Control Returns Safely to User Application in Ring 3</text>
+              <text x="270" y="226" class="node-mono" fill="#93c5fd">Function Returns Status Code (Bytes Written) - CPU Resets Privilege</text>
             </svg>
             `
           ],
@@ -1547,60 +1642,122 @@
           views: [
             `
             <span class="lab">Modern GPT Drive Partition Layout (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="15" y="8" width="490" height="30" class="node-rect st-active" />
-              <text x="260" y="23" class="node-text">GUID Partition Table (GPT) &bull; Primary Disk Drive /dev/nvme0n1</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 330">
+              <!-- Physical Drive & GPT Header Box -->
+              <rect x="15" y="8" width="510" height="40" rx="8" class="node-rect st-active" />
+              <text x="270" y="23" class="node-text">Physical Disk Drive (/dev/nvme0n1) - GUID Partition Table (GPT)</text>
+              <text x="270" y="38" class="node-mono" fill="var(--blue)">UEFI Standard - 128 Partition Slots - 2TB+ Disk Capacity Support</text>
 
-              <path d="M 260 38 L 260 52" class="flow-line line-blue" />
+              <!-- Central Trunk down into GPT Bus Badge -->
+              <path d="M 270 48 L 270 63" class="flow-line line-blue" />
+              
+              <!-- Standalone GPT Bus Badge -->
+              <rect x="175" y="63" width="190" height="22" rx="11" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.25" />
+              <text x="270" y="74" class="branch-label" fill="var(--blue)" style="font-weight:700;">GPT Partition Table Scheme</text>
 
-              <rect x="15" y="52" width="114" height="66" class="node-rect st-pass" />
-              <text x="72" y="70" class="node-text">/boot/efi</text>
-              <text x="72" y="88" class="node-mono" fill="var(--ok)">FAT32</text>
-              <text x="72" y="104" class="node-mono">512MB Boot</text>
+              <!-- Central Trunk down out of Badge to Distribution Rail -->
+              <path d="M 270 85 L 270 99" class="flow-line line-blue" />
 
-              <rect x="140" y="52" width="114" height="66" class="node-rect st-pass" />
-              <text x="197" y="70" class="node-text">Root (/)</text>
-              <text x="197" y="88" class="node-mono" fill="var(--ok)">ext4 / XFS</text>
-              <text x="197" y="104" class="node-mono">Core System</text>
+              <!-- Horizontal Distribution Rail -->
+              <path d="M 74 99 L 466 99" class="flow-line line-blue" fill="none" />
 
-              <rect x="265" y="52" width="114" height="66" class="node-rect st-active" />
-              <text x="322" y="70" class="node-text">Swap Space</text>
-              <text x="322" y="88" class="node-mono" fill="var(--blue)">swap</text>
-              <text x="322" y="104" class="node-mono">Virtual RAM</text>
+              <!-- 4 Downward Branch Lines & Arrowheads -->
+              <path d="M 74 99 L 74 114" class="flow-line line-blue" />
+              <polygon points="74,115 70,108 78,108" fill="var(--blue)" />
 
-              <rect x="390" y="52" width="115" height="66" class="node-rect st-pass" />
-              <text x="447" y="70" class="node-text">/home</text>
-              <text x="447" y="88" class="node-mono" fill="var(--ok)">ext4 / XFS</text>
-              <text x="447" y="104" class="node-mono">User Data</text>
+              <path d="M 205 99 L 205 114" class="flow-line line-blue" />
+              <polygon points="205,115 201,108 209,108" fill="var(--blue)" />
 
-              <rect x="15" y="130" width="490" height="68" rx="8" fill="var(--panel)" stroke="var(--line)" />
-              <text x="260" y="148" class="node-text" fill="var(--navy)">Mount Points Hierarchy</text>
-              <text x="260" y="166" class="node-mono" fill="var(--mut)">/boot/efi holds UEFI bootloader &bull; / holds the OS &bull; swap holds overflow memory</text>
-              <text x="260" y="184" class="node-mono" fill="var(--ok)">All partitions attach seamlessly under the single root '/' tree</text>
+              <path d="M 335 99 L 335 114" class="flow-line line-blue" />
+              <polygon points="335,115 331,108 339,108" fill="var(--blue)" />
+
+              <path d="M 466 99 L 466 114" class="flow-line line-blue" />
+              <polygon points="466,115 462,108 470,108" fill="var(--blue)" />
+
+              <!-- Partition 1: EFI Boot -->
+              <rect x="15" y="115" width="118" height="70" rx="8" class="node-rect st-pass" />
+              <text x="74" y="128" class="branch-label" fill="var(--mut)">/dev/nvme0n1p1</text>
+              <text x="74" y="143" class="node-text">/boot/efi</text>
+              <text x="74" y="158" class="node-mono" fill="var(--ok)">FAT32 - 512MB</text>
+              <text x="74" y="171" class="node-mono">UEFI Bootloader</text>
+
+              <!-- Partition 2: Root OS -->
+              <rect x="146" y="115" width="118" height="70" rx="8" class="node-rect st-pass" />
+              <text x="205" y="128" class="branch-label" fill="var(--mut)">/dev/nvme0n1p2</text>
+              <text x="205" y="143" class="node-text">/ (Root)</text>
+              <text x="205" y="158" class="node-mono" fill="var(--ok)">ext4 / XFS - 50GB+</text>
+              <text x="205" y="171" class="node-mono">Core System OS</text>
+
+              <!-- Partition 3: Swap Space -->
+              <rect x="276" y="115" width="118" height="70" rx="8" class="node-rect st-active" />
+              <text x="335" y="128" class="branch-label" fill="var(--mut)">/dev/nvme0n1p3</text>
+              <text x="335" y="143" class="node-text">[SWAP]</text>
+              <text x="335" y="158" class="node-mono" fill="var(--blue)">swap - 4-8GB</text>
+              <text x="335" y="171" class="node-mono">Virtual RAM</text>
+
+              <!-- Partition 4: User Data -->
+              <rect x="407" y="115" width="118" height="70" rx="8" class="node-rect st-pass" />
+              <text x="466" y="128" class="branch-label" fill="var(--mut)">/dev/nvme0n1p4</text>
+              <text x="466" y="143" class="node-text">/home</text>
+              <text x="466" y="158" class="node-mono" fill="var(--ok)">ext4 / XFS - 100GB+</text>
+              <text x="466" y="171" class="node-mono">User Data Files</text>
+
+              <!-- 4 Collector Lines down into Consolidation Rail -->
+              <path d="M 74 185 L 74 201 M 205 185 L 205 201 M 335 185 L 335 201 M 466 185 L 466 201" class="flow-line line-pass" />
+
+              <!-- Horizontal Consolidation Rail -->
+              <path d="M 74 201 L 466 201" class="flow-line line-pass" fill="none" />
+
+              <!-- Central Trunk down into Mount Badge -->
+              <path d="M 270 201 L 270 216" class="flow-line line-pass" />
+
+              <!-- Standalone Mount Bus Badge -->
+              <rect x="150" y="216" width="240" height="22" rx="11" fill="var(--ok-bg)" stroke="var(--ok)" stroke-width="1.25" />
+              <text x="270" y="227" class="branch-label" fill="var(--ok)" style="font-weight:700;">Linux VFS Directory Hierarchy Mounts</text>
+
+              <!-- Central Trunk Arrow into Summary Box -->
+              <path d="M 270 238 L 270 253" class="flow-line line-pass" />
+              <polygon points="270,254 266,247 274,247" fill="var(--ok)" />
+
+              <!-- Mount Points Hierarchy Box -->
+              <rect x="15" y="254" width="510" height="64" rx="8" fill="var(--panel)" stroke="var(--line)" />
+              <text x="270" y="271" class="node-text" fill="var(--navy)">Unified Linux Filesystem Tree (No Drive Letters C:, D:)</text>
+              <text x="270" y="288" class="node-mono" fill="var(--navy)">/ (Root) - /boot/efi (UEFI) - /home (Users) - swap (Virtual RAM)</text>
+              <text x="270" y="304" class="node-mono" fill="var(--ok)">Disk partitions attach seamlessly under the unified root '/' tree</text>
             </svg>
             `,
             `
             <span class="lab">Filesystem Architecture Comparison (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="20" y="8" width="230" height="42" class="node-rect st-pass" />
-              <text x="135" y="24" class="node-text">ext4 (Fourth Extended FS)</text>
-              <text x="135" y="38" class="node-mono">Default on Ubuntu &amp; Debian</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 270">
+              <!-- Column 1: ext4 -->
+              <rect x="15" y="8" width="248" height="44" class="node-rect st-pass" />
+              <text x="139" y="24" class="node-text">ext4 Filesystem</text>
+              <text x="139" y="40" class="node-mono" fill="var(--ok)">Default on Ubuntu &amp; Debian</text>
 
-              <rect x="270" y="8" width="230" height="42" class="node-rect st-active" />
-              <text x="385" y="24" class="node-text">XFS (High-Performance FS)</text>
-              <text x="385" y="38" class="node-mono">Default on RHEL &amp; CentOS</text>
+              <rect x="15" y="60" width="248" height="196" rx="8" fill="var(--panel)" stroke="var(--line)" />
+              <text x="28" y="82" class="node-left" fill="var(--navy)">1. Journal - Rock-Solid Metadata</text>
+              <text x="28" y="106" class="node-left">2. Repair - Fast e2fsck Tool</text>
+              <text x="28" y="130" class="node-left">3. Resize - Online Grow &amp; Shrink</text>
+              <text x="28" y="154" class="node-left">4. Limits - 16TB File, 1EB Volume</text>
+              <text x="28" y="178" class="node-left" fill="var(--ok)">5. Target - Ubuntu &amp; Workstations</text>
 
-              <rect x="20" y="60" width="230" height="135" rx="8" fill="var(--panel)" stroke="var(--line)" />
-              <text x="135" y="80" class="node-mono" fill="var(--navy)"><b>Strengths:</b> Extremely reliable journaling</text>
-              <text x="135" y="105" class="node-mono">Fast repair tools (e2fsck)</text>
-              <text x="135" y="130" class="node-mono">Can be shrunk or grown easily</text>
-              <text x="135" y="160" class="node-mono" fill="var(--ok)">Ideal for laptops &amp; desktops</text>
+              <rect x="25" y="206" width="228" height="26" rx="5" fill="var(--ok-bg)" stroke="var(--ok)" stroke-width="0.8" />
+              <text x="139" y="219" class="node-mono" fill="var(--ok)" style="font-weight:700;">Status: Mature &amp; Proven Standard</text>
 
-              <rect x="270" y="60" width="230" height="135" rx="8" fill="var(--panel)" stroke="var(--line)" />
-              <text x="385" y="80" class="node-mono" fill="var(--navy)"><b>Strengths:</b> Massive parallel throughput</text>
-              <text x="385" y="105" class="node-mono">Supports multi-terabyte files</text>
-              <text x="385" y="130" class="node-mono">Allocation groups concurrency</text>
-              <text x="385" y="160" class="node-mono" fill="var(--blue)">Ideal for enterprise databases</text>
+              <!-- Column 2: XFS -->
+              <rect x="277" y="8" width="248" height="44" class="node-rect st-active" />
+              <text x="401" y="24" class="node-text">XFS Filesystem</text>
+              <text x="401" y="40" class="node-mono" fill="var(--blue)">Default on RHEL &amp; CentOS</text>
+
+              <rect x="277" y="60" width="248" height="196" rx="8" fill="var(--panel)" stroke="var(--line)" />
+              <text x="290" y="82" class="node-left" fill="var(--navy)">1. Journal - Parallel Multi-Log</text>
+              <text x="290" y="106" class="node-left">2. Throughput - High Multi-Thread</text>
+              <text x="290" y="130" class="node-left">3. Resize - Online Grow Only</text>
+              <text x="290" y="154" class="node-left">4. Limits - 8EB File, 8EB Volume</text>
+              <text x="290" y="178" class="node-left" fill="var(--mut)">5. Target - Big Data &amp; Enterprise</text>
+
+              <rect x="287" y="206" width="228" height="26" rx="5" fill="var(--tint)" stroke="var(--blue)" stroke-width="0.8" />
+              <text x="401" y="219" class="node-mono" fill="var(--blue)" style="font-weight:700;">Status: High-Throughput Engine</text>
             </svg>
             `
           ],
@@ -1615,51 +1772,104 @@
           views: [
             `
             <span class="lab">Virtual Machine Network Isolation Modes (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="15" y="8" width="490" height="30" class="node-rect st-active" />
-              <text x="260" y="23" class="node-text">Physical Host Machine (LAN IP: 192.168.1.100)</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 290">
+              <!-- Physical Host Header -->
+              <rect x="15" y="8" width="510" height="40" class="node-rect st-active" />
+              <text x="270" y="23" class="node-text">Physical Host Machine - Virtual Switch (Host LAN: 192.168.1.100)</text>
+              <text x="270" y="38" class="node-mono" fill="var(--blue)">Virtual NICs Connect Through Software Bridges</text>
 
-              <path d="M 260 38 L 260 52" class="flow-line line-blue" />
+              <!-- Central Trunk down into Network Modes Badge -->
+              <path d="M 270 48 L 270 61" class="flow-line line-blue" />
+              
+              <!-- Standalone Virtual Network Modes Badge -->
+              <rect x="185" y="61" width="170" height="22" rx="11" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.25" />
+              <text x="270" y="72" class="branch-label" fill="var(--blue)" style="font-weight:700;">Virtual Network Modes</text>
 
-              <rect x="15" y="52" width="150" height="74" class="node-rect st-pass" />
-              <text x="90" y="70" class="node-text">NAT Mode</text>
-              <text x="90" y="88" class="node-mono" fill="var(--ok)">Safe Web Browsing</text>
-              <text x="90" y="104" class="node-mono">Shares Host IP</text>
+              <!-- Central Trunk down out of Badge to Distribution Rail -->
+              <path d="M 270 83 L 270 96" class="flow-line line-blue" />
 
-              <rect x="185" y="52" width="150" height="74" class="node-rect st-pass" />
-              <text x="260" y="70" class="node-text">Bridged Mode</text>
-              <text x="260" y="88" class="node-mono" fill="var(--ok)">Dedicated LAN IP</text>
-              <text x="260" y="104" class="node-mono">Visible on Local Switch</text>
+              <!-- Horizontal Distribution Rail -->
+              <path d="M 95 96 L 445 96" class="flow-line line-blue" fill="none" />
 
-              <rect x="355" y="52" width="150" height="74" class="node-rect st-active" />
-              <text x="430" y="70" class="node-text">Host-Only Mode</text>
-              <text x="430" y="88" class="node-mono" fill="var(--blue)">Private Air-Gap</text>
-              <text x="430" y="104" class="node-mono">Zero Internet Access</text>
+              <!-- 3 Downward Branch Lines & Arrowheads -->
+              <path d="M 95 96 L 95 109" class="flow-line line-pass" />
+              <polygon points="95,110 91,103 99,103" fill="var(--ok)" />
 
-              <rect x="15" y="136" width="490" height="60" rx="8" fill="var(--panel)" stroke="var(--line)" />
-              <text x="260" y="156" class="node-mono" fill="var(--navy)">NAT protects beginners with a private firewall boundary</text>
-              <text x="260" y="176" class="node-mono" fill="var(--ok)">Bridged mode allows running full network servers accessible to your local devices</text>
+              <path d="M 270 96 L 270 109" class="flow-line line-pass" />
+              <polygon points="270,110 266,103 274,103" fill="var(--ok)" />
+
+              <path d="M 445 96 L 445 109" class="flow-line line-blue" />
+              <polygon points="445,110 441,103 449,103" fill="var(--blue)" />
+
+              <!-- Mode 1: NAT -->
+              <rect x="15" y="110" width="160" height="74" class="node-rect st-pass" />
+              <text x="95" y="126" class="node-text">NAT Mode</text>
+              <text x="95" y="143" class="node-mono" fill="var(--ok)">Shares Host IP</text>
+              <text x="95" y="159" class="node-mono">Built-in Host Firewall</text>
+              <text x="95" y="174" class="node-mono">Default Safe Web Access</text>
+
+              <!-- Mode 2: Bridged -->
+              <rect x="190" y="110" width="160" height="74" class="node-rect st-pass" />
+              <text x="270" y="126" class="node-text">Bridged Mode</text>
+              <text x="270" y="143" class="node-mono" fill="var(--ok)">Dedicated LAN IP</text>
+              <text x="270" y="159" class="node-mono">Visible on Physical Switch</text>
+              <text x="270" y="174" class="node-mono">Ideal for Network Servers</text>
+
+              <!-- Mode 3: Host-Only -->
+              <rect x="365" y="110" width="160" height="74" class="node-rect st-active" />
+              <text x="445" y="126" class="node-text">Host-Only Mode</text>
+              <text x="445" y="143" class="node-mono" fill="var(--blue)">Private Air-Gap</text>
+              <text x="445" y="159" class="node-mono">Zero Internet Access</text>
+              <text x="445" y="174" class="node-mono">Isolated Malware Sandbox</text>
+
+              <!-- Lines down into Consolidation Rail -->
+              <path d="M 95 184 L 95 200 M 270 184 L 270 200 M 445 184 L 445 200" class="flow-line line-blue" />
+
+              <!-- Horizontal Consolidation Rail -->
+              <path d="M 95 200 L 445 200" class="flow-line line-blue" fill="none" />
+
+              <!-- Central Trunk Arrow into Summary -->
+              <path d="M 270 200 L 270 215" class="flow-line line-blue" />
+              <polygon points="270,216 266,209 274,209" fill="var(--navy)" />
+
+              <!-- Summary Box -->
+              <rect x="15" y="216" width="510" height="62" rx="8" fill="var(--panel)" stroke="var(--line)" />
+              <text x="270" y="233" class="node-text" fill="var(--navy)">Virtual Network Isolation &amp; Security Profiles</text>
+              <text x="270" y="251" class="node-mono" fill="var(--ok)">NAT Mode - Safe Web Browsing - Host Firewall Blocks Inbound Threats</text>
+              <text x="270" y="267" class="node-mono" fill="var(--blue)">Bridged Mode - Full Two-Way Communication - Real Server Deployments</text>
             </svg>
             `,
             `
             <span class="lab">Hypervisor Architecture &amp; Rollback (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="20" y="8" width="230" height="42" class="node-rect st-pass" />
-              <text x="135" y="24" class="node-text">Type 1: Bare-Metal</text>
-              <text x="135" y="38" class="node-mono">KVM &bull; VMware ESXi &bull; Proxmox</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <!-- Top Hypervisor Types -->
+              <rect x="15" y="8" width="248" height="44" class="node-rect st-pass" />
+              <text x="139" y="24" class="node-text">Type 1: Bare-Metal Hypervisor</text>
+              <text x="139" y="40" class="node-mono">KVM - VMware ESXi - Proxmox VE</text>
 
-              <rect x="270" y="8" width="230" height="42" class="node-rect st-active" />
-              <text x="385" y="24" class="node-text">Type 2: Hosted Hypervisor</text>
-              <text x="385" y="38" class="node-mono">VirtualBox &bull; VMware Workstation</text>
+              <rect x="277" y="8" width="248" height="44" class="node-rect st-active" />
+              <text x="401" y="24" class="node-text">Type 2: Hosted Hypervisor</text>
+              <text x="401" y="40" class="node-mono">VirtualBox - VMware Workstation</text>
 
-              <rect x="20" y="58" width="480" height="72" rx="8" class="node-rect st-pass" />
-              <text x="260" y="78" class="node-text">Virtual Machine Snapshot Safety Net</text>
-              <text x="260" y="98" class="node-mono">Base Clean State &rarr; Experiment &rarr; Instant Rollback if Damaged</text>
-              <text x="260" y="116" class="node-mono" fill="var(--ok)">Beginners can test risky commands with zero risk of breaking their physical PC</text>
+              <!-- Convergence Bus into Snapshot Safety Net -->
+              <path d="M 139 52 L 139 64 M 401 52 L 401 64 M 139 64 L 401 64 M 270 64 L 270 79" class="flow-line line-pass" fill="none" />
+              <polygon points="270,80 266,73 274,73" fill="var(--ok)" />
 
-              <rect x="20" y="138" width="480" height="58" rx="8" fill="var(--navy)" />
-              <text x="260" y="156" class="node-mono" fill="#93c5fd">Physical Host Operating System (Windows 11 / macOS / Linux)</text>
-              <text x="260" y="176" class="node-mono" fill="#fff">Hypervisor virtualizes CPU cores, RAM allocations, and virtual storage disks</text>
+              <!-- Snapshot Safety Net Card -->
+              <rect x="15" y="80" width="510" height="66" rx="8" class="node-rect st-pass" />
+              <text x="270" y="98" class="node-text">Virtual Machine Snapshot Safety Net - Zero Risk Learning</text>
+              <text x="270" y="117" class="node-mono">Clean Base State &rarr; Experiment Freely &rarr; Instant One-Click Rollback</text>
+              <text x="270" y="135" class="node-mono" fill="var(--ok)">Test Risky Commands - Physical PC Completely Protected</text>
+
+              <!-- Downward Arrow from Snapshot to Host OS -->
+              <path d="M 270 146 L 270 165" class="flow-line line-blue" />
+              <polygon points="270,166 266,159 274,159" fill="var(--blue)" />
+
+              <!-- Host OS Container -->
+              <rect x="15" y="166" width="510" height="78" rx="8" fill="var(--navy)" />
+              <text x="270" y="186" class="node-mono" fill="#fff" style="font-weight:700;">Physical Host Operating System (Windows 11, macOS, Linux)</text>
+              <text x="270" y="208" class="node-mono" fill="#93c5fd">Hypervisor Virtualizes CPU Cores - RAM Allocations - Virtual Disks</text>
+              <text x="270" y="226" class="node-mono" fill="#38bdf8" style="font-size:9.5px;">Complete Hardware Isolation - Host Files Remain Untouched</text>
             </svg>
             `
           ],
@@ -1674,54 +1884,106 @@
           views: [
             `
             <span class="lab">Linux Virtual Consoles &amp; Pseudo-Terminals (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="15" y="8" width="490" height="32" class="node-rect st-active" />
-              <text x="260" y="24" class="node-text">Linux Virtual Consoles Architecture (/dev/tty1 - /dev/tty6)</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 290">
+              <!-- Header Box -->
+              <rect x="15" y="8" width="510" height="40" class="node-rect st-active" />
+              <text x="270" y="23" class="node-text">Linux Virtual Consoles Architecture (/dev/tty1 - /dev/tty6)</text>
+              <text x="270" y="38" class="node-mono" fill="var(--blue)">Direct Kernel Terminal Subsystem - Multi-Session Support</text>
 
-              <path d="M 260 40 L 260 54" class="flow-line line-blue" />
+              <!-- Central Trunk down into Multiplexer Badge -->
+              <path d="M 270 48 L 270 61" class="flow-line line-blue" />
+              
+              <!-- Standalone Console Multiplexer Badge -->
+              <rect x="185" y="61" width="170" height="22" rx="11" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.25" />
+              <text x="270" y="72" class="branch-label" fill="var(--blue)" style="font-weight:700;">Console Multiplexer</text>
 
-              <rect x="15" y="54" width="150" height="74" class="node-rect st-pass" />
-              <text x="90" y="72" class="node-text">TTY1 (F1)</text>
-              <text x="90" y="90" class="node-mono" fill="var(--ok)">Display Manager</text>
-              <text x="90" y="106" class="node-mono">GDM / Wayland</text>
+              <!-- Central Trunk down out of Badge to Distribution Rail -->
+              <path d="M 270 83 L 270 96" class="flow-line line-blue" />
 
-              <rect x="185" y="54" width="150" height="74" class="node-rect st-pass" />
-              <text x="260" y="72" class="node-text">TTY2-6 (F2-F6)</text>
-              <text x="260" y="90" class="node-mono" fill="var(--ok)">Text Consoles</text>
-              <text x="260" y="106" class="node-mono">Emergency Recovery</text>
+              <!-- Horizontal Distribution Rail -->
+              <path d="M 95 96 L 445 96" class="flow-line line-blue" fill="none" />
 
-              <rect x="355" y="54" width="150" height="74" class="node-rect st-active" />
-              <text x="430" y="72" class="node-text">PTS (/dev/pts/*)</text>
-              <text x="430" y="90" class="node-mono" fill="var(--blue)">Pseudo-Terminals</text>
-              <text x="430" y="106" class="node-mono">SSH &amp; GUI Terminals</text>
+              <!-- 3 Downward Branch Lines & Arrowheads -->
+              <path d="M 95 96 L 95 109" class="flow-line line-pass" />
+              <polygon points="95,110 91,103 99,103" fill="var(--ok)" />
 
-              <rect x="15" y="138" width="490" height="60" rx="8" fill="var(--panel)" stroke="var(--line)" />
-              <text x="260" y="158" class="node-mono" fill="var(--navy)">Pressing Ctrl + Alt + F2-F6 switches into emergency text logins</text>
-              <text x="260" y="178" class="node-mono" fill="var(--ok)">Allows recovering from a frozen desktop without rebooting the physical computer</text>
+              <path d="M 270 96 L 270 109" class="flow-line line-pass" />
+              <polygon points="270,110 266,103 274,103" fill="var(--ok)" />
+
+              <path d="M 445 96 L 445 109" class="flow-line line-blue" />
+              <polygon points="445,110 441,103 449,103" fill="var(--blue)" />
+
+              <!-- Console 1: TTY1 -->
+              <rect x="15" y="110" width="160" height="74" class="node-rect st-pass" />
+              <text x="95" y="126" class="node-text">TTY1 (Ctrl+Alt+F1)</text>
+              <text x="95" y="143" class="node-mono" fill="var(--ok)">Display Manager</text>
+              <text x="95" y="159" class="node-mono">Wayland / GDM Graphical</text>
+              <text x="95" y="174" class="node-mono">Primary Desktop Session</text>
+
+              <!-- Console 2: TTY2-6 -->
+              <rect x="190" y="110" width="160" height="74" class="node-rect st-pass" />
+              <text x="270" y="126" class="node-text">TTY2-6 (F2-F6)</text>
+              <text x="270" y="143" class="node-mono" fill="var(--ok)">Text Consoles</text>
+              <text x="270" y="159" class="node-mono">Direct Kernel Logins</text>
+              <text x="270" y="174" class="node-mono">Emergency System Recovery</text>
+
+              <!-- Console 3: PTS -->
+              <rect x="365" y="110" width="160" height="74" class="node-rect st-active" />
+              <text x="445" y="126" class="node-text">PTS (/dev/pts/*)</text>
+              <text x="445" y="143" class="node-mono" fill="var(--blue)">Pseudo-Terminals</text>
+              <text x="445" y="159" class="node-mono">GNOME Terminal / SSH</text>
+              <text x="445" y="174" class="node-mono">Emulated Virtual CLI</text>
+
+              <!-- Lines down into Consolidation Rail -->
+              <path d="M 95 184 L 95 200 M 270 184 L 270 200 M 445 184 L 445 200" class="flow-line line-blue" />
+
+              <!-- Horizontal Consolidation Rail -->
+              <path d="M 95 200 L 445 200" class="flow-line line-blue" fill="none" />
+
+              <!-- Central Trunk Arrow into Summary -->
+              <path d="M 270 200 L 270 215" class="flow-line line-blue" />
+              <polygon points="270,216 266,209 274,209" fill="var(--navy)" />
+
+              <!-- Summary Card -->
+              <rect x="15" y="216" width="510" height="62" rx="8" fill="var(--panel)" stroke="var(--line)" />
+              <text x="270" y="233" class="node-text" fill="var(--navy)">Emergency System Recovery Hotkeys</text>
+              <text x="270" y="251" class="node-mono" fill="var(--ok)">Ctrl + Alt + F2-F6 - Direct Out-of-Band Text Console Login</text>
+              <text x="270" y="267" class="node-mono" fill="var(--blue)">Kill Frozen Graphical Apps Without Hard Rebooting Physical Machine</text>
             </svg>
             `,
             `
             <span class="lab">Desktop GUI Stack: Wayland vs X11 (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="25" y="8" width="470" height="34" class="node-rect st-active" />
-              <text x="260" y="25" class="node-text">User Applications (LibreOffice, Browser, Terminal)</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <!-- Tier 1: Apps -->
+              <rect x="25" y="8" width="490" height="38" class="node-rect st-active" />
+              <text x="270" y="27" class="node-text">User Applications - Office Suite - Web Browser - Terminal Emulator</text>
 
-              <path d="M 260 42 L 260 58" class="flow-line line-blue" />
+              <!-- Arrow into Tier 2 -->
+              <path d="M 270 46 L 270 63" class="flow-line line-blue" />
+              <polygon points="270,64 266,57 274,57" fill="var(--blue)" />
 
-              <rect x="25" y="58" width="470" height="42" class="node-rect st-pass" />
-              <text x="260" y="72" class="node-text">Display Server / Compositor</text>
-              <text x="260" y="88" class="node-mono">Modern: Wayland (Secure Isolation) &bull; Legacy: X11</text>
+              <!-- Tier 2: Display Server -->
+              <rect x="25" y="64" width="490" height="44" class="node-rect st-pass" />
+              <text x="270" y="79" class="node-text">Display Server &amp; Compositor - Wayland (Secure) vs X11 (Legacy)</text>
+              <text x="270" y="97" class="node-mono">Memory-Isolated Window Buffers - Zero Keystroke Snooping Allowed</text>
 
-              <path d="M 260 100 L 260 116" class="flow-line line-pass" />
+              <!-- Arrow into Tier 3 -->
+              <path d="M 270 108 L 270 125" class="flow-line line-pass" />
+              <polygon points="270,126 266,119 274,119" fill="var(--ok)" />
 
-              <rect x="25" y="116" width="470" height="38" class="node-rect st-pass" />
-              <text x="260" y="130" class="node-text">Kernel Direct Rendering Manager (DRM / KMS)</text>
-              <text x="260" y="144" class="node-mono">Direct hardware memory access for fast 3D graphics</text>
+              <!-- Tier 3: DRM/KMS -->
+              <rect x="25" y="126" width="490" height="42" class="node-rect st-pass" />
+              <text x="270" y="141" class="node-text">Kernel Direct Rendering Manager (DRM / KMS)</text>
+              <text x="270" y="157" class="node-mono">Direct GPU Memory Management - Hardware-Accelerated 3D Pipelines</text>
 
-              <path d="M 260 154 L 260 168" class="flow-line line-blue" />
+              <!-- Arrow into Tier 4 -->
+              <path d="M 270 168 L 270 185" class="flow-line line-blue" />
+              <polygon points="270,186 266,179 274,179" fill="var(--blue)" />
 
-              <rect x="25" y="168" width="470" height="32" rx="6" fill="var(--navy)" />
-              <text x="260" y="184" class="node-mono" fill="#fff">Physical Graphics Hardware (GPU &amp; Monitor Display)</text>
+              <!-- Tier 4: Hardware -->
+              <rect x="25" y="186" width="490" height="62" rx="8" fill="var(--navy)" />
+              <text x="270" y="206" class="node-mono" fill="#fff" style="font-weight:700;">Physical Graphics Hardware (GPU Acceleration &amp; Display Panels)</text>
+              <text x="270" y="228" class="node-mono" fill="#93c5fd">HDMI / DisplayPort Interfaces - Real-Time Pixel Scan-Out</text>
             </svg>
             `
           ],
@@ -1736,69 +1998,100 @@
           views: [
             `
             <span class="lab">The 5 Sequential Linux Boot Stages (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 540 210">
-              <rect x="10" y="10" width="94" height="68" class="node-rect st-pass" />
-              <text x="57" y="28" class="node-text">1. UEFI</text>
-              <text x="57" y="46" class="node-mono">POST</text>
-              <text x="57" y="62" class="node-mono">Hardware OK</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <!-- Stage 1: UEFI -->
+              <rect x="10" y="10" width="94" height="72" class="node-rect st-pass" />
+              <text x="57" y="29" class="node-text">1. UEFI</text>
+              <text x="57" y="48" class="node-mono">POST Test</text>
+              <text x="57" y="65" class="node-mono">HW Passed</text>
 
-              <path d="M 104 44 L 118 44" class="flow-line line-pass" />
+              <!-- Connector & Rightward Arrowhead into Stage 2 -->
+              <path d="M 104 46 L 114 46" class="flow-line line-pass" />
+              <polygon points="116,46 110,42 110,50" fill="var(--ok)" />
 
-              <rect x="118" y="10" width="94" height="68" class="node-rect st-pass" />
-              <text x="165" y="28" class="node-text">2. GRUB2</text>
-              <text x="165" y="46" class="node-mono">Boot Menu</text>
-              <text x="165" y="62" class="node-mono">Selects OS</text>
+              <!-- Stage 2: GRUB2 -->
+              <rect x="118" y="10" width="94" height="72" class="node-rect st-pass" />
+              <text x="165" y="29" class="node-text">2. GRUB2</text>
+              <text x="165" y="48" class="node-mono">Boot Menu</text>
+              <text x="165" y="65" class="node-mono">Selects OS</text>
 
-              <path d="M 212 44 L 226 44" class="flow-line line-pass" />
+              <!-- Connector & Rightward Arrowhead into Stage 3 -->
+              <path d="M 212 46 L 222 46" class="flow-line line-pass" />
+              <polygon points="224,46 218,42 218,50" fill="var(--ok)" />
 
-              <rect x="226" y="10" width="94" height="68" class="node-rect st-pass" />
-              <text x="273" y="28" class="node-text">3. Kernel</text>
-              <text x="273" y="46" class="node-mono">vmlinuz</text>
-              <text x="273" y="62" class="node-mono">Initializes RAM</text>
+              <!-- Stage 3: Kernel -->
+              <rect x="226" y="10" width="94" height="72" class="node-rect st-pass" />
+              <text x="273" y="29" class="node-text">3. Kernel</text>
+              <text x="273" y="48" class="node-mono">vmlinuz</text>
+              <text x="273" y="65" class="node-mono">Initializes RAM</text>
 
-              <path d="M 320 44 L 334 44" class="flow-line line-pass" />
+              <!-- Connector & Rightward Arrowhead into Stage 4 -->
+              <path d="M 320 46 L 330 46" class="flow-line line-pass" />
+              <polygon points="332,46 326,42 326,50" fill="var(--ok)" />
 
-              <rect x="334" y="10" width="94" height="68" class="node-rect st-pass" />
-              <text x="381" y="28" class="node-text">4. initramfs</text>
-              <text x="381" y="46" class="node-mono">RAM Disk</text>
-              <text x="381" y="62" class="node-mono">Disk Drivers</text>
+              <!-- Stage 4: initramfs -->
+              <rect x="334" y="10" width="94" height="72" class="node-rect st-pass" />
+              <text x="381" y="29" class="node-text">4. initramfs</text>
+              <text x="381" y="48" class="node-mono">RAM Disk</text>
+              <text x="381" y="65" class="node-mono">Storage Drivers</text>
 
-              <path d="M 428 44 L 442 44" class="flow-line line-pass" />
+              <!-- Connector & Rightward Arrowhead into Stage 5 -->
+              <path d="M 428 46 L 438 46" class="flow-line line-pass" />
+              <polygon points="440,46 434,42 434,50" fill="var(--ok)" />
 
-              <rect x="442" y="10" width="94" height="68" class="node-rect st-active" />
-              <text x="489" y="28" class="node-text">5. systemd</text>
-              <text x="489" y="46" class="node-mono">PID 1</text>
-              <text x="489" y="62" class="node-mono">Starts Targets</text>
+              <!-- Stage 5: systemd -->
+              <rect x="442" y="10" width="94" height="72" class="node-rect st-active" />
+              <text x="489" y="29" class="node-text">5. systemd</text>
+              <text x="489" y="48" class="node-mono">PID 1</text>
+              <text x="489" y="65" class="node-mono">Starts Targets</text>
 
-              <rect x="10" y="94" width="526" height="102" rx="8" fill="var(--panel)" stroke="var(--line)" />
-              <text x="273" y="116" class="node-text" fill="var(--navy)">How Execution Transfers Smoothly</text>
-              <text x="273" y="136" class="node-mono" fill="var(--mut)">Firmware locates bootloader &rarr; Bootloader loads kernel &rarr; Ramdisk mounts real drive</text>
-              <text x="273" y="156" class="node-mono" fill="var(--ok)">Kernel hands execution over to systemd as Process ID 1</text>
-              <text x="273" y="176" class="node-mono" fill="var(--blue)">systemd brings up networking, storage mounts, and user login terminals</text>
+              <!-- Downward transition to Summary Card -->
+              <path d="M 270 82 L 270 101" class="flow-line line-pass" />
+              <polygon points="270,102 266,95 274,95" fill="var(--ok)" />
+
+              <!-- Summary Card -->
+              <rect x="10" y="102" width="526" height="146" rx="8" fill="var(--panel)" stroke="var(--line)" />
+              <text x="270" y="122" class="node-text" fill="var(--navy)">Sequential Boot Hand-off: Motherboard to Userspace</text>
+              <text x="270" y="146" class="node-mono" fill="var(--mut)">1. UEFI Firmware - Locates &amp; Launches EFI Bootloader Binary</text>
+              <text x="270" y="170" class="node-mono" fill="var(--mut)">2. GRUB2 - Loads Compressed Kernel (vmlinuz) &amp; initramfs Into RAM</text>
+              <text x="270" y="194" class="node-mono" fill="var(--ok)">3. Kernel + initramfs - Loads Storage Drivers &amp; Mounts Real Root '/'</text>
+              <text x="270" y="218" class="node-mono" fill="var(--blue)">4. systemd (PID 1) - Orchestrates Network Daemons &amp; Login Desktops</text>
             </svg>
             `,
             `
             <span class="lab">GRUB2 Bootloader &amp; initramfs Root Pivot (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 540 210">
-              <rect x="30" y="8" width="480" height="36" class="node-rect st-pass" />
-              <text x="270" y="26" class="node-mono">1. /boot/efi/EFI/ubuntu/grubx64.efi launched by motherboard firmware</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <!-- Step 1 -->
+              <rect x="30" y="8" width="480" height="40" class="node-rect st-pass" />
+              <text x="270" y="24" class="node-text">1. UEFI Motherboard Firmware - Launches EFI Boot Binary</text>
+              <text x="270" y="39" class="node-mono">Executes /boot/efi/EFI/ubuntu/grubx64.efi on FAT32 Partition</text>
 
-              <path d="M 270 44 L 270 60" class="flow-line line-pass" />
+              <!-- Arrow into Step 2 -->
+              <path d="M 270 48 L 270 65" class="flow-line line-pass" />
+              <polygon points="270,66 266,59 274,59" fill="var(--ok)" />
 
-              <rect x="30" y="60" width="480" height="42" class="node-rect st-pass" />
-              <text x="270" y="74" class="node-text">2. Reads /boot/grub/grub.cfg Menu</text>
-              <text x="270" y="90" class="node-mono">Copies compressed vmlinuz and initrd.img into physical computer memory</text>
+              <!-- Step 2 -->
+              <rect x="30" y="66" width="480" height="44" class="node-rect st-pass" />
+              <text x="270" y="82" class="node-text">2. Reads /boot/grub/grub.cfg Configuration Menu</text>
+              <text x="270" y="98" class="node-mono">Loads Compressed vmlinuz Kernel &amp; initrd.img Ramdisk Into Memory</text>
 
-              <path d="M 270 102 L 270 118" class="flow-line line-pass" />
+              <!-- Arrow into Step 3 -->
+              <path d="M 270 110 L 270 127" class="flow-line line-pass" />
+              <polygon points="270,128 266,121 274,121" fill="var(--ok)" />
 
-              <rect x="30" y="118" width="480" height="42" class="node-rect st-active" />
-              <text x="270" y="132" class="node-text">3. initramfs Root Pivot (pivot_root)</text>
-              <text x="270" y="148" class="node-mono">Loads NVMe storage drivers, mounts real root '/' filesystem, and executes /sbin/init</text>
+              <!-- Step 3 -->
+              <rect x="30" y="128" width="480" height="46" class="node-rect st-active" />
+              <text x="270" y="144" class="node-text">3. initramfs Temporary Root Pivot (pivot_root)</text>
+              <text x="270" y="161" class="node-mono">Loads NVMe Disk Drivers - Mounts True Root '/' - Swaps Real Root</text>
 
-              <path d="M 270 160 L 270 174" class="flow-line line-blue" />
+              <!-- Arrow into Step 4 -->
+              <path d="M 270 174 L 270 191" class="flow-line line-blue" />
+              <polygon points="270,192 266,185 274,185" fill="var(--blue)" />
 
-              <rect x="30" y="174" width="480" height="28" rx="6" fill="var(--navy)" />
-              <text x="270" y="188" class="node-mono" fill="#fff">4. systemd initialized as PID 1: System fully bootable</text>
+              <!-- Step 4 -->
+              <rect x="30" y="192" width="480" height="56" rx="8" fill="var(--navy)" />
+              <text x="270" y="212" class="node-mono" fill="#fff" style="font-weight:700;">4. Kernel Hands Execution to systemd (PID 1)</text>
+              <text x="270" y="232" class="node-mono" fill="#93c5fd">Executes /sbin/init - System Becomes Fully Bootable</text>
             </svg>
             `
           ],
@@ -1813,163 +2106,94 @@
           views: [
             `
             <span class="lab">systemd Target Dependency Hierarchy (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="30" y="8" width="460" height="28" class="node-rect st-active" />
-              <text x="260" y="22" class="node-mono">1. sysinit.target &bull; Mounts /proc, /sys &amp; initializes crypto disks</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <!-- Tier 1 -->
+              <rect x="30" y="8" width="480" height="34" class="node-rect st-active" />
+              <text x="270" y="25" class="node-mono">1. sysinit.target - Mounts /proc, /sys - Initializes Encrypted Disks</text>
 
-              <path d="M 260 36 L 260 48" class="flow-line line-blue" />
+              <!-- Arrow into Tier 2 -->
+              <path d="M 270 42 L 270 59" class="flow-line line-blue" />
+              <polygon points="270,60 266,53 274,53" fill="var(--blue)" />
 
-              <rect x="30" y="48" width="460" height="28" class="node-rect st-pass" />
-              <text x="260" y="62" class="node-mono">2. basic.target &bull; Sockets, timers &amp; core system device paths</text>
+              <!-- Tier 2 -->
+              <rect x="30" y="60" width="480" height="34" class="node-rect st-pass" />
+              <text x="270" y="77" class="node-mono">2. basic.target - Sockets, Timers - Core System Device Paths</text>
 
-              <path d="M 260 76 L 260 88" class="flow-line line-pass" />
+              <!-- Arrow into Tier 3 -->
+              <path d="M 270 94 L 270 111" class="flow-line line-pass" />
+              <polygon points="270,112 266,105 274,105" fill="var(--ok)" />
 
-              <rect x="30" y="88" width="460" height="40" class="node-rect st-pass" />
-              <text x="260" y="103" class="node-text">3. multi-user.target &bull; Headless Server Environment (Runlevel 3)</text>
-              <text x="260" y="117" class="node-mono">Networking &bull; OpenSSH &bull; Nginx &bull; MySQL &bull; Multi-User Shells</text>
+              <!-- Tier 3 -->
+              <rect x="30" y="112" width="480" height="46" class="node-rect st-pass" />
+              <text x="270" y="128" class="node-text">3. multi-user.target - Headless Server Environment (Runlevel 3)</text>
+              <text x="270" y="145" class="node-mono">Networking - OpenSSH - Nginx - MariaDB - Multi-User CLI Shells</text>
 
-              <path d="M 260 128 L 260 140" class="flow-line line-blue" />
+              <!-- Arrow into Tier 4 -->
+              <path d="M 270 158 L 270 175" class="flow-line line-blue" />
+              <polygon points="270,176 266,169 274,169" fill="var(--blue)" />
 
-              <rect x="30" y="140" width="460" height="42" rx="6" fill="var(--navy)" />
-              <text x="260" y="155" class="node-mono" fill="#fff">4. graphical.target &bull; Desktop Workstation (Runlevel 5)</text>
-              <text x="260" y="171" class="node-mono" fill="#93c5fd">GNOME / KDE Display Manager + all multi-user.target background services</text>
+              <!-- Tier 4 -->
+              <rect x="30" y="176" width="480" height="72" rx="8" fill="var(--navy)" />
+              <text x="270" y="196" class="node-mono" fill="#fff" style="font-weight:700;">4. graphical.target - Desktop Workstation Environment (Runlevel 5)</text>
+              <text x="270" y="216" class="node-mono" fill="#93c5fd">Display Manager (GDM / LightDM) - Desktop GUI (GNOME / KDE)</text>
+              <text x="270" y="233" class="node-mono" fill="#38bdf8" style="font-size:9.5px;">Seamlessly Inherits All Active multi-user.target Background Daemons</text>
             </svg>
             `,
             `
             <span class="lab">Boot Diagnostics: systemd-analyze blame (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <rect x="30" y="8" width="460" height="26" rx="5" fill="var(--navy)" />
-              <text x="260" y="21" class="node-mono" fill="#fff">Startup finished in: 1.84s (firmware) + 2.12s (kernel) + 1.63s (userspace)</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 250">
+              <!-- Total Boot Time Bar -->
+              <rect x="20" y="8" width="500" height="32" rx="8" fill="var(--navy)" />
+              <text x="270" y="24" class="node-mono" fill="#fff" style="font-weight:700;">Total Boot Time: 5.59s (Firmware: 1.84s + Kernel: 2.12s + System: 1.63s)</text>
 
-              <rect x="30" y="42" width="460" height="28" class="node-rect st-pass" />
-              <rect x="30" y="42" width="240" height="28" rx="4" fill="var(--ok-bg)" />
-              <text x="45" y="56" class="node-mono" text-anchor="start" fill="var(--navy)">1.240s &bull; snapd.service (Application packages &amp; confinement)</text>
+              <!-- Downward Indicator -->
+              <path d="M 270 40 L 270 48" class="flow-line line-blue" />
+              <polygon points="270,49 266,42 274,42" fill="var(--blue)" />
 
-              <rect x="30" y="76" width="460" height="28" class="node-rect st-active" />
-              <rect x="30" y="76" width="180" height="28" rx="4" fill="var(--tint)" />
-              <text x="45" y="90" class="node-mono" text-anchor="start" fill="var(--navy)">0.890s &bull; systemd-networkd-wait-online.service (Network sync)</text>
+              <!-- Service 1: snapd -->
+              <rect x="20" y="50" width="500" height="28" rx="6" class="node-rect st-pass" />
+              <rect x="24" y="53" width="70" height="22" rx="4" fill="var(--ok)" />
+              <text x="59" y="64" class="node-mono" fill="#ffffff" style="font-weight:700;">1.24s</text>
+              <text x="105" y="64" class="node-left" fill="var(--navy)">snapd.service - App Store &amp; Package Service (Slowest)</text>
 
-              <rect x="30" y="110" width="460" height="28" class="node-rect st-pass" />
-              <rect x="30" y="110" width="120" height="28" rx="4" fill="var(--ok-bg)" />
-              <text x="45" y="124" class="node-mono" text-anchor="start" fill="var(--navy)">0.450s &bull; nginx.service (Reverse proxy web daemon)</text>
+              <!-- Service 2: network wait -->
+              <rect x="20" y="82" width="500" height="28" rx="6" class="node-rect st-active" />
+              <rect x="24" y="85" width="70" height="22" rx="4" fill="var(--blue)" />
+              <text x="59" y="96" class="node-mono" fill="#ffffff" style="font-weight:700;">0.89s</text>
+              <text x="105" y="96" class="node-left" fill="var(--navy)">systemd-networkd - Internet &amp; Network Connection Sync</text>
 
-              <rect x="30" y="144" width="460" height="28" class="node-rect st-pass" />
-              <rect x="30" y="144" width="75" height="28" rx="4" fill="var(--ok-bg)" />
-              <text x="45" y="158" class="node-mono" text-anchor="start" fill="var(--navy)">0.180s &bull; ssh.service (OpenSSH daemon)</text>
+              <!-- Service 3: nginx -->
+              <rect x="20" y="114" width="500" height="28" rx="6" class="node-rect st-pass" />
+              <rect x="24" y="117" width="70" height="22" rx="4" fill="var(--ok)" />
+              <text x="59" y="128" class="node-mono" fill="#ffffff" style="font-weight:700;">0.45s</text>
+              <text x="105" y="128" class="node-left" fill="var(--navy)">nginx.service - Web Server &amp; Background Daemon</text>
 
-              <rect x="30" y="178" width="460" height="22" rx="4" fill="var(--panel)" stroke="var(--line)" />
-              <text x="260" y="193" class="node-mono" fill="var(--mut)">Command: systemd-analyze critical-chain prints the slowest dependency tree</text>
+              <!-- Service 4: ssh -->
+              <rect x="20" y="146" width="500" height="28" rx="6" class="node-rect st-pass" />
+              <rect x="24" y="149" width="70" height="22" rx="4" fill="var(--ok)" />
+              <text x="59" y="160" class="node-mono" fill="#ffffff" style="font-weight:700;">0.18s</text>
+              <text x="105" y="160" class="node-left" fill="var(--navy)">ssh.service - Secure Remote Terminal Login (Fastest)</text>
+
+              <!-- Downward Indicator -->
+              <path d="M 270 174 L 270 182" class="flow-line line-blue" />
+              <polygon points="270,183 266,176 274,176" fill="var(--blue)" />
+
+              <!-- Diagnostic Command Box -->
+              <rect x="20" y="184" width="500" height="50" rx="8" fill="var(--panel)" stroke="var(--line)" />
+              <text x="270" y="201" class="node-mono" fill="var(--navy)" style="font-weight:700;">Diagnostic Command: systemd-analyze blame</text>
+              <text x="270" y="220" class="node-mono" fill="var(--mut)">Ranks services by startup delay to identify slow boot bottlenecks</text>
             </svg>
             `
           ],
           explains: [
             "multi-user.target coordinates headless server environments, while graphical.target starts desktop display managers.",
-            "The systemd-analyze blame utility ranks initialization duration to optimize operating system startup time."
+            "The systemd-analyze blame tool lists startup delays so administrators can pinpoint slow boot services."
           ]
         }
       };
 
 
 
-      /* Beginner-Friendly Conceptual Quiz (NO Commands / Syntax!) */
-      const MODULE_QUIZ = [
-        {
-          level: 1,
-          topic: "Origins & GNU GPL",
-          q: "Who created the Linux operating system kernel in 1991, and under which license was it published?",
-          opts: [
-            "Linus Torvalds under the GNU General Public License (GPL)",
-            "Richard Stallman under the MIT License",
-            "Dennis Ritchie under the Apple EULA"
-          ],
-          ans: 0,
-          exp: "Linus Torvalds published the original Linux kernel in 1991 as a collaborative open-source project under the GNU GPL."
-        },
-        {
-          level: 2,
-          topic: "Role of Distributions",
-          q: "What is the primary role of a Linux distribution like Ubuntu or Fedora?",
-          opts: [
-            "It bundles the core Linux kernel with system tools, desktop software, and package managers",
-            "It replaces the open-source kernel with proprietary closed-source code",
-            "It manufactures physical computer motherboards and memory hardware"
-          ],
-          ans: 0,
-          exp: "A Linux distribution packages the shared open-source kernel with utilities, compilers, and user applications."
-        },
-        {
-          level: 3,
-          topic: "Memory Ring Protection",
-          q: "Why does Linux strictly separate software memory into User Space (Ring 3) and Kernel Space (Ring 0)?",
-          opts: [
-            "To prevent malfunctioning user applications from crashing the core operating system and hardware",
-            "To force users to purchase extra memory hardware upgrades",
-            "To prevent users from browsing websites on the internet"
-          ],
-          ans: 0,
-          exp: "Memory ring isolation guarantees system stability by preventing regular user apps from directly corrupting hardware memory."
-        },
-        {
-          level: 4,
-          topic: "UEFI Boot Partition",
-          q: "Why do modern UEFI computers require a dedicated EFI System Partition (/boot/efi) formatted as FAT32?",
-          opts: [
-            "To hold the bootloader files that motherboard firmware reads to start the operating system",
-            "To store temporary internet browser cookies and downloads",
-            "To serve as extra storage space for user video files"
-          ],
-          ans: 0,
-          exp: "UEFI motherboard firmware reads the FAT32 EFI System Partition at startup to locate and execute signed bootloader binaries."
-        },
-        {
-          level: 5,
-          topic: "Virtual Machines Safety",
-          q: "What is the primary benefit of using a Virtual Machine to learn and practice Linux?",
-          opts: [
-            "It lets beginners safely run and experiment with Linux in an isolated window without risking their main system",
-            "It automatically increases physical computer CPU speed and memory size",
-            "It eliminates the need for computer electricity and battery power"
-          ],
-          ans: 0,
-          exp: "Virtual machines provide a risk-free isolated sandbox where students can install and practice Linux safely."
-        },
-        {
-          level: 6,
-          topic: "Headless Server Operation",
-          q: "Why do production enterprise cloud servers run in headless text mode without a graphical desktop?",
-          opts: [
-            "To conserve RAM and CPU power so server resources are dedicated exclusively to running databases and services",
-            "Because Linux is technically incapable of showing graphics or pictures",
-            "To make it impossible for administrators to log in remotely"
-          ],
-          ans: 0,
-          exp: "Headless servers run lean without desktop overhead, reserving computing power for business services and databases."
-        },
-        {
-          level: 7,
-          topic: "System Initialization",
-          q: "During the Linux boot sequence, what is the role of systemd (Process ID 1)?",
-          opts: [
-            "It serves as the first user-space parent process that coordinates and starts all background services",
-            "It decompresses the motherboard BIOS firmware chip",
-            "It designs graphical wallpapers for the desktop monitor"
-          ],
-          ans: 0,
-          exp: "The kernel transfers execution to systemd (PID 1), which launches storage, networking, and system services."
-        },
-        {
-          level: 8,
-          topic: "Systemd Targets vs Runlevels",
-          q: "In modern Linux, what concept replaces legacy numbered runlevels to coordinate system states?",
-          opts: [
-            "systemd Targets (such as multi-user.target for servers and graphical.target for desktops)",
-            "Windows Control Panel registry keys",
-            "Motherboard BIOS overclocking profiles"
-          ],
-          ans: 0,
-          exp: "Systemd uses target units to group related background dependencies together into coherent system operating states."
-        }
-      ];
 
       /* Tab Navigation */
       const TABS = [
@@ -1981,15 +2205,13 @@
         { id: 5, title: "6. Consoles & Desktop", type: "level" },
         { id: 6, title: "7. Boot Process & GRUB2", type: "level" },
         { id: 7, title: "8. Systemd & Targets", type: "level" },
-        { id: 8, title: "9. Module Quiz", type: "quiz" },
-        { id: 9, title: "10. Summary & Download", type: "summary" }
+        { id: 8, title: "9. Summary & Download", type: "summary" }
       ];
 
       /* State Tracking */
       let currentTab = 0;
       let activeFcMode = 0;
       const CHECK_STATE = {};
-      const M_QUIZ_STATE = {};
 
       /* Render Top Navigation Tabs */
       function renderTabs() {
@@ -1998,8 +2220,6 @@
           let isDone = false;
           if (t.type === "level") {
             isDone = isLevelComplete(idx);
-          } else if (t.type === "quiz") {
-            isDone = isQuizComplete();
           }
           return `<button type="button" class="tab${idx === currentTab ? " on" : ""}${isDone ? " done" : ""}" data-a="tab" data-i="${idx}">${esc(t.title)}</button>`;
         }).join("");
@@ -2008,10 +2228,6 @@
       const LEVEL_VISITED = {};
       function isLevelComplete(lvlIdx) {
         return LEVEL_VISITED[lvlIdx] === true;
-      }
-
-      function isQuizComplete() {
-        return MODULE_QUIZ.every((_, qi) => M_QUIZ_STATE[`q-${qi}`] === true);
       }
 
       /* Main Tab Content Renderer */
@@ -2024,10 +2240,206 @@
         const tab = TABS[idx];
         if (tab.type === "level") {
           renderLevelView(idx);
-        } else if (tab.type === "quiz") {
-          renderQuizView();
         } else if (tab.type === "summary") {
           renderSummaryView();
+        }
+      }
+
+      /* 4-Layer Architecture Data & Inspector (Rule 11-14) */
+      const ARCH_DATA = {
+        all: {
+          title: "Overview: Complete 4-Layer Hierarchy (Onion Model)",
+          role: "Concentric layer separation protecting hardware and kernel memory from user software faults.",
+          examples: "Level 4 (Firefox, Vim) → Level 3 (Bash) → Level 2 (Linux Kernel 6.8) → Level 1 (CPU, RAM, SSD)."
+        },
+        app: {
+          title: "Level 4: APPLICATION (User Space)",
+          role: "Runs user software, desktop programs, and system utilities in unprivileged user space.",
+          examples: "Web browsers (Firefox, Chrome), text editors (Vim, VS Code), media players, package managers."
+        },
+        shell: {
+          title: "Level 3: SHELL (Command Interpreter)",
+          role: "Translates typed command lines and script instructions into kernel system calls.",
+          examples: "Bash (Bourne Again Shell), Zsh, Dash, sh terminal interpreters."
+        },
+        kernel: {
+          title: "Level 2: KERNEL (Core OS Engine)",
+          role: "Direct manager of CPU scheduler, memory allocation, filesystem VFS, and hardware device drivers.",
+          examples: "Monolithic Linux Kernel 6.8 engine, ext4/XFS filesystem drivers, network stack."
+        },
+        hw: {
+          title: "Level 1: HARDWARE (Physical Machine)",
+          role: "Executes physical electrical binary calculations, data storage, and network signals.",
+          examples: "CPU processors (x86_64, ARM), RAM memory chips, NVMe/SSD storage disks, network interface cards."
+        }
+      };
+
+      function selectArchLayer(layerKey) {
+        const d = ARCH_DATA[layerKey] || ARCH_DATA.all;
+        const chipsEl = $("arch_chips");
+        if (chipsEl) {
+          const chips = chipsEl.querySelectorAll(".chip");
+          chips.forEach(c => c.classList.toggle("on", c.dataset.l === layerKey));
+        }
+
+        const titleEl = $("arch_insp_title");
+        const bodyEl = $("arch_insp_body");
+        if (titleEl && bodyEl) {
+          titleEl.textContent = d.title;
+          bodyEl.innerHTML = `
+            <p style="margin:0 0 4px;">• <b>Role:</b> ${esc(d.role)}</p>
+            <p style="margin:0;">• <b>Examples:</b> ${esc(d.examples)}</p>
+          `;
+        }
+
+        const rings = {
+          app: $("arch_r_app"),
+          shell: $("arch_r_shell"),
+          kernel: $("arch_r_kernel"),
+          hw: $("arch_r_hw")
+        };
+
+        if (rings.app && rings.shell && rings.kernel && rings.hw) {
+          if (layerKey === "all") {
+            rings.app.setAttribute("class", "node-rect st-active");
+            rings.app.style.opacity = "1";
+            rings.app.style.strokeWidth = "2px";
+
+            rings.shell.setAttribute("class", "node-rect st-active");
+            rings.shell.style.opacity = "1";
+            rings.shell.style.strokeWidth = "2px";
+
+            rings.kernel.setAttribute("class", "node-rect st-pass");
+            rings.kernel.style.opacity = "1";
+            rings.kernel.style.strokeWidth = "2px";
+
+            rings.hw.setAttribute("fill", "var(--navy)");
+            rings.hw.style.opacity = "1";
+            rings.hw.removeAttribute("stroke");
+          } else {
+            Object.keys(rings).forEach(k => {
+              const el = rings[k];
+              if (k === layerKey) {
+                el.style.opacity = "1";
+                if (k === "hw") {
+                  el.setAttribute("fill", "var(--blue)");
+                  el.setAttribute("stroke", "var(--navy)");
+                  el.style.strokeWidth = "3px";
+                } else if (k === "kernel") {
+                  el.setAttribute("class", "node-rect st-pass");
+                  el.style.strokeWidth = "3.5px";
+                } else {
+                  el.setAttribute("class", "node-rect st-active");
+                  el.style.strokeWidth = "3.5px";
+                }
+              } else {
+                el.style.opacity = "0.55";
+                el.style.strokeWidth = "1.5px";
+                if (k === "hw") {
+                  el.setAttribute("fill", "var(--navy)");
+                  el.removeAttribute("stroke");
+                }
+              }
+            });
+          }
+        }
+      }
+
+      /* Linux Distribution Formula Component Metadata */
+      const FORMULA_INFO = {
+        all: {
+          title: "Overview: What is a Linux Distribution?",
+          role: "A Linux distribution combines the core kernel engine with user tools into a complete operating system.",
+          examples: "Ubuntu, Fedora, Debian, and Arch Linux package the kernel with software so it works immediately."
+        },
+        kernel: {
+          title: "1. Linux Kernel (The Engine)",
+          role: "The central operating system engine that talks directly to physical computer hardware, processors, and memory.",
+          examples: "Linux Kernel 6.8 engine, hardware device drivers, processor scheduler, and memory management subsystems."
+        },
+        gnu: {
+          title: "2. GNU Tools & Shell (The Controls)",
+          role: "The core command-line utilities and shell that allow human users to interact directly with the kernel.",
+          examples: "Bash terminal shell, core commands like ls, cp, and rm, and the standard C system library."
+        },
+        pkg: {
+          title: "3. Package Manager (The App Store)",
+          role: "The software center that safely downloads, installs, and updates applications from verified online distribution repositories.",
+          examples: "APT software tool for Ubuntu and Debian, DNF for Fedora, and Pacman for Arch Linux."
+        },
+        gui: {
+          title: "4. Desktop Interface & Server Services",
+          role: "The visual desktop screens for personal computers or background network services for headless enterprise cloud servers.",
+          examples: "Desktop graphical environments like GNOME and KDE, or server daemons like systemd, SSH, and Nginx."
+        },
+        distro: {
+          title: "= Complete Linux Distribution (Operating System)",
+          role: "A fully assembled, ready-to-use operating system that boots right up on personal laptops, servers, and supercomputers.",
+          examples: "Ubuntu 24.04 LTS, Fedora Workstation, Debian 12, Arch Linux, and Red Hat Enterprise Linux."
+        }
+      };
+
+      function selectFormulaPart(partKey) {
+        if (!FORMULA_INFO[partKey]) partKey = "all";
+
+        const chipsWrap = $("formula_chips");
+        if (chipsWrap) {
+          chipsWrap.querySelectorAll("[data-a='formulaPart']").forEach(b => {
+            b.classList.toggle("on", b.dataset.p === partKey);
+          });
+        }
+
+        const d = FORMULA_INFO[partKey];
+        const titleEl = $("formula_insp_title");
+        const bodyEl = $("formula_insp_body");
+        if (titleEl && bodyEl) {
+          titleEl.textContent = d.title;
+          bodyEl.innerHTML = `
+            <p style="margin:0 0 4px;">• <b>Role:</b> ${esc(d.role)}</p>
+            <p style="margin:0;">• <b>Examples:</b> ${esc(d.examples)}</p>
+          `;
+        }
+
+        const parts = {
+          kernel: $("f_r_kernel"),
+          gnu: $("f_r_gnu"),
+          pkg: $("f_r_pkg"),
+          gui: $("f_r_gui"),
+          distro: $("f_r_distro")
+        };
+
+        if (parts.kernel && parts.gnu && parts.pkg && parts.gui && parts.distro) {
+          if (partKey === "all") {
+            parts.kernel.setAttribute("class", "node-rect st-pass");
+            parts.kernel.style.opacity = "1";
+            parts.kernel.style.strokeWidth = "2px";
+
+            parts.gnu.setAttribute("class", "node-rect st-active");
+            parts.gnu.style.opacity = "1";
+            parts.gnu.style.strokeWidth = "2px";
+
+            parts.pkg.setAttribute("class", "node-rect st-active");
+            parts.pkg.style.opacity = "1";
+            parts.pkg.style.strokeWidth = "2px";
+
+            parts.gui.setAttribute("class", "node-rect st-pass");
+            parts.gui.style.opacity = "1";
+            parts.gui.style.strokeWidth = "2px";
+
+            parts.distro.style.opacity = "1";
+            parts.distro.style.strokeWidth = "1.5px";
+          } else {
+            Object.keys(parts).forEach(k => {
+              const el = parts[k];
+              if (k === partKey) {
+                el.style.opacity = "1";
+                el.style.strokeWidth = "3.5px";
+              } else {
+                el.style.opacity = "0.5";
+                el.style.strokeWidth = "1.5px";
+              }
+            });
+          }
         }
       }
 
@@ -2074,8 +2486,136 @@
           <div class="chips" id="chips"></div>
           <div class="detail" id="chipDetail"></div>
 
-          <h3>Interactive System Architecture &amp; Flowchart</h3>
-          <p class="hint">Explore system flow and architectural layers using interactive diagram views below.</p>
+          ${idx === 1 ? `
+            <!-- 4-Layer Architecture Section (Added before interactive flowchart section) -->
+            <h3>Linux 4-Layer Architecture</h3>
+            <p class="hint">How Linux cleanly separates user applications from physical hardware across four coordinated concentric tiers.</p>
+            <div class="card" style="margin-bottom:24px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px;">
+                <div>
+                  <span class="lab">Select Architectural Layer:</span>
+                  <div class="chips" id="arch_chips" style="margin:4px 0 0;">
+                    <button type="button" class="chip on" data-a="archLvl" data-l="all">All 4 Layers</button>
+                    <button type="button" class="chip" data-a="archLvl" data-l="app">Level 4: Application</button>
+                    <button type="button" class="chip" data-a="archLvl" data-l="shell">Level 3: Shell</button>
+                    <button type="button" class="chip" data-a="archLvl" data-l="kernel">Level 2: Kernel</button>
+                    <button type="button" class="chip" data-a="archLvl" data-l="hw">Level 1: Hardware</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Concentric Onion Rings SVG (Rule 11) -->
+              <div class="chart-card" id="arch_chart_wrap" style="margin-top:4px;margin-bottom:12px;">
+                <span class="lab">Concentric Onion Rings Hierarchy (SVG)</span>
+                <svg class="svg-flowchart" viewBox="0 0 500 210" id="arch_svg">
+                  <!-- Level 4: APPLICATION (Outer Ring) -->
+                  <rect id="arch_r_app" x="10" y="6" width="480" height="198" rx="16" class="node-rect st-active" data-a="archLvl" data-l="app" style="cursor:pointer;" />
+                  <text id="arch_t_app" x="250" y="24" class="node-text" style="font-weight:800;">Level 4: APPLICATION - User Software - Desktop Utilities</text>
+
+                  <!-- Level 3: SHELL (Middle Outer Ring) -->
+                  <rect id="arch_r_shell" x="40" y="40" width="420" height="152" rx="14" class="node-rect st-active" data-a="archLvl" data-l="shell" style="cursor:pointer;" />
+                  <text id="arch_t_shell" x="250" y="58" class="node-text" style="font-weight:700;">Level 3: SHELL - Command Interpreter - CLI Interface</text>
+
+                  <!-- Level 2: KERNEL (Middle Inner Ring) -->
+                  <rect id="arch_r_kernel" x="75" y="76" width="350" height="106" rx="12" class="node-rect st-pass" data-a="archLvl" data-l="kernel" style="cursor:pointer;" />
+                  <text id="arch_t_kernel" x="250" y="94" class="node-text" style="font-weight:700;">Level 2: KERNEL - Core OS Engine - Device Drivers</text>
+
+                  <!-- Level 1: HARDWARE (Center Core) -->
+                  <rect id="arch_r_hw" x="115" y="114" width="270" height="58" rx="8" fill="var(--navy)" data-a="archLvl" data-l="hw" style="cursor:pointer;" />
+                  <text id="arch_t_hw_1" x="250" y="134" class="node-mono" fill="#fff" style="font-weight:700;">Level 1: HARDWARE</text>
+                  <text id="arch_t_hw_2" x="250" y="152" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">CPU - RAM - Storage Disks - Physical Machine</text>
+                </svg>
+              </div>
+
+              <!-- Layer Inspector (Rule 14: Short, sweet bullet-style summaries: Role and Examples only) -->
+              <div class="detail" id="arch_inspector" style="margin-top:6px;">
+                <p style="margin:0 0 4px;font-size:14px;color:var(--navy);font-weight:700;" id="arch_insp_title">Overview: Complete 4-Layer Hierarchy (Onion Model)</p>
+                <div id="arch_insp_body" style="font-size:13.5px;color:var(--navy);line-height:1.5;">
+                  <p style="margin:0 0 4px;">• <b>Role:</b> Concentric layer separation protecting hardware and kernel memory from user software faults.</p>
+                  <p style="margin:0;">• <b>Examples:</b> Level 4 (Firefox, Vim) &rarr; Level 3 (Bash) &rarr; Level 2 (Linux Kernel 6.8) &rarr; Level 1 (CPU, RAM, SSD).</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Linux Distribution Formula Flowchart (Directly after 4-Layer Architecture Flowchart) -->
+            <h3>Linux Distribution Formula: What Makes a Distro?</h3>
+            <p class="hint">How distributions assemble the core Linux kernel with package managers and GNU userland software into a complete operating system.</p>
+            <div class="card" style="margin-bottom:24px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px;">
+                <div>
+                  <span class="lab">Inspect Distribution Component:</span>
+                  <div class="chips" id="formula_chips" style="margin:4px 0 0;">
+                    <button type="button" class="chip on" data-a="formulaPart" data-p="all">Complete Formula</button>
+                    <button type="button" class="chip" data-a="formulaPart" data-p="kernel">1. Linux Kernel</button>
+                    <button type="button" class="chip" data-a="formulaPart" data-p="gnu">2. GNU Utilities</button>
+                    <button type="button" class="chip" data-a="formulaPart" data-p="pkg">3. Package Manager</button>
+                    <button type="button" class="chip" data-a="formulaPart" data-p="gui">4. Desktop GUI / Daemons</button>
+                    <button type="button" class="chip" data-a="formulaPart" data-p="distro">= Final Distro</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Distro Formula SVG Flowchart -->
+              <div class="chart-card" id="formula_chart_wrap" style="margin-top:4px;margin-bottom:12px;">
+                <span class="lab">The Complete Distro Formula Flowchart (SVG)</span>
+                <svg class="svg-flowchart" viewBox="0 0 540 295" id="formula_svg">
+                  <!-- Row 1: Kernel + GNU Tools -->
+                  <rect id="f_r_kernel" x="15" y="12" width="226" height="50" rx="8" class="node-rect st-pass" data-a="formulaPart" data-p="kernel" style="cursor:pointer;" />
+                  <text id="f_t_kernel" x="128" y="28" class="node-text">1. Linux Kernel (Engine)</text>
+                  <text id="f_s_kernel" x="128" y="47" class="node-mono" fill="var(--ok)">Controls CPU, RAM &amp; Devices</text>
+
+                  <rect x="257" y="25" width="26" height="24" rx="6" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.2" />
+                  <text x="270" y="37" class="node-text" fill="var(--blue)" font-size="16" font-weight="800">+</text>
+
+                  <rect id="f_r_gnu" x="299" y="12" width="226" height="50" rx="8" class="node-rect st-active" data-a="formulaPart" data-p="gnu" style="cursor:pointer;" />
+                  <text id="f_t_gnu" x="412" y="28" class="node-text">2. GNU Tools &amp; Shell</text>
+                  <text id="f_s_gnu" x="412" y="47" class="node-mono" fill="var(--blue)">Bash Terminal &amp; Core Commands</text>
+
+                  <!-- Central Connector & Vertical Plus Badge -->
+                  <path d="M 270 49 L 270 68 M 270 90 L 270 113" class="flow-line line-blue" />
+                  <rect x="257" y="68" width="26" height="22" rx="6" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.2" />
+                  <text x="270" y="79" class="node-text" fill="var(--blue)" font-size="15" font-weight="800">+</text>
+
+                  <!-- Row 2: Package Manager + Desktop GUI -->
+                  <rect id="f_r_pkg" x="15" y="100" width="226" height="50" rx="8" class="node-rect st-active" data-a="formulaPart" data-p="pkg" style="cursor:pointer;" />
+                  <text id="f_t_pkg" x="128" y="116" class="node-text">3. Package Manager</text>
+                  <text id="f_s_pkg" x="128" y="135" class="node-mono" fill="var(--blue)">App Store (APT, DNF, Pacman)</text>
+
+                  <rect x="257" y="113" width="26" height="24" rx="6" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.2" />
+                  <text x="270" y="125" class="node-text" fill="var(--blue)" font-size="16" font-weight="800">+</text>
+
+                  <rect id="f_r_gui" x="299" y="100" width="226" height="50" rx="8" class="node-rect st-pass" data-a="formulaPart" data-p="gui" style="cursor:pointer;" />
+                  <text id="f_t_gui" x="412" y="116" class="node-text">4. Desktop Interface</text>
+                  <text id="f_s_gui" x="412" y="135" class="node-mono" fill="var(--ok)">GNOME, KDE &amp; Server Daemons</text>
+
+                  <!-- Convergence Rail -->
+                  <path d="M 128 150 L 128 168 M 412 150 L 412 168 M 128 168 L 412 168" class="flow-line line-blue" fill="none" />
+                  <path d="M 270 168 L 270 185" class="flow-line line-blue" />
+                  <polygon points="270,186 266,179 274,179" fill="var(--blue)" />
+
+                  <!-- Output Box: Complete Linux Distribution -->
+                  <rect id="f_r_distro" x="15" y="186" width="510" height="96" rx="10" fill="var(--navy)" stroke="var(--blue)" stroke-width="1.5" data-a="formulaPart" data-p="distro" style="cursor:pointer;" />
+                  <text id="f_t_distro" x="270" y="207" class="node-mono" fill="#38bdf8" style="font-size:12.5px;font-weight:800;">= COMPLETE LINUX DISTRIBUTION (DISTRO)</text>
+                  <text x="270" y="226" class="node-mono" fill="#ffffff">Ready-to-Use Operating System: Ubuntu, Fedora, Debian, Arch</text>
+                  <text x="270" y="244" class="node-mono" fill="#93c5fd">Kernel (Engine) + GNU Shell + Package Store + Desktop GUI</text>
+                  <rect x="95" y="255" width="350" height="20" rx="5" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="0.8" />
+                  <text x="270" y="266" class="node-mono" fill="#38bdf8" style="font-size:9.5px;font-weight:700;">Formula: Kernel + GNU Tools + Package Store + GUI = OS</text>
+                </svg>
+              </div>
+
+              <!-- Formula Component Inspector (Rule 14: Short, sweet bullet-style summaries: Role and Examples only) -->
+              <div class="detail" id="formula_inspector" style="margin-top:6px;">
+                <p style="margin:0 0 4px;font-size:14px;color:var(--navy);font-weight:700;" id="formula_insp_title">Overview: What is a Linux Distribution?</p>
+                <div id="formula_insp_body" style="font-size:13.5px;color:var(--navy);line-height:1.5;">
+                  <p style="margin:0 0 4px;">• <b>Role:</b> A Linux distribution combines the core kernel engine with user tools into a complete operating system.</p>
+                  <p style="margin:0;">• <b>Examples:</b> Ubuntu, Fedora, Debian, and Arch Linux package the kernel with software so it works immediately.</p>
+                </div>
+              </div>
+            </div>
+          ` : ''}
+
+          <h3>${idx === 1 ? 'Interactive Distribution Lineage &amp; Evolution Flowchart' : 'Interactive System Architecture &amp; Flowchart'}</h3>
+          <p class="hint">${idx === 1 ? 'Explore distribution lineage, package managers, and kernel growth using interactive diagram views below.' : 'Explore system flow and architectural layers using interactive diagram views below.'}</p>
           <div class="card" style="margin-bottom:24px;">
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
               <div>
@@ -2120,7 +2660,7 @@
           <!-- Bottom Navigation -->
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:32px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px;">
             ${idx > 0 ? `<button type="button" class="btn alt" data-a="tab" data-i="${idx - 1}">&larr; Previous Level</button>` : `<div></div>`}
-            ${idx < 7 ? `<button type="button" class="btn" data-a="tab" data-i="${idx + 1}">Next: Level ${idx + 2} &rarr;</button>` : `<button type="button" class="btn" data-a="tab" data-i="8">Proceed to Module Quiz &rarr;</button>`}
+            ${idx < 7 ? `<button type="button" class="btn" data-a="tab" data-i="${idx + 1}">Next: Level ${idx + 2} &rarr;</button>` : `<button type="button" class="btn" data-a="tab" data-i="8">Proceed to Summary &amp; Download &rarr;</button>`}
           </div>
         `;
 
@@ -2133,75 +2673,17 @@
           )
           .join("");
         pickChip(0);
+        if (idx === 1) {
+          selectArchLayer("all");
+          selectFormulaPart("all");
+        }
       }
 
-      /* 2. Render Comprehensive Quiz View (Tab 9) - Beginner Friendly (Zero Command Syntax!) */
-      function renderQuizView() {
-        const c = $("levelContent");
-        let answeredCount = 0;
-        let correctCount = 0;
-
-        MODULE_QUIZ.forEach((_, qi) => {
-          if (M_QUIZ_STATE.hasOwnProperty(`q-${qi}`)) {
-            answeredCount++;
-            if (M_QUIZ_STATE[`q-${qi}`] === true) correctCount++;
-          }
-        });
-
-        c.innerHTML = `
-          <h2>9. Module 1 Comprehensive Assessment Quiz</h2>
-          <p class="hint">Test your understanding across all 8 levels of Linux administration and system architecture. (Beginner-friendly conceptual questions)</p>
-
-          <div style="margin-bottom:20px;">
-            ${MODULE_QUIZ.map((q, qi) => {
-              const answered = M_QUIZ_STATE.hasOwnProperty(`q-${qi}`);
-              const wasCorrect = M_QUIZ_STATE[`q-${qi}`];
-
-              return `
-                <div class="q" id="mq-${qi}">
-                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                    <span class="lab">Level ${q.level} &bull; ${esc(q.topic)}</span>
-                    ${answered ? (wasCorrect ? `<span style="font-weight:700;color:var(--ok);font-size:12.5px;">Passed</span>` : `<span style="font-weight:700;color:var(--bad);font-size:12.5px;">Review Recommended</span>`) : ''}
-                  </div>
-                  <p style="margin:0 0 10px;"><b>${qi + 1}. ${esc(q.q)}</b></p>
-                  ${q.opts.map((opt, oi) => {
-                    let cls = "";
-                    if (answered) {
-                      if (oi === q.ans) cls = " ok";
-                      else if (M_QUIZ_STATE[`q-${qi}-choice`] === oi) cls = " bad";
-                    }
-                    return `<button type="button" class="opt${cls}" data-a="mQuizAns" data-q="${qi}" data-o="${oi}">${esc(opt)}</button>`;
-                  }).join("")}
-                  <p class="sm fb" id="mfb-${qi}">
-                    ${answered ? (wasCorrect ? `<span style="color:var(--ok)">Correct! ${esc(q.exp)}</span>` : `<span style="color:var(--bad)">Incorrect. Correct: ${esc(q.opts[q.ans])}. ${esc(q.exp)}</span>`) : ""}
-                  </p>
-                </div>
-              `;
-            }).join("")}
-          </div>
-
-          <div class="card" style="padding:18px 24px;margin-bottom:24px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-              <div>
-                <b style="font-size:15px;color:var(--navy);">
-                  ${answeredCount === MODULE_QUIZ.length ? `Assessment Score: ${correctCount} of ${MODULE_QUIZ.length} (${Math.round((correctCount / MODULE_QUIZ.length) * 100)}%)` : `Answer all ${MODULE_QUIZ.length} questions above to see your final score.`}
-                </b>
-                <p class="sm" style="margin:3px 0 0;">${correctCount === MODULE_QUIZ.length ? "Excellent! You have fully mastered Module 1 concepts." : "Select your answers above. Retake anytime to achieve 100% mastery."}</p>
-              </div>
-              <div style="display:flex;gap:10px;">
-                <button type="button" class="btn alt" data-a="mQuizReset">Retake Quiz</button>
-                <button type="button" class="btn" data-a="tab" data-i="9">Proceed to Summary &amp; Download &rarr;</button>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      /* 3. Render Summary & Download View (Tab 10) */
+      /* 2. Render Summary & Download View (Tab 9) */
       function renderSummaryView() {
         const c = $("levelContent");
         c.innerHTML = `
-          <h2>10. Module 1 Course Summary &amp; Notes Export</h2>
+          <h2>9. Module 1 Course Summary &amp; Notes Export</h2>
           <p class="hint">Consolidated review of core concepts, architecture layers, commands, and video guides across all 8 levels.</p>
 
           <!-- Download Action Card -->
@@ -2252,8 +2734,11 @@
 
           <!-- Bottom Navigation -->
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px;">
-            <button type="button" class="btn alt" data-a="tab" data-i="8">&larr; Back to Quiz</button>
-            <button type="button" class="btn" data-a="tab" data-i="0">Restart Course from Level 1 &rarr;</button>
+            <button type="button" class="btn alt" data-a="tab" data-i="7">&larr; Back to Level 8</button>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button type="button" class="btn alt" data-a="tab" data-i="0">Restart Module 1</button>
+              <a href="Module2.html" class="btn" style="text-decoration:none;display:inline-flex;align-items:center;">Proceed to Module 2 &rarr;</a>
+            </div>
           </div>
         `;
       }
@@ -2338,27 +2823,12 @@
           window.scrollTo({ top: 0, behavior: "smooth" });
         } else if (a === "chip") {
           pickChip(i);
+        } else if (a === "archLvl") {
+          selectArchLayer(t.dataset.l);
+        } else if (a === "formulaPart") {
+          selectFormulaPart(t.dataset.p);
         } else if (a === "fcMode") {
           switchFlowchartMode(+t.dataset.m);
-        } else if (a === "mQuizAns") {
-          const qi = +t.dataset.q;
-          const oi = +t.dataset.o;
-          const key = `q-${qi}`;
-          if (M_QUIZ_STATE.hasOwnProperty(key)) return;
-
-          const q = MODULE_QUIZ[qi];
-          const isOk = oi === q.ans;
-          M_QUIZ_STATE[key] = isOk;
-          M_QUIZ_STATE[`${key}-choice`] = oi;
-          renderQuizView();
-          renderTabs();
-        } else if (a === "mQuizReset") {
-          MODULE_QUIZ.forEach((_, qi) => {
-            delete M_QUIZ_STATE[`q-${qi}`];
-            delete M_QUIZ_STATE[`q-${qi}-choice`];
-          });
-          renderQuizView();
-          renderTabs();
         } else if (a === "dlTxt") {
           downloadCourseSummaryTxt();
         }

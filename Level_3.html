@@ -82,61 +82,69 @@
           </div>
 
           <!-- Memory Spaces Flowchart -->
+          <!-- Memory Spaces Flowchart -->
           <div id="fc_spaces" style="display:none;">
             <span class="lab">Memory Isolation Domain Flowchart (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 500 210">
+            <svg class="svg-flowchart" viewBox="0 0 520 220">
               <!-- User Space Block -->
-              <rect x="20" y="8" width="460" height="64" rx="8" class="node-rect st-active" />
-              <text x="250" y="28" class="node-text">User Space Domain (CPU Ring 3)</text>
-              <text x="250" y="46" class="node-mono">Unprivileged &bull; Web Browser, Editors, Shell &bull; Process Isolated</text>
-              <text x="250" y="60" class="node-mono" fill="var(--muted)">Standard applications execute here safely without crashing kernel</text>
+              <rect x="20" y="8" width="480" height="72" rx="8" class="node-rect st-active" />
+              <text x="260" y="24" class="node-text" style="font-weight:800;">USER SPACE (Ring 3 - Restricted Privilege)</text>
+              <text x="260" y="44" class="node-mono">Applications - Shells - Web Daemons - Desktop Software</text>
+              <text x="260" y="64" class="node-mono" fill="var(--muted)">Fault Isolated - Application Crashes Cannot Corrupt Operating System</text>
 
-              <!-- Syscall Divider Boundary -->
-              <line x1="20" y1="84" x2="480" y2="84" stroke="var(--primary)" stroke-width="2" stroke-dasharray="5 3" />
-              <text x="250" y="96" class="branch-label" fill="var(--primary)">Protected System Call Boundary (Trap Interface)</text>
+              <!-- Connector from User Space into Bridge Pill -->
+              <path d="M 260 80 L 260 87" class="flow-line line-blue" />
+
+              <!-- Solid Pill Badge for System Call Interface (No Floating Text!) -->
+              <rect x="95" y="87" width="330" height="22" rx="5" fill="var(--tint)" stroke="var(--primary)" stroke-width="1.25" />
+              <text x="260" y="98" class="branch-label" fill="var(--primary)" style="font-weight:700;">System Call Interface Bridge (read, write, open)</text>
+
+              <!-- Connector from Bridge Pill into Kernel Space with Arrowhead -->
+              <path d="M 260 109 L 260 119" class="flow-line line-blue" />
+              <polygon points="260,120 256,113 264,113" fill="var(--primary)" />
 
               <!-- Kernel Space Block -->
-              <rect x="20" y="108" width="460" height="64" rx="8" class="node-rect st-pass" />
-              <text x="250" y="128" class="node-text">Kernel Space Domain (CPU Ring 0)</text>
-              <text x="250" y="146" class="node-mono">Privileged &bull; Memory Management, CPU Schedules, Hardware Drivers</text>
-              <text x="250" y="160" class="node-mono" fill="var(--ok)">Full unrestricted CPU execution controlling physical components</text>
-
-              <rect x="20" y="180" width="460" height="22" rx="5" fill="var(--paper)" stroke="var(--line)" />
-              <text x="250" y="191" class="node-mono" fill="var(--ink)">Result: User program crashes cannot crash physical system</text>
+              <rect x="20" y="120" width="480" height="88" rx="8" fill="var(--ink)" />
+              <text x="260" y="140" class="node-mono" fill="#93c5fd" style="font-weight:800;">KERNEL SPACE (Ring 0 - Privileged Hardware Control)</text>
+              <text x="260" y="162" class="node-mono" fill="#fff">Process Scheduler - Memory Management - Device Drivers</text>
+              <text x="260" y="184" class="node-mono" fill="#38bdf8">Direct Control - CPU Cores - NVMe Storage - RAM - Network Cards</text>
             </svg>
           </div>
 
           <!-- System Call Bridge Flowchart -->
           <div id="fc_syscall" style="display:none;">
             <span class="lab">System Call Execution Flowchart (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 500 210">
+            <svg class="svg-flowchart" viewBox="0 0 520 220">
               <!-- Step 1 -->
-              <rect x="30" y="6" width="440" height="32" rx="7" class="node-rect st-active" />
-              <text x="250" y="22" class="node-mono">1. User Program issues request (e.g., read file)</text>
+              <rect x="25" y="8" width="470" height="34" rx="7" class="node-rect st-active" />
+              <text x="260" y="25" class="node-text">1. User Application Calls Library Function (e.g., write())</text>
 
-              <path d="M 250 38 L 250 54" class="flow-line line-blue" />
-              <text x="340" y="46" class="branch-label" fill="var(--primary)">passes to glibc</text>
+              <!-- Arrow into Step 2 -->
+              <path d="M 260 42 L 260 55" class="flow-line line-blue" />
+              <polygon points="260,56 256,49 264,49" fill="var(--primary)" />
 
               <!-- Step 2 -->
-              <rect x="30" y="54" width="440" height="32" rx="7" class="node-rect st-active" />
-              <text x="250" y="70" class="node-mono">2. C Library prepares system call trap (syscall)</text>
+              <rect x="25" y="56" width="470" height="38" rx="7" class="node-rect st-pass" />
+              <text x="260" y="70" class="node-text">2. System Call Trap - CPU Switches from Ring 3 to Ring 0</text>
+              <text x="260" y="85" class="node-mono">CPU Registers Safely Pass Arguments to Protected Kernel Memory</text>
 
-              <path d="M 250 86 L 250 102" class="flow-line line-pass" />
-              <text x="340" y="94" class="branch-label" fill="var(--ok)">switches to Ring 0</text>
+              <!-- Arrow into Step 3 -->
+              <path d="M 260 94 L 260 107" class="flow-line line-pass" />
+              <polygon points="260,108 256,101 264,101" fill="var(--ok)" />
 
               <!-- Step 3 -->
-              <rect x="30" y="102" width="440" height="32" rx="7" class="node-rect st-pass" />
-              <text x="250" y="118" class="node-mono">3. Linux Kernel validates permissions &amp; routes to driver</text>
+              <rect x="25" y="108" width="470" height="38" rx="7" class="node-rect st-pass" />
+              <text x="260" y="122" class="node-text">3. Kernel VFS &amp; Device Driver Execution</text>
+              <text x="260" y="137" class="node-mono">Permission Verified - DMA Block Transfers Data to NVMe Storage</text>
 
-              <path d="M 250 134 L 250 150" class="flow-line line-pass" />
-              <text x="340" y="142" class="branch-label" fill="var(--ok)">hardware I/O</text>
+              <!-- Arrow into Step 4 -->
+              <path d="M 260 146 L 260 159" class="flow-line line-blue" />
+              <polygon points="260,160 256,153 264,153" fill="var(--primary)" />
 
               <!-- Step 4 -->
-              <rect x="30" y="150" width="440" height="34" rx="7" fill="var(--ink)" />
-              <text x="250" y="167" class="node-mono" fill="#fff">4. Physical storage hardware returns binary data</text>
-
-              <rect x="30" y="188" width="440" height="18" rx="4" fill="var(--paper)" stroke="var(--line)" />
-              <text x="250" y="197" class="node-mono" fill="var(--ink)">System call bridge securely isolates software from raw hardware</text>
+              <rect x="25" y="160" width="470" height="48" rx="6" fill="var(--ink)" />
+              <text x="260" y="178" class="node-mono" fill="#fff" style="font-weight:700;">4. Control Returns Safely to User Application in Ring 3</text>
+              <text x="260" y="196" class="node-mono" fill="#93c5fd">Function Returns Status Code (Bytes Written) - CPU Resets Privilege</text>
             </svg>
           </div>
         </div>

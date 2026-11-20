@@ -60,42 +60,71 @@
           <!-- Network Modes Flowchart -->
           <div id="fc_networking">
             <span class="lab">Virtual Machine Networking Topologies (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <!-- Physical Network Switch -->
-              <rect x="20" y="8" width="480" height="34" rx="7" fill="var(--ink)" />
-              <text x="260" y="25" class="node-mono" fill="#fff">Physical LAN Router &bull; 192.168.1.0/24 Subnet</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 290">
+              <!-- Physical Host Header -->
+              <rect x="15" y="8" width="510" height="40" class="node-rect st-active" />
+              <text x="270" y="23" class="node-text">Physical Host Machine - Virtual Switch (Host LAN: 192.168.1.100)</text>
+              <text x="270" y="38" class="node-mono" fill="var(--primary)">Virtual NICs Connect Through Software Bridges</text>
 
-              <!-- Connection Lines -->
-              <path d="M 95 42 L 95 66 M 260 42 L 260 66 M 425 42 L 425 66" class="flow-line line-blue" fill="none" />
+              <!-- Central Trunk down into Network Modes Badge -->
+              <path d="M 270 48 L 270 61" class="flow-line line-blue" />
+              
+              <!-- Standalone Virtual Network Modes Badge -->
+              <rect x="185" y="61" width="170" height="22" rx="11" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.25" />
+              <text x="270" y="72" class="branch-label" fill="var(--primary)" style="font-weight:700;">Virtual Network Modes</text>
+
+              <!-- Central Trunk down out of Badge to Distribution Rail -->
+              <path d="M 270 83 L 270 96" class="flow-line line-blue" />
+
+              <!-- Horizontal Distribution Rail -->
+              <path d="M 95 96 L 445 96" class="flow-line line-blue" fill="none" />
+
+              <!-- 3 Downward Branch Lines & Arrowheads -->
+              <path d="M 95 96 L 95 109" class="flow-line line-pass" />
+              <polygon points="95,110 91,103 99,103" fill="var(--ok)" />
+
+              <path d="M 270 96 L 270 109" class="flow-line line-pass" />
+              <polygon points="270,110 266,103 274,103" fill="var(--ok)" />
+
+              <path d="M 445 96 L 445 109" class="flow-line line-blue" />
+              <polygon points="445,110 441,103 449,103" fill="var(--primary)" />
 
               <!-- NAT Mode Box -->
-              <rect id="net_b_nat" x="20" y="66" width="150" height="48" class="node-rect st-active" data-a="net" data-n="nat" style="cursor:pointer;" />
-              <text x="95" y="82" class="node-text">NAT Mode</text>
-              <text x="95" y="100" class="node-mono">10.0.2.15/24</text>
+              <rect id="net_b_nat" x="15" y="110" width="160" height="74" class="node-rect st-pass" data-a="net" data-n="nat" style="cursor:pointer;" />
+              <text x="95" y="126" class="node-text">NAT Mode</text>
+              <text x="95" y="143" class="node-mono" fill="var(--ok)">Shares Host IP</text>
+              <text x="95" y="159" class="node-mono">Built-in Host Firewall</text>
+              <text x="95" y="174" class="node-mono">Default Safe Web Access</text>
 
               <!-- Bridged Mode Box -->
-              <rect id="net_b_bridged" x="185" y="66" width="150" height="48" class="node-rect st-pass" data-a="net" data-n="bridged" style="cursor:pointer;" />
-              <text x="260" y="82" class="node-text">Bridged Mode</text>
-              <text x="260" y="100" class="node-mono">192.168.1.150</text>
+              <rect id="net_b_bridged" x="190" y="110" width="160" height="74" class="node-rect st-pass" data-a="net" data-n="bridged" style="cursor:pointer;" />
+              <text x="270" y="126" class="node-text">Bridged Mode</text>
+              <text x="270" y="143" class="node-mono" fill="var(--ok)">Dedicated LAN IP</text>
+              <text x="270" y="159" class="node-mono">Visible on Physical Switch</text>
+              <text x="270" y="174" class="node-mono">Ideal for Network Servers</text>
 
               <!-- Host-Only Mode Box -->
-              <rect id="net_b_hostonly" x="350" y="66" width="150" height="48" class="node-rect st-active" data-a="net" data-n="hostonly" style="cursor:pointer;" />
-              <text x="425" y="82" class="node-text">Host-Only Mode</text>
-              <text x="425" y="100" class="node-mono">192.168.56.101</text>
+              <rect id="net_b_hostonly" x="365" y="110" width="160" height="74" class="node-rect st-active" data-a="net" data-n="hostonly" style="cursor:pointer;" />
+              <text x="445" y="126" class="node-text">Host-Only Mode</text>
+              <text x="445" y="143" class="node-mono" fill="var(--primary)">Private Air-Gap</text>
+              <text x="445" y="159" class="node-mono">Zero Internet Access</text>
+              <text x="445" y="174" class="node-mono">Isolated Malware Sandbox</text>
 
-              <!-- Lower Target Nodes -->
-              <path d="M 95 114 L 95 124 M 260 114 L 260 124 M 425 114 L 425 124" class="flow-line line-pass" />
-              <rect x="20" y="124" width="150" height="30" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="95" y="139" class="node-mono">Outbound Internet Only</text>
+              <!-- Lines down into Consolidation Rail -->
+              <path d="M 95 184 L 95 200 M 270 184 L 270 200 M 445 184 L 445 200" class="flow-line line-blue" />
 
-              <rect x="185" y="124" width="150" height="30" rx="6" fill="var(--tint)" stroke="var(--primary)" />
-              <text x="260" y="139" class="node-mono" fill="var(--primary-dark)">Full Direct LAN Access</text>
+              <!-- Horizontal Consolidation Rail -->
+              <path d="M 95 200 L 445 200" class="flow-line line-blue" fill="none" />
 
-              <rect x="350" y="124" width="150" height="30" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="425" y="139" class="node-mono">Host &harr; VM Isolated</text>
+              <!-- Central Trunk Arrow into Summary -->
+              <path d="M 270 200 L 270 215" class="flow-line line-blue" />
+              <polygon points="270,216 266,209 274,209" fill="var(--ink)" />
 
-              <rect x="20" y="166" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="179" class="node-mono" fill="var(--ink)">Bridged mode grants direct SSH and server accessibility across your network</text>
+              <!-- Summary Card -->
+              <rect x="15" y="216" width="510" height="62" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="270" y="233" class="node-text" fill="var(--ink)">Virtual Network Isolation &amp; Security Profiles</text>
+              <text x="270" y="251" class="node-mono" fill="var(--ok)">NAT Mode - Safe Web Browsing - Host Firewall Blocks Inbound Threats</text>
+              <text x="270" y="267" class="node-mono" fill="var(--primary)">Bridged Mode - Full Two-Way Communication - Real Server Deployments</text>
             </svg>
           </div>
 
@@ -134,7 +163,7 @@
               <text x="385" y="152" class="node-mono" fill="var(--muted)">Ideal for Learning &amp; Local Labs</text>
 
               <rect x="20" y="172" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="185" class="node-mono" fill="var(--ink)">Type 1 runs directly on hardware; Type 2 executes as an app in host OS</text>
+              <text x="260" y="185" class="node-mono" fill="var(--ink)">Type 1 runs directly on hardware - Type 2 executes inside host OS</text>
             </svg>
           </div>
 
@@ -165,8 +194,8 @@
               <text x="75" y="98" class="branch-label" fill="var(--ok)">instant revert</text>
 
               <rect x="25" y="152" width="470" height="34" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="166" class="node-mono" fill="var(--ink)">Snapshots allow instant zero-downtime rollback during risky administrative experiments</text>
-              <text x="260" y="179" class="node-mono" fill="var(--ok)">Eliminates the requirement to re-install guest operating systems from scratch</text>
+              <text x="260" y="166" class="node-mono" fill="var(--ink)">Instant Rollback - Zero Downtime Recovery for Risky Tests</text>
+              <text x="260" y="179" class="node-mono" fill="var(--ok)">Eliminates OS Re-installation - Safely Experiment in Sandboxes</text>
             </svg>
           </div>
         </div>

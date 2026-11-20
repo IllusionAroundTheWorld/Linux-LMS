@@ -61,71 +61,124 @@
           <!-- Partitions Scheme Flowchart -->
           <div id="fc_partitions">
             <span class="lab">Storage Drive Partition Layout (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <!-- Physical Disk Box -->
-              <rect x="20" y="8" width="480" height="34" rx="7" fill="var(--ink)" />
-              <text x="260" y="25" class="node-mono" fill="#fff">Physical Storage Drive (/dev/nvme0n1 or /dev/sda)</text>
+            <svg class="svg-flowchart" viewBox="0 0 540 330">
+              <!-- Physical Drive & GPT Header Box -->
+              <rect x="15" y="8" width="510" height="40" rx="8" class="node-rect st-active" />
+              <text x="270" y="23" class="node-text">Physical Disk Drive (/dev/nvme0n1) - GUID Partition Table (GPT)</text>
+              <text x="270" y="38" class="node-mono" fill="var(--primary)">UEFI Standard - 128 Partition Slots - 2TB+ Disk Capacity Support</text>
 
-              <!-- Connector Lines -->
-              <path d="M 260 42 L 260 56 M 260 56 L 78 66 M 260 56 L 198 66 M 260 56 L 318 66 M 260 56 L 438 66" class="flow-line line-blue" fill="none" />
+              <!-- Central Trunk down into GPT Bus Badge -->
+              <path d="M 270 48 L 270 63" class="flow-line line-blue" />
+              
+              <!-- Standalone GPT Bus Badge -->
+              <rect x="175" y="63" width="190" height="22" rx="11" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.25" />
+              <text x="270" y="74" class="branch-label" fill="var(--primary)" style="font-weight:700;">GPT Partition Table Scheme</text>
 
-              <!-- Part 1: EFI -->
-              <rect id="pt_efi" x="21" y="66" width="114" height="50" class="node-rect st-active" data-a="part" data-p="efi" style="cursor:pointer;" />
-              <text x="78" y="83" class="node-text">/boot/efi</text>
-              <text x="78" y="101" class="node-mono">512 MB &bull; FAT32</text>
+              <!-- Central Trunk down out of Badge to Distribution Rail -->
+              <path d="M 270 85 L 270 99" class="flow-line line-blue" />
 
-              <!-- Part 2: ROOT -->
-              <rect id="pt_root" x="141" y="66" width="114" height="50" class="node-rect st-pass" data-a="part" data-p="root" style="cursor:pointer;" />
-              <text x="198" y="83" class="node-text">/ (Root)</text>
-              <text x="198" y="101" class="node-mono">50+ GB &bull; ext4/XFS</text>
+              <!-- Horizontal Distribution Rail -->
+              <path d="M 74 99 L 466 99" class="flow-line line-blue" fill="none" />
 
-              <!-- Part 3: SWAP -->
-              <rect id="pt_swap" x="261" y="66" width="114" height="50" class="node-rect st-active" data-a="part" data-p="swap" style="cursor:pointer;" />
-              <text x="318" y="83" class="node-text">swap</text>
-              <text x="318" y="101" class="node-mono">4 to 8 GB RAM</text>
+              <!-- 4 Downward Branch Lines & Arrowheads -->
+              <path d="M 74 99 L 74 114" class="flow-line line-blue" />
+              <polygon points="74,115 70,108 78,108" fill="var(--primary)" />
 
-              <!-- Part 4: HOME -->
-              <rect id="pt_home" x="381" y="66" width="114" height="50" class="node-rect st-active" data-a="part" data-p="home" style="cursor:pointer;" />
-              <text x="438" y="83" class="node-text">/home</text>
-              <text x="438" y="101" class="node-mono">User Documents</text>
+              <path d="M 205 99 L 205 114" class="flow-line line-blue" />
+              <polygon points="205,115 201,108 209,108" fill="var(--primary)" />
 
-              <!-- Summary Foot -->
-              <rect x="20" y="126" width="480" height="28" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="140" class="node-mono" fill="var(--ink)">Standard Partition Table: GPT (GUID Partition Table)</text>
+              <path d="M 335 99 L 335 114" class="flow-line line-blue" />
+              <polygon points="335,115 331,108 339,108" fill="var(--primary)" />
 
-              <rect x="20" y="160" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="173" class="node-mono" fill="var(--ink)">Filesystems: ext4 (Standard) &bull; XFS (Enterprise High Scale)</text>
+              <path d="M 466 99 L 466 114" class="flow-line line-blue" />
+              <polygon points="466,115 462,108 470,108" fill="var(--primary)" />
+
+              <!-- Partition 1: EFI Boot -->
+              <rect id="pt_efi" x="15" y="115" width="118" height="70" rx="8" class="node-rect st-pass" data-a="part" data-p="efi" style="cursor:pointer;" />
+              <text x="74" y="128" class="branch-label" fill="var(--muted)">/dev/nvme0n1p1</text>
+              <text x="74" y="143" class="node-text">/boot/efi</text>
+              <text x="74" y="158" class="node-mono" fill="var(--ok)">FAT32 - 512MB</text>
+              <text x="74" y="171" class="node-mono">UEFI Bootloader</text>
+
+              <!-- Partition 2: Root OS -->
+              <rect id="pt_root" x="146" y="115" width="118" height="70" rx="8" class="node-rect st-pass" data-a="part" data-p="root" style="cursor:pointer;" />
+              <text x="205" y="128" class="branch-label" fill="var(--muted)">/dev/nvme0n1p2</text>
+              <text x="205" y="143" class="node-text">/ (Root)</text>
+              <text x="205" y="158" class="node-mono" fill="var(--ok)">ext4 / XFS - 50GB+</text>
+              <text x="205" y="171" class="node-mono">Core System OS</text>
+
+              <!-- Partition 3: Swap Space -->
+              <rect id="pt_swap" x="276" y="115" width="118" height="70" rx="8" class="node-rect st-active" data-a="part" data-p="swap" style="cursor:pointer;" />
+              <text x="335" y="128" class="branch-label" fill="var(--muted)">/dev/nvme0n1p3</text>
+              <text x="335" y="143" class="node-text">[SWAP]</text>
+              <text x="335" y="158" class="node-mono" fill="var(--primary)">swap - 4-8GB</text>
+              <text x="335" y="171" class="node-mono">Virtual RAM</text>
+
+              <!-- Partition 4: User Data -->
+              <rect id="pt_home" x="407" y="115" width="118" height="70" rx="8" class="node-rect st-pass" data-a="part" data-p="home" style="cursor:pointer;" />
+              <text x="466" y="128" class="branch-label" fill="var(--muted)">/dev/nvme0n1p4</text>
+              <text x="466" y="143" class="node-text">/home</text>
+              <text x="466" y="158" class="node-mono" fill="var(--ok)">ext4 / XFS - 100GB+</text>
+              <text x="466" y="171" class="node-mono">User Data Files</text>
+
+              <!-- 4 Collector Lines down into Consolidation Rail -->
+              <path d="M 74 185 L 74 201 M 205 185 L 205 201 M 335 185 L 335 201 M 466 185 L 466 201" class="flow-line line-pass" />
+
+              <!-- Horizontal Consolidation Rail -->
+              <path d="M 74 201 L 466 201" class="flow-line line-pass" fill="none" />
+
+              <!-- Central Trunk down into Mount Badge -->
+              <path d="M 270 201 L 270 216" class="flow-line line-pass" />
+
+              <!-- Standalone Mount Bus Badge -->
+              <rect x="150" y="216" width="240" height="22" rx="11" fill="var(--ok-bg)" stroke="var(--ok)" stroke-width="1.25" />
+              <text x="270" y="227" class="branch-label" fill="var(--ok)" style="font-weight:700;">Linux VFS Directory Hierarchy Mounts</text>
+
+              <!-- Central Trunk Arrow into Summary Box -->
+              <path d="M 270 238 L 270 253" class="flow-line line-pass" />
+              <polygon points="270,254 266,247 274,247" fill="var(--ok)" />
+
+              <!-- Mount Points Hierarchy Box -->
+              <rect x="15" y="254" width="510" height="64" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="270" y="271" class="node-text" fill="var(--ink)">Unified Linux Filesystem Tree (No Drive Letters C:, D:)</text>
+              <text x="270" y="288" class="node-mono" fill="var(--ink)">/ (Root) - /boot/efi (UEFI) - /home (Users) - swap (Virtual RAM)</text>
+              <text x="270" y="304" class="node-mono" fill="var(--ok)">Disk partitions attach seamlessly under the unified root '/' tree</text>
             </svg>
           </div>
 
           <!-- Filesystems Flowchart -->
           <div id="fc_filesystems" style="display:none;">
             <span class="lab">Linux Storage Filesystems Comparison (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
+            <svg class="svg-flowchart" viewBox="0 0 540 270">
               <!-- Column 1: ext4 -->
-              <rect x="20" y="8" width="230" height="32" class="node-rect st-pass" />
-              <text x="135" y="24" class="node-text">ext4 Filesystem</text>
+              <rect x="15" y="8" width="248" height="44" class="node-rect st-pass" />
+              <text x="139" y="24" class="node-text">ext4 Filesystem</text>
+              <text x="139" y="40" class="node-mono" fill="var(--ok)">Default on Ubuntu &amp; Debian</text>
 
-              <rect x="20" y="44" width="230" height="118" rx="6" fill="var(--tint)" stroke="var(--tint-bd)" />
-              <text x="135" y="62" class="node-mono" fill="var(--primary-dark)">Default for Ubuntu &amp; Debian</text>
-              <text x="135" y="82" class="node-mono" fill="var(--ink)">Built-in Data Journaling</text>
-              <text x="135" y="102" class="node-mono" fill="var(--ink)">Max 1 EB storage volume</text>
-              <text x="135" y="122" class="node-mono" fill="var(--ok)">Rock-solid backward compatibility</text>
-              <text x="135" y="142" class="node-mono" fill="var(--muted)">Best for: Desktops &amp; VPS</text>
+              <rect x="15" y="60" width="248" height="196" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="28" y="82" class="node-left" fill="var(--ink)">1. Journal - Rock-Solid Metadata</text>
+              <text x="28" y="106" class="node-left">2. Repair - Fast e2fsck Tool</text>
+              <text x="28" y="130" class="node-left">3. Resize - Online Grow &amp; Shrink</text>
+              <text x="28" y="154" class="node-left">4. Limits - 16TB File, 1EB Volume</text>
+              <text x="28" y="178" class="node-left" fill="var(--ok)">5. Target - Ubuntu &amp; Workstations</text>
+
+              <rect x="25" y="206" width="228" height="26" rx="5" fill="var(--ok-bg)" stroke="var(--ok)" stroke-width="0.8" />
+              <text x="139" y="219" class="node-mono" fill="var(--ok)" style="font-weight:700;">Status: Mature &amp; Proven Standard</text>
 
               <!-- Column 2: XFS -->
-              <rect x="270" y="8" width="230" height="32" class="node-rect st-active" />
-              <text x="385" y="24" class="node-text">XFS Filesystem</text>
+              <rect x="277" y="8" width="248" height="44" class="node-rect st-active" />
+              <text x="401" y="24" class="node-text">XFS Filesystem</text>
+              <text x="401" y="40" class="node-mono" fill="var(--primary)">Default on RHEL &amp; CentOS</text>
 
-              <rect x="270" y="44" width="230" height="118" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="385" y="62" class="node-mono" fill="var(--primary-dark)">Default for RHEL &amp; Rocky</text>
-              <text x="385" y="82" class="node-mono" fill="var(--ink)">High parallel I/O scaling</text>
-              <text x="385" y="102" class="node-mono" fill="var(--ink)">Max 8 EB storage volume</text>
-              <text x="385" y="122" class="node-mono" fill="var(--ok)">Enterprise database optimized</text>
-              <text x="385" y="142" class="node-mono" fill="var(--muted)">Best for: Big Data &amp; DBs</text>
+              <rect x="277" y="60" width="248" height="196" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="290" y="82" class="node-left" fill="var(--ink)">1. Journal - Parallel Multi-Log</text>
+              <text x="290" y="106" class="node-left">2. Throughput - High Multi-Thread</text>
+              <text x="290" y="130" class="node-left">3. Resize - Online Grow Only</text>
+              <text x="290" y="154" class="node-left">4. Limits - 8EB File, 8EB Volume</text>
+              <text x="290" y="178" class="node-left" fill="var(--muted)">5. Target - Big Data &amp; Enterprise</text>
 
-              <rect x="20" y="170" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="183" class="node-mono" fill="var(--ink)">Both filesystems provide crash resistance through metadata journaling</text>
+              <rect x="287" y="206" width="228" height="26" rx="5" fill="var(--tint)" stroke="var(--primary)" stroke-width="0.8" />
+              <text x="401" y="219" class="node-mono" fill="var(--primary)" style="font-weight:700;">Status: High-Throughput Engine</text>
             </svg>
           </div>
 

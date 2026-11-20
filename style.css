@@ -372,6 +372,15 @@ code {
   pointer-events: none;
 }
 
+.node-left {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-anchor: start !important;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
 .node-mono {
   font-family: var(--font-mono);
   font-size: 10px;
