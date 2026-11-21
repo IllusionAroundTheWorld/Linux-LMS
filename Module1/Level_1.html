@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-		<title>Introduction to Linux &amp; Open Source | IST Learn</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-		<style>
-
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Introduction to Linux, Real-World Applications &amp; Advantages | IST Learn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
 :root {
   /* Corporate Live Brand Tokens */
   --primary: #1571ba;
@@ -60,7 +59,7 @@ body {
 }
 
 main {
-  max-width: 1040px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -104,13 +103,6 @@ p {
 .sm {
   color: var(--muted);
   font-size: 13px;
-  line-height: 1.5;
-}
-
-.hint {
-  color: var(--muted);
-  font-size: 14px;
-  margin: 0 0 14px;
   line-height: 1.5;
 }
 
@@ -162,65 +154,15 @@ p {
   line-height: 1.5;
 }
 
-/* STRIPS & CREATOR CARDS */
-.strip,
-.creator-strip,
-.lineage-strip,
-.component-strip,
-.install-strip {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px 16px;
-  margin: 10px 0 12px;
-}
-
-.creator-card {
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px 18px;
-  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
-}
-
-.icon-box,
-.creator-img-box,
-.lineage-icon-box,
-.component-icon-box,
-.install-icon-box {
-  width: 66px;
-  height: 52px;
-  background: var(--tint);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  border: 1px solid var(--tint-bd);
-}
-
-.creator-img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
 /* TWO COLUMN LAYOUT */
 .two {
   display: grid;
-  grid-template-columns: 1.12fr 0.88fr;
-  gap: 16px;
+  grid-template-columns: 1.02fr 0.98fr;
+  gap: 20px;
   align-items: start;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .two {
     grid-template-columns: 1fr;
   }
@@ -256,7 +198,7 @@ p {
   border: 1px solid var(--tint-bd);
   color: var(--ink);
   border-radius: 999px;
-  padding: 5px 13px;
+  padding: 6px 14px;
   font-weight: 600;
   font-size: 12px;
   cursor: pointer;
@@ -286,22 +228,68 @@ p {
   color: var(--bad);
 }
 
-/* CODE BLOCKS & FEEDBACK RESULTS */
-pre {
-  background: var(--ink);
-  color: #e8f0ff;
-  border-radius: 9px;
-  padding: 12px 14px;
-  font: 12px/1.55 var(--font-mono);
-  margin: 4px 0 0;
-  overflow-x: auto;
-  white-space: pre-wrap;
+/* HIGH-CONTRAST TERMINAL INSPECTOR WITH SYNTAX HIGHLIGHTING */
+.terminal-card {
+  background: #0d131f;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+  margin-top: 6px;
 }
 
-code {
-  font-family: var(--font-mono);
-  font-size: 92%;
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #151e2e;
+  border-bottom: 1px solid #243046;
 }
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-r { background: #ef4444; }
+.dot-y { background: #f59e0b; }
+.dot-g { background: #10b981; }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: .03em;
+}
+
+.terminal-code {
+  margin: 0;
+  padding: 14px 16px;
+  background: #0d131f;
+  color: #f1f5f9;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* SYNTAX HIGHLIGHTING TOKEN PALETTE */
+.tok-k { color: #38bdf8; font-weight: 700; } /* Key / Field: sky blue */
+.tok-v { color: #f8fafc; } /* Value: crisp white */
+.tok-punc { color: #64748b; font-weight: 600; } /* Punctuation: slate */
+.tok-s { color: #4ade80; font-weight: 600; } /* String / Highlight: emerald */
+.tok-c { color: #94a3b8; font-style: italic; } /* Comment: slate grey */
+.tok-n { color: #fbbf24; font-weight: 700; } /* Stats / Numbers: amber gold */
+.tok-cmd { color: #ec4899; font-weight: 700; } /* Commands / Packages: pink */
 
 .res {
   margin-top: 10px;
@@ -328,14 +316,6 @@ code {
   color: var(--bad);
   background: var(--bad-bg);
   border-color: var(--bad-bd);
-}
-
-.detail {
-  background: var(--tint);
-  border: 1px solid var(--tint-bd);
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin-top: 8px;
 }
 
 /* SVG FLOWCHART STYLES */
@@ -373,15 +353,6 @@ code {
   font-size: 11px;
   font-weight: 700;
   text-anchor: middle;
-  dominant-baseline: central;
-  pointer-events: none;
-}
-
-.node-left {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 600;
-  text-anchor: start !important;
   dominant-baseline: central;
   pointer-events: none;
 }
@@ -428,362 +399,634 @@ code {
 .line-pass {
   stroke: var(--ok);
 }
+</style>
+</head>
+<body>
 
-/* BUTTONS */
-.btn {
-  background: var(--primary);
-  color: #ffffff;
-  border: 1px solid var(--primary);
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  font-family: inherit;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
+<main>
+  <p class="eye">Module 1 &middot; Level 1 &middot; Interactive System Lab</p>
+  <h1>Introduction to Linux &amp; Core Advantages</h1>
 
-.btn:hover {
-  background: var(--primary-dark);
-  border-color: var(--primary-dark);
-}
+  <div class="card" id="stage">
+    <!-- SECTION 1: SIMPLE IDEA -->
+    <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
+    <div class="note"><b>In plain words:</b> Linux is a secure, open-source operating system that powers global enterprise servers, phones, and supercomputers.</div>
+    <p class="sm"><b>Key Takeaway:</b> Mastering Linux commands provides foundational technical skills required across modern DevOps, cloud, and cybersecurity careers.</p>
 
-.btn.alt {
-  background: #ffffff;
-  color: var(--ink);
-  border: 1px solid var(--line);
-}
-
-.btn.alt:hover {
-  background: var(--paper);
-  border-color: var(--tint-bd);
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.top-pill {
-  font-size: 11.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--primary);
-  background: var(--tint);
-  border: 1px solid var(--tint-bd);
-  padding: 4px 12px;
-  border-radius: 999px;
-}
-
-/* VIDEO STYLES */
-.video-card {
-  background: #ffffff;
-  border: 1.5px solid var(--tint-bd);
-  border-radius: 12px;
-  padding: 16px;
-  margin: 14px 0 24px;
-  box-shadow: 0 1px 4px rgba(23, 32, 44, 0.02);
-}
-
-.video-embed-wrap {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 8px;
-  background: #000;
-}
-
-.video-embed-wrap iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* FOOTER & STATUS */
-.foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-}
-
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ok);
-  background: var(--ok-bg);
-  border: 1px solid var(--ok-bd);
-  padding: 5px 12px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
-  </style>
-	</head>
-	<body>
-
-
-
-		<main>
-			<p class="eye">Module 1 &middot; Level 1 &middot; Interactive System Lab</p>
-			<h1>Introduction to Linux &amp; Open Source</h1>
-
-			<div class="card" id="stage">
-				<!-- SECTION 1: SIMPLE IDEA -->
-				<h2 class="sh"><span class="st">1</span>Simple Idea</h2>
-				<div class="note"><b>In plain words:</b> Linux is a free, open source operating system kernel anyone can inspect, modify, and share.</div>
-
-				<!-- Pioneers of Linux & GNU: Richard Stallman & Linus Torvalds (Rule 24) -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:14px;margin:14px 0 20px;">
-      <!-- Richard Stallman Card -->
-      <div class="creator-card" style="display:flex;align-items:center;gap:16px;background:#ffffff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;box-shadow:0 1px 4px rgba(23,32,44,0.02);">
-        <div style="width:100px;height:100px;background:var(--tint);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;border:1.5px solid var(--tint-bd);">
-          <img src="richard-stallman.jpg" alt="Richard Stallman" style="width:100%;height:100%;object-fit:contain;display:block;" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/2/22/Richard_Stallman_at_LibrePlanet_2019.jpg';">
-        </div>
-        <div>
-          <span class="lab" style="color:var(--blue);font-size:11px;letter-spacing:0.04em;">GNU PROJECT FOUNDER</span>
-          <b style="font-size:14px;color:var(--navy);display:block;margin-top:2px;">Richard Stallman (1983 &bull; FSF / MIT)</b>
-          <p class="sm" style="margin:4px 0 0;line-height:1.45;">Founded the GNU Project in 1983, creating free software tools and the GPL license.</p>
-        </div>
+    <!-- THE OFFICIAL LINUX SYMBOL: TUX THE PENGUIN -->
+    <div class="creator-card" style="display:flex;align-items:center;gap:20px;padding:16px 22px;border:1px solid var(--line);border-radius:12px;background:#ffffff;margin:14px 0 18px;box-shadow:0 2px 10px rgba(23,32,44,0.03);">
+      <div style="width:104px;height:104px;background:var(--tint);border-radius:12px;flex-shrink:0;border:1px solid var(--tint-bd);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:6px;">
+        <img src="tux.svg" alt="Tux the Official Linux Mascot" style="width:100%;height:100%;object-fit:contain;">
       </div>
-
-      <!-- Linus Torvalds Card -->
-      <div class="creator-card" style="display:flex;align-items:center;gap:16px;background:#ffffff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;box-shadow:0 1px 4px rgba(23,32,44,0.02);">
-        <div style="width:100px;height:100px;background:var(--tint);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;border:1.5px solid var(--tint-bd);">
-          <img src="linus-torvalds.jpg" alt="Linus Torvalds" style="width:100%;height:100%;object-fit:contain;display:block;" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/0/01/LinuxCon_Europe_Linus_Torvalds_03_%28cropped%29.jpg';">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
+          <h3 style="margin:0;font-size:16px;font-weight:800;color:var(--ink);">The Official Linux Mascot &bull; Tux</h3>
+          <span style="font-size:11px;font-weight:700;color:var(--primary);background:var(--tint);border:1px solid var(--tint-bd);padding:2px 10px;border-radius:999px;">Official Kernel Mascot &bull; Created 1996</span>
         </div>
-        <div>
-          <span class="lab" style="color:var(--blue);font-size:11px;letter-spacing:0.04em;">LINUX KERNEL CREATOR</span>
-          <b style="font-size:14px;color:var(--navy);display:block;margin-top:2px;">Linus Torvalds (1991 &bull; Univ. of Helsinki)</b>
-          <p class="sm" style="margin:4px 0 0;line-height:1.45;">Created the open-source Linux operating system kernel in 1991 for personal computers worldwide.</p>
+        <p class="sm" style="margin:0 0 8px;line-height:1.55;">Tux the Penguin is the world-renowned official mascot and symbol of the Linux operating system, originally designed by Larry Ewing in 1996. It represents the friendly, open, and community-driven foundation of modern computing.</p>
+        <div style="display:flex;gap:14px;font-size:11.5px;font-weight:700;color:var(--muted);font-family:var(--font-mono);flex-wrap:wrap;">
+          <span><span style="color:var(--ok);">&check;</span> 100% Free &amp; Open Source</span>
+          <span><span style="color:var(--primary);">&check;</span> Community Driven</span>
+          <span><span style="color:var(--ok);">&check;</span> Universal Device Freedom</span>
         </div>
       </div>
     </div>
 
-				<p class="sm"><b>Remember:</b> The GNU General Public License ensures Linux source code remains permanently free for all global developers.</p>
 
-				<!-- SECTION 2: TRY IT -->
-				<h2 class="sh"><span class="st">2</span>Try It: Interactive Linux &amp; Open Source Studio</h2>
-				<div class="two">
-					<div>
-						<div class="box">
-							<label class="lab">Select Exploration Mode:</label>
-							<div class="chips">
-								<button type="button" class="chip on" data-a="md" data-m="origin">1. 1991 Origin &amp; Linus</button>
-								<button type="button" class="chip" data-a="md" data-m="gpl">2. GNU GPL Open Source</button>
-								<button type="button" class="chip" data-a="md" data-m="compare">3. Open Source vs Proprietary</button>
-							</div>
-						</div>
+    <!-- SECTION 2: TRY IT INTERACTIVE STUDIO -->
+    <h2 class="sh"><span class="st">2</span>Try It: Interactive Linux Discovery Studio</h2>
+    <div class="two">
+      <div>
+        <div class="box">
+          <label class="lab">Select Exploration Topic:</label>
+          <div class="chips">
+            <button type="button" class="chip on" data-a="md" data-m="intro">1. Intro to Linux</button>
+            <button type="button" class="chip" data-a="md" data-m="where">2. Where Linux Is Used</button>
+            <button type="button" class="chip" data-a="md" data-m="advantages">3. Advantages &amp; Security</button>
+            <button type="button" class="chip" data-a="md" data-m="outcomes">4. Learning Outcomes</button>
+          </div>
 
-						<div class="chart-card">
-							<!-- 1991 Origin & GPL Flowchart View -->
-							<div id="fc_box">
-								<span class="lab">System Flowchart (SVG)</span>
-								<svg class="svg-flowchart" viewBox="0 0 500 210">
-									<!-- Node 1 -->
-									<rect id="fl_n1" x="80" y="8" width="340" height="34" class="node-rect st-active" />
-									<text x="250" y="25" class="node-mono" id="fl_t1">Linus Torvalds (Helsinki)</text>
+          <!-- Secondary Sub-Chips for Interactivity -->
+          <div id="sub_nav_where" style="display:none;margin-top:6px;border-top:1px dashed var(--line);padding-top:6px;">
+            <label class="lab" style="font-size:10px">Filter Real-World Domain:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="dom" data-d="all">All Domains</button>
+              <button type="button" class="chip" data-a="dom" data-d="super">Supercomputers (100%)</button>
+              <button type="button" class="chip" data-a="dom" data-d="cloud">Cloud Servers (90%+)</button>
+              <button type="button" class="chip" data-a="dom" data-d="mobile">Android &amp; IoT</button>
+              <button type="button" class="chip" data-a="dom" data-d="space">Space &amp; Robotics</button>
+            </div>
+          </div>
 
-									<path id="fl_l1" d="M 250 42 L 250 64" class="flow-line line-blue" />
-									<text x="335" y="53" class="branch-label" id="fl_lbl1" fill="var(--primary)">starts hobby project</text>
+          <div id="sub_nav_adv" style="display:none;margin-top:6px;border-top:1px dashed var(--line);padding-top:6px;">
+            <label class="lab" style="font-size:10px">Filter Key Advantage:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="adv" data-v="all">All Core Strengths</button>
+              <button type="button" class="chip" data-a="adv" data-v="sec">High Security &amp; Isolation</button>
+              <button type="button" class="chip" data-a="adv" data-v="foss">Free &amp; Open Source</button>
+              <button type="button" class="chip" data-a="adv" data-v="stab">Rock-Solid Stability</button>
+              <button type="button" class="chip" data-a="adv" data-v="flex">Customization &amp; Control</button>
+            </div>
+          </div>
 
-									<!-- Node 2 -->
-									<rect id="fl_n2" x="80" y="64" width="340" height="42" class="node-rect st-pass" />
-									<text x="250" y="77" class="node-text" id="fl_t2">Milestone: Aug 25, 1991</text>
-									<text x="250" y="93" class="node-mono" id="fl_sub2">comp.os.minix Usenet Post</text>
+          <div id="sub_nav_out" style="display:none;margin-top:6px;border-top:1px dashed var(--line);padding-top:6px;">
+            <label class="lab" style="font-size:10px">Select Career Path:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="car" data-c="all">All Career Paths</button>
+              <button type="button" class="chip" data-a="car" data-c="devops">DevOps &amp; SRE</button>
+              <button type="button" class="chip" data-a="car" data-c="cloud">Cloud Architect</button>
+              <button type="button" class="chip" data-a="car" data-c="sec">Cybersecurity Analyst</button>
+              <button type="button" class="chip" data-a="car" data-c="sys">Linux Administrator</button>
+            </div>
+          </div>
+        </div>
 
-									<path id="fl_l2" d="M 250 106 L 250 128" class="flow-line line-pass" />
-									<text x="335" y="117" class="branch-label" id="fl_lbl2" fill="var(--ok)">compiles C code</text>
+        <div class="chart-card">
+          <!-- VIEW 1: INTRO TO LINUX FLOWCHART -->
+          <div id="fc_intro">
+            <span class="lab">Operating System Architecture Flowchart (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 250">
+              <!-- Node 1: User Applications -->
+              <rect id="in_n1" x="50" y="8" width="420" height="36" class="node-rect st-active" data-a="intro-node" data-n="apps" style="cursor:pointer;" />
+              <text x="260" y="26" class="node-mono" id="in_t1">User Applications - Web Browsers - Database Servers</text>
 
-									<!-- Node 3 -->
-									<rect id="fl_n3" x="80" y="128" width="340" height="42" class="node-rect st-pass" />
-									<text x="250" y="141" class="node-text" id="fl_t3">Linux Kernel Engine</text>
-									<text x="250" y="157" class="node-mono" id="fl_sub3">Controls Hardware &amp; Memory</text>
+              <path d="M 260 44 L 260 62" class="flow-line line-blue" />
+              <polygon points="260,63 256,56 264,56" fill="var(--primary)" />
+              <text x="350" y="53" class="branch-label" fill="var(--primary)">executes commands</text>
 
-									<rect x="80" y="178" width="340" height="24" rx="6" fill="var(--paper)" stroke="var(--line)" />
-									<text x="250" y="190" class="node-mono" id="fl_foot" fill="var(--ink)">Status: Free Unix Alternative</text>
-								</svg>
-							</div>
+              <!-- Node 2: Shell Interface -->
+              <rect id="in_n2" x="50" y="64" width="420" height="38" class="node-rect st-active" data-a="intro-node" data-n="shell" style="cursor:pointer;" />
+              <text x="260" y="77" class="node-text">Shell Interpreter - Command Line Interface</text>
+              <text x="260" y="92" class="node-mono" fill="var(--primary)">Translates User Input - Dispatches System Calls</text>
 
-							<!-- Open Source vs Proprietary Software Comparison (SVG) -->
-							<div id="compare_box" style="display:none;">
-								<span class="lab">Open Source vs Proprietary Software (SVG)</span>
-								<svg class="svg-flowchart" viewBox="0 0 540 260">
-									<!-- Left Column: Open Source -->
-									<rect x="15" y="8" width="248" height="44" class="node-rect st-pass" />
-									<text x="139" y="24" class="node-text">Open Source (GNU / Linux)</text>
-									<text x="139" y="40" class="node-mono" fill="var(--ok)">100% Free - Community Driven</text>
+              <path d="M 260 102 L 260 120" class="flow-line line-pass" />
+              <polygon points="260,121 256,114 264,114" fill="var(--ok)" />
+              <text x="350" y="111" class="branch-label" fill="var(--ok)">system calls (glibc)</text>
 
-									<rect x="15" y="60" width="248" height="188" rx="8" fill="var(--paper)" stroke="var(--line)" />
-									<text x="28" y="82" class="node-left" fill="var(--ink)">1. Source - Fully Open &amp; Auditable</text>
-									<text x="28" y="106" class="node-left">2. Modify - Freely Customizable</text>
-									<text x="28" y="130" class="node-left">3. Share - Unlimited Distribution</text>
-									<text x="28" y="154" class="node-left">4. Cost - Permanently Free (GPL)</text>
-									<text x="28" y="178" class="node-left" fill="var(--ok)">5. Audit - Public Peer Review</text>
+              <!-- Node 3: Linux Kernel Core -->
+              <rect id="in_n3" x="50" y="122" width="420" height="48" class="node-rect st-pass" data-a="intro-node" data-n="kernel" style="cursor:pointer;" />
+              <text x="260" y="137" class="node-text" style="font-size:12px;">Linux Kernel - Hardware Resource Controller</text>
+              <text x="260" y="155" class="node-mono" fill="var(--ok)">Memory Management - Process Scheduler - Device Drivers</text>
 
-									<rect x="25" y="198" width="228" height="26" rx="5" fill="var(--ok-bg)" stroke="var(--ok)" stroke-width="0.8" />
-									<text x="139" y="211" class="node-mono" fill="var(--ok)" style="font-weight:700;">Examples: Linux - Ubuntu - Android</text>
+              <path d="M 260 170 L 260 188" class="flow-line line-pass" />
+              <polygon points="260,189 256,182 264,182" fill="var(--ok)" />
+              <text x="350" y="179" class="branch-label" fill="var(--ok)">controls electronics</text>
 
-									<!-- Right Column: Proprietary -->
-									<rect x="277" y="8" width="248" height="44" class="node-rect st-active" />
-									<text x="401" y="24" class="node-text">Proprietary (Closed Source)</text>
-									<text x="401" y="40" class="node-mono">Commercial EULA - Vendor Locked</text>
+              <!-- Node 4: Hardware -->
+              <rect id="in_n4" x="50" y="190" width="420" height="46" rx="8" fill="var(--ink)" data-a="intro-node" data-n="hw" style="cursor:pointer;" />
+              <text x="260" y="206" class="node-mono" fill="#ffffff" style="font-weight:700;">Computer Hardware - CPU - RAM - Storage - Network</text>
+              <text x="260" y="222" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">Physical Processing Infrastructure - Microprocessors - Motherboard</text>
+            </svg>
+          </div>
 
-									<rect x="277" y="60" width="248" height="188" rx="8" fill="var(--paper)" stroke="var(--line)" />
-									<text x="290" y="82" class="node-left" fill="var(--ink)">1. Source - Hidden Binary Files</text>
-									<text x="290" y="106" class="node-left">2. Modify - Strictly Prohibited</text>
-									<text x="290" y="130" class="node-left">3. Share - Copying Prohibited</text>
-									<text x="290" y="154" class="node-left">4. Cost - Expensive Paid Licenses</text>
-									<text x="290" y="178" class="node-left" fill="var(--muted)">5. Audit - Closed Vendor-Only</text>
+          <!-- VIEW 2: WHERE LINUX IS USED -->
+          <div id="fc_where" style="display:none;">
+            <span class="lab">Where Linux Is Used: Global Infrastructure Footprint (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 260">
+              <!-- Top Root -->
+              <rect x="70" y="8" width="380" height="34" class="node-rect st-active" />
+              <text x="260" y="25" class="node-mono">Linux Operating System - Modern Digital Backbone</text>
 
-									<rect x="287" y="198" width="228" height="26" rx="5" fill="var(--tint)" stroke="var(--primary)" stroke-width="0.8" />
-									<text x="401" y="211" class="node-mono" fill="var(--primary)" style="font-weight:700;">Examples: Windows - macOS - iOS</text>
-								</svg>
-							</div>
-						</div>
-					</div>
+              <path d="M 260 42 L 260 56" class="flow-line line-blue" />
+              <path d="M 75 56 L 445 56" class="flow-line line-blue" fill="none" />
 
-					<div class="box">
-						<span class="lab" id="insp_lab">Historical Record &amp; Code Inspector</span>
-						<pre><code id="insp_code"></code></pre>
-						<div class="res ok" id="insp_res"></div>
-					</div>
-				</div>
+              <!-- 4 Vertical Drop Lines -->
+              <path d="M 75 56 L 75 68 M 198 56 L 198 68 M 322 56 L 322 68 M 445 56 L 445 68" class="flow-line line-blue" />
 
-				<!-- SECTION 3: QUICK CHECK -->
-				<h2 class="sh"><span class="st">3</span>Quick Check</h2>
-				<div class="box">
-					<p style="margin:0 0 5px"><b>Who created the Linux kernel in 1991, and under which open-source license was it published?</b></p>
-					<div class="chips" id="qc_chips">
-						<button type="button" class="chip" data-a="qc" data-o="0"><code>Linus Torvalds under GNU GPL</code></button>
-						<button type="button" class="chip" data-a="qc" data-o="1"><code>Steve Jobs under Apple EULA</code></button>
-						<button type="button" class="chip" data-a="qc" data-o="2"><code>Bill Gates under Windows OEM</code></button>
-					</div>
-					<div class="res" id="qc_res" style="display:none"></div>
-				</div>
-			</div>
+              <!-- Domain 1: Supercomputers -->
+              <rect id="dom_n_super" x="15" y="68" width="120" height="70" class="node-rect st-pass" data-a="dom" data-d="super" style="cursor:pointer;" />
+              <text x="75" y="84" class="node-text">Supercomputers</text>
+              <text x="75" y="100" class="node-mono" fill="var(--ok)" style="font-weight:800;">100% Top 500</text>
+              <text x="75" y="118" class="node-mono" style="font-size:9px;">Scientific Research</text>
+              <text x="75" y="130" class="node-mono" style="font-size:8.5px;">Frontier - Aurora</text>
 
-			<div class="foot">
-    <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
-    <span class="status-badge">Level 1 Complete</span>
+              <!-- Domain 2: Cloud Servers -->
+              <rect id="dom_n_cloud" x="140" y="68" width="116" height="70" class="node-rect st-pass" data-a="dom" data-d="cloud" style="cursor:pointer;" />
+              <text x="198" y="84" class="node-text">Cloud Servers</text>
+              <text x="198" y="100" class="node-mono" fill="var(--ok)" style="font-weight:800;">90%+ Public Cloud</text>
+              <text x="198" y="118" class="node-mono" style="font-size:9px;">AWS - GCP - Azure</text>
+              <text x="198" y="130" class="node-mono" style="font-size:8.5px;">Docker Containers</text>
+
+              <!-- Domain 3: Mobile & Smart Tech -->
+              <rect id="dom_n_mobile" x="264" y="68" width="116" height="70" class="node-rect st-pass" data-a="dom" data-d="mobile" style="cursor:pointer;" />
+              <text x="322" y="84" class="node-text">Android &amp; IoT</text>
+              <text x="322" y="100" class="node-mono" fill="var(--ok)" style="font-weight:800;">3+ Billion Phones</text>
+              <text x="322" y="118" class="node-mono" style="font-size:9px;">Smart TVs - Routers</text>
+              <text x="322" y="130" class="node-mono" style="font-size:8.5px;">Automotive Systems</text>
+
+              <!-- Domain 4: Space & Robotics -->
+              <rect id="dom_n_space" x="388" y="68" width="118" height="70" class="node-rect st-pass" data-a="dom" data-d="space" style="cursor:pointer;" />
+              <text x="447" y="84" class="node-text">Space &amp; Defense</text>
+              <text x="447" y="100" class="node-mono" fill="var(--ok)" style="font-weight:800;">NASA - SpaceX</text>
+              <text x="447" y="118" class="node-mono" style="font-size:9px;">Mars Rovers</text>
+              <text x="447" y="130" class="node-mono" style="font-size:8.5px;">Falcon 9 Rocket</text>
+
+              <!-- Bottom Summary Bar -->
+              <path d="M 75 138 L 75 160 M 198 138 L 198 160 M 322 138 L 322 160 M 447 138 L 447 160" class="flow-line line-blue" />
+              <path d="M 75 160 L 447 160" class="flow-line line-blue" fill="none" />
+              <path d="M 260 160 L 260 178" class="flow-line line-blue" />
+              <polygon points="260,179 256,172 264,172" fill="var(--primary)" />
+
+              <rect x="15" y="180" width="490" height="66" rx="8" fill="var(--ink)" stroke="var(--primary)" stroke-width="1.2" />
+              <text x="260" y="200" class="node-mono" fill="#38bdf8" style="font-size:11.5px;font-weight:800;">Global Dominance - Universal Scalability</text>
+              <text x="260" y="218" class="node-mono" fill="#ffffff">From low-power microcontrollers to multi-petabyte supercomputer clusters</text>
+              <text x="260" y="234" class="node-mono" fill="#93c5fd" style="font-size:9px;">Reliable - Modular - Crash-Resilient - Production Battle-Tested</text>
+            </svg>
+          </div>
+
+          <!-- VIEW 3: PROPERLY ALIGNED ADVANTAGES & SECURITY FLOWCHART -->
+          <div id="fc_adv" style="display:none;">
+            <span class="lab">Core Advantages &amp; Security Architecture Flowchart (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 280">
+              <!-- Top Hub -->
+              <rect x="60" y="8" width="400" height="34" class="node-rect st-active" />
+              <text x="260" y="25" class="node-mono">Linux Core Engine - Architectural &amp; Security Strengths</text>
+
+              <!-- Central Trunk -->
+              <path d="M 260 42 L 260 56" class="flow-line line-blue" />
+
+              <!-- Horizontal Distribution Rail -->
+              <path d="M 72 56 L 448 56" class="flow-line line-blue" fill="none" />
+
+              <!-- 4 Drop Lines with Arrows -->
+              <path d="M 72 56 L 72 68 M 198 56 L 198 68 M 322 56 L 322 68 M 448 56 L 448 68" class="flow-line line-blue" />
+              <polygon points="72,69 68,62 76,62" fill="var(--primary)" />
+              <polygon points="198,69 194,62 202,62" fill="var(--primary)" />
+              <polygon points="322,69 318,62 326,62" fill="var(--primary)" />
+              <polygon points="448,69 444,62 452,62" fill="var(--primary)" />
+
+              <!-- Pillar 1: High Security -->
+              <rect id="adv_n_sec" x="12" y="69" width="120" height="106" class="node-rect st-pass" data-a="adv" data-v="sec" style="cursor:pointer;" />
+              <text x="72" y="86" class="node-text">1. High Security</text>
+              <text x="72" y="104" class="node-mono" fill="var(--ok)">Root Separation</text>
+              <text x="72" y="124" class="node-mono" style="font-size:9px;">SELinux Sandboxing</text>
+              <text x="72" y="140" class="node-mono" style="font-size:8.5px;">Zero Hidden Backdoors</text>
+              <text x="72" y="156" class="node-mono" fill="var(--ok)" style="font-size:8.5px;">Public Code Audits</text>
+
+              <!-- Pillar 2: Free & Open -->
+              <rect id="adv_n_foss" x="138" y="69" width="120" height="106" class="node-rect st-active" data-a="adv" data-v="foss" style="cursor:pointer;" />
+              <text x="198" y="86" class="node-text">2. Free &amp; Open</text>
+              <text x="198" y="104" class="node-mono" fill="var(--primary)">GNU GPL License</text>
+              <text x="198" y="124" class="node-mono" style="font-size:9px;">100% Free Access</text>
+              <text x="198" y="140" class="node-mono" style="font-size:8.5px;">Zero License Fees</text>
+              <text x="198" y="156" class="node-mono" fill="var(--primary)" style="font-size:8.5px;">Universal Sharing</text>
+
+              <!-- Pillar 3: High Stability -->
+              <rect id="adv_n_stab" x="262" y="69" width="120" height="106" class="node-rect st-active" data-a="adv" data-v="stab" style="cursor:pointer;" />
+              <text x="322" y="86" class="node-text">3. High Stability</text>
+              <text x="322" y="104" class="node-mono" fill="var(--primary)">Multi-Year Uptime</text>
+              <text x="322" y="124" class="node-mono" style="font-size:9px;">No Forced Reboots</text>
+              <text x="322" y="140" class="node-mono" style="font-size:8.5px;">Modular Daemons</text>
+              <text x="322" y="156" class="node-mono" fill="var(--primary)" style="font-size:8.5px;">Live Kernel Patching</text>
+
+              <!-- Pillar 4: Full Control -->
+              <rect id="adv_n_flex" x="388" y="69" width="120" height="106" class="node-rect st-pass" data-a="adv" data-v="flex" style="cursor:pointer;" />
+              <text x="448" y="86" class="node-text">4. Full Control</text>
+              <text x="448" y="104" class="node-mono" fill="var(--ok)">Modular Engine</text>
+              <text x="448" y="124" class="node-mono" style="font-size:9px;">Runs on 512MB RAM</text>
+              <text x="448" y="140" class="node-mono" style="font-size:8.5px;">Custom Kernel Config</text>
+              <text x="448" y="156" class="node-mono" fill="var(--ok)" style="font-size:8.5px;">Headless &amp; Efficient</text>
+
+              <!-- Downward Convergence Rail -->
+              <path d="M 72 175 L 72 192 M 198 175 L 198 192 M 322 175 L 322 192 M 448 175 L 448 192" class="flow-line line-blue" />
+              <path d="M 72 192 L 448 192" class="flow-line line-blue" fill="none" />
+              <path d="M 260 192 L 260 206" class="flow-line line-blue" />
+              <polygon points="260,207 256,200 264,200" fill="var(--primary)" />
+
+              <!-- Bottom Summary Banner -->
+              <rect x="12" y="208" width="496" height="60" rx="8" fill="var(--ink)" stroke="var(--primary)" stroke-width="1.2" />
+              <text x="260" y="228" class="node-mono" fill="#38bdf8" style="font-size:11.5px;font-weight:800;">Enterprise Advantage - Security - Autonomy - Efficiency</text>
+              <text x="260" y="246" class="node-mono" fill="#ffffff">Strict unprivileged isolation and transparent open source eliminate malware risk</text>
+              <text x="260" y="260" class="node-mono" fill="#93c5fd" style="font-size:9px;">Zero License Royalties - Maximum Performance Across All Silicon Architectures</text>
+            </svg>
+          </div>
+
+          <!-- VIEW 4: LEARNING OUTCOMES & CAREER BLUEPRINT -->
+          <div id="fc_outcomes" style="display:none;">
+            <span class="lab">Learning Outcomes &amp; Career Roadmap (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 260">
+              <!-- Top Root -->
+              <rect x="100" y="8" width="320" height="34" class="node-rect st-pass" />
+              <text x="260" y="25" class="node-mono">Linux Mastery - Core Foundation of Modern IT</text>
+
+              <path d="M 260 42 L 260 56" class="flow-line line-pass" />
+              <path d="M 75 56 L 445 56" class="flow-line line-pass" fill="none" />
+
+              <path d="M 75 56 L 75 70 M 198 56 L 198 70 M 322 56 L 322 70 M 445 56 L 445 70" class="flow-line line-pass" />
+
+              <!-- Career 1: DevOps -->
+              <rect id="car_n_devops" x="15" y="70" width="120" height="74" class="node-rect st-active" data-a="car" data-c="devops" style="cursor:pointer;" />
+              <text x="75" y="88" class="node-text">DevOps &amp; SRE</text>
+              <text x="75" y="104" class="node-mono" fill="var(--primary)" style="font-weight:700;">Automation</text>
+              <text x="75" y="122" class="node-mono" style="font-size:9px;">Docker - K8s</text>
+              <text x="75" y="134" class="node-mono" style="font-size:8.5px;">CI/CD Pipelines</text>
+
+              <!-- Career 2: Cloud Architect -->
+              <rect id="car_n_cloud" x="140" y="70" width="116" height="74" class="node-rect st-active" data-a="car" data-c="cloud" style="cursor:pointer;" />
+              <text x="198" y="88" class="node-text">Cloud Architect</text>
+              <text x="198" y="104" class="node-mono" fill="var(--primary)" style="font-weight:700;">Infrastructure</text>
+              <text x="198" y="122" class="node-mono" style="font-size:9px;">AWS - Azure - GCP</text>
+              <text x="198" y="134" class="node-mono" style="font-size:8.5px;">Terraform - Scale</text>
+
+              <!-- Career 3: Cybersecurity -->
+              <rect id="car_n_sec" x="264" y="70" width="116" height="74" class="node-rect st-active" data-a="car" data-c="sec" style="cursor:pointer;" />
+              <text x="322" y="88" class="node-text">Cybersecurity</text>
+              <text x="322" y="104" class="node-mono" fill="var(--primary)" style="font-weight:700;">Hardening &amp; Pentest</text>
+              <text x="322" y="122" class="node-mono" style="font-size:9px;">Kali - Forensics</text>
+              <text x="322" y="134" class="node-mono" style="font-size:8.5px;">Firewalls - Audits</text>
+
+              <!-- Career 4: Linux SysAdmin -->
+              <rect id="car_n_sys" x="388" y="70" width="118" height="74" class="node-rect st-active" data-a="car" data-c="sys" style="cursor:pointer;" />
+              <text x="447" y="88" class="node-text">SysAdmin</text>
+              <text x="447" y="104" class="node-mono" fill="var(--primary)" style="font-weight:700;">Server Ops</text>
+              <text x="447" y="122" class="node-mono" style="font-size:9px;">systemd - SSH</text>
+              <text x="447" y="134" class="node-mono" style="font-size:8.5px;">Backup - Storage</text>
+
+              <!-- Bottom Career Impact Box -->
+              <rect x="15" y="160" width="490" height="86" rx="8" fill="var(--ink)" stroke="var(--ok)" stroke-width="1.2" />
+              <text x="260" y="182" class="node-mono" fill="#34d399" style="font-size:12px;font-weight:800;">High Career Valuation - Essential Foundation</text>
+              <text x="260" y="202" class="node-mono" fill="#ffffff">Linux proficiency is required across more than 85% of high-paying tech jobs</text>
+              <text x="260" y="222" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">Command Line - Shell Scripting - System Administration - Networking Mastery</text>
+              <rect x="85" y="231" width="350" height="1" fill="rgba(255,255,255,0.15)" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Inspector Panel: Syntax Highlighted Terminal -->
+      <div class="box">
+        <label class="lab">System Inspector &bull; Live Telemetry</label>
+        <div class="terminal-card">
+          <div class="terminal-bar">
+            <div class="terminal-dots">
+              <span class="dot dot-r"></span>
+              <span class="dot dot-y"></span>
+              <span class="dot dot-g"></span>
+            </div>
+            <span class="terminal-title" id="insp_lab">System Concept &amp; Telemetry Inspector</span>
+          </div>
+          <pre class="terminal-code"><code id="insp_code"></code></pre>
+        </div>
+        <div class="res ok" id="insp_res"></div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: QUICK CHECK -->
+    <h2 class="sh"><span class="st">3</span>Quick Check</h2>
+    <div class="box">
+      <p style="margin:0 0 5px"><b>Where does Linux dominate today, and what makes its source code freely accessible?</b></p>
+      <div class="chips" id="qc_chips">
+        <button type="button" class="chip" data-a="qc" data-o="0"><code>Powers 100% of top supercomputers under GNU GPL open-source license</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="1"><code>Used only on gaming consoles under proprietary commercial licenses</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="2"><code>Strictly restricted to academic research with paid binary licenses</code></button>
+      </div>
+      <div class="res" id="qc_res" style="display:none"></div>
+    </div>
   </div>
-			</div>
-		</main>
+</main>
 
-		<script>
-			const $ = id => document.getElementById(id);
-			let activeMode = "origin";
-			let archLevel = "all";
+<script>
+const $ = id => document.getElementById(id);
+let activeMode = "intro";
+let activeDom = "all";
+let activeAdv = "all";
+let activeCar = "all";
 
-			const MODES = {
-				origin: {
-					lab: "Historical Record & Code Inspector",
-					n1: "Linus Torvalds (Helsinki)",
-					lbl1: "starts hobby project",
-					t2: "Milestone: Aug 25, 1991",
-					sub2: "comp.os.minix Usenet Post",
-					lbl2: "compiles C code",
-					t3: "Linux Kernel Engine",
-					sub3: "Controls Hardware & Memory",
-					foot: "Status: Free Unix Alternative",
-					code: `// From: Linus Torvalds\n// Date: 25 Aug 1991\n// Subject: What would you like to see most in minix?\n\n"I'm doing a (free) operating system (just a hobby,\nwon't be big and professional like gnu) for 386 AT clones."`,
-					explain: "Linus Torvalds announced his free hobby operating system publicly on the comp.os.minix Usenet group."
-				},
-				gpl: {
-					lab: "Open Source Legal & License Inspector",
-					n1: "Source Code Published",
-					lbl1: "applies license",
-					t2: "GNU GPLv2 Copyleft",
-					sub2: "General Public License",
-					lbl2: "protects freedom",
-					t3: "4 Software Freedoms",
-					sub3: "Inspect, Modify & Distribute",
-					foot: "Status: 100% Free Open Source",
-					code: `// GNU General Public License (GPLv2)\n// Freedom 1: Anyone can inspect and study source code.\n// Freedom 2: Anyone can modify and improve the code.\n// Freedom 3: Anyone can distribute copies to help others.`,
-					explain: "The GNU General Public License guarantees everyone legal freedom to inspect, edit, and distribute code."
-				},
-				compare: {
-					lab: "Open Source vs Proprietary Inspector",
-					code: `// Open Source (GNU GPL) vs Proprietary (Closed Source)\n1. Source Code   : 100% Public Access vs Hidden Binary\n2. Modification  : Freely Modifiable vs Strictly Prohibited\n3. Redistribution: Unlimited Free Sharing vs Illegal by Law\n4. License Cost  : Zero Fees (GPL) vs Expensive Subscriptions\n5. Real Examples : Linux, Ubuntu, Android vs Windows, macOS`,
-					explain: "Open source software under GNU GPL guarantees transparent public code inspection and community-driven freedom."
-				}
-			};
+const DATA = {
+  intro: {
+    all: {
+      lab: "1. Intro to Linux: Operating System Overview",
+      code: `Definition : Free, open-source Unix-like operating system kernel\nFunction   : Manages physical computer hardware and coordinates user software\nLicensing  : 100% free under GNU General Public License (GPLv2)\nComponents : Applications -> Shell Console -> Linux Kernel -> Physical Hardware`,
+      explain: "Linux bridges human user commands and raw computer hardware smoothly without costly proprietary license gates."
+    },
+    apps: {
+      lab: "Application Layer (User Software)",
+      code: `Role     : User-facing software, database engines, browsers, and desktop tools\nExamples : Apache, Nginx, PostgreSQL, Firefox, Python runtimes, Docker\nSecurity : Runs in unprivileged user space to prevent accidental system crashes`,
+      explain: "Applications interact safely with user requests and submit system calls whenever hardware resources are needed."
+    },
+    shell: {
+      lab: "Shell Layer (Command Interpreter)",
+      code: `Role     : Interprets typed text commands and executes system binary tools\nExamples : Bash (Bourne Again Shell), Zsh, Fish, POSIX command utilities\nFunction : Connects human terminal input directly with kernel system routines`,
+      explain: "The command shell translates human keystrokes into actionable system calls handled directly by the kernel."
+    },
+    kernel: {
+      lab: "Linux Kernel Core (The Central Engine)",
+      code: `Role     : Controls CPU scheduling, RAM allocation, filesystem I/O, and drivers\nAuthor   : Linus Torvalds and thousands of worldwide open-source engineers\nType     : Monolithic high-performance kernel with dynamic loadable modules`,
+      explain: "The Linux kernel manages computer memory and processor resources safely to ensure uninterrupted operating stability."
+    },
+    hw: {
+      lab: "Physical Hardware Layer",
+      code: `Role     : Electronic silicon chips executing binary instruction cycles\nExamples : Intel/AMD x86_64 CPUs, ARM64 chips, RISC-V, DDR RAM, NVMe SSDs\nControl  : Governed exclusively by authenticated Linux kernel device drivers`,
+      explain: "Hardware represents the physical electronic circuitry that executes binary calculations under direct kernel control."
+    }
+  },
+  where: {
+    all: {
+      lab: "2. Where Linux Is Used: Ubiquitous Global Presence",
+      code: `Supercomputers : 500 of the world's 500 fastest supercomputers run Linux (100%)\nCloud Workloads: Over 90% of all public cloud workloads on AWS, GCP, and Azure\nMobile Devices : Over 3 billion active smartphones running Android (Linux Kernel)\nSpace & Auto   : NASA Mars rovers, Falcon 9 rockets, smart TVs, and connected cars`,
+      explain: "Linux powers the vast majority of critical global computational infrastructure from pocket phones to scientific clusters."
+    },
+    super: {
+      lab: "Supercomputers: 100% Top 500 Worldwide",
+      code: `Adoption : 100% (All 500 fastest machines in the global Top500 list)\nExamples : Frontier (Oak Ridge), Aurora (Argonne), Fugaku (Japan)\nReason   : Unmatched raw performance, zero license overhead, custom kernel tuning`,
+      explain: "Every single top supercomputer runs Linux because scientists can fine-tune the kernel for extreme performance."
+    },
+    cloud: {
+      lab: "Cloud Infrastructure & Enterprise Servers",
+      code: `Adoption : Over 90% of production workloads on AWS, Azure, and Google Cloud\nWorkloads: Web hosting, Docker containers, Kubernetes clusters, AI inference\nReason   : Lightweight headless operations, automated scripting, rock-solid uptime`,
+      explain: "Global enterprise cloud infrastructure relies upon Linux containers to automate scalable microservices reliably."
+    },
+    mobile: {
+      lab: "Mobile Phones & Consumer Electronics",
+      code: `Adoption : 3+ Billion active Android devices run an optimized Linux kernel\nDevices  : Smart televisions, home WiFi routers, smart thermostats, wearables\nReason   : Modular hardware abstraction layer and royalty-free manufacturer adoption`,
+      explain: "Android relies directly on the Linux kernel for hardware device communication, process security, and battery management."
+    },
+    space: {
+      lab: "Space Exploration & Robotics",
+      code: `Missions : NASA Perseverance Mars Rover, Ingenuity Helicopter, ISS computers\nDefense  : SpaceX Falcon 9 autonomous flight software, avionics, robotics\nReason   : Real-time determinism, verifiable open-source code, extreme reliability`,
+      explain: "NASA and SpaceX deploy Linux aboard space missions because verifiable open source ensures mission-critical flight reliability."
+    }
+  },
+  advantages: {
+    all: {
+      lab: "3. Core Advantages: Why Linux Dominates",
+      code: `1. Security      : Robust permission hierarchy with unprivileged user separation\n2. Open Source   : 100% public source code inspected by millions of global experts\n3. Stability     : Capable of multi-year continuous uptime without forced restarts\n4. Efficiency    : Runs comfortably on lightweight 512MB RAM embedded microchips`,
+      explain: "Linux delivers maximum security, cost freedom, and multi-year uptime without proprietary licensing restrictions."
+    },
+    sec: {
+      lab: "High Security & Permission Isolation",
+      code: `Features : Distinct root superuser isolation, SELinux, and AppArmor sandboxing\nAuditing : Completely transparent source code allows instant vulnerability patches\nAdvantage: Zero hidden vendor data telemetry or forced background installations`,
+      explain: "Linux protects system integrity by enforcing strict user privilege boundaries and transparent public vulnerability auditing."
+    },
+    foss: {
+      lab: "Free & Open Source Software (FOSS)",
+      code: `License  : GNU General Public License (GPL) guaranteeing four core freedoms\nFreedom 1: Freedom to study, inspect, and audit the source code\nFreedom 2: Freedom to modify and customize the software for any purpose\nFreedom 3: Freedom to distribute exact or modified copies with zero royalty fees`,
+      explain: "Open-source licensing protects global users by allowing anyone to study, edit, and distribute code freely."
+    },
+    stab: {
+      lab: "Rock-Solid Multi-Year Stability",
+      code: `Design   : Modular daemon architecture prevents peripheral crashes from killing OS\nUpdates  : Live kernel patching and package upgrades without mandatory reboots\nTelemetry: Enterprise servers regularly maintain continuous uptime exceeding 5+ years`,
+      explain: "Linux keeps critical enterprise servers running continuously without demanding disruptive forced operating system restarts."
+    },
+    flex: {
+      lab: "Customization & Resource Efficiency",
+      code: `Footprint : Stripped-down kernels boot smoothly using less than 128MB of RAM\nModularity: Choose between headless CLI servers, ultra-light desktops, or rich GUIs\nControl   : Full authority to modify kernel parameters, drivers, and background tasks`,
+      explain: "Linux adapts perfectly across diverse hardware profiles ranging from tiny embedded sensor boards to massive mainframes."
+    }
+  },
+  outcomes: {
+    all: {
+      lab: "4. Learning Outcomes & Career Pathways",
+      code: `Industry Valuation : Over 85% of modern high-paying technology roles require Linux\nTarget Careers     : DevOps, Cloud Solutions, Cyber Defense, System Engineering\nCore Skills Acquired: Terminal navigation, Bash automation, permissions, networking\nReturn on Learning : Direct gateway into senior cloud infrastructure and security jobs`,
+      explain: "Learning Linux empowers engineers to manage high-scale cloud platforms, automate server fleets, and secure networks."
+    },
+    devops: {
+      lab: "DevOps Engineer & Site Reliability Engineering (SRE)",
+      code: `Key Role : Automates software deployments and containerized cluster pipelines\nCore Tech: Docker, Kubernetes, Ansible, GitHub Actions, Terraform on Linux\nSalary   : High industry demand with top compensation across tech enterprises`,
+      explain: "DevOps engineers rely on Linux shells to build reliable automated delivery pipelines for containerized applications."
+    },
+    cloud: {
+      lab: "Cloud Solutions Architect",
+      code: `Key Role : Designs scalable high-availability cloud infrastructure on AWS/GCP\nCore Tech: Amazon Linux, Ubuntu Cloud, VPC networking, auto-scaling clusters\nDemand   : Foundational prerequisite for all major cloud professional certifications`,
+      explain: "Cloud architects design multi-server production architectures hosted almost exclusively on Linux enterprise distributions."
+    },
+    sec: {
+      lab: "Cybersecurity Analyst & Penetration Tester",
+      code: `Key Role : Performs ethical security audits, intrusion detection, and hardening\nCore Tech: Kali Linux, Wireshark, Metasploit, Nmap, iptables, SELinux policies\nValue    : Linux mastery is mandatory for deep packet analysis and kernel forensics`,
+      explain: "Cybersecurity specialists leverage specialized Linux distributions to audit network defenses and patch critical infrastructure vulnerabilities."
+    },
+    sys: {
+      lab: "Linux System Administrator",
+      code: `Key Role : Maintains 24/7 server health, storage volumes, user accounts, and backups\nCore Tech: Red Hat Enterprise Linux (RHEL), Debian, systemd, SSH, LVM storage\nImpact   : Serves as the vital engineering backbone of corporate IT infrastructure`,
+      explain: "Linux system administrators safeguard enterprise corporate servers by configuring reliable storage, network permissions, and backups."
+    }
+  }
+};
 
-			function updateStudio() {
-				document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeMode));
+function highlightSyntax(raw) {
+  if (!raw) return "";
+  const escape = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return raw.split("\n").map(line => {
+    const trimmed = line.trim();
+    if (trimmed.startsWith("#") || trimmed.startsWith("//")) {
+      return `<span class="tok-c">${escape(line)}</span>`;
+    }
+    const colonIdx = line.indexOf(":");
+    let prefix = "";
+    let content = line;
+    if (colonIdx !== -1 && !line.slice(0, colonIdx).includes('"') && !line.slice(0, colonIdx).includes("'")) {
+      const key = line.slice(0, colonIdx);
+      prefix = `<span class="tok-k">${escape(key)}</span><span class="tok-punc">:</span>`;
+      content = line.slice(colonIdx + 1);
+    }
+    const tokenRegex = /(".*?"|'.*?'|\b(?:sudo|apt|dnf|yum|pacman|bash|zsh|glibc|gcc|systemd|ssh|selinux|rpm|deb|aur|emacs|coreutils|gpl|foss|grub|systemctl|journalctl|echo|cat|ls|head|tail|mkdir|touch|find|wc|cut|whatis|apropos|man|ln|cd|pwd)\b|(?:\$\d[\d,]*\+?|\b\d+(?:\.\d+)?%?|\b100%|\b16-bit\b|\b32-bit\b|\b64-bit\b|\b10-year\b|\b386\b|\b19\d\d\b|\b20\d\d\b|\b512MB\b|\b128MB\b|\b\d+GB\b|\b\d+TB\b))/gi;
+    let highlighted = "";
+    let lastIdx = 0;
+    let match;
+    while ((match = tokenRegex.exec(content)) !== null) {
+      highlighted += escape(content.slice(lastIdx, match.index));
+      const tok = match[0];
+      if (tok.startsWith('"') || tok.startsWith("'")) {
+        highlighted += `<span class="tok-s">${escape(tok)}</span>`;
+      } else if (/^\d|\$|16-bit|32-bit|64-bit|10-year|386/i.test(tok)) {
+        highlighted += `<span class="tok-n">${escape(tok)}</span>`;
+      } else {
+        highlighted += `<span class="tok-cmd">${escape(tok)}</span>`;
+      }
+      lastIdx = tokenRegex.lastIndex;
+    }
+    highlighted += escape(content.slice(lastIdx));
+    return prefix + highlighted;
+  }).join("\n");
+}
 
-				if (activeMode === "compare") {
-					$("fc_box").style.display = "none";
-					$("compare_box").style.display = "block";
-					const m = MODES.compare;
-					$("insp_lab").textContent = m.lab;
-					$("insp_code").textContent = m.code;
-					const res = $("insp_res");
-					res.textContent = m.explain;
-					res.className = "res ok";
-				} else {
-					$("fc_box").style.display = "block";
-					$("compare_box").style.display = "none";
+function updateStudio() {
+  document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeMode));
 
-					const m = MODES[activeMode];
-					$("insp_lab").textContent = m.lab;
-					$("fl_t1").textContent = m.n1;
-					$("fl_lbl1").textContent = m.lbl1;
-					$("fl_t2").textContent = m.t2;
-					$("fl_sub2").textContent = m.sub2;
-					$("fl_lbl2").textContent = m.lbl2;
-					$("fl_t3").textContent = m.t3;
-					$("fl_sub3").textContent = m.sub3;
-					$("fl_foot").textContent = m.foot;
-					$("insp_code").textContent = m.code;
-					const res = $("insp_res");
-					res.textContent = m.explain;
-					res.className = "res ok";
-				}
-			}
+  $("fc_intro").style.display = activeMode === "intro" ? "block" : "none";
+  $("fc_where").style.display = activeMode === "where" ? "block" : "none";
+  $("fc_adv").style.display = activeMode === "advantages" ? "block" : "none";
+  $("fc_outcomes").style.display = activeMode === "outcomes" ? "block" : "none";
 
-			document.addEventListener("click", e => {
-				const t = e.target.closest("[data-a]");
-				if (!t) return;
-				const a = t.dataset.a;
+  $("sub_nav_where").style.display = activeMode === "where" ? "block" : "none";
+  $("sub_nav_adv").style.display = activeMode === "advantages" ? "block" : "none";
+  $("sub_nav_out").style.display = activeMode === "outcomes" ? "block" : "none";
 
-				if (a === "md") {
-					activeMode = t.dataset.m;
-					updateStudio();
-				} else if (a === "qc") {
-					const opt = +t.dataset.o;
-					const chips = $("qc_chips").querySelectorAll(".chip");
-					chips.forEach((c, idx) => {
-						c.classList.remove("ok", "bad");
-						if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
-					});
-					const qcRes = $("qc_res");
-					qcRes.style.display = "flex";
-					if (opt === 0) {
-						qcRes.className = "res ok";
-						qcRes.textContent = "Correct! Linus Torvalds released the Linux kernel under the free GNU General Public License.";
-					} else {
-						qcRes.className = "res bad";
-						qcRes.textContent = "Not quite. Linus Torvalds created the Linux kernel under the GNU General Public License.";
-					}
-				}
-			});
+  if (activeMode === "intro") {
+    renderInspector(DATA.intro.all);
+  } else if (activeMode === "where") {
+    renderWhere();
+  } else if (activeMode === "advantages") {
+    renderAdvantages();
+  } else if (activeMode === "outcomes") {
+    renderOutcomes();
+  }
+}
 
-			updateStudio();
-		</script>
-	</body>
+function renderWhere() {
+  document.querySelectorAll("[data-a='dom']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.d === activeDom);
+  });
+  const data = DATA.where[activeDom] || DATA.where.all;
+  renderInspector(data);
+
+  const nodes = {
+    super: $("dom_n_super"),
+    cloud: $("dom_n_cloud"),
+    mobile: $("dom_n_mobile"),
+    space: $("dom_n_space")
+  };
+
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    const isSelected = activeDom === "all" || activeDom === k;
+    el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
+    el.style.opacity = isSelected ? "1" : "0.45";
+  });
+}
+
+function renderAdvantages() {
+  document.querySelectorAll("[data-a='adv']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.v === activeAdv);
+  });
+  const data = DATA.advantages[activeAdv] || DATA.advantages.all;
+  renderInspector(data);
+
+  const nodes = {
+    sec: $("adv_n_sec"),
+    foss: $("adv_n_foss"),
+    stab: $("adv_n_stab"),
+    flex: $("adv_n_flex")
+  };
+
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    const isSelected = activeAdv === "all" || activeAdv === k;
+    el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
+    el.style.opacity = isSelected ? "1" : "0.45";
+  });
+}
+
+function renderOutcomes() {
+  document.querySelectorAll("[data-a='car']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.c === activeCar);
+  });
+  const data = DATA.outcomes[activeCar] || DATA.outcomes.all;
+  renderInspector(data);
+
+  const nodes = {
+    devops: $("car_n_devops"),
+    cloud: $("car_n_cloud"),
+    sec: $("car_n_sec"),
+    sys: $("car_n_sys")
+  };
+
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    const isSelected = activeCar === "all" || activeCar === k;
+    el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
+    el.style.opacity = isSelected ? "1" : "0.45";
+  });
+}
+
+function renderInspector(data) {
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").innerHTML = highlightSyntax(data.code);
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-a]");
+  if (!t) return;
+  const a = t.dataset.a;
+
+  if (a === "md") {
+    activeMode = t.dataset.m;
+    updateStudio();
+  } else if (a === "intro-node") {
+    const nodeKey = t.dataset.n;
+    const data = DATA.intro[nodeKey] || DATA.intro.all;
+    renderInspector(data);
+    ["apps", "shell", "kernel", "hw"].forEach(k => {
+      const el = $("in_n" + (k === "apps" ? 1 : k === "shell" ? 2 : k === "kernel" ? 3 : 4));
+      if (!el) return;
+      if (k === "hw") {
+        el.setAttribute("fill", nodeKey === k ? "var(--ok)" : "var(--ink)");
+      } else {
+        el.setAttribute("class", "node-rect " + (nodeKey === k ? "st-pass" : "st-active"));
+      }
+    });
+  } else if (a === "dom") {
+    activeDom = t.dataset.d;
+    renderWhere();
+  } else if (a === "adv") {
+    activeAdv = t.dataset.v;
+    renderAdvantages();
+  } else if (a === "car") {
+    activeCar = t.dataset.c;
+    renderOutcomes();
+  } else if (a === "qc") {
+    const opt = +t.dataset.o;
+    const chips = $("qc_chips").querySelectorAll(".chip");
+    chips.forEach((c, idx) => {
+      c.classList.remove("ok", "bad");
+      if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
+    });
+    const qcRes = $("qc_res");
+    qcRes.style.display = "flex";
+    if (opt === 0) {
+      qcRes.className = "res ok";
+      qcRes.textContent = "Correct! Linux powers 100% of top supercomputers and the majority of cloud servers under the free GNU GPL license.";
+    } else {
+      qcRes.className = "res bad";
+      qcRes.textContent = "Not quite. Linux is an open-source operating system that runs 100% of the world's top 500 supercomputers.";
+    }
+  }
+});
+
+updateStudio();
+</script>
+</body>
 </html>
