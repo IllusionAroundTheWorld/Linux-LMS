@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>2. File System Hierarchy (FHS) | IST Learn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+
+:root {
+  /* Corporate Live Brand Tokens */
+  --primary: #1571ba;
+  --primary-dark: #105c98;
+  --ink: #17202c;
+  --muted: #5d6470;
+  --line: #dfe3e8;
+  --paper: #f7f8fa;
+  --surface: #f5f9fc;
+
+  /* Theme Accents & Aliases */
+  --blue: var(--primary);
+  --blue-d: var(--primary-dark);
+  --navy: var(--ink);
+  --mut: var(--muted);
+  --panel: var(--paper);
+  --tint: #eef6fc;
+  --tint-bd: #c5d6f0;
+
+  /* Status Tokens */
+  --ok: #0d8a55;
+  --ok-bg: #e6f4ec;
+  --ok-bd: #a7f3d0;
+  --warn: #b7791f;
+  --warn-bg: #fef3c7;
+  --bad: #c0392b;
+  --bad-bg: #fbeceb;
+  --bad-bd: #fecaca;
+
+  /* Typography */
+  --font-sans: "Inter", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fbfcfd;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 24px 20px 48px;
+}
+
+main {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.eye {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0 0 6px;
+}
+
+h1 {
+  font-size: clamp(22px, 3.2vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  font-weight: 800;
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+h2 {
+  font-size: 20px;
+  letter-spacing: -0.015em;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: 800;
+  margin: 24px 0 10px;
+  color: var(--ink);
+}
+
+p {
+  margin: 0 0 8px;
+}
+
+.sm {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+/* CARDS & HEADINGS */
+.card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 24px;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(23, 32, 44, 0.04);
+  margin-bottom: 20px;
+}
+
+.sh {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 10px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.sh:first-child {
+  margin-top: 0;
+}
+
+.st {
+  background: var(--primary);
+  color: #ffffff;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* NOTE CALLOUT */
+.note {
+  background: var(--tint);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  margin: 8px 0 12px;
+  line-height: 1.5;
+}
+
+/* STRIPS & CREATOR CARDS */
+.strip,
+.creator-strip,
+.lineage-strip,
+.component-strip,
+.install-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin: 10px 0 12px;
+}
+
+.creator-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
+}
+
+.icon-box,
+.creator-img-box,
+.lineage-icon-box,
+.component-icon-box,
+.install-icon-box {
+  width: 66px;
+  height: 52px;
+  background: var(--tint);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid var(--tint-bd);
+}
+
+.creator-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* TWO COLUMN LAYOUT */
+.two {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
+
+.box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.lab {
+  font-weight: 800;
+  font-size: 11px;
+  margin: 0 0 6px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--muted);
+}
+
+/* INTERACTIVE CHIPS */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 10px;
+}
+
+.chip {
+  background: #ffffff;
+  border: 1px solid var(--tint-bd);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 5px 13px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.chip:hover {
+  background: var(--tint);
+}
+
+.chip.on {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.chip.ok {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+
+.chip.bad {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+
+/* CODE BLOCKS & FEEDBACK RESULTS */
+pre {
+  background: var(--ink);
+  color: #e8f0ff;
+  border-radius: 9px;
+  padding: 12px 14px;
+  font: 12px/1.55 var(--font-mono);
+  margin: 4px 0 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 92%;
+}
+
+.res {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.45;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.res.ok {
+  color: var(--ok);
+  background: var(--ok-bg);
+  border-color: var(--ok-bd);
+}
+
+.res.bad {
+  color: var(--bad);
+  background: var(--bad-bg);
+  border-color: var(--bad-bd);
+}
+
+.detail {
+  background: var(--tint);
+  border: 1px solid var(--tint-bd);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 8px;
+}
+
+/* SVG FLOWCHART STYLES */
+.chart-card {
+  background: #ffffff;
+  border: 1.5px solid var(--tint-bd);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 10px;
+  box-shadow: 0 1px 4px rgba(23, 32, 44, 0.02);
+}
+
+.svg-flowchart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.node-rect {
+  rx: 7px;
+  ry: 7px;
+  stroke-width: 1.75px;
+  transition: all 0.22s ease;
+}
+
+.flow-line {
+  stroke-width: 2px;
+  stroke-linecap: round;
+  transition: all 0.22s ease;
+}
+
+.node-text {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.node-left {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-anchor: start !important;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.node-mono {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.branch-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.st-active {
+  fill: var(--tint);
+  stroke: var(--primary);
+}
+
+.st-active text {
+  fill: var(--primary-dark);
+}
+
+.st-pass {
+  fill: var(--ok-bg);
+  stroke: var(--ok);
+  filter: drop-shadow(0 1px 3px rgba(13, 138, 85, 0.12));
+}
+
+.st-pass text {
+  fill: var(--ok);
+}
+
+.line-blue {
+  stroke: var(--primary);
+}
+
+.line-pass {
+  stroke: var(--ok);
+}
+
+/* BUTTONS */
+.btn {
+  background: var(--primary);
+  color: #ffffff;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn.alt {
+  background: #ffffff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.btn.alt:hover {
+  background: var(--paper);
+  border-color: var(--tint-bd);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.top-pill {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--primary);
+  background: var(--tint);
+  border: 1px solid var(--tint-bd);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+/* VIDEO STYLES */
+.video-card {
+  background: #ffffff;
+  border: 1.5px solid var(--tint-bd);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 14px 0 24px;
+  box-shadow: 0 1px 4px rgba(23, 32, 44, 0.02);
+}
+
+.video-embed-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+}
+
+.video-embed-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* FOOTER & STATUS */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ok);
+  background: var(--ok-bg);
+  border: 1px solid var(--ok-bd);
+  padding: 5px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eye">Module 2 &middot; Level 2 &middot; Interactive System Lab</p>
+    <h1>2. File System Hierarchy (FHS)</h1>
+    <p class="hint">Explore standard Linux directory architecture from the root directory down to system configuration and variable data.</p>
+
+    <!-- Key concepts -->
+    <h3>Key concepts</h3>
+    <div class="chips" id="chips">
+      <button type="button" class="chip on" data-a="chip" data-i="0">Root Directory (/)</button>
+      <button type="button" class="chip" data-a="chip" data-i="1">FHS Standard</button>
+      <button type="button" class="chip" data-a="chip" data-i="2">Configuration (/etc)</button>
+      <button type="button" class="chip" data-a="chip" data-i="3">Variable Data (/var)</button>
+      <button type="button" class="chip" data-a="chip" data-i="4">Virtual Files (/proc & /sys)</button>
+    </div>
+    <div class="detail" id="chipDetail">
+      <b style="font-size:13.5px;color:var(--navy);display:block;margin-bottom:3px;">Root Directory (/)</b>
+      <p style="margin:0;font-size:13px;color:var(--navy);line-height:1.5;">The single top-level directory where all storage devices and nested subdirectories attach in Linux.</p>
+    </div>
+
+    <!-- Interactive System Architecture & Flowchart -->
+    <h3>Interactive System Architecture &amp; Flowchart</h3>
+    <p class="hint">Explore command pipelines, filesystem hierarchy, and system concepts using the interactive diagram views below.</p>
+    <div class="card" style="margin-bottom:24px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
+        <div>
+          <span class="lab">Select Diagram View:</span>
+          <div class="chips" id="fc_chips" style="margin:4px 0 0;">
+            <button type="button" class="chip on" data-a="fcMode" data-m="0">1. Core Directory Tree Structure</button>
+            <button type="button" class="chip" data-a="fcMode" data-m="1">2. Storage & Virtual Mounts</button>
+          </div>
+        </div>
+      </div>
+      <div class="chart-card" id="fc_chart_wrap">
+        
+            <span class="lab">Linux Unified FHS Directory Hierarchy (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 540 260">
+              <!-- Root Box -->
+              <rect x="160" y="8" width="220" height="38" rx="8" fill="var(--navy)" />
+              <text x="270" y="27" class="node-mono" fill="#fff" style="font-weight:700;">/ (Root Directory) - Single Unified Tree</text>
+
+              <path d="M 270 46 L 270 62 M 75 62 L 465 62" class="flow-line line-blue" fill="none" />
+              <path d="M 75 62 L 75 74 M 205 62 L 205 74 M 335 62 L 335 74 M 465 62 L 465 74" class="flow-line line-blue" />
+
+              <!-- Tier 2: 4 Branch Cards -->
+              <rect x="15" y="74" width="120" height="66" class="node-rect st-active" />
+              <text x="75" y="93" class="node-text">/etc</text>
+              <text x="75" y="111" class="node-mono" fill="var(--blue)">Config Files</text>
+              <text x="75" y="126" class="node-mono" fill="var(--mut)" font-size="8.5">passwd, fstab</text>
+
+              <rect x="145" y="74" width="120" height="66" class="node-rect st-pass" />
+              <text x="205" y="93" class="node-text">/var</text>
+              <text x="205" y="111" class="node-mono" fill="var(--ok)">Variable Data</text>
+              <text x="205" y="126" class="node-mono" fill="var(--mut)" font-size="8.5">logs, mail, spool</text>
+
+              <rect x="275" y="74" width="120" height="66" class="node-rect st-active" />
+              <text x="335" y="93" class="node-text">/usr</text>
+              <text x="335" y="111" class="node-mono" fill="var(--blue)">User Software</text>
+              <text x="335" y="126" class="node-mono" fill="var(--mut)" font-size="8.5">bin, lib, share</text>
+
+              <rect x="405" y="74" width="120" height="66" class="node-rect st-pass" />
+              <text x="465" y="93" class="node-text">/home</text>
+              <text x="465" y="111" class="node-mono" fill="var(--ok)">User Profiles</text>
+              <text x="465" y="126" class="node-mono" fill="var(--mut)" font-size="8.5">documents, keys</text>
+
+              <!-- Convergence into Summary Card -->
+              <path d="M 270 140 L 270 160" class="flow-line line-blue" />
+              <polygon points="270,161 266,154 274,154" fill="var(--blue)" />
+
+              <rect x="15" y="162" width="510" height="84" rx="8" fill="var(--surface)" stroke="var(--tint-bd)" stroke-width="1.5" />
+              <text x="270" y="184" class="node-mono" fill="var(--navy)" style="font-weight:700;">Filesystem Hierarchy Standard (FHS) Principle</text>
+              <text x="270" y="206" class="node-mono" fill="var(--mut)">Zero Drive Letters - All Disks Mount Inside Directory Nodes</text>
+              <text x="270" y="226" class="node-mono" fill="var(--blue)">/bin Symlinked to /usr/bin - Distribution Consolidation</text>
+            </svg>
+            
+      </div>
+      <div class="detail" id="fc_explain" style="margin-top:10px;">
+        <p style="margin:0;font-size:13.5px;color:var(--navy);line-height:1.5;">Linux structures all storage under a single root directory without numbered Windows drive letters.</p>
+      </div>
+    </div>
+
+    <!-- Hands-on Command Line Simulator -->
+    <h3>Hands-on Command Line Simulator</h3>
+    <p class="hint">Audit standard FHS directories and inspect live kernel runtime files under /proc.</p>
+    <div class="card" style="margin-bottom:24px;">
+      <span class="lab">Bash: Inspect FHS Tree & Live Kernel Pseudo-files</span>
+      <pre><code>ls -d /* | head -n 6
+cat /proc/sys/kernel/osrelease
+head -n 2 /etc/os-release</code></pre>
+      <span class="lab" style="margin-top:10px;">Expected Terminal Output:</span>
+      <pre style="background:var(--paper);color:var(--ink);border:1px solid var(--line);"><code>/bin  /boot  /dev  /etc  /home  /lib
+6.8.0-45-generic
+PRETTY_NAME="Ubuntu 24.04 LTS"
+NAME="Ubuntu"</code></pre>
+
+      <div style="background:var(--tint);border:1px solid var(--tint-bd);border-radius:10px;padding:16px;margin-top:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
+          <b style="color:var(--navy);font-size:14px;" id="sim_step_title">Audit Root Directory</b>
+          <span class="top-pill" id="sim_step_num">Step 1 of 3</span>
+        </div>
+        <p class="sm" id="sim_step_desc" style="margin:0 0 12px;color:var(--navy);">List primary root level folders to verify strict Filesystem Hierarchy Standard compliance.</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <button type="button" class="btn" data-a="runSim" id="sim_run_btn">Run ls -ld /</button>
+          <div style="display:flex;gap:8px;">
+            <button type="button" class="btn alt" data-a="simPrev" id="sim_prev_btn" disabled>&larr; Prev</button>
+            <button type="button" class="btn alt" data-a="simNext" id="sim_next_btn" >Next &rarr;</button>
+          </div>
+        </div>
+        <div id="sim_result_wrap" style="display:none;margin-top:12px;background:#ffffff;border:1px solid var(--ok);border-radius:8px;padding:10px 14px;color:var(--ok);font-size:13px;font-weight:600;"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="foot">
+      <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
+      <span class="status-badge">Level 2 Complete</span>
+    </div>
+  </main>
+
+  <script>
+    const FACTS = [["Root Directory (/)","The single top-level directory where all storage devices and nested subdirectories attach in Linux."],["FHS Standard","The Filesystem Hierarchy Standard defines consistent directory locations across every standard Linux distribution."],["Configuration (/etc)","Stores host-specific system configuration files, startup scripts, network configurations, and installed daemon settings."],["Variable Data (/var)","Houses dynamic system runtime data including web logs, mail spools, caches, and database files."],["Virtual Files (/proc & /sys)","Memory-resident pseudofiles exposing real-time kernel metrics, hardware diagnostics, and live process states."]];
+    const FC_VIEWS = ["\n            <span class=\"lab\">Linux Unified FHS Directory Hierarchy (SVG)</span>\n            <svg class=\"svg-flowchart\" viewBox=\"0 0 540 260\">\n              <!-- Root Box -->\n              <rect x=\"160\" y=\"8\" width=\"220\" height=\"38\" rx=\"8\" fill=\"var(--navy)\" />\n              <text x=\"270\" y=\"27\" class=\"node-mono\" fill=\"#fff\" style=\"font-weight:700;\">/ (Root Directory) - Single Unified Tree</text>\n\n              <path d=\"M 270 46 L 270 62 M 75 62 L 465 62\" class=\"flow-line line-blue\" fill=\"none\" />\n              <path d=\"M 75 62 L 75 74 M 205 62 L 205 74 M 335 62 L 335 74 M 465 62 L 465 74\" class=\"flow-line line-blue\" />\n\n              <!-- Tier 2: 4 Branch Cards -->\n              <rect x=\"15\" y=\"74\" width=\"120\" height=\"66\" class=\"node-rect st-active\" />\n              <text x=\"75\" y=\"93\" class=\"node-text\">/etc</text>\n              <text x=\"75\" y=\"111\" class=\"node-mono\" fill=\"var(--blue)\">Config Files</text>\n              <text x=\"75\" y=\"126\" class=\"node-mono\" fill=\"var(--mut)\" font-size=\"8.5\">passwd, fstab</text>\n\n              <rect x=\"145\" y=\"74\" width=\"120\" height=\"66\" class=\"node-rect st-pass\" />\n              <text x=\"205\" y=\"93\" class=\"node-text\">/var</text>\n              <text x=\"205\" y=\"111\" class=\"node-mono\" fill=\"var(--ok)\">Variable Data</text>\n              <text x=\"205\" y=\"126\" class=\"node-mono\" fill=\"var(--mut)\" font-size=\"8.5\">logs, mail, spool</text>\n\n              <rect x=\"275\" y=\"74\" width=\"120\" height=\"66\" class=\"node-rect st-active\" />\n              <text x=\"335\" y=\"93\" class=\"node-text\">/usr</text>\n              <text x=\"335\" y=\"111\" class=\"node-mono\" fill=\"var(--blue)\">User Software</text>\n              <text x=\"335\" y=\"126\" class=\"node-mono\" fill=\"var(--mut)\" font-size=\"8.5\">bin, lib, share</text>\n\n              <rect x=\"405\" y=\"74\" width=\"120\" height=\"66\" class=\"node-rect st-pass\" />\n              <text x=\"465\" y=\"93\" class=\"node-text\">/home</text>\n              <text x=\"465\" y=\"111\" class=\"node-mono\" fill=\"var(--ok)\">User Profiles</text>\n              <text x=\"465\" y=\"126\" class=\"node-mono\" fill=\"var(--mut)\" font-size=\"8.5\">documents, keys</text>\n\n              <!-- Convergence into Summary Card -->\n              <path d=\"M 270 140 L 270 160\" class=\"flow-line line-blue\" />\n              <polygon points=\"270,161 266,154 274,154\" fill=\"var(--blue)\" />\n\n              <rect x=\"15\" y=\"162\" width=\"510\" height=\"84\" rx=\"8\" fill=\"var(--surface)\" stroke=\"var(--tint-bd)\" stroke-width=\"1.5\" />\n              <text x=\"270\" y=\"184\" class=\"node-mono\" fill=\"var(--navy)\" style=\"font-weight:700;\">Filesystem Hierarchy Standard (FHS) Principle</text>\n              <text x=\"270\" y=\"206\" class=\"node-mono\" fill=\"var(--mut)\">Zero Drive Letters - All Disks Mount Inside Directory Nodes</text>\n              <text x=\"270\" y=\"226\" class=\"node-mono\" fill=\"var(--blue)\">/bin Symlinked to /usr/bin - Distribution Consolidation</text>\n            </svg>\n            ","\n            <span class=\"lab\">Kernel Virtual &amp; Storage Mount Points (SVG)</span>\n            <svg class=\"svg-flowchart\" viewBox=\"0 0 540 260\">\n              <rect x=\"20\" y=\"8\" width=\"500\" height=\"38\" class=\"node-rect st-active\" />\n              <text x=\"270\" y=\"27\" class=\"node-text\">Hardware Disks &amp; Kernel Virtual Filesystems</text>\n\n              <!-- Left Virtual Filesystem Card -->\n              <rect x=\"20\" y=\"60\" width=\"240\" height=\"86\" class=\"node-rect st-pass\" />\n              <text x=\"140\" y=\"80\" class=\"node-text\">/proc &amp; /sys (Virtual FS)</text>\n              <text x=\"140\" y=\"100\" class=\"node-mono\" fill=\"var(--ok)\">RAM-Resident Pseudofiles</text>\n              <text x=\"140\" y=\"120\" class=\"node-mono\">CPU Metrics - Diagnostics - Process IDs</text>\n              <text x=\"140\" y=\"134\" class=\"node-mono\" fill=\"var(--mut)\" font-size=\"8.5\">Zero Bytes on Physical Hard Disk</text>\n\n              <!-- Right Storage Card -->\n              <rect x=\"280\" y=\"60\" width=\"240\" height=\"86\" class=\"node-rect st-active\" />\n              <text x=\"400\" y=\"80\" class=\"node-text\">/dev, /mnt &amp; /media</text>\n              <text x=\"400\" y=\"100\" class=\"node-mono\" fill=\"var(--blue)\">Device Nodes &amp; Mounts</text>\n              <text x=\"400\" y=\"120\" class=\"node-mono\">NVMe Drives - USB Sticks - ISO Images</text>\n              <text x=\"400\" y=\"134\" class=\"node-mono\" fill=\"var(--mut)\" font-size=\"8.5\">Points to Physical Storage Devices</text>\n\n              <path d=\"M 270 146 L 270 168\" class=\"flow-line line-blue\" />\n              <polygon points=\"270,169 266,162 274,162\" fill=\"var(--blue)\" />\n\n              <rect x=\"20\" y=\"170\" width=\"500\" height=\"74\" rx=\"8\" fill=\"var(--navy)\" />\n              <text x=\"270\" y=\"192\" class=\"node-mono\" fill=\"#38bdf8\" style=\"font-weight:700;\">Everything is a File in Linux System Design</text>\n              <text x=\"270\" y=\"214\" class=\"node-mono\" fill=\"#fff\">Storage Disks Mount in /dev - e.g., /dev/sda, /dev/nvme0n1</text>\n              <text x=\"270\" y=\"232\" class=\"node-mono\" fill=\"#93c5fd\">Kernel Metrics Mount in /proc - cpuinfo, meminfo, uptime</text>\n            </svg>\n            "];
+    const FC_EXPLAINS = ["Linux structures all storage under a single root directory without numbered Windows drive letters.","Virtual filesystems like /proc and /sys expose live kernel states directly in memory."];
+    const SIM_STEPS = [{"h":"Audit Root Directory","p":"List primary root level folders to verify strict Filesystem Hierarchy Standard compliance.","b":"Run ls -ld /","res":"drwxr-xr-x 19 root root 4096 (Single unified root mount point)."},{"h":"Read Kernel Release in /proc","p":"Query live memory metrics directly from the kernel virtual filesystem.","b":"Run cat /proc/version","res":"Linux version 6.8.0-generic (gcc version 13.2.0, SMP PREEMPT_DYNAMIC)."},{"h":"Check System Config in /etc","p":"View host-specific identity configuration stored in the standard /etc directory.","b":"Run cat /etc/hostname","res":"ist-linux-srv01 (Production server network identifier)."}];
+
+    let activeFcMode = 0;
+    let simStep = 0;
+
+    const $ = id => document.getElementById(id);
+
+    function pickChip(idx) {
+      const chips = $("chips").querySelectorAll(".chip");
+      chips.forEach((c, i) => c.classList.toggle("on", i === idx));
+      const f = FACTS[idx];
+      if (!f) return;
+      $("chipDetail").innerHTML = `
+        <b style="font-size:13.5px;color:var(--navy);display:block;margin-bottom:3px;">${f[0]}</b>
+        <p style="margin:0;font-size:13px;color:var(--navy);line-height:1.5;">${f[1]}</p>
+      `;
+    }
+
+    function switchFcMode(mode) {
+      activeFcMode = mode;
+      const chips = $("fc_chips").querySelectorAll(".chip");
+      chips.forEach((c, i) => c.classList.toggle("on", i === mode));
+      $("fc_chart_wrap").innerHTML = FC_VIEWS[mode] || "";
+      $("fc_explain").innerHTML = `<p style="margin:0;font-size:13.5px;color:var(--navy);line-height:1.5;">${FC_EXPLAINS[mode] || ""}</p>`;
+    }
+
+    function updateSimStepView() {
+      const s = SIM_STEPS[simStep];
+      if (!s) return;
+      $("sim_step_title").textContent = s.h;
+      $("sim_step_num").textContent = `Step ${simStep + 1} of ${SIM_STEPS.length}`;
+      $("sim_step_desc").textContent = s.p;
+      $("sim_run_btn").textContent = s.b;
+      $("sim_prev_btn").disabled = (simStep === 0);
+      $("sim_next_btn").disabled = (simStep === SIM_STEPS.length - 1);
+      const resWrap = $("sim_result_wrap");
+      resWrap.style.display = "none";
+      resWrap.textContent = "";
+    }
+
+    document.addEventListener("click", e => {
+      const t = e.target.closest("[data-a]");
+      if (!t) return;
+      const a = t.dataset.a;
+
+      if (a === "chip") {
+        pickChip(+t.dataset.i);
+      } else if (a === "fcMode") {
+        switchFcMode(+t.dataset.m);
+      } else if (a === "runSim") {
+        const s = SIM_STEPS[simStep];
+        if (!s) return;
+        const resWrap = $("sim_result_wrap");
+        resWrap.textContent = s.res;
+        resWrap.style.display = "block";
+      } else if (a === "simPrev") {
+        if (simStep > 0) {
+          simStep--;
+          updateSimStepView();
+        }
+      } else if (a === "simNext") {
+        if (simStep < SIM_STEPS.length - 1) {
+          simStep++;
+          updateSimStepView();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

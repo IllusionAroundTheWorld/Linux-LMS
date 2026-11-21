@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>7. Hard Links & Soft Links | IST Learn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+
+:root {
+  /* Corporate Live Brand Tokens */
+  --primary: #1571ba;
+  --primary-dark: #105c98;
+  --ink: #17202c;
+  --muted: #5d6470;
+  --line: #dfe3e8;
+  --paper: #f7f8fa;
+  --surface: #f5f9fc;
+
+  /* Theme Accents & Aliases */
+  --blue: var(--primary);
+  --blue-d: var(--primary-dark);
+  --navy: var(--ink);
+  --mut: var(--muted);
+  --panel: var(--paper);
+  --tint: #eef6fc;
+  --tint-bd: #c5d6f0;
+
+  /* Status Tokens */
+  --ok: #0d8a55;
+  --ok-bg: #e6f4ec;
+  --ok-bd: #a7f3d0;
+  --warn: #b7791f;
+  --warn-bg: #fef3c7;
+  --bad: #c0392b;
+  --bad-bg: #fbeceb;
+  --bad-bd: #fecaca;
+
+  /* Typography */
+  --font-sans: "Inter", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fbfcfd;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 24px 20px 48px;
+}
+
+main {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.eye {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0 0 6px;
+}
+
+h1 {
+  font-size: clamp(22px, 3.2vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  font-weight: 800;
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+h2 {
+  font-size: 20px;
+  letter-spacing: -0.015em;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: 800;
+  margin: 24px 0 10px;
+  color: var(--ink);
+}
+
+p {
+  margin: 0 0 8px;
+}
+
+.sm {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+/* CARDS & HEADINGS */
+.card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 24px;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(23, 32, 44, 0.04);
+  margin-bottom: 20px;
+}
+
+.sh {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 10px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.sh:first-child {
+  margin-top: 0;
+}
+
+.st {
+  background: var(--primary);
+  color: #ffffff;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* NOTE CALLOUT */
+.note {
+  background: var(--tint);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  margin: 8px 0 12px;
+  line-height: 1.5;
+}
+
+/* STRIPS & CREATOR CARDS */
+.strip,
+.creator-strip,
+.lineage-strip,
+.component-strip,
+.install-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin: 10px 0 12px;
+}
+
+.creator-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
+}
+
+.icon-box,
+.creator-img-box,
+.lineage-icon-box,
+.component-icon-box,
+.install-icon-box {
+  width: 66px;
+  height: 52px;
+  background: var(--tint);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid var(--tint-bd);
+}
+
+.creator-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* TWO COLUMN LAYOUT */
+.two {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
+
+.box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.lab {
+  font-weight: 800;
+  font-size: 11px;
+  margin: 0 0 6px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--muted);
+}
+
+/* INTERACTIVE CHIPS */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 10px;
+}
+
+.chip {
+  background: #ffffff;
+  border: 1px solid var(--tint-bd);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 5px 13px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.chip:hover {
+  background: var(--tint);
+}
+
+.chip.on {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.chip.ok {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+
+.chip.bad {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+
+/* CODE BLOCKS & FEEDBACK RESULTS */
+pre {
+  background: var(--ink);
+  color: #e8f0ff;
+  border-radius: 9px;
+  padding: 12px 14px;
+  font: 12px/1.55 var(--font-mono);
+  margin: 4px 0 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 92%;
+}
+
+.res {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.45;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.res.ok {
+  color: var(--ok);
+  background: var(--ok-bg);
+  border-color: var(--ok-bd);
+}
+
+.res.bad {
+  color: var(--bad);
+  background: var(--bad-bg);
+  border-color: var(--bad-bd);
+}
+
+.detail {
+  background: var(--tint);
+  border: 1px solid var(--tint-bd);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 8px;
+}
+
+/* SVG FLOWCHART STYLES */
+.chart-card {
+  background: #ffffff;
+  border: 1.5px solid var(--tint-bd);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 10px;
+  box-shadow: 0 1px 4px rgba(23, 32, 44, 0.02);
+}
+
+.svg-flowchart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.node-rect {
+  rx: 7px;
+  ry: 7px;
+  stroke-width: 1.75px;
+  transition: all 0.22s ease;
+}
+
+.flow-line {
+  stroke-width: 2px;
+  stroke-linecap: round;
+  transition: all 0.22s ease;
+}
+
+.node-text {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.node-left {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-anchor: start !important;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.node-mono {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.branch-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.st-active {
+  fill: var(--tint);
+  stroke: var(--primary);
+}
+
+.st-active text {
+  fill: var(--primary-dark);
+}
+
+.st-pass {
+  fill: var(--ok-bg);
+  stroke: var(--ok);
+  filter: drop-shadow(0 1px 3px rgba(13, 138, 85, 0.12));
+}
+
+.st-pass text {
+  fill: var(--ok);
+}
+
+.line-blue {
+  stroke: var(--primary);
+}
+
+.line-pass {
+  stroke: var(--ok);
+}
+
+/* BUTTONS */
+.btn {
+  background: var(--primary);
+  color: #ffffff;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn.alt {
+  background: #ffffff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.btn.alt:hover {
+  background: var(--paper);
+  border-color: var(--tint-bd);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.top-pill {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--primary);
+  background: var(--tint);
+  border: 1px solid var(--tint-bd);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+/* VIDEO STYLES */
+.video-card {
+  background: #ffffff;
+  border: 1.5px solid var(--tint-bd);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 14px 0 24px;
+  box-shadow: 0 1px 4px rgba(23, 32, 44, 0.02);
+}
+
+.video-embed-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+}
+
+.video-embed-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* FOOTER & STATUS */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ok);
+  background: var(--ok-bg);
+  border: 1px solid var(--ok-bd);
+  padding: 5px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eye">Module 2 &middot; Level 7 &middot; Interactive System Lab</p>
+    <h1>7. Hard Links & Soft Links</h1>
+    <p class="hint">Understand filesystem inodes, data block pointers, and the behavioral differences between hard and soft links.</p>
+
+    <!-- Key concepts -->
+    <h3>Key concepts</h3>
+    <div class="chips" id="chips">
+      <button type="button" class="chip on" data-a="chip" data-i="0">Inodes & Data Blocks</button>
+      <button type="button" class="chip" data-a="chip" data-i="1">Hard Links (ln)</button>
+      <button type="button" class="chip" data-a="chip" data-i="2">Hard Link Deletion</button>
+      <button type="button" class="chip" data-a="chip" data-i="3">Soft Links (ln -s)</button>
+      <button type="button" class="chip" data-a="chip" data-i="4">Broken Symlinks</button>
+    </div>
+    <div class="detail" id="chipDetail">
+      <b style="font-size:13.5px;color:var(--navy);display:block;margin-bottom:3px;">Inodes & Data Blocks</b>
+      <p style="margin:0;font-size:13px;color:var(--navy);line-height:1.5;">An inode stores file metadata, permissions, and storage block pointers, excluding the filename.</p>
+    </div>
+
+    <!-- Interactive System Architecture & Flowchart -->
+    <h3>Interactive System Architecture &amp; Flowchart</h3>
+    <p class="hint">Explore command pipelines, filesystem hierarchy, and system concepts using the interactive diagram views below.</p>
+    <div class="card" style="margin-bottom:24px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
+        <div>
+          <span class="lab">Select Diagram View:</span>
+          <div class="chips" id="fc_chips" style="margin:4px 0 0;">
+            <button type="button" class="chip on" data-a="fcMode" data-m="0">1. Hard Link Architecture (Inode Sharing)</button>
+            <button type="button" class="chip" data-a="fcMode" data-m="1">2. Soft Link Architecture (Path Pointers)</button>
+          </div>
+        </div>
+      </div>
+      <div class="chart-card" id="fc_chart_wrap">
+        
+            <span class="lab">Hard Links: Shared Inode &amp; Link Counter (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 540 250">
+              <!-- Top Two Directory Entries -->
+              <rect x="40" y="8" width="210" height="48" class="node-rect st-active" />
+              <text x="145" y="26" class="node-text">file1.txt (Directory Entry)</text>
+              <text x="145" y="44" class="node-mono" fill="var(--blue)">Points to Inode 412033</text>
+
+              <rect x="290" y="8" width="210" height="48" class="node-rect st-active" />
+              <text x="395" y="26" class="node-text">hardlink.txt (Hard Link)</text>
+              <text x="395" y="44" class="node-mono" fill="var(--blue)">Points to Inode 412033</text>
+
+              <!-- Arrows into Inode -->
+              <path d="M 145 56 L 235 90 M 395 56 L 305 90" class="flow-line line-blue" />
+              <polygon points="236,90 230,83 238,81" fill="var(--blue)" />
+              <polygon points="304,90 302,81 310,83" fill="var(--blue)" />
+
+              <!-- Inode Box -->
+              <rect x="160" y="90" width="220" height="54" class="node-rect st-pass" />
+              <text x="270" y="110" class="node-text">INODE 412033 (Link Count: 2)</text>
+              <text x="270" y="130" class="node-mono" fill="var(--ok)">Permissions, UID, GID, Timestamps</text>
+
+              <path d="M 270 144 L 270 166" class="flow-line line-pass" />
+              <polygon points="270,167 266,160 274,160" fill="var(--ok)" />
+
+              <!-- Data Blocks -->
+              <rect x="20" y="168" width="500" height="70" rx="8" fill="var(--navy)" />
+              <text x="270" y="190" class="node-mono" fill="#38bdf8" style="font-weight:700;">Physical Data Blocks on Hard Disk (Single Copy)</text>
+              <text x="270" y="210" class="node-mono" fill="#fff">Hard Links Retain Data Until All Link Counts Reach Zero</text>
+              <text x="270" y="226" class="node-mono" fill="#93c5fd">Hard Links Cannot Cross Partitions or Link Folders</text>
+            </svg>
+            
+      </div>
+      <div class="detail" id="fc_explain" style="margin-top:10px;">
+        <p style="margin:0;font-size:13.5px;color:var(--navy);line-height:1.5;">Hard links share identical inodes, maintaining file data until every link is deleted.</p>
+      </div>
+    </div>
+
+    <!-- Hands-on Command Line Simulator -->
+    <h3>Hands-on Command Line Simulator</h3>
+    <p class="hint">Demonstrate inode sharing with hard links and cross-filesystem symlinks.</p>
+    <div class="card" style="margin-bottom:24px;">
+      <span class="lab">Bash: Inode Inspection & Link Creation</span>
+      <pre><code>echo "data" > original.txt
+ln original.txt hard.txt
+ln -s original.txt soft.txt
+ls -li original.txt hard.txt soft.txt</code></pre>
+      <span class="lab" style="margin-top:10px;">Expected Terminal Output:</span>
+      <pre style="background:var(--paper);color:var(--ink);border:1px solid var(--line);"><code>412033 -rw-r--r-- 2 student student 5 Nov 19 12:00 hard.txt
+412033 -rw-r--r-- 2 student student 5 Nov 19 12:00 original.txt
+589211 lrwxrwxrwx 1 student student 12 Nov 19 12:00 soft.txt -> original.txt</code></pre>
+
+      <div style="background:var(--tint);border:1px solid var(--tint-bd);border-radius:10px;padding:16px;margin-top:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
+          <b style="color:var(--navy);font-size:14px;" id="sim_step_title">Inspect File Inode Number</b>
+          <span class="top-pill" id="sim_step_num">Step 1 of 3</span>
+        </div>
+        <p class="sm" id="sim_step_desc" style="margin:0 0 12px;color:var(--navy);">Query the low-level filesystem index node number assigned to the sample file.</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <button type="button" class="btn" data-a="runSim" id="sim_run_btn">Run ls -i</button>
+          <div style="display:flex;gap:8px;">
+            <button type="button" class="btn alt" data-a="simPrev" id="sim_prev_btn" disabled>&larr; Prev</button>
+            <button type="button" class="btn alt" data-a="simNext" id="sim_next_btn" >Next &rarr;</button>
+          </div>
+        </div>
+        <div id="sim_result_wrap" style="display:none;margin-top:12px;background:#ffffff;border:1px solid var(--ok);border-radius:8px;padding:10px 14px;color:var(--ok);font-size:13px;font-weight:600;"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="foot">
+      <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
+      <span class="status-badge">Level 7 Complete</span>
+    </div>
+  </main>
+
+  <script>
+    const FACTS = [["Inodes & Data Blocks","An inode stores file metadata, permissions, and storage block pointers, excluding the filename."],["Hard Links (ln)","Creates another directory entry pointing directly to the identical inode number on storage."],["Hard Link Deletion","Deleting one hard link retains file data until all link reference counters reach zero."],["Soft Links (ln -s)","Creates pointer files storing the string path to target files across any filesystem."],["Broken Symlinks","Moving or deleting original target files renders symbolic links broken and unreadable until repaired."]];
+    const FC_VIEWS = ["\n            <span class=\"lab\">Hard Links: Shared Inode &amp; Link Counter (SVG)</span>\n            <svg class=\"svg-flowchart\" viewBox=\"0 0 540 250\">\n              <!-- Top Two Directory Entries -->\n              <rect x=\"40\" y=\"8\" width=\"210\" height=\"48\" class=\"node-rect st-active\" />\n              <text x=\"145\" y=\"26\" class=\"node-text\">file1.txt (Directory Entry)</text>\n              <text x=\"145\" y=\"44\" class=\"node-mono\" fill=\"var(--blue)\">Points to Inode 412033</text>\n\n              <rect x=\"290\" y=\"8\" width=\"210\" height=\"48\" class=\"node-rect st-active\" />\n              <text x=\"395\" y=\"26\" class=\"node-text\">hardlink.txt (Hard Link)</text>\n              <text x=\"395\" y=\"44\" class=\"node-mono\" fill=\"var(--blue)\">Points to Inode 412033</text>\n\n              <!-- Arrows into Inode -->\n              <path d=\"M 145 56 L 235 90 M 395 56 L 305 90\" class=\"flow-line line-blue\" />\n              <polygon points=\"236,90 230,83 238,81\" fill=\"var(--blue)\" />\n              <polygon points=\"304,90 302,81 310,83\" fill=\"var(--blue)\" />\n\n              <!-- Inode Box -->\n              <rect x=\"160\" y=\"90\" width=\"220\" height=\"54\" class=\"node-rect st-pass\" />\n              <text x=\"270\" y=\"110\" class=\"node-text\">INODE 412033 (Link Count: 2)</text>\n              <text x=\"270\" y=\"130\" class=\"node-mono\" fill=\"var(--ok)\">Permissions, UID, GID, Timestamps</text>\n\n              <path d=\"M 270 144 L 270 166\" class=\"flow-line line-pass\" />\n              <polygon points=\"270,167 266,160 274,160\" fill=\"var(--ok)\" />\n\n              <!-- Data Blocks -->\n              <rect x=\"20\" y=\"168\" width=\"500\" height=\"70\" rx=\"8\" fill=\"var(--navy)\" />\n              <text x=\"270\" y=\"190\" class=\"node-mono\" fill=\"#38bdf8\" style=\"font-weight:700;\">Physical Data Blocks on Hard Disk (Single Copy)</text>\n              <text x=\"270\" y=\"210\" class=\"node-mono\" fill=\"#fff\">Hard Links Retain Data Until All Link Counts Reach Zero</text>\n              <text x=\"270\" y=\"226\" class=\"node-mono\" fill=\"#93c5fd\">Hard Links Cannot Cross Partitions or Link Folders</text>\n            </svg>\n            ","\n            <span class=\"lab\">Symbolic Links: Path Pointer Files (ln -s) (SVG)</span>\n            <svg class=\"svg-flowchart\" viewBox=\"0 0 540 250\">\n              <!-- Symlink Entry -->\n              <rect x=\"20\" y=\"8\" width=\"500\" height=\"48\" class=\"node-rect st-active\" />\n              <text x=\"270\" y=\"26\" class=\"node-text\">symlink.txt (Inode 589211) - Points to \"app.conf\" Path</text>\n              <text x=\"270\" y=\"44\" class=\"node-mono\" fill=\"var(--blue)\">Independent Inode - Stores Target Filename Path String</text>\n\n              <path d=\"M 270 56 L 270 76\" class=\"flow-line line-blue\" />\n              <polygon points=\"270,77 266,70 274,70\" fill=\"var(--blue)\" />\n\n              <!-- Target File -->\n              <rect x=\"20\" y=\"78\" width=\"500\" height=\"54\" class=\"node-rect st-pass\" />\n              <text x=\"270\" y=\"98\" class=\"node-text\">app.conf Target File (Inode 734190)</text>\n              <text x=\"270\" y=\"118\" class=\"node-mono\" fill=\"var(--ok)\">Target Physical Inode &amp; Application Storage Data Blocks</text>\n\n              <path d=\"M 270 132 L 270 152\" class=\"flow-line line-pass\" />\n              <polygon points=\"270,153 266,146 274,146\" fill=\"var(--ok)\" />\n\n              <!-- Broken Link Behavior -->\n              <rect x=\"20\" y=\"154\" width=\"500\" height=\"84\" rx=\"8\" fill=\"var(--navy)\" />\n              <text x=\"270\" y=\"176\" class=\"node-mono\" fill=\"#38bdf8\" style=\"font-weight:700;\">Soft Links Can Span Disks &amp; Link Directories</text>\n              <text x=\"270\" y=\"198\" class=\"node-mono\" fill=\"#fff\">If Target Is Moved or Deleted, Symlink Becomes Broken</text>\n              <text x=\"270\" y=\"218\" class=\"node-mono\" fill=\"#93c5fd\">Broken Links Highlight Red - Recreating Target Restores</text>\n            </svg>\n            "];
+    const FC_EXPLAINS = ["Hard links share identical inodes, maintaining file data until every link is deleted.","Soft links store path strings pointing to targets and can span across filesystems."];
+    const SIM_STEPS = [{"h":"Inspect File Inode Number","p":"Query the low-level filesystem index node number assigned to the sample file.","b":"Run ls -i","res":"Inode 412033 assigned to original.txt."},{"h":"Create Hard Link","p":"Create a hard link and observe link count increase to 2 with identical inode.","b":"Run ln original.txt hard.txt","res":"Both files share Inode 412033. Link count = 2."},{"h":"Create Symbolic Link","p":"Create a soft pointer link with independent inode pointing to the filename path.","b":"Run ln -s original.txt soft.txt","res":"New Inode 589211 created pointing to path string 'original.txt'."}];
+
+    let activeFcMode = 0;
+    let simStep = 0;
+
+    const $ = id => document.getElementById(id);
+
+    function pickChip(idx) {
+      const chips = $("chips").querySelectorAll(".chip");
+      chips.forEach((c, i) => c.classList.toggle("on", i === idx));
+      const f = FACTS[idx];
+      if (!f) return;
+      $("chipDetail").innerHTML = `
+        <b style="font-size:13.5px;color:var(--navy);display:block;margin-bottom:3px;">${f[0]}</b>
+        <p style="margin:0;font-size:13px;color:var(--navy);line-height:1.5;">${f[1]}</p>
+      `;
+    }
+
+    function switchFcMode(mode) {
+      activeFcMode = mode;
+      const chips = $("fc_chips").querySelectorAll(".chip");
+      chips.forEach((c, i) => c.classList.toggle("on", i === mode));
+      $("fc_chart_wrap").innerHTML = FC_VIEWS[mode] || "";
+      $("fc_explain").innerHTML = `<p style="margin:0;font-size:13.5px;color:var(--navy);line-height:1.5;">${FC_EXPLAINS[mode] || ""}</p>`;
+    }
+
+    function updateSimStepView() {
+      const s = SIM_STEPS[simStep];
+      if (!s) return;
+      $("sim_step_title").textContent = s.h;
+      $("sim_step_num").textContent = `Step ${simStep + 1} of ${SIM_STEPS.length}`;
+      $("sim_step_desc").textContent = s.p;
+      $("sim_run_btn").textContent = s.b;
+      $("sim_prev_btn").disabled = (simStep === 0);
+      $("sim_next_btn").disabled = (simStep === SIM_STEPS.length - 1);
+      const resWrap = $("sim_result_wrap");
+      resWrap.style.display = "none";
+      resWrap.textContent = "";
+    }
+
+    document.addEventListener("click", e => {
+      const t = e.target.closest("[data-a]");
+      if (!t) return;
+      const a = t.dataset.a;
+
+      if (a === "chip") {
+        pickChip(+t.dataset.i);
+      } else if (a === "fcMode") {
+        switchFcMode(+t.dataset.m);
+      } else if (a === "runSim") {
+        const s = SIM_STEPS[simStep];
+        if (!s) return;
+        const resWrap = $("sim_result_wrap");
+        resWrap.textContent = s.res;
+        resWrap.style.display = "block";
+      } else if (a === "simPrev") {
+        if (simStep > 0) {
+          simStep--;
+          updateSimStepView();
+        }
+      } else if (a === "simNext") {
+        if (simStep < SIM_STEPS.length - 1) {
+          simStep++;
+          updateSimStepView();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

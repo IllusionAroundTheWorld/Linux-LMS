@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>4. File & Directory Management | IST Learn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+
+:root {
+  /* Corporate Live Brand Tokens */
+  --primary: #1571ba;
+  --primary-dark: #105c98;
+  --ink: #17202c;
+  --muted: #5d6470;
+  --line: #dfe3e8;
+  --paper: #f7f8fa;
+  --surface: #f5f9fc;
+
+  /* Theme Accents & Aliases */
+  --blue: var(--primary);
+  --blue-d: var(--primary-dark);
+  --navy: var(--ink);
+  --mut: var(--muted);
+  --panel: var(--paper);
+  --tint: #eef6fc;
+  --tint-bd: #c5d6f0;
+
+  /* Status Tokens */
+  --ok: #0d8a55;
+  --ok-bg: #e6f4ec;
+  --ok-bd: #a7f3d0;
+  --warn: #b7791f;
+  --warn-bg: #fef3c7;
+  --bad: #c0392b;
+  --bad-bg: #fbeceb;
+  --bad-bd: #fecaca;
+
+  /* Typography */
+  --font-sans: "Inter", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fbfcfd;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 24px 20px 48px;
+}
+
+main {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.eye {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0 0 6px;
+}
+
+h1 {
+  font-size: clamp(22px, 3.2vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  font-weight: 800;
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+h2 {
+  font-size: 20px;
+  letter-spacing: -0.015em;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: 800;
+  margin: 24px 0 10px;
+  color: var(--ink);
+}
+
+p {
+  margin: 0 0 8px;
+}
+
+.sm {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+/* CARDS & HEADINGS */
+.card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 24px;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(23, 32, 44, 0.04);
+  margin-bottom: 20px;
+}
+
+.sh {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 10px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.sh:first-child {
+  margin-top: 0;
+}
+
+.st {
+  background: var(--primary);
+  color: #ffffff;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* NOTE CALLOUT */
+.note {
+  background: var(--tint);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  margin: 8px 0 12px;
+  line-height: 1.5;
+}
+
+/* STRIPS & CREATOR CARDS */
+.strip,
+.creator-strip,
+.lineage-strip,
+.component-strip,
+.install-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin: 10px 0 12px;
+}
+
+.creator-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
+}
+
+.icon-box,
+.creator-img-box,
+.lineage-icon-box,
+.component-icon-box,
+.install-icon-box {
+  width: 66px;
+  height: 52px;
+  background: var(--tint);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid var(--tint-bd);
+}
+
+.creator-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* TWO COLUMN LAYOUT */
+.two {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
+
+.box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.lab {
+  font-weight: 800;
+  font-size: 11px;
+  margin: 0 0 6px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--muted);
+}
+
+/* INTERACTIVE CHIPS */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 10px;
+}
+
+.chip {
+  background: #ffffff;
+  border: 1px solid var(--tint-bd);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 5px 13px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.chip:hover {
+  background: var(--tint);
+}
+
+.chip.on {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.chip.ok {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+
+.chip.bad {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+
+/* CODE BLOCKS & FEEDBACK RESULTS */
+pre {
+  background: var(--ink);
+  color: #e8f0ff;
+  border-radius: 9px;
+  padding: 12px 14px;
+  font: 12px/1.55 var(--font-mono);
+  margin: 4px 0 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 92%;
+}
+
+.res {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.45;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.res.ok {
+  color: var(--ok);
+  background: var(--ok-bg);
+  border-color: var(--ok-bd);
+}
+
+.res.bad {
+  color: var(--bad);
+  background: var(--bad-bg);
+  border-color: var(--bad-bd);
+}
+
+.detail {
+  background: var(--tint);
+  border: 1px solid var(--tint-bd);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 8px;
+}
+
+/* SVG FLOWCHART STYLES */
+.chart-card {
+  background: #ffffff;
+  border: 1.5px solid var(--tint-bd);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 10px;
+  box-shadow: 0 1px 4px rgba(23, 32, 44, 0.02);
+}
+
+.svg-flowchart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.node-rect {
+  rx: 7px;
+  ry: 7px;
+  stroke-width: 1.75px;
+  transition: all 0.22s ease;
+}
+
+.flow-line {
+  stroke-width: 2px;
+  stroke-linecap: round;
+  transition: all 0.22s ease;
+}
+
+.node-text {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.node-left {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-anchor: start !important;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.node-mono {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.branch-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.st-active {
+  fill: var(--tint);
+  stroke: var(--primary);
+}
+
+.st-active text {
+  fill: var(--primary-dark);
+}
+
+.st-pass {
+  fill: var(--ok-bg);
+  stroke: var(--ok);
+  filter: drop-shadow(0 1px 3px rgba(13, 138, 85, 0.12));
+}
+
+.st-pass text {
+  fill: var(--ok);
+}
+
+.line-blue {
+  stroke: var(--primary);
+}
+
+.line-pass {
+  stroke: var(--ok);
+}
+
+/* BUTTONS */
+.btn {
+  background: var(--primary);
+  color: #ffffff;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn.alt {
+  background: #ffffff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.btn.alt:hover {
+  background: var(--paper);
+  border-color: var(--tint-bd);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.top-pill {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--primary);
+  background: var(--tint);
+  border: 1px solid var(--tint-bd);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+/* VIDEO STYLES */
+.video-card {
+  background: #ffffff;
+  border: 1.5px solid var(--tint-bd);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 14px 0 24px;
+  box-shadow: 0 1px 4px rgba(23, 32, 44, 0.02);
+}
+
+.video-embed-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+}
+
+.video-embed-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* FOOTER & STATUS */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ok);
+  background: var(--ok-bg);
+  border: 1px solid var(--ok-bd);
+  padding: 5px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eye">Module 2 &middot; Level 4 &middot; Interactive System Lab</p>
+    <h1>4. File & Directory Management</h1>
+    <p class="hint">Create, copy, move, rename, delete, and search for files and directories across Linux storage.</p>
+
+    <!-- Key concepts -->
+    <h3>Key concepts</h3>
+    <div class="chips" id="chips">
+      <button type="button" class="chip on" data-a="chip" data-i="0">Creating Files (touch)</button>
+      <button type="button" class="chip" data-a="chip" data-i="1">Creating Directories (mkdir)</button>
+      <button type="button" class="chip" data-a="chip" data-i="2">Copying Files (cp)</button>
+      <button type="button" class="chip" data-a="chip" data-i="3">Moving & Renaming (mv)</button>
+      <button type="button" class="chip" data-a="chip" data-i="4">Finding Files (find)</button>
+    </div>
+    <div class="detail" id="chipDetail">
+      <b style="font-size:13.5px;color:var(--navy);display:block;margin-bottom:3px;">Creating Files (touch)</b>
+      <p style="margin:0;font-size:13px;color:var(--navy);line-height:1.5;">Creates empty files or updates existing file access and modification timestamps without altering content.</p>
+    </div>
+
+    <!-- Interactive System Architecture & Flowchart -->
+    <h3>Interactive System Architecture &amp; Flowchart</h3>
+    <p class="hint">Explore command pipelines, filesystem hierarchy, and system concepts using the interactive diagram views below.</p>
+    <div class="card" style="margin-bottom:24px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
+        <div>
+          <span class="lab">Select Diagram View:</span>
+          <div class="chips" id="fc_chips" style="margin:4px 0 0;">
+            <button type="button" class="chip on" data-a="fcMode" data-m="0">1. File Creation & Copy Pipeline</button>
+            <button type="button" class="chip" data-a="fcMode" data-m="1">2. Search & Filter Pipeline (find)</button>
+          </div>
+        </div>
+      </div>
+      <div class="chart-card" id="fc_chart_wrap">
+        
+            <span class="lab">File Operations: Inode Allocation &amp; Cloning (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 540 250">
+              <rect x="20" y="8" width="500" height="38" class="node-rect st-active" />
+              <text x="270" y="27" class="node-text">1. touch file.txt - Allocates Directory Entry &amp; Inode</text>
+
+              <path d="M 270 46 L 270 63" class="flow-line line-blue" />
+              <polygon points="270,64 266,57 274,57" fill="var(--blue)" />
+
+              <rect x="20" y="64" width="500" height="38" class="node-rect st-pass" />
+              <text x="270" y="83" class="node-text">2. cp -r - Copies Data Blocks &amp; Assigns New Inode</text>
+
+              <path d="M 270 102 L 270 119" class="flow-line line-pass" />
+              <polygon points="270,120 266,113 274,113" fill="var(--ok)" />
+
+              <rect x="20" y="120" width="500" height="38" class="node-rect st-active" />
+              <text x="270" y="139" class="node-text">3. mv - Renames Inode Pointer - Zero Data Duplication</text>
+
+              <path d="M 270 158 L 270 175" class="flow-line line-blue" />
+              <polygon points="270,176 266,169 274,169" fill="var(--blue)" />
+
+              <rect x="20" y="176" width="500" height="58" rx="8" fill="var(--navy)" />
+              <text x="270" y="196" class="node-mono" fill="#fff" style="font-weight:700;">4. rm - Unlinks Inode - Storage Cleared on 0 Links</text>
+              <text x="270" y="218" class="node-mono" fill="#93c5fd">mkdir -p Creates Nested Subdirectories Recursively</text>
+            </svg>
+            
+      </div>
+      <div class="detail" id="fc_explain" style="margin-top:10px;">
+        <p style="margin:0;font-size:13.5px;color:var(--navy);line-height:1.5;">Moving or renaming files alters directory pointer entries instantly without copying raw data blocks.</p>
+      </div>
+    </div>
+
+    <!-- Hands-on Command Line Simulator -->
+    <h3>Hands-on Command Line Simulator</h3>
+    <p class="hint">Organize a multi-tier enterprise project directory hierarchy using batch CLI operations.</p>
+    <div class="card" style="margin-bottom:24px;">
+      <span class="lab">Bash: Create Project Hierarchy & Locate Files</span>
+      <pre><code>mkdir -p /tmp/app/{src,bin,logs}
+touch /tmp/app/src/main.py
+find /tmp/app -name "*.py"</code></pre>
+      <span class="lab" style="margin-top:10px;">Expected Terminal Output:</span>
+      <pre style="background:var(--paper);color:var(--ink);border:1px solid var(--line);"><code>/tmp/app/src/main.py (File matched and verified)</code></pre>
+
+      <div style="background:var(--tint);border:1px solid var(--tint-bd);border-radius:10px;padding:16px;margin-top:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
+          <b style="color:var(--navy);font-size:14px;" id="sim_step_title">Batch Create Nested Folders</b>
+          <span class="top-pill" id="sim_step_num">Step 1 of 3</span>
+        </div>
+        <p class="sm" id="sim_step_desc" style="margin:0 0 12px;color:var(--navy);">Create a complete multi-tier directory structure in a single command using brace expansion.</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <button type="button" class="btn" data-a="runSim" id="sim_run_btn">Run mkdir -p</button>
+          <div style="display:flex;gap:8px;">
+            <button type="button" class="btn alt" data-a="simPrev" id="sim_prev_btn" disabled>&larr; Prev</button>
+            <button type="button" class="btn alt" data-a="simNext" id="sim_next_btn" >Next &rarr;</button>
+          </div>
+        </div>
+        <div id="sim_result_wrap" style="display:none;margin-top:12px;background:#ffffff;border:1px solid var(--ok);border-radius:8px;padding:10px 14px;color:var(--ok);font-size:13px;font-weight:600;"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="foot">
+      <span class="sm">Interactive system lab powered by Inovate Solution Technology learning framework.</span>
+      <span class="status-badge">Level 4 Complete</span>
+    </div>
+  </main>
+
+  <script>
+    const FACTS = [["Creating Files (touch)","Creates empty files or updates existing file access and modification timestamps without altering content."],["Creating Directories (mkdir)","Creates new directory folders with parent creation support using the recursive -p flag."],["Copying Files (cp)","Duplicates files or entire directory trees into new locations while optionally preserving metadata."],["Moving & Renaming (mv)","Relocates files across directories or renames files without duplicating underlying storage blocks."],["Finding Files (find)","Searches filesystem trees in real time by filename, size, modification date, and permissions."]];
+    const FC_VIEWS = ["\n            <span class=\"lab\">File Operations: Inode Allocation &amp; Cloning (SVG)</span>\n            <svg class=\"svg-flowchart\" viewBox=\"0 0 540 250\">\n              <rect x=\"20\" y=\"8\" width=\"500\" height=\"38\" class=\"node-rect st-active\" />\n              <text x=\"270\" y=\"27\" class=\"node-text\">1. touch file.txt - Allocates Directory Entry &amp; Inode</text>\n\n              <path d=\"M 270 46 L 270 63\" class=\"flow-line line-blue\" />\n              <polygon points=\"270,64 266,57 274,57\" fill=\"var(--blue)\" />\n\n              <rect x=\"20\" y=\"64\" width=\"500\" height=\"38\" class=\"node-rect st-pass\" />\n              <text x=\"270\" y=\"83\" class=\"node-text\">2. cp -r - Copies Data Blocks &amp; Assigns New Inode</text>\n\n              <path d=\"M 270 102 L 270 119\" class=\"flow-line line-pass\" />\n              <polygon points=\"270,120 266,113 274,113\" fill=\"var(--ok)\" />\n\n              <rect x=\"20\" y=\"120\" width=\"500\" height=\"38\" class=\"node-rect st-active\" />\n              <text x=\"270\" y=\"139\" class=\"node-text\">3. mv - Renames Inode Pointer - Zero Data Duplication</text>\n\n              <path d=\"M 270 158 L 270 175\" class=\"flow-line line-blue\" />\n              <polygon points=\"270,176 266,169 274,169\" fill=\"var(--blue)\" />\n\n              <rect x=\"20\" y=\"176\" width=\"500\" height=\"58\" rx=\"8\" fill=\"var(--navy)\" />\n              <text x=\"270\" y=\"196\" class=\"node-mono\" fill=\"#fff\" style=\"font-weight:700;\">4. rm - Unlinks Inode - Storage Cleared on 0 Links</text>\n              <text x=\"270\" y=\"218\" class=\"node-mono\" fill=\"#93c5fd\">mkdir -p Creates Nested Subdirectories Recursively</text>\n            </svg>\n            ","\n            <span class=\"lab\">Real-Time Search &amp; Filter Pipeline (find) (SVG)</span>\n            <svg class=\"svg-flowchart\" viewBox=\"0 0 540 250\">\n              <rect x=\"20\" y=\"8\" width=\"500\" height=\"38\" class=\"node-rect st-active\" />\n              <text x=\"270\" y=\"27\" class=\"node-text\">Command: find /var/log -type f -name \"*.log\" -size +10M</text>\n\n              <path d=\"M 270 46 L 270 63\" class=\"flow-line line-blue\" />\n              <polygon points=\"270,64 266,57 274,57\" fill=\"var(--blue)\" />\n\n              <!-- Criteria Cards -->\n              <rect x=\"20\" y=\"64\" width=\"155\" height=\"56\" class=\"node-rect st-pass\" />\n              <text x=\"97\" y=\"84\" class=\"node-text\">-type f / d</text>\n              <text x=\"97\" y=\"103\" class=\"node-mono\" fill=\"var(--ok)\">Regular Files / Dirs</text>\n\n              <rect x=\"192\" y=\"64\" width=\"155\" height=\"56\" class=\"node-rect st-pass\" />\n              <text x=\"270\" y=\"84\" class=\"node-text\">-name \"*.log\"</text>\n              <text x=\"270\" y=\"103\" class=\"node-mono\" fill=\"var(--ok)\">Pattern Match</text>\n\n              <rect x=\"365\" y=\"64\" width=\"155\" height=\"56\" class=\"node-rect st-pass\" />\n              <text x=\"442\" y=\"84\" class=\"node-text\">-mtime -7</text>\n              <text x=\"442\" y=\"103\" class=\"node-mono\" fill=\"var(--ok)\">Modified Last 7 Days</text>\n\n              <path d=\"M 270 120 L 270 140\" class=\"flow-line line-pass\" />\n              <polygon points=\"270,141 266,134 274,134\" fill=\"var(--ok)\" />\n\n              <rect x=\"20\" y=\"142\" width=\"500\" height=\"90\" rx=\"8\" fill=\"var(--navy)\" />\n              <text x=\"270\" y=\"164\" class=\"node-mono\" fill=\"#38bdf8\" style=\"font-weight:700;\">find vs locate Comparison</text>\n              <text x=\"270\" y=\"186\" class=\"node-mono\" fill=\"#fff\">find Crawls Live Disk in Real Time - Always Accurate</text>\n              <text x=\"270\" y=\"206\" class=\"node-mono\" fill=\"#93c5fd\">locate Queries Indexed Database - Fast but Needs Cache</text>\n              <text x=\"270\" y=\"222\" class=\"node-mono\" fill=\"#fff\" font-size=\"8.5\">-exec Command {} + Processes Search Matches Automatically</text>\n            </svg>\n            "];
+    const FC_EXPLAINS = ["Moving or renaming files alters directory pointer entries instantly without copying raw data blocks.","The find command crawls directories in real time to locate items matching precise criteria."];
+    const SIM_STEPS = [{"h":"Batch Create Nested Folders","p":"Create a complete multi-tier directory structure in a single command using brace expansion.","b":"Run mkdir -p","res":"Created: /tmp/company_app/{conf,data,logs,bin}."},{"h":"Generate Configuration File","p":"Create a new application settings template using touch.","b":"Run touch","res":"Created: /tmp/company_app/conf/app.cfg (0 bytes, timestamp updated)."},{"h":"Find Configuration Files","p":"Locate all .cfg files recursively inside the application directory tree.","b":"Run find","res":"/tmp/company_app/conf/app.cfg (Search match returned)."}];
+
+    let activeFcMode = 0;
+    let simStep = 0;
+
+    const $ = id => document.getElementById(id);
+
+    function pickChip(idx) {
+      const chips = $("chips").querySelectorAll(".chip");
+      chips.forEach((c, i) => c.classList.toggle("on", i === idx));
+      const f = FACTS[idx];
+      if (!f) return;
+      $("chipDetail").innerHTML = `
+        <b style="font-size:13.5px;color:var(--navy);display:block;margin-bottom:3px;">${f[0]}</b>
+        <p style="margin:0;font-size:13px;color:var(--navy);line-height:1.5;">${f[1]}</p>
+      `;
+    }
+
+    function switchFcMode(mode) {
+      activeFcMode = mode;
+      const chips = $("fc_chips").querySelectorAll(".chip");
+      chips.forEach((c, i) => c.classList.toggle("on", i === mode));
+      $("fc_chart_wrap").innerHTML = FC_VIEWS[mode] || "";
+      $("fc_explain").innerHTML = `<p style="margin:0;font-size:13.5px;color:var(--navy);line-height:1.5;">${FC_EXPLAINS[mode] || ""}</p>`;
+    }
+
+    function updateSimStepView() {
+      const s = SIM_STEPS[simStep];
+      if (!s) return;
+      $("sim_step_title").textContent = s.h;
+      $("sim_step_num").textContent = `Step ${simStep + 1} of ${SIM_STEPS.length}`;
+      $("sim_step_desc").textContent = s.p;
+      $("sim_run_btn").textContent = s.b;
+      $("sim_prev_btn").disabled = (simStep === 0);
+      $("sim_next_btn").disabled = (simStep === SIM_STEPS.length - 1);
+      const resWrap = $("sim_result_wrap");
+      resWrap.style.display = "none";
+      resWrap.textContent = "";
+    }
+
+    document.addEventListener("click", e => {
+      const t = e.target.closest("[data-a]");
+      if (!t) return;
+      const a = t.dataset.a;
+
+      if (a === "chip") {
+        pickChip(+t.dataset.i);
+      } else if (a === "fcMode") {
+        switchFcMode(+t.dataset.m);
+      } else if (a === "runSim") {
+        const s = SIM_STEPS[simStep];
+        if (!s) return;
+        const resWrap = $("sim_result_wrap");
+        resWrap.textContent = s.res;
+        resWrap.style.display = "block";
+      } else if (a === "simPrev") {
+        if (simStep > 0) {
+          simStep--;
+          updateSimStepView();
+        }
+      } else if (a === "simNext") {
+        if (simStep < SIM_STEPS.length - 1) {
+          simStep++;
+          updateSimStepView();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
