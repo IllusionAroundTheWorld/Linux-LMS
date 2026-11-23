@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Virtual Machines, Hypervisors &amp; Dual Boot | IST Learn</title>
+<title>Virtual Machines, Hypervisors &amp; Linux Installation | IST Learn</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -90,13 +90,6 @@ h2 {
   color: var(--ink);
 }
 
-h3 {
-  font-size: 15px;
-  font-weight: 800;
-  margin: 24px 0 10px;
-  color: var(--ink);
-}
-
 p {
   margin: 0 0 8px;
 }
@@ -107,18 +100,11 @@ p {
   line-height: 1.5;
 }
 
-.hint {
-  color: var(--muted);
-  font-size: 14px;
-  margin: 0 0 14px;
-  line-height: 1.5;
-}
-
 /* CARDS & HEADINGS */
 .card {
   border: 1px solid var(--line);
   border-radius: 14px;
-  padding: 20px 24px;
+  padding: 22px 26px;
   background: #ffffff;
   box-shadow: 0 4px 18px rgba(23, 32, 44, 0.04);
   margin-bottom: 20px;
@@ -162,60 +148,10 @@ p {
   line-height: 1.5;
 }
 
-/* STRIPS & CREATOR CARDS */
-.strip,
-.creator-strip,
-.lineage-strip,
-.component-strip,
-.install-strip {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px 16px;
-  margin: 10px 0 12px;
-}
-
-.creator-card {
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px 18px;
-  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
-}
-
-.icon-box,
-.creator-img-box,
-.lineage-icon-box,
-.component-icon-box,
-.install-icon-box {
-  width: 66px;
-  height: 52px;
-  background: var(--tint);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  border: 1px solid var(--tint-bd);
-}
-
-.creator-img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
 /* TWO COLUMN BALANCED LAYOUT */
 .two {
   display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
+  grid-template-columns: 1.05fr 0.95fr;
   gap: 20px;
   align-items: start;
 }
@@ -286,6 +222,45 @@ p {
   color: var(--bad);
 }
 
+/* BUTTONS */
+.btn {
+  background: var(--primary);
+  color: #ffffff;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn.alt {
+  background: #ffffff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.btn.alt:hover {
+  background: var(--paper);
+  border-color: var(--tint-bd);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 /* CODE BLOCKS & FEEDBACK RESULTS */
 pre {
   background: var(--ink);
@@ -329,15 +304,6 @@ code {
   background: var(--bad-bg);
   border-color: var(--bad-bd);
 }
-
-.detail {
-  background: var(--tint);
-  border: 1px solid var(--tint-bd);
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin-top: 8px;
-}
-
 
 /* HIGH-CONTRAST TERMINAL INSPECTOR WITH SYNTAX HIGHLIGHTING */
 .terminal-card {
@@ -391,7 +357,7 @@ code {
   line-height: 1.55;
   white-space: pre-wrap;
   word-break: break-word;
-  min-height: 220px;
+  min-height: 230px;
 }
 
 /* SYNTAX HIGHLIGHTING TOKEN PALETTE */
@@ -425,6 +391,7 @@ code {
   ry: 7px;
   stroke-width: 1.75px;
   transition: all 0.22s ease;
+  cursor: pointer;
 }
 
 .flow-line {
@@ -437,16 +404,6 @@ code {
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 700;
-  text-anchor: middle;
-  dominant-baseline: central;
-  pointer-events: none;
-}
-
-.node-left {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 600;
-  text-anchor: start !important;
   dominant-baseline: central;
   pointer-events: none;
 }
@@ -455,16 +412,8 @@ code {
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 600;
-  text-anchor: middle;
   dominant-baseline: central;
   pointer-events: none;
-}
-
-.branch-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  text-anchor: middle;
 }
 
 .st-active {
@@ -472,18 +421,10 @@ code {
   stroke: var(--primary);
 }
 
-.st-active text {
-  fill: var(--primary-dark);
-}
-
 .st-pass {
   fill: var(--ok-bg);
   stroke: var(--ok);
   filter: drop-shadow(0 1px 3px rgba(13, 138, 85, 0.12));
-}
-
-.st-pass text {
-  fill: var(--ok);
 }
 
 .line-blue {
@@ -494,267 +435,179 @@ code {
   stroke: var(--ok);
 }
 
-/* BUTTONS */
-.btn {
-  background: var(--primary);
-  color: #ffffff;
-  border: 1px solid var(--primary);
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  font-family: inherit;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn:hover {
-  background: var(--primary-dark);
-  border-color: var(--primary-dark);
-}
-
-.btn.alt {
-  background: #ffffff;
-  color: var(--ink);
-  border: 1px solid var(--line);
-}
-
-.btn.alt:hover {
-  background: var(--paper);
-  border-color: var(--tint-bd);
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.top-pill {
-  font-size: 11.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--primary);
-  background: var(--tint);
-  border: 1px solid var(--tint-bd);
-  padding: 4px 12px;
-  border-radius: 999px;
-}
-
-/* VIDEO STYLES */
-.video-card {
-  background: #ffffff;
-  border: 1.5px solid var(--tint-bd);
-  border-radius: 12px;
-  padding: 16px;
-  margin: 14px 0 24px;
-  box-shadow: 0 1px 4px rgba(23, 32, 44, 0.02);
-}
-
-.video-embed-wrap {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 8px;
-  background: #000;
-}
-
-.video-embed-wrap iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
 </style>
 </head>
 <body>
 
-
-
 <main>
   <p class="eye">Module 1 &middot; Level 5 &middot; Interactive System Lab</p>
-  <h1>Virtual Machines, Hypervisors &amp; Dual Boot</h1>
+  <h1>Virtual Machines, Hypervisors &amp; Linux Installation</h1>
 
   <div class="card" id="stage">
     <!-- SECTION 1: SIMPLE IDEA -->
     <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
     <div class="note"><b>In plain words:</b> Virtual machines enable developers to run multiple isolated Linux environments safely upon a single physical computer.</div>
 
-    <p class="sm"><b>Remember:</b> Bridged networking assigns each virtual machine a unique dedicated IP address on your physical local network.</p>
+    <p class="sm"><b>Remember:</b> Installing Linux inside a virtual machine creates an isolated sandbox without altering your host computer partitions.</p>
 
-    <!-- SECTION 2: TRY IT -->
-    <h2 class="sh"><span class="st">2</span>Try It: Interactive Virtual Machine &amp; Network Studio</h2>
+    <!-- SECTION 2: TRY IT (ANIMATED STEP-BY-STEP INSTALLATION) -->
+    <h2 class="sh"><span class="st">2</span>Try It: How to Install Linux on a Virtual Machine (Step-by-Step Animation)</h2>
     <div class="two">
       <div>
         <div class="box">
-          <label class="lab">Select Exploration Topic:</label>
-          <div class="chips">
-            <button type="button" class="chip on" data-a="md" data-m="networking">1. Network Modes</button>
-            <button type="button" class="chip" data-a="md" data-m="hypervisors">2. Hypervisor Types</button>
-            <button type="button" class="chip" data-a="md" data-m="snapshots">3. Snapshots &amp; State</button>
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+            <label class="lab" style="margin:0;">Interactive Installation Stepper:</label>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <button type="button" class="btn alt" id="btn_prev" style="padding:4px 10px;font-size:11px;">&larr; Prev</button>
+              <button type="button" class="btn" id="btn_play" style="padding:4px 10px;font-size:11px;">&#9654; Play Animation</button>
+              <button type="button" class="btn alt" id="btn_next" style="padding:4px 10px;font-size:11px;">Next &rarr;</button>
+            </div>
           </div>
 
-          <!-- Network Modes Subchips -->
-          <div id="sub_chips_net" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
-            <label class="lab" style="font-size:10px">Select Network Mode:</label>
-            <div class="chips" style="margin:0">
-              <button type="button" class="chip on" data-a="net" data-n="all">All Modes</button>
-              <button type="button" class="chip" data-a="net" data-n="nat">NAT</button>
-              <button type="button" class="chip" data-a="net" data-n="bridged">Bridged</button>
-              <button type="button" class="chip" data-a="net" data-n="hostonly">Host-Only</button>
-            </div>
+          <div class="chips" id="step_chips" style="margin:0;">
+            <button type="button" class="chip on" data-a="stp" data-s="1">Step 1: Download ISO</button>
+            <button type="button" class="chip" data-a="stp" data-s="2">Step 2: Create VM</button>
+            <button type="button" class="chip" data-a="stp" data-s="3">Step 3: Allocate RAM/CPU</button>
+            <button type="button" class="chip" data-a="stp" data-s="4">Step 4: Virtual Disk</button>
+            <button type="button" class="chip" data-a="stp" data-s="5">Step 5: Mount &amp; Power</button>
+            <button type="button" class="chip" data-a="stp" data-s="6">Step 6: Run Installer</button>
+            <button type="button" class="chip" data-a="stp" data-s="7">Step 7: First Boot</button>
           </div>
         </div>
 
         <div class="chart-card">
-          <!-- Network Modes Flowchart -->
-          <div id="fc_networking">
-            <span class="lab">Virtual Machine Networking Topologies (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 540 290">
-              <!-- Physical Host Header -->
-              <rect x="15" y="8" width="510" height="40" class="node-rect st-active" />
-              <text x="270" y="23" class="node-text">Physical Host Machine - Virtual Switch (Host LAN: 192.168.1.100)</text>
-              <text x="270" y="38" class="node-mono" fill="var(--primary)">Virtual NICs Connect Through Software Bridges</text>
+          <span class="lab">Live Virtual Machine Display Simulator (SVG)</span>
+          <svg class="svg-flowchart" viewBox="0 0 520 270">
+            <!-- VM Window Chrome -->
+            <rect x="10" y="8" width="500" height="254" rx="10" fill="#0d131f" stroke="#1e293b" stroke-width="1.5" />
+            <rect x="10" y="8" width="500" height="30" rx="10" fill="#151e2e" />
+            <!-- Window Circles -->
+            <circle cx="28" cy="23" r="4.5" fill="#ef4444" />
+            <circle cx="42" cy="23" r="4.5" fill="#f59e0b" />
+            <circle cx="56" cy="23" r="4.5" fill="#10b981" />
+            <text x="260" y="24" class="node-mono" fill="#94a3b8" text-anchor="middle" font-weight="700">Virtual Machine Manager &bull; Ubuntu-24.04-Lab [64-bit]</text>
 
-              <!-- Central Trunk down into Network Modes Badge -->
-              <path d="M 270 48 L 270 61" class="flow-line line-blue" />
-              
-              <!-- Standalone Virtual Network Modes Badge -->
-              <rect x="185" y="61" width="170" height="22" rx="11" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.25" />
-              <text x="270" y="72" class="branch-label" fill="var(--primary)" style="font-weight:700;">Virtual Network Modes</text>
+            <!-- 7-Step Progress Rail inside VM Chrome -->
+            <path d="M 40 54 L 480 54" stroke="#243046" stroke-width="2" />
+            <path id="progress_line" d="M 40 54 L 40 54" stroke="var(--ok)" stroke-width="2.5" />
 
-              <!-- Central Trunk down out of Badge to Distribution Rail -->
-              <path d="M 270 83 L 270 96" class="flow-line line-blue" />
+            <!-- Progress Step Indicators -->
+            <g id="dot_1"><circle cx="40" cy="54" r="8" fill="var(--ok)" /><text x="40" y="55" class="node-mono" fill="#fff" font-size="8px" text-anchor="middle">1</text></g>
+            <g id="dot_2"><circle cx="113" cy="54" r="8" fill="#243046" /><text x="113" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">2</text></g>
+            <g id="dot_3"><circle cx="186" cy="54" r="8" fill="#243046" /><text x="186" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">3</text></g>
+            <g id="dot_4"><circle cx="260" cy="54" r="8" fill="#243046" /><text x="260" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">4</text></g>
+            <g id="dot_5"><circle cx="333" cy="54" r="8" fill="#243046" /><text x="333" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">5</text></g>
+            <g id="dot_6"><circle cx="406" cy="54" r="8" fill="#243046" /><text x="406" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">6</text></g>
+            <g id="dot_7"><circle cx="480" cy="54" r="8" fill="#243046" /><text x="480" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">7</text></g>
 
-              <!-- Horizontal Distribution Rail -->
-              <path d="M 95 96 L 445 96" class="flow-line line-blue" fill="none" />
+            <!-- Dynamic Installation Canvas Area -->
+            <!-- STEP 1: Download ISO -->
+            <g id="view_step1">
+              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
+              <rect x="50" y="90" width="60" height="60" rx="8" fill="var(--tint)" stroke="var(--primary)" />
+              <text x="80" y="124" class="node-mono" fill="var(--primary-dark)" font-size="13px" font-weight="800" text-anchor="middle">.ISO</text>
+              <text x="130" y="104" class="node-text" fill="#fff" text-anchor="start">Download - ISO &amp; Hypervisor</text>
+              <text x="130" y="122" class="node-mono" fill="#93c5fd" text-anchor="start">File: ubuntu-24.04-desktop-amd64.iso (4.8 GB)</text>
+              <text x="130" y="140" class="node-mono" fill="#94a3b8" text-anchor="start">Hypervisor: VMware Workstation / VirtualBox</text>
+              <!-- Progress bar -->
+              <rect x="130" y="154" width="330" height="14" rx="4" fill="#0d131f" stroke="#243046" />
+              <rect x="132" y="156" width="326" height="10" rx="3" fill="var(--ok)" />
+              <text x="295" y="162" class="node-mono" fill="#fff" font-size="8px" font-weight="700" text-anchor="middle">100% Downloaded &bull; Verified SHA-256 Checksum</text>
+            </g>
 
-              <!-- 3 Downward Branch Lines & Arrowheads -->
-              <path d="M 95 96 L 95 109" class="flow-line line-pass" />
-              <polygon points="95,110 91,103 99,103" fill="var(--ok)" />
+            <!-- STEP 2: Create VM Profile -->
+            <g id="view_step2" style="display:none;">
+              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
+              <text x="50" y="96" class="node-text" fill="#fff" text-anchor="start">Configure - VM Name &amp; OS</text>
+              <rect x="50" y="110" width="420" height="26" rx="5" fill="#0d131f" stroke="var(--primary)" />
+              <text x="65" y="124" class="node-mono" fill="#94a3b8" text-anchor="start">Virtual Machine Name:</text>
+              <text x="230" y="124" class="node-mono" fill="#38bdf8" font-weight="700" text-anchor="start">Ubuntu-24.04-Lab</text>
+              <rect x="50" y="144" width="205" height="26" rx="5" fill="#0d131f" stroke="#243046" />
+              <text x="65" y="158" class="node-mono" fill="#94a3b8" text-anchor="start">Type:</text>
+              <text x="120" y="158" class="node-mono" fill="#4ade80" font-weight="700" text-anchor="start">Linux</text>
+              <rect x="265" y="144" width="205" height="26" rx="5" fill="#0d131f" stroke="#243046" />
+              <text x="280" y="158" class="node-mono" fill="#94a3b8" text-anchor="start">Version:</text>
+              <text x="345" y="158" class="node-mono" fill="#fbbf24" font-weight="700" text-anchor="start">Ubuntu (64-bit)</text>
+              <text x="50" y="193" class="node-mono" fill="#93c5fd" text-anchor="start">&#10003; 64-bit Virtual Hardware Profile Registered in Hypervisor</text>
+            </g>
 
-              <path d="M 270 96 L 270 109" class="flow-line line-pass" />
-              <polygon points="270,110 266,103 274,103" fill="var(--ok)" />
+            <!-- STEP 3: Allocate RAM & CPU -->
+            <g id="view_step3" style="display:none;">
+              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
+              <text x="50" y="96" class="node-text" fill="#fff" text-anchor="start">Allocate - RAM &amp; CPU Cores</text>
+              <!-- RAM Bar -->
+              <text x="50" y="118" class="node-mono" fill="#93c5fd" text-anchor="start">Base Memory (RAM): 4096 MB (4 GB)</text>
+              <rect x="50" y="126" width="420" height="14" rx="4" fill="#0d131f" stroke="#243046" />
+              <rect x="52" y="128" width="160" height="10" rx="3" fill="var(--ok)" />
+              <text x="460" y="134" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="end">Host: 16 GB Max</text>
+              <!-- CPU Bar -->
+              <text x="50" y="156" class="node-mono" fill="#fbbf24" text-anchor="start">Processors: 2 Virtual CPU Cores</text>
+              <rect x="50" y="164" width="420" height="14" rx="4" fill="#0d131f" stroke="#243046" />
+              <rect x="52" y="166" width="130" height="10" rx="3" fill="var(--primary)" />
+              <text x="460" y="172" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="end">Host: 8 Cores Max</text>
+              <text x="50" y="196" class="node-mono" fill="#4ade80" text-anchor="start">&#10003; Safe allocation: Does not starve host physical operating system</text>
+            </g>
 
-              <path d="M 445 96 L 445 109" class="flow-line line-blue" />
-              <polygon points="445,110 441,103 449,103" fill="var(--primary)" />
+            <!-- STEP 4: Virtual Disk Creation -->
+            <g id="view_step4" style="display:none;">
+              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
+              <text x="50" y="96" class="node-text" fill="#fff" text-anchor="start">Provision - Virtual Disk (25GB)</text>
+              <rect x="50" y="110" width="420" height="30" rx="5" fill="#0d131f" stroke="#243046" />
+              <text x="65" y="126" class="node-mono" fill="#38bdf8" text-anchor="start">Disk File: /VMs/Ubuntu-24.04-Lab/root_disk.vdi</text>
+              <rect x="50" y="148" width="420" height="30" rx="5" fill="#0d131f" stroke="var(--ok)" />
+              <text x="65" y="164" class="node-mono" fill="#4ade80" text-anchor="start">Storage Type: Dynamically Allocated (Expands up to 25.00 GB)</text>
+              <text x="50" y="196" class="node-mono" fill="#93c5fd" text-anchor="start">&#10003; Uses physical storage only as files are written inside the VM</text>
+            </g>
 
-              <!-- NAT Mode Box -->
-              <rect id="net_b_nat" x="15" y="110" width="160" height="74" class="node-rect st-pass" data-a="net" data-n="nat" style="cursor:pointer;" />
-              <text x="95" y="126" class="node-text">NAT Mode</text>
-              <text x="95" y="143" class="node-mono" fill="var(--ok)">Shares Host IP</text>
-              <text x="95" y="159" class="node-mono">Built-in Host Firewall</text>
-              <text x="95" y="174" class="node-mono">Default Safe Web Access</text>
+            <!-- STEP 5: Mount ISO & Power On -->
+            <g id="view_step5" style="display:none;">
+              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
+              <text x="50" y="96" class="node-text" fill="#fff" text-anchor="start">Mount - Attach ISO &amp; Power On</text>
+              <rect x="50" y="110" width="420" height="30" rx="5" fill="#0d131f" stroke="#243046" />
+              <text x="65" y="126" class="node-mono" fill="#fbbf24" text-anchor="start">Virtual Optical Drive: [Attached] ubuntu-24.04-desktop.iso</text>
+              <!-- Power On Button -->
+              <rect x="50" y="148" width="140" height="30" rx="6" fill="var(--ok)" />
+              <text x="120" y="164" class="node-mono" fill="#fff" font-weight="700" text-anchor="middle">&#9654; VM STATE: RUNNING</text>
+              <text x="205" y="164" class="node-mono" fill="#38bdf8" text-anchor="start">UEFI Firmware Handshake: Booting from Live ISO...</text>
+              <text x="50" y="196" class="node-mono" fill="#93c5fd" text-anchor="start">&#10003; Guest firmware reads GRUB bootloader from virtual optical medium</text>
+            </g>
 
-              <!-- Bridged Mode Box -->
-              <rect id="net_b_bridged" x="190" y="110" width="160" height="74" class="node-rect st-pass" data-a="net" data-n="bridged" style="cursor:pointer;" />
-              <text x="270" y="126" class="node-text">Bridged Mode</text>
-              <text x="270" y="143" class="node-mono" fill="var(--ok)">Dedicated LAN IP</text>
-              <text x="270" y="159" class="node-mono">Visible on Physical Switch</text>
-              <text x="270" y="174" class="node-mono">Ideal for Network Servers</text>
+            <!-- STEP 6: Run Guided Installer -->
+            <g id="view_step6" style="display:none;">
+              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
+              <text x="50" y="96" class="node-text" fill="#fff" text-anchor="start">Install - Guided OS Setup</text>
+              <rect x="50" y="108" width="420" height="24" rx="4" fill="#0d131f" stroke="#243046" />
+              <text x="65" y="121" class="node-mono" fill="#38bdf8" text-anchor="start">Setup: English &bull; Minimal Installation &bull; Install OpenSSH Server</text>
+              <rect x="50" y="138" width="420" height="24" rx="4" fill="#0d131f" stroke="var(--primary)" />
+              <text x="65" y="151" class="node-mono" fill="#4ade80" text-anchor="start">Disk: Erase virtual disk and install Ubuntu (Safe in isolated sandbox)</text>
+              <!-- Install progress bar -->
+              <rect x="50" y="168" width="420" height="16" rx="4" fill="#0d131f" stroke="#243046" />
+              <rect x="52" y="170" width="340" height="12" rx="3" fill="var(--primary)" />
+              <text x="260" y="177" class="node-mono" fill="#fff" font-size="9px" font-weight="700" text-anchor="middle">Copying files &amp; configuring Linux kernel... (85%)</text>
+              <text x="50" y="198" class="node-mono" fill="#fbbf24" text-anchor="start">&#10003; Administrator user created: 'student' with sudo privileges</text>
+            </g>
 
-              <!-- Host-Only Mode Box -->
-              <rect id="net_b_hostonly" x="365" y="110" width="160" height="74" class="node-rect st-active" data-a="net" data-n="hostonly" style="cursor:pointer;" />
-              <text x="445" y="126" class="node-text">Host-Only Mode</text>
-              <text x="445" y="143" class="node-mono" fill="var(--primary)">Private Air-Gap</text>
-              <text x="445" y="159" class="node-mono">Zero Internet Access</text>
-              <text x="445" y="174" class="node-mono">Isolated Malware Sandbox</text>
+            <!-- STEP 7: First Boot & Desktop Ready -->
+            <g id="view_step7" style="display:none;">
+              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="var(--ok)" />
+              <text x="50" y="96" class="node-text" fill="#4ade80" text-anchor="start">Boot - First Desktop Login</text>
+              <!-- GNOME Desktop Frame inside VM -->
+              <rect x="50" y="108" width="420" height="80" rx="6" fill="#1e1e2e" stroke="#313244" />
+              <!-- Desktop Top Bar -->
+              <rect x="50" y="108" width="420" height="16" rx="6" fill="#11111b" />
+              <text x="65" y="117" class="node-mono" fill="#cdd6f4" font-size="8px" text-anchor="start">Activities</text>
+              <text x="260" y="117" class="node-mono" fill="#cdd6f4" font-size="8px" text-anchor="middle">Nov 23 12:00 PM</text>
+              <!-- Desktop center message -->
+              <text x="260" y="145" class="node-mono" fill="#4ade80" font-weight="800" font-size="12px" text-anchor="middle">&#10003; Ubuntu 24.04 LTS Desktop Successfully Installed!</text>
+              <text x="260" y="165" class="node-mono" fill="#93c5fd" text-anchor="middle">Virtual ISO unmounted &bull; System ready for Linux command line practice</text>
+              <text x="50" y="200" class="node-mono" fill="#4ade80" text-anchor="start">&#10003; Installation complete &bull; Snapshot taken: 'Fresh-Clean-Install'</text>
+            </g>
 
-              <!-- Lines down into Consolidation Rail -->
-              <path d="M 95 184 L 95 200 M 270 184 L 270 200 M 445 184 L 445 200" class="flow-line line-blue" />
-
-              <!-- Horizontal Consolidation Rail -->
-              <path d="M 95 200 L 445 200" class="flow-line line-blue" fill="none" />
-
-              <!-- Central Trunk Arrow into Summary -->
-              <path d="M 270 200 L 270 215" class="flow-line line-blue" />
-              <polygon points="270,216 266,209 274,209" fill="var(--ink)" />
-
-              <!-- Summary Card -->
-              <rect x="15" y="216" width="510" height="62" rx="8" fill="var(--paper)" stroke="var(--line)" />
-              <text x="270" y="233" class="node-text" fill="var(--ink)">Virtual Network Isolation &amp; Security Profiles</text>
-              <text x="270" y="251" class="node-mono" fill="var(--ok)">NAT Mode - Safe Web Browsing - Host Firewall Blocks Inbound Threats</text>
-              <text x="270" y="267" class="node-mono" fill="var(--primary)">Bridged Mode - Full Two-Way Communication - Real Server Deployments</text>
-            </svg>
-          </div>
-
-          <!-- Hypervisors Flowchart -->
-          <div id="fc_hypervisors" style="display:none;">
-            <span class="lab">Type 1 vs Type 2 Hypervisor Stacks (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <!-- Type 1 Bare Metal Column -->
-              <rect x="20" y="8" width="230" height="32" class="node-rect st-pass" />
-              <text x="135" y="24" class="node-text">Type 1: Bare Metal</text>
-
-              <rect x="20" y="44" width="230" height="34" rx="6" fill="var(--ok-bg)" stroke="var(--ok)" />
-              <text x="135" y="61" class="node-mono" fill="var(--ok)">KVM &bull; Proxmox &bull; VMware ESXi</text>
-
-              <rect x="20" y="82" width="230" height="42" rx="6" fill="var(--ink)" />
-              <text x="135" y="96" class="node-mono" fill="#fff">Direct Physical Hardware</text>
-              <text x="135" y="112" class="node-mono" fill="#93c5fd">Zero Host OS Overhead Layer</text>
-
-              <rect x="20" y="128" width="230" height="34" rx="6" fill="var(--tint)" stroke="var(--primary)" />
-              <text x="135" y="140" class="node-mono" fill="var(--primary-dark)">Maximum Performance &bull; Near Native</text>
-              <text x="135" y="152" class="node-mono" fill="var(--muted)">Standard for Data Centers &amp; Cloud</text>
-
-              <!-- Type 2 Hosted Column -->
-              <rect x="270" y="8" width="230" height="32" class="node-rect st-active" />
-              <text x="385" y="24" class="node-text">Type 2: Hosted</text>
-
-              <rect x="270" y="44" width="230" height="34" rx="6" fill="var(--tint)" stroke="var(--tint-bd)" />
-              <text x="385" y="61" class="node-mono" fill="var(--primary-dark)">VirtualBox &bull; VMware Workstation</text>
-
-              <rect x="270" y="82" width="230" height="42" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="385" y="96" class="node-mono" fill="var(--ink)">Runs Inside Existing Host OS</text>
-              <text x="385" y="112" class="node-mono" fill="var(--muted)">Windows / macOS / Ubuntu Desktop</text>
-
-              <rect x="270" y="128" width="230" height="34" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="385" y="140" class="node-mono">Quick Graphical Installation</text>
-              <text x="385" y="152" class="node-mono" fill="var(--muted)">Ideal for Learning &amp; Local Labs</text>
-
-              <rect x="20" y="172" width="480" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="185" class="node-mono" fill="var(--ink)">Type 1 runs directly on hardware - Type 2 executes inside host OS</text>
-            </svg>
-          </div>
-
-          <!-- Snapshots Flowchart -->
-          <div id="fc_snapshots" style="display:none;">
-            <span class="lab">VM Snapshot &amp; Rollback Lifecycle (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <!-- State 1: Clean Install -->
-              <rect x="25" y="6" width="470" height="34" rx="7" class="node-rect st-active" />
-              <text x="260" y="23" class="node-text">Base State: Fresh Ubuntu Server Installation</text>
-
-              <path d="M 260 40 L 260 56" class="flow-line line-blue" />
-              <text x="345" y="48" class="branch-label" fill="var(--primary)">take snapshot 1</text>
-
-              <!-- State 2: Snapshot Saved -->
-              <rect x="25" y="56" width="470" height="34" rx="7" class="node-rect st-pass" />
-              <text x="260" y="73" class="node-text">Snapshot 1: "Pre-Update Clean Milestone"</text>
-
-              <path d="M 260 90 L 260 106" class="flow-line line-pass" />
-              <text x="345" y="98" class="branch-label" fill="var(--ok)">apply test packages</text>
-
-              <!-- State 3: Corrupted Test State -->
-              <rect x="25" y="106" width="470" height="34" rx="7" class="node-rect st-active" />
-              <text x="260" y="123" class="node-text">Broken State: System Package Crash Occurred</text>
-
-              <!-- Revert Curve -->
-              <path d="M 45 123 C 15 95, 15 73, 40 73" class="flow-line line-pass" stroke-dasharray="4 3" fill="none" />
-              <text x="75" y="98" class="branch-label" fill="var(--ok)">instant revert</text>
-
-              <rect x="25" y="152" width="470" height="34" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="166" class="node-mono" fill="var(--ink)">Instant Rollback - Zero Downtime Recovery for Risky Tests</text>
-              <text x="260" y="179" class="node-mono" fill="var(--ok)">Eliminates OS Re-installation - Safely Experiment in Sandboxes</text>
-            </svg>
-          </div>
+            <!-- Bottom Step Explanation Strip -->
+            <rect x="30" y="218" width="460" height="34" rx="6" fill="#151e2e" stroke="#243046" />
+            <text x="45" y="236" class="node-mono" fill="var(--ok)" id="vm_step_tag" text-anchor="start">Step 1 of 7</text>
+            <text x="130" y="236" class="node-mono" fill="#f1f5f9" id="vm_step_title" text-anchor="start">Download ISO: Obtain Linux installation image &amp; hypervisor software</text>
+          </svg>
         </div>
       </div>
 
@@ -767,7 +620,7 @@ code {
               <span class="dot dot-y"></span>
               <span class="dot dot-g"></span>
             </div>
-            <span class="terminal-title" id="insp_lab">System Concept &amp; Telemetry Inspector</span>
+            <span class="terminal-title" id="insp_lab">VM Installation Parameters</span>
           </div>
           <pre class="terminal-code"><code id="insp_code"></code></pre>
         </div>
@@ -775,7 +628,7 @@ code {
       </div>
     </div>
 
-    <!-- VIDEO REFERENCE -->
+    <!-- VIDEO REFERENCE (Rule 18) -->
     <h2 class="sh"><span class="st">&bull;</span>Video Reference: Install Ubuntu on Virtual Machine (VMware)</h2>
     <div class="box" style="padding:14px;">
       <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;">
@@ -799,15 +652,14 @@ code {
     <!-- SECTION 3: QUICK CHECK -->
     <h2 class="sh"><span class="st">3</span>Quick Check</h2>
     <div class="box">
-      <p style="margin:0 0 5px"><b>Which virtual machine networking mode assigns the guest operating system a direct IP address on your physical local area network?</b></p>
+      <p style="margin:0 0 5px"><b>What is the first critical step when configuring a virtual machine before installing Linux?</b></p>
       <div class="chips" id="qc_chips">
-        <button type="button" class="chip" data-a="qc" data-o="0"><code>Bridged Networking</code></button>
-        <button type="button" class="chip" data-a="qc" data-o="1"><code>NAT (Network Address Translation)</code></button>
-        <button type="button" class="chip" data-a="qc" data-o="2"><code>Isolated Loopback Mode</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="0"><code>Allocating virtual RAM and attaching the Linux ISO installation image</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="1"><code>Formatting the physical host computer hard drive completely</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="2"><code>Disabling all motherboard CPU virtualization extensions in BIOS</code></button>
       </div>
       <div class="res" id="qc_res" style="display:none"></div>
     </div>
-  </div>
   </div>
 </main>
 
@@ -830,7 +682,7 @@ function highlightSyntax(raw) {
       prefix = `<span class="tok-k">${escape(key)}</span><span class="tok-punc">:</span>`;
       content = line.slice(colonIdx + 1);
     }
-    const tokenRegex = /(".*?"|'.*?'|\b(?:sudo|apt|dnf|yum|pacman|bash|zsh|glibc|gcc|systemd|ssh|selinux|rpm|deb|aur|emacs|coreutils|gpl|foss|grub|systemctl|journalctl|echo|cat|ls|head|tail|mkdir|touch|find|wc|cut|whatis|apropos|man|ln|cd|pwd)\b|(?:\$\d[\d,]*\+?|\b\d+(?:\.\d+)?%?|\b100%|\b16-bit\b|\b32-bit\b|\b64-bit\b|\b10-year\b|\b386\b|\b19\d\d\b|\b20\d\d\b|\b512MB\b|\b128MB\b|\b\d+GB\b|\b\d+TB\b))/gi;
+    const tokenRegex = /(".*?"|'.*?'|\b(?:sudo|apt|dnf|yum|pacman|bash|zsh|glibc|gcc|systemd|ssh|selinux|rpm|deb|aur|emacs|coreutils|gpl|foss|grub|systemctl|journalctl|echo|cat|ls|head|tail|mkdir|touch|find|wc|cut|whatis|apropos|man|ln|cd|pwd|VBoxManage|createvm|modifyvm|storagectl|storageattach)\b|(?:\$\d[\d,]*\+?|\b\d+(?:\.\d+)?%?|\b100%|\b16-bit\b|\b32-bit\b|\b64-bit\b|\b4096MB\b|\b4\s*GB\b|\b25\s*GB\b|\b2\s*vCPUs\b|\b25GB\b))/gi;
     let highlighted = "";
     let lastIdx = 0;
     let match;
@@ -839,7 +691,7 @@ function highlightSyntax(raw) {
       const tok = match[0];
       if (tok.startsWith('"') || tok.startsWith("'")) {
         highlighted += `<span class="tok-s">${escape(tok)}</span>`;
-      } else if (/^\d|\$|16-bit|32-bit|64-bit|10-year|386/i.test(tok)) {
+      } else if (/^\d|\$|16-bit|32-bit|64-bit|4096MB|4\s*GB|25\s*GB|2\s*vCPUs|25GB/i.test(tok)) {
         highlighted += `<span class="tok-n">${escape(tok)}</span>`;
       } else {
         highlighted += `<span class="tok-cmd">${escape(tok)}</span>`;
@@ -851,136 +703,172 @@ function highlightSyntax(raw) {
   }).join("\n");
 }
 
-let activeTopic = "networking";
-let activeNet = "all";
+let activeStep = 1;
+let isPlaying = false;
+let playTimer = null;
 
-const NETWORKS = {
-  all: {
-    lab: "Overview: VM Network Modes",
-    code: `NAT Mode     • Shares host IP; allows outbound internet access only\nBridged Mode • Assigns dedicated local network IP address to the VM\nHost-Only    • Completely isolated sandbox network between host & VM`,
-    explain: "Virtual machine network drivers determine how guest Linux operating systems communicate with external network devices."
+const INSTALL_STEPS = {
+  1: {
+    tag: "Step 1 of 7",
+    title: "Download ISO: Obtain Linux installation image & hypervisor software",
+    lab: "Step 1: Download ISO & Hypervisor Software",
+    code: `Hypervisor   : VMware Workstation Player or Oracle VirtualBox\nDistribution : Ubuntu 24.04 LTS Desktop (64-bit)\nImage File   : ubuntu-24.04-desktop-amd64.iso (4.8 GB)\nIntegrity    : Verify SHA-256 hash checksum before creation`,
+    explain: "Obtain your preferred hypervisor software along with the official distribution ISO installation disc image."
   },
-  nat: {
-    lab: "NAT (Network Address Translation)",
-    code: `Role     : Translates guest outbound packets through host IP\nExamples : 10.0.2.15/24 default IP; safe internet browsing`,
-    explain: "NAT mode allows guest virtual machines to access the internet while isolating them from inbound traffic."
+  2: {
+    tag: "Step 2 of 7",
+    title: "Create VM: Initialize virtual machine profile & operating system type",
+    lab: "Step 2: Create Virtual Machine Profile",
+    code: `VM Name      : Ubuntu-24.04-Lab\nGuest OS     : Linux\nArchitecture : Ubuntu (64-bit)\nCommand      : VBoxManage createvm --name "Ubuntu-24.04-Lab" --ostype "Ubuntu_64" --register`,
+    explain: "Create a new virtual machine profile and configure the guest operating system type appropriately."
   },
-  bridged: {
-    lab: "Bridged Adapter Mode",
-    code: `Role     : Attaches virtual NIC directly into physical network switch\nExamples : 192.168.1.150/24; direct SSH and web server hosting`,
-    explain: "Bridged mode assigns the virtual machine a distinct IP address directly from your physical router."
+  3: {
+    tag: "Step 3 of 7",
+    title: "Allocate Hardware: Assign RAM memory and virtual CPU cores",
+    lab: "Step 3: Allocate RAM & Virtual CPU Cores",
+    code: `RAM Memory   : 4096 MB (4 GB) • Optimal balance for host & guest\nVirtual CPUs : 2 vCPUs • Smooth multi-threaded application performance\nNested Virt  : Enable Intel VT-x / AMD-V CPU hardware acceleration\nCommand      : VBoxManage modifyvm "Ubuntu-24.04-Lab" --memory 4096 --cpus 2`,
+    explain: "Assign sufficient processor cores and memory from your physical host computer for smooth performance."
   },
-  hostonly: {
-    lab: "Host-Only Networking",
-    code: `Role     : Restricts traffic strictly to an internal virtual loopback\nExamples : 192.168.56.101/24; isolated cybersecurity malware lab`,
-    explain: "Host-only networking restricts communication strictly between the host computer and designated virtual machines."
+  4: {
+    tag: "Step 4 of 7",
+    title: "Provision Storage: Create dynamically allocated virtual hard disk",
+    lab: "Step 4: Provision Virtual Hard Disk (25 GB)",
+    code: `Disk Format  : VDI (VirtualBox) or VMDK (VMware Workstation)\nDisk Size    : 25.00 GB virtual storage capacity\nAllocation   : Dynamically Allocated (expands on physical disk on-demand)\nCommand      : VBoxManage createmedium disk --filename "root_disk.vdi" --size 25600`,
+    explain: "Create a dynamically allocated virtual hard disk image to store the guest operating system."
+  },
+  5: {
+    tag: "Step 5 of 7",
+    title: "Mount ISO & Power: Attach optical media and boot into live environment",
+    lab: "Step 5: Mount ISO & Power On Virtual Machine",
+    code: `Controller   : IDE / SATA Virtual Optical Drive\nOptical Disc : ubuntu-24.04-desktop-amd64.iso (Live Boot Medium)\nBoot Order   : DVD-ROM -> Virtual Hard Disk -> Network\nCommand      : VBoxManage storageattach "Ubuntu-24.04-Lab" --type dvddrive --medium ubuntu.iso`,
+    explain: "Insert the virtual ISO installation disk into the optical drive and power on the VM."
+  },
+  6: {
+    tag: "Step 6 of 7",
+    title: "Guided Installer: Partition virtual disk & configure administrator",
+    lab: "Step 6: Run Graphical OS Installer",
+    code: `Language     : English (United States) • Minimal Installation\nPartitioning : Guided - Entire Virtual Disk (Safely inside container!)\nAccount      : User 'student' • Sudo administrative rights granted\nStatus       : Copying binary packages and compiling Linux initramfs`,
+    explain: "Follow the graphical installer prompts to partition the virtual disk and create your administrator account."
+  },
+  7: {
+    tag: "Step 7 of 7",
+    title: "First Boot: Eject ISO medium and launch GNOME desktop environment",
+    lab: "Step 7: First Boot & Desktop Ready",
+    code: `Eject Media  : Optical drive unmounted • Guest boots from virtual hard disk\nDisplay      : GNOME 46 Wayland Desktop Environment initialized\nNetwork      : NAT adapter connected • IP 10.0.2.15 with internet access\nSafety       : Host computer completely untouched and fully protected`,
+    explain: "Eject the virtual installation medium and restart the virtual machine to reach your desktop."
   }
 };
 
-const TOPICS = {
-  hypervisors: {
-    lab: "Hypervisors: Type 1 vs Type 2",
-    code: `Type 1 (Bare Metal) • KVM, VMware ESXi, Proxmox (Runs on hardware)\nType 2 (Hosted)     • VirtualBox, VMware Workstation (Runs on host OS)\nHardware Virt Tech  • Intel VT-x and AMD-V CPU virtualization acceleration`,
-    explain: "Hypervisors abstract physical processor cores and memory to run concurrent guest operating systems safely."
-  },
-  snapshots: {
-    lab: "VM Snapshots & Disaster Recovery",
-    code: `State Preservation • Freezes virtual hard disk and RAM execution state\nDelta Disk Differ  • Writes new disk mutations to a separate overlay file\nInstant Rollback   • Restores clean operating system snapshot in seconds`,
-    explain: "Snapshots capture current system state allowing instant rollback before performing hazardous administrative operations."
+function updateInstallation() {
+  document.querySelectorAll("[data-a='stp']").forEach(b => {
+    b.classList.toggle("on", +b.dataset.s === activeStep);
+  });
+
+  for (let i = 1; i <= 7; i++) {
+    const view = $("view_step" + i);
+    if (view) view.style.display = i === activeStep ? "block" : "none";
+
+    const dot = $("dot_" + i);
+    if (dot) {
+      const circ = dot.querySelector("circle");
+      const txt = dot.querySelector("text");
+      if (i < activeStep) {
+        if (circ) circ.setAttribute("fill", "var(--ok)");
+        if (txt) { txt.textContent = "✓"; txt.setAttribute("fill", "#fff"); }
+      } else if (i === activeStep) {
+        if (circ) circ.setAttribute("fill", "var(--primary)");
+        if (txt) { txt.textContent = i; txt.setAttribute("fill", "#fff"); }
+      } else {
+        if (circ) circ.setAttribute("fill", "#243046");
+        if (txt) { txt.textContent = i; txt.setAttribute("fill", "#94a3b8"); }
+      }
+    }
   }
-};
 
-function updateStudio() {
-  document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeTopic));
+  const progLine = $("progress_line");
+  if (progLine) {
+    const xTargets = [40, 40, 113, 186, 260, 333, 406, 480];
+    progLine.setAttribute("d", `M 40 54 L ${xTargets[activeStep]} 54`);
+  }
 
-  if (activeTopic === "networking") {
-    $("fc_networking").style.display = "block";
-    $("fc_hypervisors").style.display = "none";
-    $("fc_snapshots").style.display = "none";
-    $("sub_chips_net").style.display = "block";
-    updateNet();
-  } else if (activeTopic === "hypervisors") {
-    $("fc_networking").style.display = "none";
-    $("fc_hypervisors").style.display = "block";
-    $("fc_snapshots").style.display = "none";
-    $("sub_chips_net").style.display = "none";
-    const data = TOPICS.hypervisors;
+  const data = INSTALL_STEPS[activeStep];
+  if (data) {
+    $("vm_step_tag").textContent = data.tag;
+    $("vm_step_title").textContent = data.title;
     $("insp_lab").textContent = data.lab;
     $("insp_code").innerHTML = highlightSyntax(data.code);
     const res = $("insp_res");
     res.textContent = data.explain;
     res.className = "res ok";
-  } else {
-    $("fc_networking").style.display = "none";
-    $("fc_hypervisors").style.display = "none";
-    $("fc_snapshots").style.display = "block";
-    $("sub_chips_net").style.display = "none";
-    const data = TOPICS.snapshots;
-    $("insp_lab").textContent = data.lab;
-    $("insp_code").innerHTML = highlightSyntax(data.code);
-    const res = $("insp_res");
-    res.textContent = data.explain;
-    res.className = "res ok";
   }
+
+  $("btn_prev").disabled = activeStep === 1;
+  $("btn_next").disabled = activeStep === 7;
 }
 
-function updateNet() {
-  document.querySelectorAll("[data-a='net']").forEach(b => {
-    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.n === activeNet);
-  });
-
-  const data = NETWORKS[activeNet] || NETWORKS.all;
-  $("insp_lab").textContent = data.lab;
-  $("insp_code").innerHTML = highlightSyntax(data.code);
-  const res = $("insp_res");
-  res.textContent = data.explain;
-  res.className = "res ok";
-
-  const nodes = {
-    nat: $("net_b_nat"),
-    bridged: $("net_b_bridged"),
-    hostonly: $("net_b_hostonly")
-  };
-
-  Object.entries(nodes).forEach(([k, el]) => {
-    if (!el) return;
-    const isSelected = activeNet === "all" || activeNet === k;
-    el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
-    el.style.opacity = isSelected ? "1" : "0.45";
-  });
+function togglePlay() {
+  isPlaying = !isPlaying;
+  const btn = $("btn_play");
+  if (isPlaying) {
+    btn.innerHTML = "&#10074;&#10074; Pause Animation";
+    btn.classList.add("alt");
+    playTimer = setInterval(() => {
+      if (activeStep < 7) {
+        activeStep++;
+        updateInstallation();
+      } else {
+        activeStep = 1;
+        updateInstallation();
+      }
+    }, 2600);
+  } else {
+    btn.innerHTML = "&#9654; Play Animation";
+    btn.classList.remove("alt");
+    if (playTimer) clearInterval(playTimer);
+  }
 }
 
 document.addEventListener("click", e => {
   const t = e.target.closest("[data-a]");
-  if (!t) return;
-  const a = t.dataset.a;
-
-  if (a === "md") {
-    activeTopic = t.dataset.m;
-    updateStudio();
-  } else if (a === "net") {
-    activeNet = t.dataset.n;
-    updateNet();
-  } else if (a === "qc") {
-    const opt = +t.dataset.o;
-    const chips = $("qc_chips").querySelectorAll(".chip");
-    chips.forEach((c, idx) => {
-      c.classList.remove("ok", "bad");
-      if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
-    });
-    const qcRes = $("qc_res");
-    qcRes.style.display = "flex";
-    if (opt === 0) {
-      qcRes.className = "res ok";
-      qcRes.textContent = "Correct! Bridged networking assigns the virtual machine an independent local IP address matching your physical network.";
-    } else {
-      qcRes.className = "res bad";
-      qcRes.textContent = "Not quite. Bridged networking provides an independent local IP address directly from your physical network router.";
+  if (t) {
+    const a = t.dataset.a;
+    if (a === "stp") {
+      activeStep = +t.dataset.s;
+      if (isPlaying) togglePlay();
+      updateInstallation();
+    } else if (a === "qc") {
+      const opt = +t.dataset.o;
+      const chips = $("qc_chips").querySelectorAll(".chip");
+      chips.forEach((c, idx) => {
+        c.classList.remove("ok", "bad");
+        if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
+      });
+      const qcRes = $("qc_res");
+      qcRes.style.display = "flex";
+      if (opt === 0) {
+        qcRes.className = "res ok";
+        qcRes.textContent = "Correct! Creating the virtual profile and mounting the ISO image enables the installer to boot.";
+      } else {
+        qcRes.className = "res bad";
+        qcRes.textContent = "Not quite. Virtual machines safely run inside host software without touching your physical drive partitions.";
+      }
     }
+  }
+
+  if (e.target.id === "btn_prev" && activeStep > 1) {
+    activeStep--;
+    if (isPlaying) togglePlay();
+    updateInstallation();
+  } else if (e.target.id === "btn_next" && activeStep < 7) {
+    activeStep++;
+    if (isPlaying) togglePlay();
+    updateInstallation();
+  } else if (e.target.id === "btn_play") {
+    togglePlay();
   }
 });
 
-updateStudio();
+updateInstallation();
 </script>
 </body>
 </html>

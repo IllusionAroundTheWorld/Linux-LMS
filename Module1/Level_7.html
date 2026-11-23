@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Linux Boot Process, BIOS/UEFI &amp; GRUB2 | IST Learn</title>
+<title>Linux Boot Process, BIOS/UEFI &amp; GRUB | IST Learn</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -90,13 +90,6 @@ h2 {
   color: var(--ink);
 }
 
-h3 {
-  font-size: 15px;
-  font-weight: 800;
-  margin: 24px 0 10px;
-  color: var(--ink);
-}
-
 p {
   margin: 0 0 8px;
 }
@@ -107,18 +100,11 @@ p {
   line-height: 1.5;
 }
 
-.hint {
-  color: var(--muted);
-  font-size: 14px;
-  margin: 0 0 14px;
-  line-height: 1.5;
-}
-
 /* CARDS & HEADINGS */
 .card {
   border: 1px solid var(--line);
   border-radius: 14px;
-  padding: 20px 24px;
+  padding: 22px 26px;
   background: #ffffff;
   box-shadow: 0 4px 18px rgba(23, 32, 44, 0.04);
   margin-bottom: 20px;
@@ -162,60 +148,10 @@ p {
   line-height: 1.5;
 }
 
-/* STRIPS & CREATOR CARDS */
-.strip,
-.creator-strip,
-.lineage-strip,
-.component-strip,
-.install-strip {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px 16px;
-  margin: 10px 0 12px;
-}
-
-.creator-card {
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px 18px;
-  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
-}
-
-.icon-box,
-.creator-img-box,
-.lineage-icon-box,
-.component-icon-box,
-.install-icon-box {
-  width: 66px;
-  height: 52px;
-  background: var(--tint);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  border: 1px solid var(--tint-bd);
-}
-
-.creator-img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
 /* TWO COLUMN BALANCED LAYOUT */
 .two {
   display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
+  grid-template-columns: 1.05fr 0.95fr;
   gap: 20px;
   align-items: start;
 }
@@ -286,6 +222,45 @@ p {
   color: var(--bad);
 }
 
+/* BUTTONS */
+.btn {
+  background: var(--primary);
+  color: #ffffff;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn.alt {
+  background: #ffffff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.btn.alt:hover {
+  background: var(--paper);
+  border-color: var(--tint-bd);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 /* CODE BLOCKS & FEEDBACK RESULTS */
 pre {
   background: var(--ink);
@@ -329,15 +304,6 @@ code {
   background: var(--bad-bg);
   border-color: var(--bad-bd);
 }
-
-.detail {
-  background: var(--tint);
-  border: 1px solid var(--tint-bd);
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin-top: 8px;
-}
-
 
 /* HIGH-CONTRAST TERMINAL INSPECTOR WITH SYNTAX HIGHLIGHTING */
 .terminal-card {
@@ -391,7 +357,7 @@ code {
   line-height: 1.55;
   white-space: pre-wrap;
   word-break: break-word;
-  min-height: 220px;
+  min-height: 230px;
 }
 
 /* SYNTAX HIGHLIGHTING TOKEN PALETTE */
@@ -420,11 +386,16 @@ code {
   overflow: visible;
 }
 
+.stage-group {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
 .node-rect {
   rx: 7px;
   ry: 7px;
-  stroke-width: 1.75px;
-  transition: all 0.22s ease;
+  stroke-width: 1.5px;
+  transition: all 0.2s ease;
 }
 
 .flow-line {
@@ -437,16 +408,6 @@ code {
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 700;
-  text-anchor: middle;
-  dominant-baseline: central;
-  pointer-events: none;
-}
-
-.node-left {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 600;
-  text-anchor: start !important;
   dominant-baseline: central;
   pointer-events: none;
 }
@@ -455,16 +416,8 @@ code {
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 600;
-  text-anchor: middle;
   dominant-baseline: central;
   pointer-events: none;
-}
-
-.branch-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  text-anchor: middle;
 }
 
 .st-active {
@@ -486,250 +439,323 @@ code {
   fill: var(--ok);
 }
 
-.line-blue {
-  stroke: var(--primary);
-}
-
 .line-pass {
   stroke: var(--ok);
 }
 
-/* BUTTONS */
-.btn {
-  background: var(--primary);
-  color: #ffffff;
-  border: 1px solid var(--primary);
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-weight: 600;
-  font-size: 13px;
+/* COPY TO CLIPBOARD BUTTON */
+.copy-btn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.15s ease;
-  font-family: inherit;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.btn:hover {
-  background: var(--primary-dark);
-  border-color: var(--primary-dark);
-}
-
-.btn.alt {
-  background: #ffffff;
-  color: var(--ink);
-  border: 1px solid var(--line);
-}
-
-.btn.alt:hover {
-  background: var(--paper);
-  border-color: var(--tint-bd);
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.top-pill {
-  font-size: 11.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--primary);
-  background: var(--tint);
-  border: 1px solid var(--tint-bd);
-  padding: 4px 12px;
-  border-radius: 999px;
-}
-
-/* VIDEO STYLES */
-.video-card {
-  background: #ffffff;
-  border: 1.5px solid var(--tint-bd);
-  border-radius: 12px;
-  padding: 16px;
-  margin: 14px 0 24px;
-  box-shadow: 0 1px 4px rgba(23, 32, 44, 0.02);
-}
-
-.video-embed-wrap {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 8px;
-  background: #000;
-}
-
-.video-embed-wrap iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+.copy-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
 }
 
 </style>
 </head>
 <body>
 
-
-
 <main>
   <p class="eye">Module 1 &middot; Level 7 &middot; Interactive System Lab</p>
-  <h1>Linux Boot Process, BIOS/UEFI &amp; GRUB2</h1>
+  <h1>Linux Boot Process, BIOS/UEFI &amp; GRUB</h1>
 
   <div class="card" id="stage">
     <!-- SECTION 1: SIMPLE IDEA -->
     <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
-    <div class="note"><b>In plain words:</b> The Linux boot sequence smoothly transitions hardware from motherboard firmware through GRUB to the kernel.</div>
+    <div class="note"><b>In plain words:</b> The Linux boot sequence smoothly transitions computer hardware from motherboard firmware to userspace login.</div>
 
     <p class="sm"><b>Remember:</b> The temporary initramfs ramdisk provides essential storage drivers required to mount the real root filesystem.</p>
 
     <!-- SECTION 2: TRY IT -->
-    <h2 class="sh"><span class="st">2</span>Try It: Interactive Linux Boot &amp; GRUB2 Studio</h2>
+    <h2 class="sh"><span class="st">2</span>Try It: Interactive Linux Boot &amp; Startup Studio</h2>
     <div class="two">
       <div>
         <div class="box">
           <label class="lab">Select Boot View:</label>
           <div class="chips">
-            <button type="button" class="chip on" data-a="md" data-m="stages">1. 5 Boot Stages</button>
-            <button type="button" class="chip" data-a="md" data-m="grub">2. GRUB2 Bootloader</button>
-            <button type="button" class="chip" data-a="md" data-m="initramfs">3. initramfs Ramdisk</button>
+            <button type="button" class="chip on" data-a="md" data-m="stages">1. 8 Boot Stages</button>
+            <button type="button" class="chip" data-a="md" data-m="firmware">2. BIOS vs UEFI &amp; ESP</button>
+            <button type="button" class="chip" data-a="md" data-m="initramfs">3. Initramfs &amp; switch_root</button>
+            <button type="button" class="chip" data-a="md" data-m="trouble">4. Troubleshooting Map</button>
           </div>
 
-          <!-- 5 Boot Stages Subchips -->
-          <div id="sub_chips_stage" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
-            <label class="lab" style="font-size:10px">Inspect Specific Stage:</label>
+          <!-- 8 Boot Stages Subchips with Stepper Controls -->
+          <div id="sub_chips_stage" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:6px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+              <label class="lab" style="margin:0;font-size:10px">Inspect Specific Boot Stage:</label>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <button type="button" class="btn alt" id="btn_prev_stg" style="padding:3px 9px;font-size:11px;">&larr; Prev</button>
+                <button type="button" class="btn alt" id="btn_next_stg" style="padding:3px 9px;font-size:11px;">Next &rarr;</button>
+              </div>
+            </div>
             <div class="chips" style="margin:0">
-              <button type="button" class="chip on" data-a="stg" data-s="all">All 5 Stages</button>
-              <button type="button" class="chip" data-a="stg" data-s="firmware">1. UEFI Firmware</button>
-              <button type="button" class="chip" data-a="stg" data-s="grub">2. GRUB2</button>
-              <button type="button" class="chip" data-a="stg" data-s="kernel">3. Kernel</button>
-              <button type="button" class="chip" data-a="stg" data-s="initramfs">4. initramfs</button>
-              <button type="button" class="chip" data-a="stg" data-s="systemd">5. systemd</button>
+              <button type="button" class="chip on" data-a="stg" data-s="all">All 8 Stages</button>
+              <button type="button" class="chip" data-a="stg" data-s="s1">1. Power</button>
+              <button type="button" class="chip" data-a="stg" data-s="s2">2. Firmware</button>
+              <button type="button" class="chip" data-a="stg" data-s="s3">3. GRUB</button>
+              <button type="button" class="chip" data-a="stg" data-s="s4">4. Kernel</button>
+              <button type="button" class="chip" data-a="stg" data-s="s5">5. Initramfs</button>
+              <button type="button" class="chip" data-a="stg" data-s="s6">6. Real Root</button>
+              <button type="button" class="chip" data-a="stg" data-s="s7">7. systemd</button>
+              <button type="button" class="chip" data-a="stg" data-s="s8">8. Login</button>
+            </div>
+          </div>
+
+          <!-- Troubleshooting Subchips -->
+          <div id="sub_chips_trouble" style="display:none;margin-top:4px;border-top:1px dashed var(--line);padding-top:6px;">
+            <label class="lab" style="font-size:10px">Select Failure Symptom to Diagnose:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="trb" data-t="power">No Power / Blank Screen</button>
+              <button type="button" class="chip" data-a="trb" data-t="noboot">No Bootable Device</button>
+              <button type="button" class="chip" data-a="trb" data-t="grubrescue">grub rescue&gt;</button>
+              <button type="button" class="chip" data-a="trb" data-t="cantmount">Cannot Mount Root</button>
+              <button type="button" class="chip" data-a="trb" data-t="emergency">Emergency Mode</button>
+              <button type="button" class="chip" data-a="trb" data-t="nogui">No Graphical Login</button>
             </div>
           </div>
         </div>
 
         <div class="chart-card">
-          <!-- 5 Boot Stages Flowchart -->
+          <!-- 1. The 8 Boot Stages Flowchart (Clean Vertical Flow) -->
           <div id="fc_stages">
-            <span class="lab">5-Stage Sequential Boot Pipeline (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 540 210">
-              <!-- Stage 1: UEFI -->
-              <rect id="bs_n1" x="15" y="8" width="94" height="42" rx="7" fill="var(--ink)" data-a="stg" data-s="firmware" style="cursor:pointer;" />
-              <text x="62" y="21" class="node-mono" fill="#fff">Stage 1</text>
-              <text x="62" y="37" class="node-mono" fill="#93c5fd">UEFI</text>
+            <span class="lab">8-Stage Sequential Boot Pipeline (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 460">
+              <!-- Stage 1 -->
+              <g id="grp_s1" class="stage-group" data-a="stg" data-s="s1">
+                <rect x="25" y="8" width="470" height="34" class="node-rect st-active" />
+                <circle cx="45" cy="25" r="10" fill="var(--primary)" />
+                <text x="45" y="25" class="node-mono" fill="#fff" text-anchor="middle" font-weight="700">1</text>
+                <text x="65" y="25" class="node-mono" font-weight="700" text-anchor="start">Stage 1</text>
+                <text x="130" y="25" class="node-text" text-anchor="start">Power - POST Check</text>
+                <text x="475" y="25" class="node-mono" text-anchor="end" fill="var(--muted)">PSU &bull; Motherboard</text>
+              </g>
 
-              <!-- Line 1 to 2 -->
-              <path d="M 109 29 L 119 29" class="flow-line line-pass" />
-              <polygon points="121,29 115,25 115,33" fill="var(--ok)" />
+              <path d="M 260 42 L 260 52" class="flow-line line-pass" />
+              <polygon points="260,53 256,47 264,47" fill="var(--ok)" />
 
-              <!-- Stage 2: GRUB2 -->
-              <rect id="bs_n2" x="121" y="8" width="94" height="42" class="node-rect st-active" data-a="stg" data-s="grub" style="cursor:pointer;" />
-              <text x="168" y="21" class="node-text">Stage 2</text>
-              <text x="168" y="37" class="node-mono">GRUB2</text>
+              <!-- Stage 2 -->
+              <g id="grp_s2" class="stage-group" data-a="stg" data-s="s2">
+                <rect x="25" y="54" width="470" height="34" class="node-rect st-active" />
+                <circle cx="45" cy="71" r="10" fill="var(--primary)" />
+                <text x="45" y="71" class="node-mono" fill="#fff" text-anchor="middle" font-weight="700">2</text>
+                <text x="65" y="71" class="node-mono" font-weight="700" text-anchor="start">Stage 2</text>
+                <text x="130" y="71" class="node-text" text-anchor="start">UEFI - ESP Boot</text>
+                <text x="475" y="71" class="node-mono" text-anchor="end" fill="var(--muted)">Firmware &bull; /boot/efi</text>
+              </g>
 
-              <!-- Line 2 to 3 -->
-              <path d="M 215 29 L 225 29" class="flow-line line-pass" />
-              <polygon points="227,29 221,25 221,33" fill="var(--ok)" />
+              <path d="M 260 88 L 260 98" class="flow-line line-pass" />
+              <polygon points="260,99 256,93 264,93" fill="var(--ok)" />
 
-              <!-- Stage 3: Kernel -->
-              <rect id="bs_n3" x="227" y="8" width="94" height="42" class="node-rect st-pass" data-a="stg" data-s="kernel" style="cursor:pointer;" />
-              <text x="274" y="21" class="node-text">Stage 3</text>
-              <text x="274" y="37" class="node-mono">Kernel</text>
+              <!-- Stage 3 -->
+              <g id="grp_s3" class="stage-group" data-a="stg" data-s="s3">
+                <rect x="25" y="100" width="470" height="34" class="node-rect st-active" />
+                <circle cx="45" cy="117" r="10" fill="var(--primary)" />
+                <text x="45" y="117" class="node-mono" fill="#fff" text-anchor="middle" font-weight="700">3</text>
+                <text x="65" y="117" class="node-mono" font-weight="700" text-anchor="start">Stage 3</text>
+                <text x="130" y="117" class="node-text" text-anchor="start">GRUB - Select Kernel</text>
+                <text x="475" y="117" class="node-mono" text-anchor="end" fill="var(--muted)">Bootloader &bull; grub.cfg</text>
+              </g>
 
-              <!-- Line 3 to 4 -->
-              <path d="M 321 29 L 331 29" class="flow-line line-pass" />
-              <polygon points="333,29 327,25 327,33" fill="var(--ok)" />
+              <path d="M 260 134 L 260 144" class="flow-line line-pass" />
+              <polygon points="260,145 256,139 264,139" fill="var(--ok)" />
 
-              <!-- Stage 4: initramfs -->
-              <rect id="bs_n4" x="333" y="8" width="94" height="42" class="node-rect st-active" data-a="stg" data-s="initramfs" style="cursor:pointer;" />
-              <text x="380" y="21" class="node-text">Stage 4</text>
-              <text x="380" y="37" class="node-mono">initrd</text>
+              <!-- Stage 4 -->
+              <g id="grp_s4" class="stage-group" data-a="stg" data-s="s4">
+                <rect x="25" y="146" width="470" height="34" class="node-rect st-active" />
+                <circle cx="45" cy="163" r="10" fill="var(--primary)" />
+                <text x="45" y="163" class="node-mono" fill="#fff" text-anchor="middle" font-weight="700">4</text>
+                <text x="65" y="163" class="node-mono" font-weight="700" text-anchor="start">Stage 4</text>
+                <text x="130" y="163" class="node-text" text-anchor="start">Kernel - Hardware Init</text>
+                <text x="475" y="163" class="node-mono" text-anchor="end" fill="var(--muted)">CPU &bull; Memory Paging</text>
+              </g>
 
-              <!-- Line 4 to 5 -->
-              <path d="M 427 29 L 437 29" class="flow-line line-pass" />
-              <polygon points="439,29 433,25 433,33" fill="var(--ok)" />
+              <path d="M 260 180 L 260 190" class="flow-line line-pass" />
+              <polygon points="260,191 256,185 264,185" fill="var(--ok)" />
 
-              <!-- Stage 5: systemd -->
-              <rect id="bs_n5" x="439" y="8" width="86" height="42" class="node-rect st-pass" data-a="stg" data-s="systemd" style="cursor:pointer;" />
-              <text x="482" y="21" class="node-text">Stage 5</text>
-              <text x="482" y="37" class="node-mono">PID 1</text>
+              <!-- Stage 5 -->
+              <g id="grp_s5" class="stage-group" data-a="stg" data-s="s5">
+                <rect x="25" y="192" width="470" height="34" class="node-rect st-active" />
+                <circle cx="45" cy="209" r="10" fill="var(--primary)" />
+                <text x="45" y="209" class="node-mono" fill="#fff" text-anchor="middle" font-weight="700">5</text>
+                <text x="65" y="209" class="node-mono" font-weight="700" text-anchor="start">Stage 5</text>
+                <text x="130" y="209" class="node-text" text-anchor="start">Initramfs - Storage Drivers</text>
+                <text x="475" y="209" class="node-mono" text-anchor="end" fill="var(--muted)">Early RAM Disk &bull; NVMe/LVM</text>
+              </g>
 
-              <!-- Timeline descriptions -->
-              <rect x="15" y="62" width="510" height="74" rx="8" fill="var(--tint)" stroke="var(--tint-bd)" />
-              <text x="270" y="80" class="node-text" id="fc_stage_title" fill="var(--primary-dark)">Stage 1: Power-On Self Test &bull; Motherboard UEFI Firmware</text>
-              <text x="270" y="100" class="node-mono" id="fc_stage_detail" fill="var(--ink)">Loads /boot/efi/EFI/ubuntu/grubx64.efi into system RAM</text>
-              <text x="270" y="118" class="node-mono" id="fc_stage_sub" fill="var(--muted)">Executes hardware POST checks &bull; Verifies RAM and CPU health</text>
+              <path d="M 260 226 L 260 236" class="flow-line line-pass" />
+              <polygon points="260,237 256,231 264,231" fill="var(--ok)" />
 
-              <!-- Bottom Status Bar -->
-              <rect x="15" y="146" width="510" height="44" rx="8" fill="var(--paper)" stroke="var(--line)" />
-              <text x="270" y="161" class="node-mono">Hardware Handshake &rarr; Bootloader &rarr; Virtual Memory &rarr; PID 1 Init</text>
-              <text x="270" y="177" class="node-mono" fill="var(--ok)">Total boot time typically completes in 2.5 to 6.0 seconds</text>
+              <!-- Stage 6 -->
+              <g id="grp_s6" class="stage-group" data-a="stg" data-s="s6">
+                <rect x="25" y="238" width="470" height="34" class="node-rect st-active" />
+                <circle cx="45" cy="255" r="10" fill="var(--primary)" />
+                <text x="45" y="255" class="node-mono" fill="#fff" text-anchor="middle" font-weight="700">6</text>
+                <text x="65" y="255" class="node-mono" font-weight="700" text-anchor="start">Stage 6</text>
+                <text x="130" y="255" class="node-text" text-anchor="start">switch_root - Real Root</text>
+                <text x="475" y="255" class="node-mono" text-anchor="end" fill="var(--muted)">Permanent Root Partition</text>
+              </g>
+
+              <path d="M 260 272 L 260 282" class="flow-line line-pass" />
+              <polygon points="260,283 256,277 264,277" fill="var(--ok)" />
+
+              <!-- Stage 7 -->
+              <g id="grp_s7" class="stage-group" data-a="stg" data-s="s7">
+                <rect x="25" y="284" width="470" height="34" class="node-rect st-active" />
+                <circle cx="45" cy="301" r="10" fill="var(--primary)" />
+                <text x="45" y="301" class="node-mono" fill="#fff" text-anchor="middle" font-weight="700">7</text>
+                <text x="65" y="301" class="node-mono" font-weight="700" text-anchor="start">Stage 7</text>
+                <text x="130" y="301" class="node-text" text-anchor="start">systemd - PID 1 Targets</text>
+                <text x="475" y="301" class="node-mono" text-anchor="end" fill="var(--muted)">Service &amp; Target Init</text>
+              </g>
+
+              <path d="M 260 318 L 260 328" class="flow-line line-pass" />
+              <polygon points="260,329 256,323 264,323" fill="var(--ok)" />
+
+              <!-- Stage 8 -->
+              <g id="grp_s8" class="stage-group" data-a="stg" data-s="s8">
+                <rect x="25" y="330" width="470" height="34" class="node-rect st-active" />
+                <circle cx="45" cy="347" r="10" fill="var(--primary)" />
+                <text x="45" y="347" class="node-mono" fill="#fff" text-anchor="middle" font-weight="700">8</text>
+                <text x="65" y="347" class="node-mono" font-weight="700" text-anchor="start">Stage 8</text>
+                <text x="130" y="347" class="node-text" text-anchor="start">Login - CLI or GUI</text>
+                <text x="475" y="347" class="node-mono" text-anchor="end" fill="var(--muted)">Getty TTY &bull; Display Mgr</text>
+              </g>
+
+              <!-- Dynamic Stage Description Box -->
+              <rect x="25" y="374" width="470" height="44" rx="8" fill="var(--tint)" stroke="var(--tint-bd)" />
+              <text x="260" y="391" class="node-text" id="fc_stage_title" fill="var(--primary-dark)" text-anchor="middle">Complete 8-Stage Sequential Pipeline</text>
+              <text x="260" y="407" class="node-mono" id="fc_stage_sub" fill="var(--ink)" text-anchor="middle">Power &rarr; Firmware &rarr; GRUB &rarr; Kernel &rarr; Initramfs &rarr; Real Root &rarr; systemd &rarr; Login</text>
+
+              <!-- Bottom Memory Aid Banner -->
+              <rect x="25" y="426" width="470" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="439" class="node-mono" fill="var(--ok)" text-anchor="middle">Memory Aid: Power &rarr; Firmware &rarr; Bootloader &rarr; Kernel &rarr; Initramfs &rarr; systemd &rarr; Login</text>
             </svg>
           </div>
 
-          <!-- GRUB2 Bootloader Flowchart -->
-          <div id="fc_grub" style="display:none;">
-            <span class="lab">GRUB2 Bootloader Configuration Flow (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <!-- Admin edit file -->
-              <rect x="25" y="8" width="470" height="36" rx="8" class="node-rect st-active" />
-              <text x="260" y="26" class="node-text">1. Administrator edits /etc/default/grub (timeouts, boot args)</text>
+          <!-- 2. BIOS vs UEFI & ESP Flowchart -->
+          <div id="fc_firmware" style="display:none;">
+            <span class="lab">Firmware &amp; Partition Architecture (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 220">
+              <!-- Top Branch: Traditional BIOS -->
+              <rect x="15" y="12" width="140" height="36" rx="7" fill="var(--paper)" stroke="var(--line)" />
+              <text x="85" y="24" class="node-mono" fill="var(--muted)" text-anchor="middle">Traditional</text>
+              <text x="85" y="38" class="node-text" fill="var(--muted)" text-anchor="middle">BIOS - MBR Sector</text>
 
-              <path d="M 260 44 L 260 62" class="flow-line line-blue" />
-              <text x="350" y="53" class="branch-label" fill="var(--primary)">run sudo update-grub</text>
+              <path d="M 155 30 L 195 30" class="flow-line" stroke="var(--line)" />
+              <polygon points="197,30 191,26 191,34" fill="var(--muted)" />
 
-              <!-- Compiler utility -->
-              <rect x="25" y="62" width="470" height="36" rx="8" class="node-rect st-pass" />
-              <text x="260" y="80" class="node-text">2. Script compiles settings via grub-mkconfig generator</text>
+              <rect x="197" y="12" width="150" height="36" rx="7" fill="var(--paper)" stroke="var(--line)" />
+              <text x="272" y="24" class="node-mono" fill="var(--muted)" text-anchor="middle">Partition Limit</text>
+              <text x="272" y="38" class="node-text" fill="var(--muted)" text-anchor="middle">MBR - 4 Primary (2 TiB)</text>
 
-              <path d="M 260 98 L 260 116" class="flow-line line-pass" />
-              <text x="350" y="107" class="branch-label" fill="var(--ok)">writes compiled output</text>
+              <path d="M 347 30 L 387 30" class="flow-line" stroke="var(--line)" />
+              <polygon points="389,30 383,26 383,34" fill="var(--muted)" />
 
-              <!-- Final config file -->
-              <rect x="25" y="116" width="470" height="38" rx="8" fill="var(--ink)" />
-              <text x="260" y="135" class="node-mono" fill="#fff">3. Written into /boot/grub/grub.cfg (Do NOT edit directly!)</text>
+              <rect x="389" y="12" width="116" height="36" rx="7" fill="var(--paper)" stroke="var(--line)" />
+              <text x="447" y="30" class="node-mono" fill="var(--muted)" text-anchor="middle">First 512 Bytes</text>
 
-              <rect x="25" y="166" width="470" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
-              <text x="260" y="179" class="node-mono" fill="var(--ink)">GRUB menu allows recovery mode, single-user mode, and kernel rollback</text>
+              <!-- Bottom Branch: Modern UEFI -->
+              <rect x="15" y="72" width="140" height="38" rx="7" class="node-rect st-active" />
+              <text x="85" y="84" class="node-mono" text-anchor="middle">Modern Standard</text>
+              <text x="85" y="99" class="node-text" text-anchor="middle">UEFI - GPT Partition</text>
+
+              <path d="M 155 91 L 185 91" class="flow-line line-pass" />
+              <polygon points="187,91 181,87 181,95" fill="var(--ok)" />
+
+              <rect x="187" y="72" width="150" height="38" rx="7" class="node-rect st-pass" />
+              <text x="262" y="84" class="node-mono" text-anchor="middle">Partition Table</text>
+              <text x="262" y="99" class="node-text" text-anchor="middle">GPT - 128+ Partitions</text>
+
+              <path d="M 337 91 L 367 91" class="flow-line line-pass" />
+              <polygon points="369,91 363,87 363,95" fill="var(--ok)" />
+
+              <rect x="369" y="72" width="136" height="38" rx="7" class="node-rect st-pass" />
+              <text x="437" y="84" class="node-mono" text-anchor="middle">FAT32 ESP</text>
+              <text x="437" y="99" class="node-text" text-anchor="middle">ESP - EFI Applications</text>
+
+              <!-- Final Output Box -->
+              <rect x="15" y="128" width="490" height="42" rx="8" fill="var(--ink)" />
+              <text x="260" y="144" class="node-mono" fill="#fff" text-anchor="middle">EFI File: /boot/efi/EFI/grub/grubx64.efi &bull; Direct 64-bit Launch</text>
+              <text x="260" y="159" class="node-mono" fill="#93c5fd" text-anchor="middle">No sector limits &bull; NVRAM boot menu entries &bull; GPT protective backup</text>
+
+              <rect x="15" y="180" width="490" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="193" class="node-mono" fill="var(--ink)" text-anchor="middle">GPT = Partition Table &bull; ESP = FAT32 Partition &bull; UEFI = Motherboard Firmware</text>
             </svg>
           </div>
 
-          <!-- initramfs Flowchart -->
+          <!-- 3. Initramfs & switch_root Flowchart -->
           <div id="fc_initramfs" style="display:none;">
-            <span class="lab">initramfs Ramdisk &amp; Root Pivot Operation (SVG)</span>
+            <span class="lab">Initramfs Storage Bridge &amp; switch_root (SVG)</span>
             <svg class="svg-flowchart" viewBox="0 0 520 210">
               <!-- Step 1 -->
-              <rect x="25" y="6" width="470" height="34" rx="7" class="node-rect st-active" />
-              <text x="260" y="23" class="node-text">1. Kernel decompresses /boot/initrd.img into RAM memory</text>
+              <rect x="25" y="8" width="470" height="34" rx="7" class="node-rect st-active" />
+              <text x="260" y="25" class="node-text" text-anchor="middle">RAM - Decompress initramfs into Memory</text>
 
-              <path d="M 260 40 L 260 51" class="flow-line line-blue" />
-              <polygon points="260,52 256,45 264,45" fill="var(--primary)" />
+              <path d="M 260 42 L 260 54" class="flow-line line-pass" />
+              <polygon points="260,56 256,48 264,48" fill="var(--ok)" />
 
               <!-- Step 2 -->
-              <rect x="25" y="52" width="470" height="34" rx="7" class="node-rect st-pass" />
-              <text x="260" y="69" class="node-text">2. Temporary root mounts; loads NVMe, LVM &amp; ext4 storage drivers</text>
+              <rect x="25" y="56" width="470" height="34" rx="7" class="node-rect st-pass" />
+              <text x="260" y="73" class="node-text" text-anchor="middle">Drivers - NVMe &amp; LVM Storage Modules Loaded</text>
 
-              <path d="M 260 86 L 260 97" class="flow-line line-pass" />
-              <polygon points="260,98 256,91 264,91" fill="var(--ok)" />
+              <path d="M 260 90 L 260 102" class="flow-line line-pass" />
+              <polygon points="260,104 256,96 264,96" fill="var(--ok)" />
 
               <!-- Step 3 -->
-              <rect x="25" y="98" width="470" height="34" rx="7" class="node-rect st-pass" />
-              <text x="260" y="115" class="node-text">3. Locates physical root partition via UUID and mounts read-only</text>
+              <rect x="25" y="104" width="470" height="34" rx="7" class="node-rect st-pass" />
+              <text x="260" y="121" class="node-text" text-anchor="middle">Mount - Physical Root UUID Located at /sysroot</text>
 
-              <path d="M 260 132 L 260 143" class="flow-line line-pass" />
-              <polygon points="260,144 256,137 264,137" fill="var(--ok)" />
+              <path d="M 260 138 L 260 150" class="flow-line line-pass" />
+              <polygon points="260,152 256,144 264,144" fill="var(--ok)" />
 
               <!-- Step 4 -->
-              <rect x="25" y="144" width="470" height="42" rx="7" fill="var(--ink)" />
-              <text x="260" y="158" class="node-mono" fill="#fff">4. pivot_root executes &rarr; Unloads initramfs &rarr; Hands off to systemd</text>
-              <text x="260" y="174" class="node-mono" fill="#93c5fd">Transition complete: System enters user space process execution</text>
+              <rect x="25" y="152" width="470" height="42" rx="7" fill="var(--ink)" />
+              <text x="260" y="166" class="node-mono" fill="#fff" text-anchor="middle">switch_root - Handover PID 1 to Installed systemd</text>
+              <text x="260" y="182" class="node-mono" fill="#93c5fd" text-anchor="middle">Unloads temporary RAM disk &bull; Mounts permanent / filesystem safely</text>
+            </svg>
+          </div>
+
+          <!-- 4. Troubleshooting Map Flowchart -->
+          <div id="fc_trouble" style="display:none;">
+            <span class="lab">Boot Diagnostic &amp; Failure Matrix (SVG)</span>
+            <svg class="svg-flowchart" viewBox="0 0 520 220">
+              <!-- Diagnostic Steps -->
+              <rect x="25" y="12" width="470" height="36" rx="7" fill="var(--bad-bg)" stroke="var(--bad-bd)" />
+              <text x="45" y="30" class="node-mono" fill="var(--bad)" font-weight="700" text-anchor="start">Symptom</text>
+              <text x="140" y="30" class="node-text" fill="var(--bad)" id="trb_sym_text" text-anchor="start">No Power - Blank Screen (Stage 1 Hardware)</text>
+
+              <path d="M 260 48 L 260 58" class="flow-line line-pass" />
+              <polygon points="260,59 256,53 264,53" fill="var(--ok)" />
+
+              <!-- Investigation Step -->
+              <rect x="25" y="60" width="470" height="46" rx="7" fill="var(--tint)" stroke="var(--tint-bd)" />
+              <text x="45" y="76" class="node-mono" fill="var(--primary)" font-weight="700" text-anchor="start">Root Cause</text>
+              <text x="140" y="76" class="node-text" fill="var(--ink)" id="trb_cause_text" text-anchor="start">PSU failure &bull; Loose power rail &bull; Motherboard firmware error</text>
+              <text x="140" y="93" class="node-mono" fill="var(--muted)" id="trb_check_text" text-anchor="start">Inspect motherboard diagnostic LEDs &bull; Check power connections</text>
+
+              <path d="M 260 106 L 260 116" class="flow-line line-pass" />
+              <polygon points="260,117 256,111 264,111" fill="var(--ok)" />
+
+              <!-- Fix Action Box -->
+              <rect x="25" y="118" width="470" height="42" rx="8" fill="var(--ink)" />
+              <text x="45" y="133" class="node-mono" fill="#4ade80" font-weight="700" text-anchor="start">Fix Action</text>
+              <text x="140" y="133" class="node-mono" fill="#fff" id="trb_fix_text" text-anchor="start">Verify power cables and test motherboard POST diagnostic LEDs</text>
+              <text x="140" y="149" class="node-mono" fill="#93c5fd" id="trb_sub_text" text-anchor="start">Firmware runs before Linux; resolve physical hardware issue first</text>
+
+              <rect x="25" y="174" width="470" height="26" rx="6" fill="var(--paper)" stroke="var(--line)" />
+              <text x="260" y="187" class="node-mono" fill="var(--ink)" text-anchor="middle">Always isolate: Is it Hardware &bull; Bootloader &bull; Root Filesystem &bull; or Service?</text>
             </svg>
           </div>
         </div>
@@ -755,15 +781,66 @@ code {
     <!-- SECTION 3: QUICK CHECK -->
     <h2 class="sh"><span class="st">3</span>Quick Check</h2>
     <div class="box">
-      <p style="margin:0 0 5px"><b>Which critical boot component supplies the storage drivers required to mount the physical root filesystem?</b></p>
+      <p style="margin:0 0 5px"><b>Why is the initramfs ramdisk required during the Linux boot process?</b></p>
       <div class="chips" id="qc_chips">
-        <button type="button" class="chip" data-a="qc" data-o="0"><code>initramfs (Initial RAM Filesystem)</code></button>
-        <button type="button" class="chip" data-a="qc" data-o="1"><code>X11 Graphical Compositor</code></button>
-        <button type="button" class="chip" data-a="qc" data-o="2"><code>DNS Resolver Daemon</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="0"><code>Provides early storage drivers to find and mount the real root filesystem</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="1"><code>Starts the graphical desktop environment and user display manager</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="2"><code>Compiles Linux kernel source code into binary machine instructions</code></button>
       </div>
       <div class="res" id="qc_res" style="display:none"></div>
     </div>
-  </div>
+
+    <!-- SECTION 4: PRACTICAL BOOT INSPECTION COMMANDS -->
+    <h2 class="sh"><span class="st">4</span>Practical Boot Inspection: Safe Terminal Commands</h2>
+    <div class="box">
+      <p class="sm"><b>Terminal Practice:</b> Run these safe, read-only diagnostic commands on your Linux machine to inspect real startup timing, kernel arguments, and PID 1.</p>
+
+      <div style="margin-top:10px;">
+        <label class="lab">Select Inspection Command:</label>
+        <div class="chips" id="prac_chips">
+          <button type="button" class="chip on" data-a="prac" data-p="timing">1. Boot Timing (systemd-analyze)</button>
+          <button type="button" class="chip" data-a="prac" data-p="blame">2. Slowest Services (systemd-analyze blame)</button>
+          <button type="button" class="chip" data-a="prac" data-p="cmdline">3. Kernel Boot Arguments (/proc/cmdline)</button>
+          <button type="button" class="chip" data-a="prac" data-p="pid1">4. Verify PID 1 (ps -p 1)</button>
+        </div>
+      </div>
+
+      <!-- Command & Output Box -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:14px;margin:12px 0 0;">
+        <!-- Command Card -->
+        <div class="terminal-card" style="margin:0;">
+          <div class="terminal-bar">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="terminal-dots">
+                <span class="dot dot-r"></span>
+                <span class="dot dot-y"></span>
+                <span class="dot dot-g"></span>
+              </div>
+              <span class="terminal-title" id="prac_cmd_title">1. Execute Command</span>
+            </div>
+            <button type="button" class="copy-btn" data-a="copy" data-target="prac_cmd_text" title="Copy to clipboard">Copy</button>
+          </div>
+          <pre class="terminal-code" style="min-height:unset;padding:12px 14px;"><code id="prac_cmd_text"><span class="tok-cmd">systemd-analyze</span></code></pre>
+        </div>
+
+        <!-- Sample Output Card -->
+        <div class="terminal-card" style="margin:0;">
+          <div class="terminal-bar">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div class="terminal-dots">
+                <span class="dot dot-r"></span>
+                <span class="dot dot-y"></span>
+                <span class="dot dot-g"></span>
+              </div>
+              <span class="terminal-title">Sample Terminal Output</span>
+            </div>
+          </div>
+          <pre class="terminal-code" style="min-height:unset;padding:12px 14px;"><code id="prac_out_text"><span class="tok-v">Startup finished in </span><span class="tok-n">1.428s</span><span class="tok-c"> (firmware)</span><span class="tok-v"> + </span><span class="tok-n">2.112s</span><span class="tok-c"> (loader)</span><span class="tok-v"> + </span><span class="tok-n">1.845s</span><span class="tok-c"> (kernel)</span><span class="tok-v"> + </span><span class="tok-n">2.341s</span><span class="tok-c"> (userspace)</span><span class="tok-v"> = </span><span class="tok-s">7.726s</span>
+<span class="tok-k">graphical.target</span><span class="tok-v"> reached after </span><span class="tok-n">2.325s</span><span class="tok-v"> in userspace.</span></code></pre>
+        </div>
+      </div>
+      <div class="res ok" id="prac_explain" style="margin-top:12px;">Systemd-analyze reports total startup duration broken down into firmware, loader, kernel, and userspace times.</div>
+    </div>
   </div>
 </main>
 
@@ -786,7 +863,7 @@ function highlightSyntax(raw) {
       prefix = `<span class="tok-k">${escape(key)}</span><span class="tok-punc">:</span>`;
       content = line.slice(colonIdx + 1);
     }
-    const tokenRegex = /(".*?"|'.*?'|\b(?:sudo|apt|dnf|yum|pacman|bash|zsh|glibc|gcc|systemd|ssh|selinux|rpm|deb|aur|emacs|coreutils|gpl|foss|grub|systemctl|journalctl|echo|cat|ls|head|tail|mkdir|touch|find|wc|cut|whatis|apropos|man|ln|cd|pwd)\b|(?:\$\d[\d,]*\+?|\b\d+(?:\.\d+)?%?|\b100%|\b16-bit\b|\b32-bit\b|\b64-bit\b|\b10-year\b|\b386\b|\b19\d\d\b|\b20\d\d\b|\b512MB\b|\b128MB\b|\b\d+GB\b|\b\d+TB\b))/gi;
+    const tokenRegex = /(".*?"|'.*?'|\b(?:sudo|apt|pacman|systemd|grub|systemctl|journalctl|echo|cat|ls|head|tail|ps|uname|lsblk|dracut|mkinitcpio|switch_root|vmlinuz|initramfs|getty|bash|zsh|gdm|sddm)\b|(?:\$\d[\d,]*\+?|\b\d+(?:\.\d+)?%?|\b100%|\b16-bit\b|\b32-bit\b|\b64-bit\b|\b512\s*bytes\b|\b2\s*TiB\b|\b128\b|\bPID\s*1\b|\bFAT32\b|\bUUID\b))/gi;
     let highlighted = "";
     let lastIdx = 0;
     let match;
@@ -795,7 +872,7 @@ function highlightSyntax(raw) {
       const tok = match[0];
       if (tok.startsWith('"') || tok.startsWith("'")) {
         highlighted += `<span class="tok-s">${escape(tok)}</span>`;
-      } else if (/^\d|\$|16-bit|32-bit|64-bit|10-year|386/i.test(tok)) {
+      } else if (/^\d|\$|16-bit|32-bit|64-bit|512|2\s*TiB|128|PID\s*1|FAT32|UUID/i.test(tok)) {
         highlighted += `<span class="tok-n">${escape(tok)}</span>`;
       } else {
         highlighted += `<span class="tok-cmd">${escape(tok)}</span>`;
@@ -809,84 +886,184 @@ function highlightSyntax(raw) {
 
 let activeTopic = "stages";
 let activeStage = "all";
+let activeTrouble = "power";
+let activePrac = "timing";
 
 const STAGES = {
   all: {
-    lab: "Overview: 5 Linux Boot Stages",
-    code: `Stage 1: UEFI Firmware • Performs POST & selects boot device\nStage 2: GRUB2       • Bootloader displays menu & selects kernel\nStage 3: Kernel      • Decompresses & initializes hardware memory\nStage 4: initramfs   • Temporary ramdisk loads storage disk drivers\nStage 5: systemd     • Process ID 1 launches all system daemons`,
-    explain: "The boot process sequentially verifies hardware and initializes operating system services into memory."
+    lab: "Complete Linux Boot Sequence (8 Stages)",
+    code: `Stage 1: Power On   • PSU provides power, CPU starts firmware instructions\nStage 2: Firmware   • UEFI performs POST checks & accesses EFI partition\nStage 3: GRUB       • Bootloader loads kernel image & initramfs ramdisk\nStage 4: Kernel     • Linux kernel initializes memory, CPU & device drivers\nStage 5: Initramfs  • Temporary RAM disk provides storage & volume modules\nStage 6: Real Root  • Executes switch_root to hand over to permanent drive\nStage 7: systemd    • Process ID 1 launches services & dependency targets\nStage 8: Login      • Getty CLI terminal or Display Manager GUI desktop`,
+    explain: "The Linux boot sequence smoothly transitions computer hardware from motherboard firmware to userspace login."
   },
-  firmware: {
-    lab: "Stage 1: UEFI / BIOS Firmware",
-    code: `Role     : Performs hardware POST and locates UEFI EFI bootloader\nExamples : Motherboard UEFI firmware, NVMe boot order table`,
-    explain: "Firmware tests physical system electronics and reads bootloader binaries from the EFI partition."
+  s1: {
+    lab: "Stage 1: Power On & Hardware Activation",
+    code: `Role     : Power supply unit delivers electricity; CPU begins execution\nHardware : Power Supply Unit (PSU), CPU registers, Motherboard circuitry\nStatus   : Linux is not running yet; platform firmware startup path begins`,
+    explain: "Firmware tests physical system electronics and reads bootloader binaries from the EFI system partition."
   },
-  grub: {
-    lab: "Stage 2: GRUB2 Bootloader",
-    code: `Role     : Displays OS boot menu and loads selected kernel image\nExamples : /boot/grub/grub.cfg, /etc/default/grub, vmlinuz kernel binary`,
-    explain: "GRUB2 enables administrators to choose operating system kernels and edit runtime boot arguments."
+  s2: {
+    lab: "Stage 2: BIOS / UEFI Firmware & POST",
+    code: `Role     : Power-On Self-Test (POST) checks hardware; selects boot device\nStandard : Modern UEFI loads EFI applications from FAT32 ESP partition\nStorage  : Reads /boot/efi/EFI/grub/grubx64.efi or distro boot entry`,
+    explain: "Modern UEFI firmware loads modular EFI applications from FAT32 partitions instead of restricted boot sectors."
   },
-  kernel: {
-    lab: "Stage 3: Linux Kernel Initialization",
-    code: `Role     : Decompresses kernel code and configures CPU memory subsystems\nExamples : vmlinuz-6.8.0, device driver probing, ACPI power tables`,
-    explain: "The kernel initializes processor registers and mounts temporary RAM memory storage for drivers."
+  s3: {
+    lab: "Stage 3: GRUB Bootloader",
+    code: `Role     : Displays operating system menu; loads kernel & initramfs\nFiles    : /boot/grub/grub.cfg, /boot/vmlinuz-linux, /boot/initramfs-linux.img\nParams   : Passes kernel parameters (root=UUID=... rw quiet)`,
+    explain: "GRUB allows users to select operating kernels and passes essential command line boot parameters."
   },
-  initramfs: {
-    lab: "Stage 4: initramfs Initial RAM Disk",
-    code: `Role     : Supplies storage controllers to mount real root filesystem\nExamples : initramfs.img, LVM drivers, RAID controllers, LUKS crypto`,
-    explain: "The temporary initial RAM filesystem supplies drivers needed to mount the permanent root drive."
+  s4: {
+    lab: "Stage 4: Linux Kernel Subsystem Initialization",
+    code: `Role     : Decompresses kernel, sets memory paging, probes system buses\nServices : CPU scheduling, virtual memory, interrupt handling, device drivers\nEarly OS : Mounts temporary early-userspace initramfs in physical RAM`,
+    explain: "The kernel initializes hardware subsystems, establishes memory management, and prepares early userspace system execution."
   },
-  systemd: {
-    lab: "Stage 5: systemd (Process ID 1)",
-    code: `Role     : Launches system services and prepares user login targets\nExamples : /sbin/init (PID 1), multi-user.target, journald, networking`,
-    explain: "Systemd executes as process ID one to launch background daemons and user login prompts."
+  s5: {
+    lab: "Stage 5: Initramfs (Initial RAM Filesystem)",
+    code: `Role     : Supplies early storage drivers before permanent root is mounted\nModules  : Loads NVMe, SATA, LVM volume, RAID, and LUKS encryption modules\nPurpose  : Solves the chicken-and-egg problem of accessing storage partitions`,
+    explain: "The temporary initial RAM filesystem provides specialized drivers required to mount the permanent storage."
+  },
+  s6: {
+    lab: "Stage 6: Real Root Filesystem & switch_root",
+    code: `Role     : Mounts permanent root disk (/) and pivots away from ramdisk\nAction   : switch_root replaces early userspace with installed OS\nDirs     : Mounts real /etc, /usr, /home, /var, and /boot hierarchy`,
+    explain: "Switch root replaces the temporary RAM disk with the permanent installed Linux root partition."
+  },
+  s7: {
+    lab: "Stage 7: systemd Initialization (PID 1)",
+    code: `Role     : First userspace process (PID 1); manages services & targets\nTarget   : sysinit.target → basic.target → multi-user.target → graphical.target\nUnits    : Supervises .service, .target, .mount, and .socket definitions`,
+    explain: "Systemd launches as process number one to coordinate system targets and manage background daemons."
+  },
+  s8: {
+    lab: "Stage 8: User Login & Session (CLI or GUI)",
+    code: `CLI Path : getty@tty1.service renders text prompt → launches Bash/Zsh shell\nGUI Path : Display Manager (GDM/SDDM) → login → Desktop Environment (GNOME/KDE)\nComplete : System reaches full interactive readiness for authorized user operations`,
+    explain: "Getty provides text terminal logins while display managers coordinate modern graphical user desktop sessions."
   }
 };
 
 const TOPICS = {
-  grub: {
-    lab: "GRUB2 Configuration & Boot Parameters",
-    code: `Config Template  • /etc/default/grub (GRUB_TIMEOUT=5, GRUB_CMDLINE_LINUX)\nBinary Generator • sudo update-grub (or grub2-mkconfig -o /boot/grub2/grub.cfg)\nEmergency Boot   • Press 'e' at GRUB menu to append 'init=/bin/bash' for root fix`,
-    explain: "Administrators edit default GRUB parameters to recover broken systems or enable kernel debugging modes."
+  firmware: {
+    lab: "Firmware Comparison: Traditional BIOS vs Modern UEFI",
+    code: `BIOS (Legacy) • 16-bit real mode • Reads first 512 bytes MBR sector (Max 2 TiB, 4 partitions)\nUEFI (Modern) • 32-bit / 64-bit mode • Reads GPT partitions (128+ partitions, protective MBR)\nESP Partition • Formatted FAT32 • Contains EFI binaries (e.g., /boot/efi/EFI/grub/grubx64.efi)`,
+    explain: "Modern UEFI firmware loads modular EFI applications from FAT32 partitions instead of restricted boot sectors."
   },
   initramfs: {
-    lab: "initramfs Root Pivot Mechanism",
-    code: `Ramdisk Image    • /boot/initrd.img-$(uname -r) generated by update-initramfs\nStorage Modules  • Contains nvme.ko, ext4.ko, and dm-mod for LVM storage\nRoot Pivot Event • Switch-root replaces temporary RAM root with permanent storage`,
-    explain: "Initramfs loads specialized disk controller modules before pivoting to the permanent root partition."
+    lab: "Initramfs Deep Dive: The Early Userspace Handover",
+    code: `Step 1: Kernel unpacks /boot/initramfs.img into temporary RAM memory\nStep 2: Early userspace loads kernel modules for NVMe, LVM, and LUKS crypto\nStep 3: Root partition UUID is identified and mounted at temporary /sysroot\nStep 4: switch_root executes, cleaning RAM and launching /sbin/init (systemd)`,
+    explain: "Initramfs loads specialized storage drivers before executing switch root to the permanent disk volume."
+  }
+};
+
+const TROUBLESHOOTING = {
+  power: {
+    symptom: "No Power - Blank Screen (Stage 1 Hardware)",
+    cause: "PSU failure • Loose power rail • Motherboard firmware error",
+    check: "Inspect motherboard diagnostic LEDs • Check electrical power connections",
+    fix: "Verify power cables and test motherboard POST diagnostic LEDs",
+    sub: "Firmware runs before Linux; resolve physical hardware issue first",
+    lab: "Troubleshoot: No Display / Power-On Failure",
+    code: `Suspect Stage : Stage 1 (Power & Firmware)\nLikely Causes : Power supply unit failure, motherboard ROM fault, loose RAM\nCheck Action  : Inspect diagnostic motherboard LEDs, beep codes, and power connections`,
+    explain: "System administrators trace boot errors to specific pipeline stages to resolve startup failures accurately."
+  },
+  noboot: {
+    symptom: "No Bootable Device (Stage 2 UEFI / ESP)",
+    cause: "Incorrect UEFI boot order • Corrupted EFI System Partition (FAT32)",
+    check: "Enter UEFI firmware setup • Verify NVMe boot entry and disk health",
+    fix: "Verify NVRAM boot entry with efibootmgr & ensure ESP partition is mounted",
+    sub: "Check /boot/efi partition availability in UEFI BIOS setup",
+    lab: "Troubleshoot: No Bootable Device Found",
+    code: `Suspect Stage : Stage 2 (Firmware / ESP)\nLikely Causes : Incorrect UEFI boot order, corrupted EFI System Partition (FAT32)\nCheck Action  : Verify UEFI NVMe priority and check /boot/efi partition availability`,
+    explain: "System administrators trace boot errors to specific pipeline stages to resolve startup failures accurately."
+  },
+  grubrescue: {
+    symptom: "grub rescue> Prompt (Stage 3 Bootloader)",
+    cause: "Missing /boot/grub directory • Changed disk UUID • Broken grub.cfg",
+    check: "Run ls at grub rescue prompt • Find partition containing (hdX,gptY)/boot",
+    fix: "Set root prefix via ls (hdX,Y) and reinstall GRUB bootloader files",
+    sub: "Check disk UUIDs with lsblk -f & regenerate /boot/grub/grub.cfg safely",
+    lab: "Troubleshoot: Entering grub rescue> Prompt",
+    code: `Suspect Stage : Stage 3 (GRUB Bootloader)\nLikely Causes : Missing /boot/grub directory, changed disk UUID, broken grub.cfg\nCheck Action  : Set root prefix via ls (hdX,Y) and reinstall GRUB bootloader files`,
+    explain: "System administrators trace boot errors to specific pipeline stages to resolve startup failures accurately."
+  },
+  cantmount: {
+    symptom: "Cannot Mount Root (Stage 5 Initramfs)",
+    cause: "Missing NVMe/RAID kernel module • Wrong root=UUID in boot argument",
+    check: "Verify root=UUID argument in /proc/cmdline against lsblk -f output",
+    fix: "Rebuild initramfs with mkinitcpio or dracut and verify filesystem UUID",
+    sub: "Ensure initramfs image contains necessary block storage drivers",
+    lab: "Troubleshoot: Cannot Mount Root Filesystem",
+    code: `Suspect Stage : Stage 5 (Initramfs & Storage Drivers)\nLikely Causes : Missing NVMe/RAID kernel module, wrong root=UUID in boot parameter\nCheck Action  : Rebuild initramfs with mkinitcpio or dracut and verify filesystem UUID`,
+    explain: "System administrators trace boot errors to specific pipeline stages to resolve startup failures accurately."
+  },
+  emergency: {
+    symptom: "Emergency Mode Shell (Stage 6 /etc/fstab)",
+    cause: "Failed partition mount • Corrupted filesystem • Invalid fstab entry",
+    check: "Check systemd journal via journalctl -xb to pinpoint failing mount",
+    fix: "Inspect /etc/fstab entries and check system logs via journalctl -xb",
+    sub: "Comment out non-essential failed mounts in /etc/fstab and run fsck",
+    lab: "Troubleshoot: Dropping into Emergency Mode",
+    code: `Suspect Stage : Stage 6 (Real Root & /etc/fstab)\nLikely Causes : Failed partition mount, corrupted filesystem, wrong mount option\nCheck Action  : Inspect /etc/fstab entries and check system logs via journalctl -xb`,
+    explain: "System administrators trace boot errors to specific pipeline stages to resolve startup failures accurately."
+  },
+  nogui: {
+    symptom: "No Graphical Login (Stage 8 Display Manager)",
+    cause: "Display manager crash (gdm/sddm) • Proprietary GPU driver failure",
+    check: "Switch to text virtual terminal via Ctrl+Alt+F3 and log into shell",
+    fix: "Run systemctl status gdm & inspect errors with journalctl -b -p err",
+    sub: "Reinstall graphics driver or restart display-manager.service",
+    lab: "Troubleshoot: Boot Hangs or No Graphical Login",
+    code: `Suspect Stage : Stage 7 & 8 (systemd & Display Manager)\nLikely Causes : Display manager service crash (gdm/sddm), proprietary GPU driver\nCheck Action  : Switch to virtual TTY via Ctrl+Alt+F3 and run systemctl status gdm`,
+    explain: "System administrators trace boot errors to specific pipeline stages to resolve startup failures accurately."
+  }
+};
+
+const PRACTICAL_CMDS = {
+  timing: {
+    cmd: "systemd-analyze",
+    title: "1. Inspect Total Boot Timing",
+    output: `<span class="tok-v">Startup finished in </span><span class="tok-n">1.428s</span><span class="tok-c"> (firmware)</span><span class="tok-v"> + </span><span class="tok-n">2.112s</span><span class="tok-c"> (loader)</span><span class="tok-v"> + </span><span class="tok-n">1.845s</span><span class="tok-c"> (kernel)</span><span class="tok-v"> + </span><span class="tok-n">2.341s</span><span class="tok-c"> (userspace)</span><span class="tok-v"> = </span><span class="tok-s">7.726s</span>\n<span class="tok-k">graphical.target</span><span class="tok-v"> reached after </span><span class="tok-n">2.325s</span><span class="tok-v"> in userspace.</span>`,
+    explain: "Systemd-analyze reports total startup duration broken down into firmware, loader, kernel, and userspace times."
+  },
+  blame: {
+    cmd: "systemd-analyze blame",
+    title: "2. Rank Slowest Startup Services",
+    output: `<span class="tok-n">1.240s</span> <span class="tok-cmd">NetworkManager-wait-online.service</span>\n <span class="tok-n">412ms</span> <span class="tok-cmd">plymouth-quit-wait.service</span>\n <span class="tok-n">320ms</span> <span class="tok-cmd">udisks2.service</span>\n <span class="tok-n">215ms</span> <span class="tok-cmd">systemd-journal-flush.service</span>\n <span class="tok-n">184ms</span> <span class="tok-cmd">systemd-udevd.service</span>`,
+    explain: "Systemd-analyze blame displays running service startup durations in descending order to identify boot slowdowns."
+  },
+  cmdline: {
+    cmd: "cat /proc/cmdline",
+    title: "3. View Kernel Boot Parameters",
+    output: `<span class="tok-k">BOOT_IMAGE</span><span class="tok-punc">=</span><span class="tok-s">/boot/vmlinuz-linux</span> <span class="tok-k">root</span><span class="tok-punc">=</span><span class="tok-n">UUID</span><span class="tok-punc">=</span><span class="tok-s">8f7e2a1b-3c4d-4e5f-a6b7-c8d9e0f1a2b3</span> <span class="tok-cmd">rw</span> <span class="tok-cmd">quiet</span>`,
+    explain: "Reading proc cmdline reveals the live boot parameters passed by GRUB to the active kernel."
+  },
+  pid1: {
+    cmd: "ps -p 1 -o pid,comm,args",
+    title: "4. Verify PID 1 Init Process",
+    output: `  <span class="tok-k">PID</span> <span class="tok-k">COMMAND</span>         <span class="tok-k">COMMAND</span>\n    <span class="tok-n">1</span> <span class="tok-cmd">systemd</span>         <span class="tok-s">/sbin/init</span>`,
+    explain: "Checking process ID one verifies that systemd is executing as the active system service manager."
   }
 };
 
 function updateStudio() {
   document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeTopic));
 
+  $("fc_stages").style.display = activeTopic === "stages" ? "block" : "none";
+  $("fc_firmware").style.display = activeTopic === "firmware" ? "block" : "none";
+  $("fc_initramfs").style.display = activeTopic === "initramfs" ? "block" : "none";
+  $("fc_trouble").style.display = activeTopic === "trouble" ? "block" : "none";
+
+  $("sub_chips_stage").style.display = activeTopic === "stages" ? "block" : "none";
+  $("sub_chips_trouble").style.display = activeTopic === "trouble" ? "block" : "none";
+
   if (activeTopic === "stages") {
-    $("fc_stages").style.display = "block";
-    $("fc_grub").style.display = "none";
-    $("fc_initramfs").style.display = "none";
-    $("sub_chips_stage").style.display = "block";
     updateStage();
-  } else if (activeTopic === "grub") {
-    $("fc_stages").style.display = "none";
-    $("fc_grub").style.display = "block";
-    $("fc_initramfs").style.display = "none";
-    $("sub_chips_stage").style.display = "none";
-    const data = TOPICS.grub;
-    $("insp_lab").textContent = data.lab;
-    $("insp_code").innerHTML = highlightSyntax(data.code);
-    const res = $("insp_res");
-    res.textContent = data.explain;
-    res.className = "res ok";
+  } else if (activeTopic === "trouble") {
+    updateTrouble();
   } else {
-    $("fc_stages").style.display = "none";
-    $("fc_grub").style.display = "none";
-    $("fc_initramfs").style.display = "block";
-    $("sub_chips_stage").style.display = "none";
-    const data = TOPICS.initramfs;
-    $("insp_lab").textContent = data.lab;
-    $("insp_code").innerHTML = highlightSyntax(data.code);
-    const res = $("insp_res");
-    res.textContent = data.explain;
-    res.className = "res ok";
+    const data = TOPICS[activeTopic];
+    if (data) {
+      $("insp_lab").textContent = data.lab;
+      $("insp_code").innerHTML = highlightSyntax(data.code);
+      const res = $("insp_res");
+      res.textContent = data.explain;
+      res.className = "res ok";
+    }
   }
 }
 
@@ -902,71 +1079,146 @@ function updateStage() {
   res.textContent = data.explain;
   res.className = "res ok";
 
-  const nodes = {
-    firmware: $("bs_n1"),
-    grub: $("bs_n2"),
-    kernel: $("bs_n3"),
-    initramfs: $("bs_n4"),
-    systemd: $("bs_n5")
-  };
-
-  Object.entries(nodes).forEach(([k, el]) => {
+  const stageKeys = ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"];
+  stageKeys.forEach(k => {
+    const el = $("grp_" + k);
     if (!el) return;
-    const isSelected = activeStage === "all" || activeStage === k;
-    if (k === "firmware") {
-      el.setAttribute("fill", isSelected ? (activeStage === k ? "var(--ok)" : "var(--ink)") : "#64748b");
+    const rect = el.querySelector("rect");
+    const circ = el.querySelector("circle");
+    if (activeStage === k) {
+      if (rect) rect.setAttribute("class", "node-rect st-pass");
+      if (circ) circ.setAttribute("fill", "var(--ok)");
+      el.style.opacity = "1";
+    } else if (activeStage === "all") {
+      if (rect) rect.setAttribute("class", "node-rect st-active");
+      if (circ) circ.setAttribute("fill", "var(--primary)");
+      el.style.opacity = "1";
     } else {
-      el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
-      el.style.opacity = isSelected ? "1" : "0.45";
+      if (rect) rect.setAttribute("class", "node-rect st-active");
+      if (circ) circ.setAttribute("fill", "#94a3b8");
+      el.style.opacity = "0.45";
     }
   });
 
-  const details = {
-    all: ["Overview: Complete 5-Stage Boot Sequence", "Firmware &rarr; GRUB2 &rarr; Kernel &rarr; initramfs &rarr; systemd", "Deterministic pipeline ensuring secure, verifiable server boot"],
-    firmware: ["Stage 1: Power-On Self Test & UEFI Firmware", "Loads /boot/efi/EFI/ubuntu/grubx64.efi into RAM", "Executes hardware POST checks & initializes CPU and memory registers"],
-    grub: ["Stage 2: GRUB2 Unified Bootloader", "Displays boot menu, reads /boot/grub/grub.cfg", "Loads selected vmlinuz kernel image and initramfs into RAM"],
-    kernel: ["Stage 3: Linux Kernel Subsystem Init", "Decompresses binary, mounts virtual file systems (/proc, /sys)", "Probes hardware buses and configures virtual memory paging"],
-    initramfs: ["Stage 4: Temporary initramfs Ramdisk", "Loads necessary storage controllers (NVMe, LVM, RAID)", "Locates physical root disk UUID and pivots execution safely"],
-    systemd: ["Stage 5: systemd Process ID 1 (PID 1)", "Executes /sbin/init & reads /etc/systemd/system/default.target", "Launches essential background daemons and user login prompts"]
+  const stageDetails = {
+    all: ["Complete 8-Stage Sequential Pipeline", "Power &rarr; Firmware &rarr; GRUB &rarr; Kernel &rarr; Initramfs &rarr; Real Root &rarr; systemd &rarr; Login"],
+    s1: ["Stage 1: Power On & Hardware Self-Check", "PSU provides electrical power to motherboard and CPU begins startup"],
+    s2: ["Stage 2: BIOS/UEFI Firmware & POST Check", "Firmware tests hardware and selects boot entry from FAT32 ESP partition"],
+    s3: ["Stage 3: GRUB Unified Bootloader Execution", "GRUB displays menu, loads kernel (vmlinuz) & initramfs, and sets boot args"],
+    s4: ["Stage 4: Linux Kernel Subsystem Initialization", "Initializes CPU, memory management, interrupts, built-in drivers & buses"],
+    s5: ["Stage 5: Initramfs Early Userspace Ramdisk", "Supplies early drivers (NVMe, LVM, encryption) needed to locate root disk"],
+    s6: ["Stage 6: Real Root Filesystem Mount & switch_root", "Locates permanent root partition by UUID and pivots away from ramdisk"],
+    s7: ["Stage 7: systemd Service & Target Initialization", "Process ID 1 coordinates system targets (multi-user or graphical)"],
+    s8: ["Stage 8: User Login & Session Establishment", "Getty provides TTY CLI login or Display Manager launches graphical desktop"]
   };
 
-  const cur = details[activeStage] || details.all;
+  const cur = stageDetails[activeStage] || stageDetails.all;
   $("fc_stage_title").textContent = cur[0];
-  $("fc_stage_detail").textContent = cur[1];
-  $("fc_stage_sub").textContent = cur[2];
+  $("fc_stage_sub").innerHTML = cur[1];
+}
+
+function updateTrouble() {
+  document.querySelectorAll("[data-a='trb']").forEach(b => {
+    b.classList.toggle("on", b.dataset.t === activeTrouble);
+  });
+
+  const data = TROUBLESHOOTING[activeTrouble] || TROUBLESHOOTING.power;
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").innerHTML = highlightSyntax(data.code);
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+
+  $("trb_sym_text").textContent = data.symptom;
+  $("trb_cause_text").textContent = data.cause;
+  $("trb_check_text").textContent = data.check;
+  $("trb_fix_text").textContent = data.fix;
+  $("trb_sub_text").textContent = data.sub;
+}
+
+function updatePrac() {
+  document.querySelectorAll("[data-a='prac']").forEach(b => {
+    b.classList.toggle("on", b.dataset.p === activePrac);
+  });
+
+  const data = PRACTICAL_CMDS[activePrac];
+  if (data) {
+    $("prac_cmd_title").textContent = data.title;
+    $("prac_cmd_text").innerHTML = `<span class="tok-cmd">${data.cmd}</span>`;
+    $("prac_out_text").innerHTML = data.output;
+    $("prac_explain").textContent = data.explain;
+  }
 }
 
 document.addEventListener("click", e => {
   const t = e.target.closest("[data-a]");
-  if (!t) return;
-  const a = t.dataset.a;
+  if (t) {
+    const a = t.dataset.a;
+    if (a === "md") {
+      activeTopic = t.dataset.m;
+      updateStudio();
+    } else if (a === "stg") {
+      activeStage = t.dataset.s;
+      updateStage();
+    } else if (a === "trb") {
+      activeTrouble = t.dataset.t;
+      updateTrouble();
+    } else if (a === "prac") {
+      activePrac = t.dataset.p;
+      updatePrac();
+    } else if (a === "copy") {
+      const targetId = t.dataset.target;
+      const el = $(targetId);
+      if (el) {
+        const textToCopy = el.innerText || el.textContent;
+        navigator.clipboard.writeText(textToCopy.trim()).then(() => {
+          const orig = t.textContent;
+          t.textContent = "Copied!";
+          setTimeout(() => { t.textContent = orig; }, 1500);
+        }).catch(() => {
+          const orig = t.textContent;
+          t.textContent = "Copied!";
+          setTimeout(() => { t.textContent = orig; }, 1500);
+        });
+      }
+    } else if (a === "qc") {
+      const opt = +t.dataset.o;
+      const chips = $("qc_chips").querySelectorAll(".chip");
+      chips.forEach((c, idx) => {
+        c.classList.remove("ok", "bad");
+        if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
+      });
+      const qcRes = $("qc_res");
+      qcRes.style.display = "flex";
+      if (opt === 0) {
+        qcRes.className = "res ok";
+        qcRes.textContent = "Correct! The initramfs provides crucial storage controller drivers to mount the real root filesystem.";
+      } else {
+        qcRes.className = "res bad";
+        qcRes.textContent = "Not quite. The initramfs temporary filesystem supplies disk drivers to mount the real root partition.";
+      }
+    }
+  }
 
-  if (a === "md") {
-    activeTopic = t.dataset.m;
-    updateStudio();
-  } else if (a === "stg") {
-    activeStage = t.dataset.s;
-    updateStage();
-  } else if (a === "qc") {
-    const opt = +t.dataset.o;
-    const chips = $("qc_chips").querySelectorAll(".chip");
-    chips.forEach((c, idx) => {
-      c.classList.remove("ok", "bad");
-      if (idx === opt) c.classList.add(opt === 0 ? "ok" : "bad");
-    });
-    const qcRes = $("qc_res");
-    qcRes.style.display = "flex";
-    if (opt === 0) {
-      qcRes.className = "res ok";
-      qcRes.textContent = "Correct! The initramfs provides crucial storage controller drivers to mount the real root filesystem.";
-    } else {
-      qcRes.className = "res bad";
-      qcRes.textContent = "Not quite. The initramfs temporary filesystem supplies disk drivers to mount the real root partition.";
+  if (e.target.id === "btn_prev_stg") {
+    const order = ["all", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"];
+    const curIdx = order.indexOf(activeStage);
+    if (curIdx > 0) {
+      activeStage = order[curIdx - 1];
+      updateStage();
+    }
+  } else if (e.target.id === "btn_next_stg") {
+    const order = ["all", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"];
+    const curIdx = order.indexOf(activeStage);
+    if (curIdx < order.length - 1) {
+      activeStage = order[curIdx + 1];
+      updateStage();
     }
   }
 });
 
 updateStudio();
+updatePrac();
 </script>
 </body>
 </html>

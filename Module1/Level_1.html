@@ -414,21 +414,9 @@ p {
     <p class="sm"><b>Key Takeaway:</b> Mastering Linux commands provides foundational technical skills required across modern DevOps, cloud, and cybersecurity careers.</p>
 
     <!-- THE OFFICIAL LINUX SYMBOL: TUX THE PENGUIN -->
-    <div class="creator-card" style="display:flex;align-items:center;gap:20px;padding:16px 22px;border:1px solid var(--line);border-radius:12px;background:#ffffff;margin:14px 0 18px;box-shadow:0 2px 10px rgba(23,32,44,0.03);">
-      <div style="width:104px;height:104px;background:var(--tint);border-radius:12px;flex-shrink:0;border:1px solid var(--tint-bd);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:6px;">
+    <div style="display:flex;align-items:center;justify-content:center;margin:14px 0 18px;">
+      <div style="width:104px;height:104px;background:var(--tint);border-radius:12px;border:1px solid var(--tint-bd);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px;box-shadow:0 2px 8px rgba(23,32,44,0.03);">
         <img src="tux.svg" alt="Tux the Official Linux Mascot" style="width:100%;height:100%;object-fit:contain;">
-      </div>
-      <div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
-          <h3 style="margin:0;font-size:16px;font-weight:800;color:var(--ink);">The Official Linux Mascot &bull; Tux</h3>
-          <span style="font-size:11px;font-weight:700;color:var(--primary);background:var(--tint);border:1px solid var(--tint-bd);padding:2px 10px;border-radius:999px;">Official Kernel Mascot &bull; Created 1996</span>
-        </div>
-        <p class="sm" style="margin:0 0 8px;line-height:1.55;">Tux the Penguin is the world-renowned official mascot and symbol of the Linux operating system, originally designed by Larry Ewing in 1996. It represents the friendly, open, and community-driven foundation of modern computing.</p>
-        <div style="display:flex;gap:14px;font-size:11.5px;font-weight:700;color:var(--muted);font-family:var(--font-mono);flex-wrap:wrap;">
-          <span><span style="color:var(--ok);">&check;</span> 100% Free &amp; Open Source</span>
-          <span><span style="color:var(--primary);">&check;</span> Community Driven</span>
-          <span><span style="color:var(--ok);">&check;</span> Universal Device Freedom</span>
-        </div>
       </div>
     </div>
 
@@ -451,10 +439,11 @@ p {
             <label class="lab" style="font-size:10px">Filter Real-World Domain:</label>
             <div class="chips" style="margin:0">
               <button type="button" class="chip on" data-a="dom" data-d="all">All Domains</button>
-              <button type="button" class="chip" data-a="dom" data-d="super">Supercomputers (100%)</button>
-              <button type="button" class="chip" data-a="dom" data-d="cloud">Cloud Servers (90%+)</button>
-              <button type="button" class="chip" data-a="dom" data-d="mobile">Android &amp; IoT</button>
-              <button type="button" class="chip" data-a="dom" data-d="space">Space &amp; Robotics</button>
+              <button type="button" class="chip" data-a="dom" data-d="super">Supercomputer</button>
+              <button type="button" class="chip" data-a="dom" data-d="cloud">Cloud Server</button>
+              <button type="button" class="chip" data-a="dom" data-d="mobile">Android + IoT</button>
+              <button type="button" class="chip" data-a="dom" data-d="military">Military</button>
+              <button type="button" class="chip" data-a="dom" data-d="spacex">SpaceX</button>
             </div>
           </div>
 
@@ -521,57 +510,85 @@ p {
 
           <!-- VIEW 2: WHERE LINUX IS USED -->
           <div id="fc_where" style="display:none;">
-            <span class="lab">Where Linux Is Used: Global Infrastructure Footprint (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 260">
-              <!-- Top Root -->
-              <rect x="70" y="8" width="380" height="34" class="node-rect st-active" />
-              <text x="260" y="25" class="node-mono">Linux Operating System - Modern Digital Backbone</text>
+            <span class="lab">Where Linux Is Used: Global Infrastructure Footprint</span>
 
-              <path d="M 260 42 L 260 56" class="flow-line line-blue" />
-              <path d="M 75 56 L 445 56" class="flow-line line-blue" fill="none" />
+            <!-- SVG Map (Shown when 'all' is active) -->
+            <div id="where_svg_map">
+              <svg class="svg-flowchart" viewBox="0 0 520 255">
+                <!-- Top Root -->
+                <rect x="70" y="8" width="380" height="34" class="node-rect st-active" />
+                <text x="260" y="25" class="node-mono">Linux Operating System - Modern Digital Backbone</text>
 
-              <!-- 4 Vertical Drop Lines -->
-              <path d="M 75 56 L 75 68 M 198 56 L 198 68 M 322 56 L 322 68 M 445 56 L 445 68" class="flow-line line-blue" />
+                <!-- Distribution Trunk & Rail -->
+                <path d="M 260 42 L 260 56" class="flow-line line-blue" />
+                <path d="M 57 56 L 465 56" class="flow-line line-blue" fill="none" />
 
-              <!-- Domain 1: Supercomputers -->
-              <rect id="dom_n_super" x="15" y="68" width="120" height="70" class="node-rect st-pass" data-a="dom" data-d="super" style="cursor:pointer;" />
-              <text x="75" y="84" class="node-text">Supercomputers</text>
-              <text x="75" y="100" class="node-mono" fill="var(--ok)" style="font-weight:800;">100% Top 500</text>
-              <text x="75" y="118" class="node-mono" style="font-size:9px;">Scientific Research</text>
-              <text x="75" y="130" class="node-mono" style="font-size:8.5px;">Frontier - Aurora</text>
+                <!-- 5 Vertical Drop Lines -->
+                <path d="M 57 56 L 57 68 M 159 56 L 159 68 M 261 56 L 261 68 M 363 56 L 363 68 M 465 56 L 465 68" class="flow-line line-blue" />
 
-              <!-- Domain 2: Cloud Servers -->
-              <rect id="dom_n_cloud" x="140" y="68" width="116" height="70" class="node-rect st-pass" data-a="dom" data-d="cloud" style="cursor:pointer;" />
-              <text x="198" y="84" class="node-text">Cloud Servers</text>
-              <text x="198" y="100" class="node-mono" fill="var(--ok)" style="font-weight:800;">90%+ Public Cloud</text>
-              <text x="198" y="118" class="node-mono" style="font-size:9px;">AWS - GCP - Azure</text>
-              <text x="198" y="130" class="node-mono" style="font-size:8.5px;">Docker Containers</text>
+                <!-- Domain 1: Supercomputers -->
+                <rect id="dom_n_super" x="10" y="68" width="94" height="72" class="node-rect st-pass" data-a="dom" data-d="super" style="cursor:pointer;" />
+                <text x="57" y="84" class="node-text" style="font-size:10px;">Supercomputer</text>
+                <text x="57" y="98" class="node-mono" fill="var(--ok)" style="font-weight:800;font-size:9.5px;">100% Top 500</text>
+                <text x="57" y="114" class="node-mono" style="font-size:8px;">Oak Ridge Lab</text>
+                <text x="57" y="126" class="node-mono" style="font-size:8px;">Frontier Exascale</text>
 
-              <!-- Domain 3: Mobile & Smart Tech -->
-              <rect id="dom_n_mobile" x="264" y="68" width="116" height="70" class="node-rect st-pass" data-a="dom" data-d="mobile" style="cursor:pointer;" />
-              <text x="322" y="84" class="node-text">Android &amp; IoT</text>
-              <text x="322" y="100" class="node-mono" fill="var(--ok)" style="font-weight:800;">3+ Billion Phones</text>
-              <text x="322" y="118" class="node-mono" style="font-size:9px;">Smart TVs - Routers</text>
-              <text x="322" y="130" class="node-mono" style="font-size:8.5px;">Automotive Systems</text>
+                <!-- Domain 2: Cloud Servers -->
+                <rect id="dom_n_cloud" x="112" y="68" width="94" height="72" class="node-rect st-pass" data-a="dom" data-d="cloud" style="cursor:pointer;" />
+                <text x="159" y="84" class="node-text" style="font-size:10px;">Cloud Server</text>
+                <text x="159" y="98" class="node-mono" fill="var(--ok)" style="font-weight:800;font-size:9.5px;">90%+ Cloud</text>
+                <text x="159" y="114" class="node-mono" style="font-size:8px;">AWS - GCP - Azure</text>
+                <text x="159" y="126" class="node-mono" style="font-size:8px;">Docker - K8s</text>
 
-              <!-- Domain 4: Space & Robotics -->
-              <rect id="dom_n_space" x="388" y="68" width="118" height="70" class="node-rect st-pass" data-a="dom" data-d="space" style="cursor:pointer;" />
-              <text x="447" y="84" class="node-text">Space &amp; Defense</text>
-              <text x="447" y="100" class="node-mono" fill="var(--ok)" style="font-weight:800;">NASA - SpaceX</text>
-              <text x="447" y="118" class="node-mono" style="font-size:9px;">Mars Rovers</text>
-              <text x="447" y="130" class="node-mono" style="font-size:8.5px;">Falcon 9 Rocket</text>
+                <!-- Domain 3: Android + IoT -->
+                <rect id="dom_n_mobile" x="214" y="68" width="94" height="72" class="node-rect st-pass" data-a="dom" data-d="mobile" style="cursor:pointer;" />
+                <text x="261" y="84" class="node-text" style="font-size:10px;">Android + IoT</text>
+                <text x="261" y="98" class="node-mono" fill="var(--ok)" style="font-weight:800;font-size:9.5px;">3B+ Devices</text>
+                <text x="261" y="114" class="node-mono" style="font-size:8px;">Smart Phones</text>
+                <text x="261" y="126" class="node-mono" style="font-size:8px;">Routers - Cars</text>
 
-              <!-- Bottom Summary Bar -->
-              <path d="M 75 138 L 75 160 M 198 138 L 198 160 M 322 138 L 322 160 M 447 138 L 447 160" class="flow-line line-blue" />
-              <path d="M 75 160 L 447 160" class="flow-line line-blue" fill="none" />
-              <path d="M 260 160 L 260 178" class="flow-line line-blue" />
-              <polygon points="260,179 256,172 264,172" fill="var(--primary)" />
+                <!-- Domain 4: Military -->
+                <rect id="dom_n_military" x="316" y="68" width="94" height="72" class="node-rect st-pass" data-a="dom" data-d="military" style="cursor:pointer;" />
+                <text x="363" y="84" class="node-text" style="font-size:10px;">Military</text>
+                <text x="363" y="98" class="node-mono" fill="var(--ok)" style="font-weight:800;font-size:9.5px;">US Navy Aegis</text>
+                <text x="363" y="114" class="node-mono" style="font-size:8px;">Radar Defense</text>
+                <text x="363" y="126" class="node-mono" style="font-size:8px;">Combat Telemetry</text>
 
-              <rect x="15" y="180" width="490" height="66" rx="8" fill="var(--ink)" stroke="var(--primary)" stroke-width="1.2" />
-              <text x="260" y="200" class="node-mono" fill="#38bdf8" style="font-size:11.5px;font-weight:800;">Global Dominance - Universal Scalability</text>
-              <text x="260" y="218" class="node-mono" fill="#ffffff">From low-power microcontrollers to multi-petabyte supercomputer clusters</text>
-              <text x="260" y="234" class="node-mono" fill="#93c5fd" style="font-size:9px;">Reliable - Modular - Crash-Resilient - Production Battle-Tested</text>
-            </svg>
+                <!-- Domain 5: SpaceX -->
+                <rect id="dom_n_spacex" x="418" y="68" width="94" height="72" class="node-rect st-pass" data-a="dom" data-d="spacex" style="cursor:pointer;" />
+                <text x="465" y="84" class="node-text" style="font-size:10px;">SpaceX</text>
+                <text x="465" y="98" class="node-mono" fill="var(--ok)" style="font-weight:800;font-size:9.5px;">Falcon 9 Rocket</text>
+                <text x="465" y="114" class="node-mono" style="font-size:8px;">Autonomous Flight</text>
+                <text x="465" y="126" class="node-mono" style="font-size:8px;">Dragon Capsule</text>
+
+                <!-- Bottom Convergence Rail -->
+                <path d="M 57 140 L 57 156 M 159 140 L 159 156 M 261 140 L 261 156 M 363 140 L 363 156 M 465 140 L 465 156" class="flow-line line-blue" />
+                <path d="M 57 156 L 465 156" class="flow-line line-blue" fill="none" />
+                <path d="M 260 156 L 260 172" class="flow-line line-blue" />
+                <polygon points="260,173 256,166 264,166" fill="var(--primary)" />
+
+                <!-- Bottom Summary Card -->
+                <rect x="10" y="174" width="500" height="66" rx="8" fill="var(--ink)" stroke="var(--primary)" stroke-width="1.2" />
+                <text x="260" y="194" class="node-mono" fill="#38bdf8" style="font-size:11.5px;font-weight:800;">Global Dominance - Universal Scalability</text>
+                <text x="260" y="212" class="node-mono" fill="#ffffff">Click any domain button above to view real-world mission photo and telemetry</text>
+                <text x="260" y="228" class="node-mono" fill="#93c5fd" style="font-size:9px;">High Reliability - Crash-Resilient - Hardened Open-Source Kernel</text>
+              </svg>
+            </div>
+
+            <!-- Image Reference Card (Shown when a specific domain is active) -->
+            <div id="where_img_card" style="display:none;margin-top:4px;">
+              <div style="position:relative;background:#0d131f;border-radius:10px;overflow:hidden;border:1px solid var(--tint-bd);box-shadow:0 3px 12px rgba(15,23,42,0.12);">
+                <img id="where_img" src="supercomputer.jpg" alt="Real-World Linux Reference" style="width:100%;height:210px;object-fit:contain;background:#0b111e;display:block;">
+                <div id="where_badge" style="position:absolute;top:10px;left:10px;background:rgba(21,113,186,0.92);color:#ffffff;padding:4px 10px;border-radius:6px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.03em;">Supercomputers &bull; 100% Top 500</div>
+              </div>
+              <div style="margin-top:8px;padding:9px 12px;background:var(--paper);border:1px solid var(--line);border-radius:8px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
+                  <h3 id="where_caption_title" style="margin:0;font-size:13.5px;font-weight:800;color:var(--ink);">Frontier Exascale Supercomputer</h3>
+                  <button type="button" class="chip" data-a="dom" data-d="all" style="padding:2px 10px;font-size:11px;">View All Domains</button>
+                </div>
+                <p id="where_caption_desc" style="margin:0;font-size:12px;color:var(--muted);line-height:1.45;">Frontier supercomputer at Oak Ridge National Laboratory runs custom Linux achieving over 1.1 exaflops computing speed.</p>
+              </div>
+            </div>
           </div>
 
           <!-- VIEW 3: PROPERLY ALIGNED ADVANTAGES & SECURITY FLOWCHART -->
@@ -763,28 +780,33 @@ const DATA = {
   where: {
     all: {
       lab: "2. Where Linux Is Used: Ubiquitous Global Presence",
-      code: `Supercomputers : 500 of the world's 500 fastest supercomputers run Linux (100%)\nCloud Workloads: Over 90% of all public cloud workloads on AWS, GCP, and Azure\nMobile Devices : Over 3 billion active smartphones running Android (Linux Kernel)\nSpace & Auto   : NASA Mars rovers, Falcon 9 rockets, smart TVs, and connected cars`,
+      code: `Supercomputers : 500 of the world's 500 fastest supercomputers run Linux (100%)\nCloud Workloads: Over 90% of all public cloud workloads on AWS, GCP, and Azure\nMobile Devices : Over 3 billion active smartphones running Android (Linux Kernel)\nDefense & Space: US Navy Aegis systems, SpaceX Falcon 9, and NASA Mars rovers`,
       explain: "Linux powers the vast majority of critical global computational infrastructure from pocket phones to scientific clusters."
     },
     super: {
       lab: "Supercomputers: 100% Top 500 Worldwide",
-      code: `Adoption : 100% (All 500 fastest machines in the global Top500 list)\nExamples : Frontier (Oak Ridge), Aurora (Argonne), Fugaku (Japan)\nReason   : Unmatched raw performance, zero license overhead, custom kernel tuning`,
+      code: `Adoption : 100% (All 500 fastest machines in the global Top500 list)\nSystem   : Frontier (Oak Ridge) - Aurora (Argonne) - Fugaku (RIKEN)\nHardware : 8.7+ Million CPU & GPU Cores with Slingshot-11 Interconnect\nOS Core  : Cray Linux Environment (CLE) optimized for parallel calculations`,
       explain: "Every single top supercomputer runs Linux because scientists can fine-tune the kernel for extreme performance."
     },
     cloud: {
       lab: "Cloud Infrastructure & Enterprise Servers",
-      code: `Adoption : Over 90% of production workloads on AWS, Azure, and Google Cloud\nWorkloads: Web hosting, Docker containers, Kubernetes clusters, AI inference\nReason   : Lightweight headless operations, automated scripting, rock-solid uptime`,
+      code: `Adoption : Over 90% of production workloads on AWS, Azure, and Google Cloud\nEngines  : Docker containers, Kubernetes clusters, KVM hypervisors, and QEMU\nUptime   : Continuous multi-year availability without mandatory reboots or interruptions\nSecurity : Hardened SELinux profiles, zero-trust network namespaces, and cgroups`,
       explain: "Global enterprise cloud infrastructure relies upon Linux containers to automate scalable microservices reliably."
     },
     mobile: {
-      lab: "Mobile Phones & Consumer Electronics",
-      code: `Adoption : 3+ Billion active Android devices run an optimized Linux kernel\nDevices  : Smart televisions, home WiFi routers, smart thermostats, wearables\nReason   : Modular hardware abstraction layer and royalty-free manufacturer adoption`,
+      lab: "Mobile Phones & Connected IoT Devices",
+      code: `Adoption : Over 3 billion active smartphones running Android (Linux Kernel)\nHardware : ARM Cortex, Qualcomm Snapdragon, MediaTek, and RISC-V processors\nSubsystems: Android Low Memory Killer (LMK), Binder IPC, and Ashmem drivers\nUse Cases: Smart televisions, automotive infotainment, WiFi routers, and smart sensors`,
       explain: "Android relies directly on the Linux kernel for hardware device communication, process security, and battery management."
     },
-    space: {
-      lab: "Space Exploration & Robotics",
-      code: `Missions : NASA Perseverance Mars Rover, Ingenuity Helicopter, ISS computers\nDefense  : SpaceX Falcon 9 autonomous flight software, avionics, robotics\nReason   : Real-time determinism, verifiable open-source code, extreme reliability`,
-      explain: "NASA and SpaceX deploy Linux aboard space missions because verifiable open source ensures mission-critical flight reliability."
+    military: {
+      lab: "Military & Defense: Tactical Combat Infrastructure",
+      code: `Adoption : US Navy Aegis combat systems, drone command telemetry, and sonar arrays\nSystems  : Hardened Red Hat Enterprise Linux (RHEL) and DISA STIG security profiles\nIsolation: Air-gapped networks, mandatory access control, and cryptographic hardware tokens\nReliability: Zero kernel crashes during critical radar tracking and automated countermeasure defense`,
+      explain: "Defense departments run hardened Linux systems to protect radar guidance and naval combat communication channels."
+    },
+    spacex: {
+      lab: "SpaceX Aerospace & Autonomous Spaceflight",
+      code: `Hardware : Triple-redundant x86 dual-core processors voting on navigation decisions\nOS Core  : Stripped-down custom Linux kernel running real-time deterministic C++ code\nMissions : Falcon 9 booster propulsive landings, Falcon Heavy, and Dragon spacecraft\nResilience: Fault-tolerant voting logic discards corrupted calculation cycles instantly`,
+      explain: "SpaceX flight computers run customized Linux to calculate navigation trajectories and execute automated booster landings."
     }
   },
   advantages: {
@@ -903,26 +925,80 @@ function updateStudio() {
   }
 }
 
+const DOMAIN_DETAILS = {
+  super: {
+    img: "supercomputer.jpg",
+    badge: "Supercomputers \u2022 100% Top 500",
+    title: "Frontier Exascale Supercomputer",
+    desc: "Frontier supercomputer at Oak Ridge National Laboratory runs custom Linux achieving over 1.1 exaflops computing speed."
+  },
+  cloud: {
+    img: "cloud-server.jpg",
+    badge: "Cloud Infrastructure \u2022 90%+ Market",
+    title: "Enterprise Cloud Datacenter Server Racks",
+    desc: "High-density server racks host millions of automated Linux virtual machines and production container clusters worldwide."
+  },
+  mobile: {
+    img: "android-iot.jpg",
+    badge: "Android & IoT \u2022 3+ Billion Devices",
+    title: "Android Mobile Device & Smart IoT Ecosystem",
+    desc: "Modern touch devices and smart embedded controllers rely directly upon optimized Linux kernels for operations."
+  },
+  military: {
+    img: "military-linux.jpg",
+    badge: "Military & Defense \u2022 Mission Critical",
+    title: "US Navy Combat Information Center Console",
+    desc: "Naval warships and tactical air defense networks deploy hardened real-time Linux for mission-critical combat coordination."
+  },
+  spacex: {
+    img: "spacex-falcon9.jpg",
+    badge: "SpaceX & Aerospace \u2022 Autonomous Flight",
+    title: "SpaceX Falcon 9 Rocket & Dragon Spacecraft",
+    desc: "Falcon 9 rockets run dual-core x86 Linux flight computers executing autonomous booster re-entry guidance trajectories."
+  }
+};
+
 function renderWhere() {
   document.querySelectorAll("[data-a='dom']").forEach(b => {
     if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.d === activeDom);
   });
-  const data = DATA.where[activeDom] || DATA.where.all;
-  renderInspector(data);
 
-  const nodes = {
-    super: $("dom_n_super"),
-    cloud: $("dom_n_cloud"),
-    mobile: $("dom_n_mobile"),
-    space: $("dom_n_space")
-  };
+  const svgMap = $("where_svg_map");
+  const imgCard = $("where_img_card");
 
-  Object.entries(nodes).forEach(([k, el]) => {
-    if (!el) return;
-    const isSelected = activeDom === "all" || activeDom === k;
-    el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
-    el.style.opacity = isSelected ? "1" : "0.45";
-  });
+  if (activeDom === "all") {
+    if (svgMap) svgMap.style.display = "block";
+    if (imgCard) imgCard.style.display = "none";
+    renderInspector(DATA.where.all);
+
+    const nodes = {
+      super: $("dom_n_super"),
+      cloud: $("dom_n_cloud"),
+      mobile: $("dom_n_mobile"),
+      military: $("dom_n_military"),
+      spacex: $("dom_n_spacex")
+    };
+    Object.entries(nodes).forEach(([k, el]) => {
+      if (!el) return;
+      el.setAttribute("class", "node-rect st-pass");
+      el.style.opacity = "1";
+    });
+  } else {
+    if (svgMap) svgMap.style.display = "none";
+    if (imgCard) imgCard.style.display = "block";
+
+    const detail = DOMAIN_DETAILS[activeDom];
+    const data = DATA.where[activeDom] || DATA.where.all;
+
+    if (detail) {
+      $("where_img").src = detail.img;
+      $("where_img").alt = detail.title;
+      $("where_badge").textContent = detail.badge;
+      $("where_caption_title").textContent = detail.title;
+      $("where_caption_desc").textContent = detail.desc;
+    }
+    renderInspector(data);
+  }
 }
 
 function renderAdvantages() {
@@ -1018,10 +1094,10 @@ document.addEventListener("click", e => {
     qcRes.style.display = "flex";
     if (opt === 0) {
       qcRes.className = "res ok";
-      qcRes.textContent = "Correct! Linux powers 100% of top supercomputers and the majority of cloud servers under the free GNU GPL license.";
+      qcRes.textContent = "Correct! Linux powers all top supercomputers and major cloud datacenters under the open GNU GPL license.";
     } else {
       qcRes.className = "res bad";
-      qcRes.textContent = "Not quite. Linux is an open-source operating system that runs 100% of the world's top 500 supercomputers.";
+      qcRes.textContent = "Not quite. Linux is an open-source operating system powering all of the top 500 supercomputers.";
     }
   }
 });

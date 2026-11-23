@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Terminal, Shell Consoles &amp; Desktop Environments | IST Learn</title>
+<title>Terminal, Shell &amp; Desktop Environments | IST Learn</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -90,13 +90,6 @@ h2 {
   color: var(--ink);
 }
 
-h3 {
-  font-size: 15px;
-  font-weight: 800;
-  margin: 24px 0 10px;
-  color: var(--ink);
-}
-
 p {
   margin: 0 0 8px;
 }
@@ -107,18 +100,11 @@ p {
   line-height: 1.5;
 }
 
-.hint {
-  color: var(--muted);
-  font-size: 14px;
-  margin: 0 0 14px;
-  line-height: 1.5;
-}
-
 /* CARDS & HEADINGS */
 .card {
   border: 1px solid var(--line);
   border-radius: 14px;
-  padding: 20px 24px;
+  padding: 22px 26px;
   background: #ffffff;
   box-shadow: 0 4px 18px rgba(23, 32, 44, 0.04);
   margin-bottom: 20px;
@@ -162,60 +148,10 @@ p {
   line-height: 1.5;
 }
 
-/* STRIPS & CREATOR CARDS */
-.strip,
-.creator-strip,
-.lineage-strip,
-.component-strip,
-.install-strip {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px 16px;
-  margin: 10px 0 12px;
-}
-
-.creator-card {
-  background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px 18px;
-  box-shadow: 0 1px 4px rgba(23,32,44,0.02);
-}
-
-.icon-box,
-.creator-img-box,
-.lineage-icon-box,
-.component-icon-box,
-.install-icon-box {
-  width: 66px;
-  height: 52px;
-  background: var(--tint);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  border: 1px solid var(--tint-bd);
-}
-
-.creator-img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
 /* TWO COLUMN BALANCED LAYOUT */
 .two {
   display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
+  grid-template-columns: 1.05fr 0.95fr;
   gap: 20px;
   align-items: start;
 }
@@ -330,15 +266,6 @@ code {
   border-color: var(--bad-bd);
 }
 
-.detail {
-  background: var(--tint);
-  border: 1px solid var(--tint-bd);
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin-top: 8px;
-}
-
-
 /* HIGH-CONTRAST TERMINAL INSPECTOR WITH SYNTAX HIGHLIGHTING */
 .terminal-card {
   background: #0d131f;
@@ -391,7 +318,7 @@ code {
   line-height: 1.55;
   white-space: pre-wrap;
   word-break: break-word;
-  min-height: 220px;
+  min-height: 230px;
 }
 
 /* SYNTAX HIGHLIGHTING TOKEN PALETTE */
@@ -425,6 +352,7 @@ code {
   ry: 7px;
   stroke-width: 1.75px;
   transition: all 0.22s ease;
+  cursor: pointer;
 }
 
 .flow-line {
@@ -438,15 +366,6 @@ code {
   font-size: 11px;
   font-weight: 700;
   text-anchor: middle;
-  dominant-baseline: central;
-  pointer-events: none;
-}
-
-.node-left {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 600;
-  text-anchor: start !important;
   dominant-baseline: central;
   pointer-events: none;
 }
@@ -465,6 +384,7 @@ code {
   font-size: 9px;
   font-weight: 700;
   text-anchor: middle;
+  dominant-baseline: central;
 }
 
 .st-active {
@@ -472,18 +392,10 @@ code {
   stroke: var(--primary);
 }
 
-.st-active text {
-  fill: var(--primary-dark);
-}
-
 .st-pass {
   fill: var(--ok-bg);
   stroke: var(--ok);
   filter: drop-shadow(0 1px 3px rgba(13, 138, 85, 0.12));
-}
-
-.st-pass text {
-  fill: var(--ok);
 }
 
 .line-blue {
@@ -494,273 +406,284 @@ code {
   stroke: var(--ok);
 }
 
-/* BUTTONS */
-.btn {
-  background: var(--primary);
-  color: #ffffff;
-  border: 1px solid var(--primary);
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  font-family: inherit;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn:hover {
-  background: var(--primary-dark);
-  border-color: var(--primary-dark);
-}
-
-.btn.alt {
-  background: #ffffff;
-  color: var(--ink);
-  border: 1px solid var(--line);
-}
-
-.btn.alt:hover {
-  background: var(--paper);
-  border-color: var(--tint-bd);
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.top-pill {
-  font-size: 11.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--primary);
-  background: var(--tint);
-  border: 1px solid var(--tint-bd);
-  padding: 4px 12px;
-  border-radius: 999px;
-}
-
-/* VIDEO STYLES */
-.video-card {
-  background: #ffffff;
-  border: 1.5px solid var(--tint-bd);
-  border-radius: 12px;
-  padding: 16px;
-  margin: 14px 0 24px;
-  box-shadow: 0 1px 4px rgba(23, 32, 44, 0.02);
-}
-
-.video-embed-wrap {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 8px;
-  background: #000;
-}
-
-.video-embed-wrap iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
 </style>
 </head>
 <body>
 
-
-
 <main>
   <p class="eye">Module 1 &middot; Level 6 &middot; Interactive System Lab</p>
-  <h1>Terminal, Shell Consoles &amp; Desktop Environments</h1>
+  <h1>Terminal, Shell &amp; Desktop Environments</h1>
 
   <div class="card" id="stage">
     <!-- SECTION 1: SIMPLE IDEA -->
     <h2 class="sh"><span class="st">1</span>Simple Idea</h2>
-    <div class="note"><b>In plain words:</b> Linux provides both graphic desktop interfaces and powerful command line virtual consoles for administrative management.</div>
+    <div class="note"><b>In plain words:</b> Linux provides graphical desktop environments alongside terminal shells for efficient operating system interaction.</div>
 
-    <p class="sm"><b>Remember:</b> Virtual TTY consoles let system administrators troubleshoot damaged desktop sessions by switching keyboard shortcuts directly.</p>
+    <p class="sm"><b>Remember:</b> Terminal emulators display text windows while shells interpret administrative commands for the Linux kernel.</p>
 
-    <!-- SECTION 2: TRY IT -->
-    <h2 class="sh"><span class="st">2</span>Try It: Interactive Terminal &amp; Desktop Console Studio</h2>
+    <!-- SECTION 2: TRY IT INTERACTIVE STUDIO -->
+    <h2 class="sh"><span class="st">2</span>Try It: Interactive Terminal, Shell &amp; Desktop Environments Studio</h2>
     <div class="two">
       <div>
         <div class="box">
-          <label class="lab">Select Console View:</label>
+          <label class="lab">Select Exploration Topic:</label>
           <div class="chips">
-            <button type="button" class="chip on" data-a="md" data-m="consoles">1. TTY Consoles (1-6)</button>
-            <button type="button" class="chip" data-a="md" data-m="desktops">2. Desktop GUI Stacks</button>
-            <button type="button" class="chip" data-a="md" data-m="ssh">3. SSH Remote Console</button>
+            <button type="button" class="chip on" data-a="md" data-m="terminal">1. Terminal</button>
+            <button type="button" class="chip" data-a="md" data-m="shell">2. Shell</button>
+            <button type="button" class="chip" data-a="md" data-m="desktops">3. Desktop Environments (GNOME, KDE, i3)</button>
+            <button type="button" class="chip" data-a="md" data-m="consoles">4. TTY Virtual Consoles (1-6)</button>
+          </div>
+
+          <!-- Terminal Subchips -->
+          <div id="sub_chips_terminal" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+            <label class="lab" style="font-size:10px">Inspect Terminal Component:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="term" data-t="all">All Terminal Roles</button>
+              <button type="button" class="chip" data-a="term" data-t="emulator">Terminal is Emulator</button>
+              <button type="button" class="chip" data-a="term" data-t="input">Get Keyboard Input</button>
+              <button type="button" class="chip" data-a="term" data-t="send">Send to the Shell</button>
+            </div>
+          </div>
+
+          <!-- Shell Subchips -->
+          <div id="sub_chips_shell" style="display:none;margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+            <label class="lab" style="font-size:10px">Inspect Shell Pipeline:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="sh" data-s="all">All Shell Steps</button>
+              <button type="button" class="chip" data-a="sh" data-s="interpreter">Shell is Interpreter</button>
+              <button type="button" class="chip" data-a="sh" data-s="input">Get Input from Terminal</button>
+              <button type="button" class="chip" data-a="sh" data-s="tokens">Split Words into Tokens</button>
+              <button type="button" class="chip" data-a="sh" data-s="analyze">Analyze the Command</button>
+              <button type="button" class="chip" data-a="sh" data-s="execute">Give Kernel to Execute</button>
+            </div>
+          </div>
+
+          <!-- Desktop Environments Subchips -->
+          <div id="sub_chips_desktops" style="display:none;margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+            <label class="lab" style="font-size:10px">Select Desktop Paradigm:</label>
+            <div class="chips" style="margin:0">
+              <button type="button" class="chip on" data-a="de" data-d="all">All 3 Environments</button>
+              <button type="button" class="chip" data-a="de" data-d="gnome">GNOME Desktop (GTK)</button>
+              <button type="button" class="chip" data-a="de" data-d="kde">KDE Plasma (Qt)</button>
+              <button type="button" class="chip" data-a="de" data-d="i3">i3 Tiling WM (Keyboard)</button>
+            </div>
           </div>
 
           <!-- TTY Consoles Subchips -->
-          <div id="sub_chips_tty" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+          <div id="sub_chips_consoles" style="display:none;margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
             <label class="lab" style="font-size:10px">Select Console Channel:</label>
             <div class="chips" style="margin:0">
               <button type="button" class="chip on" data-a="tty" data-t="all">All Channels</button>
               <button type="button" class="chip" data-a="tty" data-t="tty1">TTY1 (Wayland / GUI)</button>
               <button type="button" class="chip" data-a="tty" data-t="tty2">TTY2-6 (Text CLI)</button>
-              <button type="button" class="chip" data-a="tty" data-t="pts">PTS (SSH / Terminal)</button>
+              <button type="button" class="chip" data-a="tty" data-t="pts">PTS (Terminal Window)</button>
             </div>
           </div>
         </div>
 
         <div class="chart-card">
-          <!-- TTY Consoles Flowchart -->
-          <div id="fc_consoles">
-            <span class="lab">Linux Virtual Consoles (TTY) Architecture (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 540 290">
-              <!-- Physical Hardware Header -->
-              <rect x="15" y="8" width="510" height="40" class="node-rect st-active" />
-              <text x="270" y="23" class="node-text">Linux Virtual Consoles Architecture (/dev/tty1 - /dev/tty6)</text>
-              <text x="270" y="38" class="node-mono" fill="var(--primary)">Direct Kernel Terminal Subsystem - Multi-Session Support</text>
+          <!-- 1. Terminal Architecture Flowchart -->
+          <div id="fc_terminal">
+            <span class="lab">Terminal Architecture - Graphical Window Emulator</span>
+            <svg class="svg-flowchart" viewBox="0 0 540 295">
+              <!-- Tier 1: User Input -->
+              <rect id="term_b_user" x="25" y="8" width="490" height="34" rx="7" class="node-rect st-active" data-a="term" data-t="input" />
+              <text x="270" y="25" class="node-text">User - Typing on Keyboard (ls -la, ping, top)</text>
 
-              <!-- Central Trunk down into Multiplexer Badge -->
-              <path d="M 270 48 L 270 61" class="flow-line line-blue" />
-              
-              <!-- Standalone Console Multiplexer Badge -->
-              <rect x="185" y="61" width="170" height="22" rx="11" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.25" />
-              <text x="270" y="72" class="branch-label" fill="var(--primary)" style="font-weight:700;">Console Multiplexer</text>
+              <path d="M 270 42 L 270 54" class="flow-line line-blue" />
+              <polygon points="270,56 266,48 274,48" fill="var(--primary)" />
+              <text x="360" y="49" class="branch-label" fill="var(--primary)">raw keystrokes</text>
 
-              <!-- Central Trunk down out of Badge to Distribution Rail -->
-              <path d="M 270 83 L 270 96" class="flow-line line-blue" />
+              <!-- Tier 2: Terminal Emulator (The Core) -->
+              <rect id="term_b_emu" x="25" y="56" width="490" height="96" rx="8" class="node-rect st-pass" data-a="term" data-t="emulator" />
+              <text x="270" y="73" class="node-text" fill="var(--primary-dark)" style="font-size:12px;">Terminal Emulator (GNOME Terminal, Konsole, Alacritty, Kitty)</text>
+              <text x="270" y="93" class="node-mono" fill="var(--ink)" style="font-weight:700;">* Terminal is an Emulator - Creates Graphical Display Window</text>
+              <text x="270" y="112" class="node-mono" fill="var(--primary)" style="font-weight:700;">* Get Keyboard Input - Captures Keystrokes from User</text>
+              <text x="270" y="131" class="node-mono" fill="var(--ok)" style="font-weight:700;">* Send to the Shell - Forwards Characters to stdin Stream</text>
 
-              <!-- Horizontal Distribution Rail -->
-              <path d="M 95 96 L 445 96" class="flow-line line-blue" fill="none" />
+              <!-- Bidirectional Streams -->
+              <path d="M 210 152 L 210 180" class="flow-line line-pass" />
+              <polygon points="210,182 206,174 214,174" fill="var(--ok)" />
+              <text x="125" y="166" class="branch-label" fill="var(--ok)">stdin - Keystrokes Forwarded</text>
 
-              <!-- 3 Downward Branch Lines & Arrowheads -->
-              <path d="M 95 96 L 95 109" class="flow-line line-pass" />
-              <polygon points="95,110 91,103 99,103" fill="var(--ok)" />
+              <path d="M 330 180 L 330 152" class="flow-line line-blue" />
+              <polygon points="330,150 326,158 334,158" fill="var(--primary)" />
+              <text x="420" y="166" class="branch-label" fill="var(--primary)">stdout - Output Rendered</text>
 
-              <path d="M 270 96 L 270 109" class="flow-line line-pass" />
-              <polygon points="270,110 266,103 274,103" fill="var(--ok)" />
-
-              <path d="M 445 96 L 445 109" class="flow-line line-blue" />
-              <polygon points="445,110 441,103 449,103" fill="var(--primary)" />
-
-              <!-- TTY1 Box -->
-              <rect id="tty_b_1" x="15" y="110" width="160" height="74" class="node-rect st-pass" data-a="tty" data-t="tty1" style="cursor:pointer;" />
-              <text x="95" y="126" class="node-text">TTY1 (Ctrl+Alt+F1)</text>
-              <text x="95" y="143" class="node-mono" fill="var(--ok)">Display Manager</text>
-              <text x="95" y="159" class="node-mono">Wayland / GDM Graphical</text>
-              <text x="95" y="174" class="node-mono">Primary Desktop Session</text>
-
-              <!-- TTY2-6 Box -->
-              <rect id="tty_b_2" x="190" y="110" width="160" height="74" class="node-rect st-pass" data-a="tty" data-t="tty2" style="cursor:pointer;" />
-              <text x="270" y="126" class="node-text">TTY2-6 (F2-F6)</text>
-              <text x="270" y="143" class="node-mono" fill="var(--ok)">Text Consoles</text>
-              <text x="270" y="159" class="node-mono">Direct Kernel Logins</text>
-              <text x="270" y="174" class="node-mono">Emergency System Recovery</text>
-
-              <!-- PTS Box -->
-              <rect id="tty_b_pts" x="365" y="110" width="160" height="74" class="node-rect st-active" data-a="tty" data-t="pts" style="cursor:pointer;" />
-              <text x="445" y="126" class="node-text">PTS (/dev/pts/*)</text>
-              <text x="445" y="143" class="node-mono" fill="var(--primary)">Pseudo-Terminals</text>
-              <text x="445" y="159" class="node-mono">GNOME Terminal / SSH</text>
-              <text x="445" y="174" class="node-mono">Emulated Virtual CLI</text>
-
-              <!-- Lines down into Consolidation Rail -->
-              <path d="M 95 184 L 95 200 M 270 184 L 270 200 M 445 184 L 445 200" class="flow-line line-blue" />
-
-              <!-- Horizontal Consolidation Rail -->
-              <path d="M 95 200 L 445 200" class="flow-line line-blue" fill="none" />
-
-              <!-- Central Trunk Arrow into Summary -->
-              <path d="M 270 200 L 270 215" class="flow-line line-blue" />
-              <polygon points="270,216 266,209 274,209" fill="var(--ink)" />
+              <!-- Tier 3: Shell Interpreter Destination -->
+              <rect id="term_b_dest" x="25" y="182" width="490" height="42" rx="7" fill="var(--ink)" data-a="term" data-t="send" style="cursor:pointer;" />
+              <text x="270" y="197" class="node-mono" fill="#ffffff" style="font-weight:700;">Destination: Shell Interpreter (/bin/bash, /usr/bin/zsh)</text>
+              <text x="270" y="213" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">Receives Input Stream - Evaluates Commands - Returns Text Output</text>
 
               <!-- Summary Card -->
-              <rect x="15" y="216" width="510" height="62" rx="8" fill="var(--paper)" stroke="var(--line)" />
-              <text x="270" y="233" class="node-text" fill="var(--ink)">Emergency System Recovery Hotkeys</text>
-              <text x="270" y="251" class="node-mono" fill="var(--ok)">Ctrl + Alt + F2-F6 - Direct Out-of-Band Text Console Login</text>
-              <text x="270" y="267" class="node-mono" fill="var(--primary)">Kill Frozen Graphical Apps Without Hard Rebooting Physical Machine</text>
+              <rect x="25" y="236" width="490" height="48" rx="7" fill="var(--paper)" stroke="var(--line)" />
+              <text x="270" y="252" class="node-mono" fill="var(--ink)" style="font-weight:700;">Terminal = Visual Display Emulator &amp; Keystroke Forwarder</text>
+              <text x="270" y="269" class="node-mono" fill="var(--ok)">Does Not Run Commands - Captures Input &amp; Renders Output</text>
             </svg>
           </div>
 
-          <!-- Desktops Flowchart -->
+          <!-- 2. Shell Interpreter Execution Flowchart -->
+          <div id="fc_shell" style="display:none;">
+            <span class="lab">Shell Interpreter Execution Pipeline</span>
+            <svg class="svg-flowchart" viewBox="0 0 540 315">
+              <!-- Tier 1: Input from Terminal -->
+              <rect id="sh_b_input" x="25" y="8" width="490" height="34" rx="7" class="node-rect st-active" data-a="sh" data-s="input" />
+              <text x="270" y="25" class="node-text">Input: Terminal Emulator - Sends Raw Command Line String</text>
+
+              <path d="M 270 42 L 270 54" class="flow-line line-blue" />
+              <polygon points="270,56 266,48 274,48" fill="var(--primary)" />
+              <text x="360" y="49" class="branch-label" fill="var(--primary)">e.g. 'ls -la /var/log'</text>
+
+              <!-- Tier 2: Shell Interpreter Core -->
+              <rect id="sh_b_core" x="25" y="56" width="490" height="114" rx="8" class="node-rect st-pass" data-a="sh" data-s="interpreter" />
+              <text x="270" y="73" class="node-text" fill="var(--primary-dark)" style="font-size:12px;">Shell Interpreter (/bin/bash, /usr/bin/zsh, fish)</text>
+              <text x="270" y="92" class="node-mono" fill="var(--ink)" style="font-weight:700;">* Shell is an Interpreter - Reads &amp; Translates User Commands</text>
+              <text x="270" y="110" class="node-mono" fill="var(--primary)" style="font-weight:700;">* Get Input from Terminal Emulator - Reads stdin Stream</text>
+              <text x="270" y="128" class="node-mono" fill="var(--ok)" style="font-weight:700;">* Split the Words into Tokens - Lexer Divides Command &amp; Flags</text>
+              <text x="270" y="146" class="node-mono" fill="var(--primary)" style="font-weight:700;">* Analyze the Command - Validates Syntax &amp; Expands Variables</text>
+              <text x="270" y="163" class="node-mono" fill="var(--ok)" style="font-weight:700;">* Give Kernel to Execute - Calls fork() &amp; execve() System Calls</text>
+
+              <!-- Tier 3: System Calls to Kernel -->
+              <path d="M 270 170 L 270 186" class="flow-line line-pass" />
+              <polygon points="270,188 266,180 274,180" fill="var(--ok)" />
+              <text x="365" y="179" class="branch-label" fill="var(--ok)">fork() &amp; execve() system calls</text>
+
+              <!-- Tier 4: Linux Kernel Execution -->
+              <rect id="sh_b_kernel" x="25" y="188" width="490" height="46" rx="7" fill="var(--ink)" data-a="sh" data-s="execute" style="cursor:pointer;" />
+              <text x="270" y="203" class="node-mono" fill="#ffffff" style="font-weight:700;">Linux Kernel Core - System Call Execution on Hardware</text>
+              <text x="270" y="219" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">Creates Child Process - Allocates RAM - Runs Executable Binary</text>
+
+              <!-- Summary Card -->
+              <rect x="25" y="246" width="490" height="52" rx="7" fill="var(--paper)" stroke="var(--line)" />
+              <text x="270" y="263" class="node-mono" fill="var(--ink)" style="font-weight:700;">Shell = The Command Brain, Syntax Parser &amp; Process Launcher</text>
+              <text x="270" y="281" class="node-mono" fill="var(--ok)">Reads Terminal Input - Tokenizes Words - Tells Kernel to Execute</text>
+            </svg>
+          </div>
+
+          <!-- 2. Desktop Environments Flowchart (GNOME, KDE, i3) -->
           <div id="fc_desktops" style="display:none;">
-            <span class="lab">Linux Graphical Desktop Stack (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 220">
-              <!-- Tier 1: User Apps -->
-              <rect x="25" y="8" width="470" height="34" class="node-rect st-active" />
-              <text x="260" y="25" class="node-text">User Applications - Office Suite - Web Browser - Terminal Emulator</text>
+            <span class="lab">Desktop Environment Paradigms</span>
+            <svg class="svg-flowchart" viewBox="0 0 540 310">
+              <!-- GNOME Panel -->
+              <rect id="de_b_gnome" x="12" y="10" width="164" height="206" rx="8" class="node-rect st-active" data-a="de" data-d="gnome" />
+              <!-- GNOME top bar -->
+              <rect x="24" y="20" width="140" height="16" rx="4" fill="var(--ink)" />
+              <text x="32" y="28" class="node-mono" fill="#93c5fd" style="font-size:8px;text-anchor:start;">Activities</text>
+              <text x="94" y="28" class="node-mono" fill="#fff" style="font-size:8px;">12:00</text>
+              <!-- Window representation -->
+              <rect x="24" y="42" width="140" height="44" rx="4" fill="#ffffff" stroke="var(--primary)" />
+              <rect x="24" y="42" width="140" height="12" rx="4" fill="var(--tint)" />
+              <circle cx="32" cy="48" r="2.2" fill="#ef4444" />
+              <circle cx="38" cy="48" r="2.2" fill="#10b981" />
+              <text x="94" y="66" class="node-mono" fill="var(--primary)" style="font-size:8.5px;">Floating Window</text>
+              <!-- Details -->
+              <text x="94" y="104" class="node-text" fill="var(--primary-dark)" style="font-size:12px;">GNOME 46</text>
+              <text x="94" y="122" class="node-mono" fill="var(--ink)" style="font-size:9.5px;">GTK4 - Libadwaita</text>
+              <text x="94" y="140" class="node-mono" fill="var(--muted)" style="font-size:9px;">Dynamic Workspaces</text>
+              <text x="94" y="158" class="node-mono" fill="var(--primary)" style="font-size:9px;font-weight:700;">Ubuntu - Fedora - RHEL</text>
+              <text x="94" y="176" class="node-mono" fill="var(--muted)" style="font-size:9px;">RAM: ~800 MB</text>
+              <text x="94" y="196" class="node-mono" fill="var(--ok)" style="font-size:9px;font-weight:700;">Modern - Intuitive</text>
 
-              <!-- Arrow into Tier 2 -->
-              <path d="M 260 42 L 260 55" class="flow-line line-blue" />
-              <polygon points="260,56 256,49 264,49" fill="var(--primary)" />
+              <!-- KDE Plasma Panel -->
+              <rect id="de_b_kde" x="188" y="10" width="164" height="206" rx="8" class="node-rect st-active" data-a="de" data-d="kde" />
+              <!-- Windows representation -->
+              <rect x="200" y="20" width="140" height="44" rx="4" fill="#ffffff" stroke="var(--primary)" />
+              <text x="270" y="44" class="node-mono" fill="var(--primary)" style="font-size:8.5px;">Desktop Widgets</text>
+              <!-- KDE bottom taskbar -->
+              <rect x="200" y="68" width="140" height="18" rx="4" fill="var(--ink)" />
+              <text x="208" y="77" class="node-mono" fill="#4ade80" style="font-size:8px;text-anchor:start;">Start</text>
+              <text x="332" y="77" class="node-mono" fill="#fff" style="font-size:8px;text-anchor:end;">Tray</text>
+              <!-- Details -->
+              <text x="270" y="104" class="node-text" fill="var(--primary-dark)" style="font-size:12px;">KDE Plasma 6</text>
+              <text x="270" y="122" class="node-mono" fill="var(--ink)" style="font-size:9.5px;">Qt6 Framework</text>
+              <text x="270" y="140" class="node-mono" fill="var(--muted)" style="font-size:9px;">Deep Customization</text>
+              <text x="270" y="158" class="node-mono" fill="var(--primary)" style="font-size:9px;font-weight:700;">Kubuntu - SteamOS</text>
+              <text x="270" y="176" class="node-mono" fill="var(--muted)" style="font-size:9px;">RAM: ~650 MB</text>
+              <text x="270" y="196" class="node-mono" fill="var(--ok)" style="font-size:9px;font-weight:700;">Modular - Flexible</text>
 
-              <!-- Tier 2: Display Server -->
-              <rect x="25" y="56" width="470" height="40" class="node-rect st-pass" />
-              <text x="260" y="70" class="node-text">Display Server &amp; Compositor - Wayland (Secure) vs X11 (Legacy)</text>
-              <text x="260" y="86" class="node-mono">Memory-Isolated Window Buffers - Zero Keystroke Snooping Allowed</text>
+              <!-- i3 Tiling WM Panel -->
+              <rect id="de_b_i3" x="364" y="10" width="164" height="206" rx="8" class="node-rect st-active" data-a="de" data-d="i3" />
+              <!-- i3 Top bar with workspaces -->
+              <rect x="376" y="20" width="140" height="16" rx="3" fill="var(--ink)" />
+              <text x="382" y="28" class="node-mono" fill="#38bdf8" style="font-size:7.5px;text-anchor:start;">[1:term] [2:web]</text>
+              <text x="510" y="28" class="node-mono" fill="#4ade80" style="font-size:7.5px;text-anchor:end;">RAM: 2%</text>
+              <!-- Tiled non-overlapping split windows -->
+              <rect x="376" y="40" width="68" height="46" rx="3" fill="#0d131f" stroke="#243046" />
+              <text x="410" y="63" class="node-mono" fill="#93c5fd" style="font-size:8px;">Tile 1</text>
+              <rect x="448" y="40" width="68" height="46" rx="3" fill="#0d131f" stroke="#243046" />
+              <text x="482" y="63" class="node-mono" fill="#4ade80" style="font-size:8px;">Tile 2</text>
+              <!-- Details -->
+              <text x="446" y="104" class="node-text" fill="var(--primary-dark)" style="font-size:12px;">i3 Tiling WM</text>
+              <text x="446" y="122" class="node-mono" fill="var(--ink)" style="font-size:9.5px;">Keyboard Driven</text>
+              <text x="446" y="140" class="node-mono" fill="var(--muted)" style="font-size:9px;">Zero Screen Waste</text>
+              <text x="446" y="158" class="node-mono" fill="var(--primary)" style="font-size:9px;font-weight:700;">Arch - Debian - DevOps</text>
+              <text x="446" y="176" class="node-mono" fill="var(--ok)" style="font-size:9px;font-weight:700;">RAM: &lt; 50 MB</text>
+              <text x="446" y="196" class="node-mono" fill="var(--ok)" style="font-size:9px;font-weight:700;">Ultra Fast - Tiled</text>
 
-              <!-- Arrow into Tier 3 -->
-              <path d="M 260 96 L 260 109" class="flow-line line-pass" />
-              <polygon points="260,110 256,103 264,103" fill="var(--ok)" />
-
-              <!-- Tier 3: DRM/KMS -->
-              <rect x="25" y="110" width="470" height="38" class="node-rect st-pass" />
-              <text x="260" y="124" class="node-text">Kernel Direct Rendering Manager (DRM / KMS)</text>
-              <text x="260" y="139" class="node-mono">Direct GPU Memory Management - Hardware-Accelerated 3D Pipelines</text>
-
-              <!-- Arrow into Tier 4 -->
-              <path d="M 260 148 L 260 161" class="flow-line line-blue" />
-              <polygon points="260,162 256,155 264,155" fill="var(--primary)" />
-
-              <!-- Tier 4: Hardware -->
-              <rect x="25" y="162" width="470" height="48" rx="8" fill="var(--ink)" />
-              <text x="260" y="180" class="node-mono" fill="#fff" style="font-weight:700;">Physical Graphics Hardware (GPU Acceleration &amp; Display Panels)</text>
-              <text x="260" y="198" class="node-mono" fill="#93c5fd">HDMI / DisplayPort Interfaces - Real-Time Pixel Scan-Out</text>
+              <!-- Summary Card -->
+              <rect x="12" y="226" width="516" height="72" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="270" y="244" class="node-text" fill="var(--ink)" style="font-size:11.5px;">Desktop Environments (DE) vs Window Managers (WM)</text>
+              <text x="270" y="262" class="node-mono" fill="var(--ok)" style="font-size:9.5px;">Full Desktop Suites: GNOME &amp; KDE - Tiling Efficiency: i3 WM</text>
+              <text x="270" y="280" class="node-mono" fill="var(--primary)" style="font-size:9.5px;">Visual Multitasking: GNOME / KDE - Pure Speed: i3 Window Manager</text>
             </svg>
           </div>
 
-          <!-- SSH Console Flowchart -->
-          <div id="fc_ssh" style="display:none;">
-            <span class="lab">Remote SSH Secure Terminal Architecture (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 210">
-              <!-- Remote Admin PC -->
-              <rect x="20" y="8" width="190" height="48" rx="8" class="node-rect st-active" />
-              <text x="115" y="25" class="node-text">Admin Workstation</text>
-              <text x="115" y="43" class="node-mono">ssh user@server_ip</text>
+          <!-- 3. TTY Consoles Flowchart -->
+          <div id="fc_consoles" style="display:none;">
+            <span class="lab">Linux Virtual Consoles (TTY) Architecture</span>
+            <svg class="svg-flowchart" viewBox="0 0 540 305">
+              <!-- Physical Hardware Header -->
+              <rect x="12" y="8" width="516" height="40" class="node-rect st-active" />
+              <text x="270" y="22" class="node-text">Linux Virtual Consoles Architecture (/dev/tty1 - /dev/tty6)</text>
+              <text x="270" y="38" class="node-mono" fill="var(--primary)">Direct Kernel Terminal Subsystem - Multi-Session Support</text>
 
-              <!-- Connection Arrow -->
-              <path d="M 210 32 L 310 32" class="flow-line line-blue" />
-              <text x="260" y="22" class="branch-label" fill="var(--primary)">TCP:22 (SSH)</text>
+              <path d="M 270 48 L 270 59" class="flow-line line-blue" />
+              <rect x="185" y="59" width="170" height="22" rx="11" fill="var(--tint)" stroke="var(--tint-bd)" stroke-width="1.25" />
+              <text x="270" y="70" class="branch-label" fill="var(--primary)" style="font-weight:700;">Console Multiplexer</text>
 
-              <!-- Remote Server sshd -->
-              <rect x="310" y="8" width="190" height="48" rx="8" class="node-rect st-pass" />
-              <text x="405" y="25" class="node-text">Linux Server (sshd)</text>
-              <text x="405" y="43" class="node-mono">Listening daemon</text>
+              <path d="M 270 81 L 270 94" class="flow-line line-blue" />
+              <path d="M 94 94 L 446 94" class="flow-line line-blue" fill="none" />
 
-              <!-- Downward flow to PTS -->
-              <path d="M 405 56 L 405 76" class="flow-line line-pass" />
-              <text x="340" y="68" class="branch-label" fill="var(--ok)">forks PTY</text>
+              <path d="M 94 94 L 94 106" class="flow-line line-pass" />
+              <polygon points="94,108 90,101 98,101" fill="var(--ok)" />
 
-              <!-- Pseudo-terminal -->
-              <rect x="280" y="76" width="220" height="38" rx="7" class="node-rect st-active" />
-              <text x="390" y="95" class="node-text">Pseudo-Terminal (/dev/pts/0)</text>
+              <path d="M 270 94 L 270 106" class="flow-line line-pass" />
+              <polygon points="270,108 266,101 274,101" fill="var(--ok)" />
 
-              <path d="M 390 114 L 390 130" class="flow-line line-pass" />
+              <path d="M 446 94 L 446 106" class="flow-line line-blue" />
+              <polygon points="446,108 442,101 450,101" fill="var(--primary)" />
 
-              <!-- Target Shell -->
-              <rect x="280" y="130" width="220" height="42" rx="7" fill="var(--ink)" />
-              <text x="390" y="145" class="node-mono" fill="#fff">Interactive Bash Shell</text>
-              <text x="390" y="161" class="node-mono" fill="#93c5fd">stdin &bull; stdout &bull; stderr</text>
+              <!-- TTY1 Box -->
+              <rect id="tty_b_1" x="12" y="108" width="164" height="86" class="node-rect st-pass" data-a="tty" data-t="tty1" style="cursor:pointer;" />
+              <text x="94" y="125" class="node-text">TTY1 (Ctrl+Alt+F1)</text>
+              <text x="94" y="142" class="node-mono" fill="var(--ok)" style="font-weight:700;">Display Manager</text>
+              <text x="94" y="160" class="node-mono" fill="var(--ink)" style="font-size:9.5px;">Wayland - GDM - GUI</text>
+              <text x="94" y="178" class="node-mono" fill="var(--muted)" style="font-size:9px;">Primary User Desktop</text>
 
-              <!-- Architecture explanation on left -->
-              <rect x="20" y="76" width="240" height="96" rx="8" fill="var(--paper)" stroke="var(--line)" />
-              <text x="140" y="98" class="node-mono" fill="var(--primary-dark)">Secure Tunnel Transport</text>
-              <text x="140" y="118" class="node-mono" fill="var(--ink)">End-to-End Cryptography</text>
-              <text x="140" y="138" class="node-mono" fill="var(--ok)">Ed25519 Key Verification</text>
-              <text x="140" y="156" class="node-mono" fill="var(--muted)">Direct Shell Virtualization</text>
+              <!-- TTY2-6 Box -->
+              <rect id="tty_b_2" x="188" y="108" width="164" height="86" class="node-rect st-pass" data-a="tty" data-t="tty2" style="cursor:pointer;" />
+              <text x="270" y="125" class="node-text">TTY2-6 (F2-F6)</text>
+              <text x="270" y="142" class="node-mono" fill="var(--ok)" style="font-weight:700;">Text Consoles</text>
+              <text x="270" y="160" class="node-mono" fill="var(--ink)" style="font-size:9.5px;">Direct Kernel Logins</text>
+              <text x="270" y="178" class="node-mono" fill="var(--muted)" style="font-size:9px;">Emergency Recovery</text>
+
+              <!-- PTS Box -->
+              <rect id="tty_b_pts" x="364" y="108" width="164" height="86" class="node-rect st-active" data-a="tty" data-t="pts" style="cursor:pointer;" />
+              <text x="446" y="125" class="node-text">PTS (/dev/pts/*)</text>
+              <text x="446" y="142" class="node-mono" fill="var(--primary)" style="font-weight:700;">Pseudo-Terminals</text>
+              <text x="446" y="160" class="node-mono" fill="var(--ink)" style="font-size:9.5px;">Terminal Apps - SSH</text>
+              <text x="446" y="178" class="node-mono" fill="var(--muted)" style="font-size:9px;">Virtual PTY Channels</text>
+
+              <path d="M 94 194 L 94 208 M 270 194 L 270 208 M 446 194 L 446 208" class="flow-line line-blue" />
+              <path d="M 94 208 L 446 208" class="flow-line line-blue" fill="none" />
+
+              <path d="M 270 208 L 270 220" class="flow-line line-blue" />
+              <polygon points="270,222 266,215 274,215" fill="var(--primary)" />
+
+              <rect x="12" y="224" width="516" height="68" rx="8" fill="var(--paper)" stroke="var(--line)" />
+              <text x="270" y="242" class="node-text" fill="var(--ink)" style="font-size:11.5px;">Emergency System Recovery Hotkeys</text>
+              <text x="270" y="260" class="node-mono" fill="var(--ok)" style="font-size:9.5px;">Ctrl + Alt + F2-F6 - Direct Kernel Console Access</text>
+              <text x="270" y="278" class="node-mono" fill="var(--primary)" style="font-size:9.5px;">Kill Frozen Graphical Apps - Avoid Hard Rebooting System</text>
             </svg>
           </div>
         </div>
@@ -786,15 +709,14 @@ code {
     <!-- SECTION 3: QUICK CHECK -->
     <h2 class="sh"><span class="st">3</span>Quick Check</h2>
     <div class="box">
-      <p style="margin:0 0 5px"><b>Which keyboard shortcut allows a Linux administrator to switch from a desktop interface into text console TTY3?</b></p>
+      <p style="margin:0 0 5px"><b>What is the fundamental architectural difference between a Terminal and a Shell in Linux?</b></p>
       <div class="chips" id="qc_chips">
-        <button type="button" class="chip" data-a="qc" data-o="0"><code>Ctrl + Alt + F3</code></button>
-        <button type="button" class="chip" data-a="qc" data-o="1"><code>Alt + F4</code></button>
-        <button type="button" class="chip" data-a="qc" data-o="2"><code>Ctrl + Shift + Esc</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="0"><code>The terminal provides the graphical text window while the shell interprets and executes commands</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="1"><code>The terminal compiles C programs while the shell acts as the physical motherboard BIOS</code></button>
+        <button type="button" class="chip" data-a="qc" data-o="2"><code>The terminal manages hard drive partitions while the shell formats swap space</code></button>
       </div>
       <div class="res" id="qc_res" style="display:none"></div>
     </div>
-  </div>
   </div>
 </main>
 
@@ -817,7 +739,7 @@ function highlightSyntax(raw) {
       prefix = `<span class="tok-k">${escape(key)}</span><span class="tok-punc">:</span>`;
       content = line.slice(colonIdx + 1);
     }
-    const tokenRegex = /(".*?"|'.*?'|\b(?:sudo|apt|dnf|yum|pacman|bash|zsh|glibc|gcc|systemd|ssh|selinux|rpm|deb|aur|emacs|coreutils|gpl|foss|grub|systemctl|journalctl|echo|cat|ls|head|tail|mkdir|touch|find|wc|cut|whatis|apropos|man|ln|cd|pwd)\b|(?:\$\d[\d,]*\+?|\b\d+(?:\.\d+)?%?|\b100%|\b16-bit\b|\b32-bit\b|\b64-bit\b|\b10-year\b|\b386\b|\b19\d\d\b|\b20\d\d\b|\b512MB\b|\b128MB\b|\b\d+GB\b|\b\d+TB\b))/gi;
+    const tokenRegex = /(".*?"|'.*?'|\b(?:sudo|apt|dnf|pacman|bash|zsh|fish|sh|dash|systemd|gnome|kde|i3|alacritty|kitty|konsole|xterm|wayland|x11|mutter|kwin|gtk|qt|fork|execve|wait|stdin|stdout|stderr)\b|(?:\$\d[\d,]*\+?|\b\d+(?:\.\d+)?%?|\b100%|\b16-bit\b|\b32-bit\b|\b64-bit\b|\b800\s*MB\b|\b650\s*MB\b|\b50\s*MB\b|\b1\.2\s*GB\b))/gi;
     let highlighted = "";
     let lastIdx = 0;
     let match;
@@ -826,7 +748,7 @@ function highlightSyntax(raw) {
       const tok = match[0];
       if (tok.startsWith('"') || tok.startsWith("'")) {
         highlighted += `<span class="tok-s">${escape(tok)}</span>`;
-      } else if (/^\d|\$|16-bit|32-bit|64-bit|10-year|386/i.test(tok)) {
+      } else if (/^\d|\$|16-bit|32-bit|64-bit|800|650|50\s*MB|1\.2/i.test(tok)) {
         highlighted += `<span class="tok-n">${escape(tok)}</span>`;
       } else {
         highlighted += `<span class="tok-cmd">${escape(tok)}</span>`;
@@ -838,77 +760,232 @@ function highlightSyntax(raw) {
   }).join("\n");
 }
 
-let activeTopic = "consoles";
+let activeTopic = "terminal";
+let activeTerm = "all";
+let activeSh = "all";
+let activeDe = "all";
 let activeTty = "all";
+
+const TERMINAL = {
+  all: {
+    lab: "1. Terminal: Graphical Window Emulator",
+    code: `Definition : Graphical program emulating a physical hardware teletype terminal\nRole 1     : * Terminal is an emulator creating visual application windows\nRole 2     : * Get keyboard input - Captures raw user keystrokes\nRole 3     : * Send to the shell - Forwards stdin stream directly to active shell\nExamples   : GNOME Terminal, Konsole, Alacritty, Kitty, xterm`,
+    explain: "Terminal emulators capture user keyboard strokes and render graphical output text upon the screen."
+  },
+  emulator: {
+    lab: "Terminal is an Emulator",
+    code: `Nature   : Graphical X11 / Wayland client window program\nEmulation: Replaces legacy hardware teletype devices (DEC VT100 / VT220)\nDisplay  : Renders colored character grids, font sizes, tabs, and window resizing\nBoundary : Does NOT understand command syntax or execute program binaries`,
+    explain: "Terminal emulators provide graphical desktop windows without executing any command instructions directly themselves."
+  },
+  input: {
+    lab: "Get Keyboard Input",
+    code: `Capture  : Intercepts physical keyboard keypresses from the X11/Wayland server\nEncoding : Converts keypresses into standard UTF-8 character byte sequences\nShortcuts: Processes terminal hotkeys (Ctrl+Shift+C, Ctrl+Shift+V)\nLinefeed : Packages typed characters until Enter key is pressed by operator`,
+    explain: "The terminal listens for keyboard event interrupts and packages individual characters into standard input."
+  },
+  send: {
+    lab: "Send to the Shell",
+    code: `Stream   : Connects to shell via pseudo-terminal master/slave pair (/dev/pts/X)\nChannel  : Transmits buffered character bytes into stdin (Standard Input fd 0)\nLoopback : Reads stdout (1) and stderr (2) output from shell to render on screen\nProcess  : Terminal and shell operate as two entirely distinct independent processes`,
+    explain: "The terminal connects standard input streams directly into the active shell interpreter for execution."
+  }
+};
+
+const SHELL = {
+  all: {
+    lab: "2. Shell: Command Language Interpreter",
+    code: `Definition : Command line language interpreter and scripting execution engine\nStep 1     : * Shell is an interpreter evaluating administrative commands\nStep 2     : * Get input from terminal emulator via stdin stream\nStep 3     : * Split the words into tokens (Lexical analysis / Tokenization)\nStep 4     : * Analyze the command - Grammar parsing and variable expansion\nStep 5     : * Give kernel to execute - Issues fork() & execve() system calls\nExamples   : /bin/bash, /usr/bin/zsh, /usr/bin/fish, /bin/dash`,
+    explain: "The shell interprets typed commands, splits tokens, and directs the Linux kernel to execute programs."
+  },
+  interpreter: {
+    lab: "Shell is an Interpreter",
+    code: `Role     : Command language interpreter bridging human typing and system kernel\nExecution: Reads instructions line-by-line interactively or from shell scripts (.sh)\nFeatures : Manages job control, piping (|), redirection (>, <), and scripting loops\nTypes    : Bourne Again Shell (Bash), Z-Shell (Zsh), Fish, POSIX Dash`,
+    explain: "The shell acts as a command language interpreter translating human text commands for the operating system."
+  },
+  input: {
+    lab: "Get Input from Terminal Emulator",
+    code: `Reception: Reads character stream from pseudo-terminal slave device (/dev/pts/X)\nBuffer   : Populates command line editing history buffer (GNU Readline)\nLinefeed : Triggers parsing sequence when newline character ('\\n') is encountered`,
+    explain: "The shell listens on standard input to receive incoming command characters sent from terminal emulators."
+  },
+  tokens: {
+    lab: "Split the Words into Tokens",
+    code: `Lexing   : Divides raw typed string into individual distinct token elements\nExample  : "cat /etc/os-release | grep NAME"\nTokens   : [Token 1: cat] [Token 2: /etc/os-release] [Token 3: |] [Token 4: grep] [Token 5: NAME]\nRules    : Handles whitespace separation, single/double quotes, and escape slashes`,
+    explain: "The shell lexer parses typed command strings by splitting words and arguments into distinct tokens."
+  },
+  analyze: {
+    lab: "Analyze the Command",
+    code: `Parsing  : Validates grammar, command syntax rules, and operators (&&, ||, ;)\nExpansion: Expands shell variables ($USER, $HOME), path globbing (*.log), and aliases\nLookup   : Searches executable binary location inside directories listed in $PATH`,
+    explain: "The shell analyzes command syntax, validates program paths, and expands defined variables before execution."
+  },
+  execute: {
+    lab: "Give Kernel to Execute",
+    code: `Dispatch : Shell invokes Linux kernel system call interface (SCI)\nSyscalls : fork() duplicates shell process; execve() replaces image with binary\nWaiting  : Shell invokes waitpid() to monitor execution and capture exit code (0 = success)\nStreams  : Kernel routes binary stdout back to terminal emulator screen`,
+    explain: "The shell triggers kernel system calls to spawn new child processes and execute binary programs."
+  }
+};
+
+const DESKTOPS = {
+  all: {
+    lab: "Overview: Linux Desktop Environments (DE & WM)",
+    code: `GNOME    : Distraction-free, gesture-based workflow (Default on Ubuntu, RHEL)\nKDE      : Traditional taskbar, deep visual customization (Kubuntu, SteamOS)\ni3 WM    : Ultra-lightweight tiling window manager (<50MB RAM, 100% keyboard)\nParadigm : Desktop environments bundle full app suites; window managers tile windows`,
+    explain: "Desktop environments provide complete graphical workflows tailored for visual multitasking or lightweight keyboard navigation."
+  },
+  gnome: {
+    lab: "GNOME Desktop Environment (GTK4 & Libadwaita)",
+    code: `Workflow : "Activities" overview, top bar, dynamic workspaces, gesture controls\nToolkit  : GTK4 & Libadwaita with Mutter Wayland compositor\nRAM Usage: ~800 MB - 1.2 GB idle memory consumption\nDefault  : Ubuntu Desktop, Fedora Workstation, Red Hat Enterprise Linux\nInstall  : sudo apt install gnome-session gnome-shell`,
+    explain: "GNOME delivers a modern distraction-free workflow featuring dynamic workspaces and gesture navigation for productivity."
+  },
+  kde: {
+    lab: "KDE Plasma Desktop (Qt6 Framework)",
+    code: `Workflow : Traditional taskbar, Start application launcher, system tray, widgets\nToolkit  : Qt6 & KDE Frameworks with KWin Wayland compositor\nRAM Usage: ~650 MB - 850 MB idle memory consumption (Highly optimized)\nDefault  : Kubuntu, openSUSE, SteamOS 3 (Valve Steam Deck), Fedora KDE\nInstall  : sudo apt install kde-plasma-desktop`,
+    explain: "KDE Plasma offers extensive graphical customization options with a familiar taskbar and widget ecosystem."
+  },
+  i3: {
+    lab: "i3 Tiling Window Manager (Keyboard-Driven)",
+    code: `Workflow : Automatic tiling grid; windows never overlap or waste screen space\nNavigation: 100% keyboard-driven (e.g., Mod+Enter = Terminal, Mod+d = Menu)\nRAM Usage: Less than 50 MB RAM! Ultra-fast, instant startup\nAudience : Developers, DevOps engineers, Linux sysadmins, cybersecurity labs\nInstall  : sudo apt install i3 i3status dmenu`,
+    explain: "i3 tiling window manager organizes applications into non-overlapping grids using fast keyboard navigation shortcuts."
+  }
+};
 
 const CONSOLES = {
   all: {
     lab: "Overview: Linux Console Channels",
     code: `/dev/tty1    • Graphical desktop session (GDM display manager)\n/dev/tty2..6 • Fullscreen text-mode virtual consoles for recovery\n/dev/pts/X   • Dynamic pseudo-terminals for SSH and terminal windows`,
-    explain: "Linux terminal consoles enable administrators to issue commands directly to the underlying shell environment."
+    explain: "Virtual consoles provide direct text logins to rescue damaged desktop environments without rebooting hardware."
   },
   tty1: {
     lab: "TTY1: Graphical Desktop Session",
     code: `Role     : Hosts primary graphical display server and login manager\nExamples : GDM login greeter, Wayland compositor, GNOME session`,
-    explain: "TTY1 traditionally runs the graphical user session and modern Wayland desktop environment on Linux."
+    explain: "TTY1 traditionally hosts the primary graphical display server and modern Wayland user desktop session."
   },
   tty2: {
     lab: "TTY2-TTY6: Virtual Text Consoles",
     code: `Role     : Provides headless full-screen text-mode virtual console logins\nExamples : Emergency system recovery, headless terminal administrative work`,
-    explain: "Virtual text consoles provide emergency terminal logins when graphical user interfaces crash or freeze."
+    explain: "Virtual text consoles provide emergency administrative logins when graphical desktop sessions encounter system freezes."
   },
   pts: {
     lab: "PTS: Pseudo-Terminal Devices",
-    code: `Role     : Allocates virtual pseudo-terminal devices for network sessions\nExamples : SSH remote logins, GNOME Terminal windows, tmux panes`,
-    explain: "Pseudo-terminals emulate hardware teletype devices to support multiple simultaneous remote SSH connections."
-  }
-};
-
-const TOPICS = {
-  desktops: {
-    lab: "Desktop Environments: GNOME vs KDE vs XFCE",
-    code: `GNOME Desktop  • Default on Ubuntu and RHEL; modern gesture workflow\nKDE Plasma     • Highly customizable Windows-like interface with Qt\nXFCE Desktop   • Minimal lightweight environment for low-spec cloud VMs\nWayland Server • Modern secure display protocol replacing legacy X11`,
-    explain: "Desktop environments layer graphical windows over the operating system for productive visual desktop multitasking."
-  },
-  ssh: {
-    lab: "OpenSSH Remote Console Administration",
-    code: `SSH Client      • Connects securely using command: ssh user@host_ip\nSSH Server      • Runs background daemon sshd listening on port 22\nSecurity Keys   • Uses Ed25519 or RSA cryptographic keys instead of passwords\nConfig File     • Configured globally inside /etc/ssh/sshd_config`,
-    explain: "Secure Shell protocols protect administrative command line access across insecure public and enterprise networks."
+    code: `Role     : Allocates virtual pseudo-terminal devices for terminal windows\nExamples : GNOME Terminal tabs, Konsole windows, SSH remote logins`,
+    explain: "Pseudo-terminals emulate physical teletype devices to host terminal emulator windows and remote connections."
   }
 };
 
 function updateStudio() {
   document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeTopic));
 
-  if (activeTopic === "consoles") {
-    $("fc_consoles").style.display = "block";
-    $("fc_desktops").style.display = "none";
-    $("fc_ssh").style.display = "none";
-    $("sub_chips_tty").style.display = "block";
-    updateTty();
+  $("fc_terminal").style.display = activeTopic === "terminal" ? "block" : "none";
+  $("fc_shell").style.display = activeTopic === "shell" ? "block" : "none";
+  $("fc_desktops").style.display = activeTopic === "desktops" ? "block" : "none";
+  $("fc_consoles").style.display = activeTopic === "consoles" ? "block" : "none";
+
+  $("sub_chips_terminal").style.display = activeTopic === "terminal" ? "block" : "none";
+  $("sub_chips_shell").style.display = activeTopic === "shell" ? "block" : "none";
+  $("sub_chips_desktops").style.display = activeTopic === "desktops" ? "block" : "none";
+  $("sub_chips_consoles").style.display = activeTopic === "consoles" ? "block" : "none";
+
+  if (activeTopic === "terminal") {
+    updateTerminal();
+  } else if (activeTopic === "shell") {
+    updateShell();
   } else if (activeTopic === "desktops") {
-    $("fc_consoles").style.display = "none";
-    $("fc_desktops").style.display = "block";
-    $("fc_ssh").style.display = "none";
-    $("sub_chips_tty").style.display = "none";
-    const data = TOPICS.desktops;
-    $("insp_lab").textContent = data.lab;
-    $("insp_code").innerHTML = highlightSyntax(data.code);
-    const res = $("insp_res");
-    res.textContent = data.explain;
-    res.className = "res ok";
+    updateDe();
   } else {
-    $("fc_consoles").style.display = "none";
-    $("fc_desktops").style.display = "none";
-    $("fc_ssh").style.display = "block";
-    $("sub_chips_tty").style.display = "none";
-    const data = TOPICS.ssh;
-    $("insp_lab").textContent = data.lab;
-    $("insp_code").innerHTML = highlightSyntax(data.code);
-    const res = $("insp_res");
-    res.textContent = data.explain;
-    res.className = "res ok";
+    updateTty();
   }
+}
+
+function updateTerminal() {
+  document.querySelectorAll("[data-a='term']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.t === activeTerm);
+  });
+
+  const data = TERMINAL[activeTerm] || TERMINAL.all;
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").innerHTML = highlightSyntax(data.code);
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+
+  const nodes = {
+    user: $("term_b_user"),
+    emu: $("term_b_emu"),
+    dest: $("term_b_dest")
+  };
+
+  const isEmu = activeTerm === "all" || activeTerm === "emulator";
+  const isInput = activeTerm === "all" || activeTerm === "input";
+  const isSend = activeTerm === "all" || activeTerm === "send";
+
+  if (nodes.emu) {
+    nodes.emu.setAttribute("class", "node-rect " + (isEmu || activeTerm === "all" ? "st-pass" : "st-active"));
+    nodes.emu.style.opacity = isEmu ? "1" : "0.55";
+  }
+  if (nodes.user) {
+    nodes.user.setAttribute("class", "node-rect " + (isInput ? "st-pass" : "st-active"));
+    nodes.user.style.opacity = isInput ? "1" : "0.5";
+  }
+  if (nodes.dest) {
+    nodes.dest.style.opacity = isSend ? "1" : "0.45";
+  }
+}
+
+function updateShell() {
+  document.querySelectorAll("[data-a='sh']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.s === activeSh);
+  });
+
+  const data = SHELL[activeSh] || SHELL.all;
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").innerHTML = highlightSyntax(data.code);
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+
+  const nodes = {
+    input: $("sh_b_input"),
+    core: $("sh_b_core"),
+    kernel: $("sh_b_kernel")
+  };
+
+  const isInput = activeSh === "all" || activeSh === "input";
+  const isCore = activeSh === "all" || activeSh === "interpreter" || activeSh === "tokens" || activeSh === "analyze";
+  const isExecute = activeSh === "all" || activeSh === "execute";
+
+  if (nodes.core) {
+    nodes.core.setAttribute("class", "node-rect " + (isCore ? "st-pass" : "st-active"));
+    nodes.core.style.opacity = isCore ? "1" : "0.55";
+  }
+  if (nodes.input) {
+    nodes.input.setAttribute("class", "node-rect " + (isInput ? "st-pass" : "st-active"));
+    nodes.input.style.opacity = isInput ? "1" : "0.5";
+  }
+  if (nodes.kernel) {
+    nodes.kernel.style.opacity = isExecute ? "1" : "0.45";
+  }
+}
+
+function updateDe() {
+  document.querySelectorAll("[data-a='de']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.d === activeDe);
+  });
+
+  const data = DESKTOPS[activeDe] || DESKTOPS.all;
+  $("insp_lab").textContent = data.lab;
+  $("insp_code").innerHTML = highlightSyntax(data.code);
+  const res = $("insp_res");
+  res.textContent = data.explain;
+  res.className = "res ok";
+
+  const nodes = {
+    gnome: $("de_b_gnome"),
+    kde: $("de_b_kde"),
+    i3: $("de_b_i3")
+  };
+
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    const isSelected = activeDe === "all" || activeDe === k;
+    el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
+    el.style.opacity = isSelected ? "1" : "0.4";
+  });
 }
 
 function updateTty() {
@@ -945,6 +1022,15 @@ document.addEventListener("click", e => {
   if (a === "md") {
     activeTopic = t.dataset.m;
     updateStudio();
+  } else if (a === "term") {
+    activeTerm = t.dataset.t;
+    updateTerminal();
+  } else if (a === "sh") {
+    activeSh = t.dataset.s;
+    updateShell();
+  } else if (a === "de") {
+    activeDe = t.dataset.d;
+    updateDe();
   } else if (a === "tty") {
     activeTty = t.dataset.t;
     updateTty();
@@ -959,10 +1045,10 @@ document.addEventListener("click", e => {
     qcRes.style.display = "flex";
     if (opt === 0) {
       qcRes.className = "res ok";
-      qcRes.textContent = "Correct! Pressing shortcut Ctrl + Alt + F3 switches directly into virtual text console TTY3.";
+      qcRes.textContent = "Correct! The terminal emulator displays the visual window while the shell interprets command syntax.";
     } else {
       qcRes.className = "res bad";
-      qcRes.textContent = "Not quite. Pressing shortcut Ctrl + Alt + F3 switches directly into virtual text console TTY3.";
+      qcRes.textContent = "Not quite. Terminal windows display visual output while underlying shells parse and execute commands.";
     }
   }
 });
