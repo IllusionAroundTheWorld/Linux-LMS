@@ -215,9 +215,9 @@ p {
 /* TWO COLUMN BALANCED LAYOUT */
 .two {
   display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
+  grid-template-columns: 1.05fr 0.95fr;
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
 }
 
 @media (max-width: 960px) {
@@ -231,6 +231,12 @@ p {
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 14px 16px;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .lab {
@@ -391,7 +397,7 @@ code {
   line-height: 1.55;
   white-space: pre-wrap;
   word-break: break-word;
-  min-height: 220px;
+  min-height: 96px;
 }
 
 /* SYNTAX HIGHLIGHTING TOKEN PALETTE */
@@ -402,6 +408,116 @@ code {
 .tok-c { color: #94a3b8; font-style: italic; }
 .tok-n { color: #fbbf24; font-weight: 700; }
 .tok-cmd { color: #ec4899; font-weight: 700; }
+
+/* LIVE INTERACTIVE TERMINAL SIMULATOR (screenshort3.png WIREFRAME) */
+.live-terminal {
+  background: #0d131f;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 190px;
+  cursor: text;
+}
+
+.terminal-body {
+  padding: 10px 14px 12px;
+  background: #0d131f;
+  color: #f1f5f9;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.5;
+  overflow-y: auto;
+  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.term-entry {
+  margin-bottom: 8px;
+}
+
+.term-line-cmd {
+  color: #f8fafc;
+  font-weight: 600;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.term-line-out {
+  color: #cbd5e1;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding-left: 14px;
+}
+
+.term-input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.term-prompt {
+  color: #4ade80;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.term-input-field {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f8fafc;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  width: 100%;
+  padding: 0;
+  caret-color: #38bdf8;
+}
+
+.term-input-field::placeholder {
+  color: #475569;
+  font-size: 11px;
+}
+
+.term-mini-btn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #94a3b8;
+  font-size: 10px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.term-mini-btn:hover {
+  background: #334155;
+  color: #f8fafc;
+}
+
+.term-cmd-btn {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  padding: 3px 10px !important;
+}
+
+.term-focused-flash {
+  outline: 2px solid var(--primary) !important;
+  box-shadow: 0 0 0 4px rgba(21, 113, 186, 0.25), 0 8px 24px rgba(21, 113, 186, 0.35) !important;
+  transition: all 0.2s ease;
+}
 
 /* SVG FLOWCHART STYLES */
 .chart-card {
@@ -592,10 +708,16 @@ code {
     <!-- SECTION 2: TRY IT -->
     <h2 class="sh"><span class="st">2</span>Try It: Interactive Systemd Targets &amp; Boot Diagnostics Studio</h2>
     <div class="two">
-      <div>
-        <div class="box">
-          <label class="lab">Select Systemd View:</label>
-          <div class="chips">
+      <!-- LEFT COLUMN: CONTENTS (screenshort3.png) -->
+      <div class="box" style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <label class="lab" style="margin:0;">Contents &bull; Systemd Hierarchy</label>
+          <span class="top-pill" style="font-size:10px; padding:2px 8px;">Architecture Flow</span>
+        </div>
+
+        <div>
+          <label class="lab" style="font-size:10px;">Select Systemd View:</label>
+          <div class="chips" style="margin-top:2px;">
             <button type="button" class="chip on" data-a="md" data-m="targets">1. System Targets</button>
             <button type="button" class="chip" data-a="md" data-m="switching">2. Target Control</button>
             <button type="button" class="chip" data-a="md" data-m="diagnostics">3. Boot Diagnostics</button>
@@ -614,7 +736,7 @@ code {
           </div>
         </div>
 
-        <div class="chart-card">
+        <div class="chart-card" style="margin-top:2px;">
           <!-- Targets Flowchart -->
           <div id="fc_targets">
             <span class="lab">systemd Target Dependency Hierarchy (SVG)</span>
@@ -721,26 +843,72 @@ code {
               <!-- Diagnostic Command Box -->
               <rect x="20" y="184" width="500" height="50" rx="8" fill="var(--paper)" stroke="var(--line)" />
               <text x="270" y="201" class="node-mono" fill="var(--ink)" style="font-weight:700;">Diagnostic Command: systemd-analyze blame</text>
-              <text x="270" y="220" class="node-mono" fill="var(--muted)">Ranks services by startup delay to identify slow boot bottlenecks</text>
+              <text x="270" y="220" class="node-mono" fill="var(--muted)">Ranks Unit Startup Delay - Identifies Boot Bottlenecks</text>
             </svg>
           </div>
         </div>
       </div>
 
-      <div class="box">
-        <label class="lab">System Inspector &bull; Live Telemetry</label>
-        <div class="terminal-card">
-          <div class="terminal-bar">
-            <div class="terminal-dots">
-              <span class="dot dot-r"></span>
-              <span class="dot dot-y"></span>
-              <span class="dot dot-g"></span>
-            </div>
-            <span class="terminal-title" id="insp_lab">System Concept &amp; Telemetry Inspector</span>
+      <!-- RIGHT COLUMN: SPLIT INTO TWO BOXES (screenshort3.png) -->
+      <div class="right-panel">
+        <!-- TOP BOX: CONTENT - EXPLANATION -->
+        <div class="box">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+            <label class="lab" style="margin:0;">Content - Explanation</label>
+            <span class="top-pill" style="font-size:10px; padding:2px 8px;">System Inspector</span>
           </div>
-          <pre class="terminal-code"><code id="insp_code"></code></pre>
+          <div class="terminal-card" style="margin-top:4px;">
+            <div class="terminal-bar" style="justify-content:flex-start;">
+              <span class="terminal-title" id="insp_lab" style="color:#93c5fd; font-weight:700;">System Concept &amp; Telemetry Inspector</span>
+            </div>
+            <pre class="terminal-code" style="min-height:96px; padding:12px 14px; font-size:11.5px;"><code id="insp_code"></code></pre>
+          </div>
+          <div class="res ok" id="insp_res" style="margin-top:8px;"></div>
         </div>
-        <div class="res ok" id="insp_res"></div>
+
+        <!-- BOTTOM BOX: TERMINAL WITH $ PROMPT -->
+        <div class="box" style="display:flex; flex-direction:column; flex:1;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+            <label class="lab" style="margin:0;">Terminal &bull; Live CLI Simulator</label>
+            <span class="top-pill" style="font-size:10px; padding:2px 8px;">Interactive Shell</span>
+          </div>
+
+          <!-- Quick Action Command Chips -->
+          <div class="chips" style="margin:2px 0 8px; gap:5px;">
+            <button type="button" class="chip term-cmd-btn" data-term-cmd="systemctl get-default">systemctl get-default</button>
+            <button type="button" class="chip term-cmd-btn" data-term-cmd="sudo systemctl set-default multi-user.target">set-default multi-user</button>
+            <button type="button" class="chip term-cmd-btn" data-term-cmd="systemctl status ssh">status ssh</button>
+            <button type="button" class="chip term-cmd-btn" data-term-cmd="sudo systemctl isolate rescue.target">isolate rescue.target</button>
+            <button type="button" class="chip term-cmd-btn" data-term-cmd="systemd-analyze blame">analyze blame</button>
+            <button type="button" class="chip term-cmd-btn" data-term-cmd="journalctl -u ssh">journalctl -u ssh</button>
+            <button type="button" class="chip term-cmd-btn" data-term-cmd="ls -la">ls -la</button>
+            <button type="button" class="chip term-cmd-btn" data-term-cmd="cat boot-notes.txt">cat boot-notes.txt</button>
+            <button type="button" class="chip term-cmd-btn" data-term-cmd="clear" style="border-color:var(--tint-bd);">clear</button>
+          </div>
+
+          <!-- Interactive Terminal Window -->
+          <div class="live-terminal" id="term_window" tabindex="0">
+            <div class="terminal-bar">
+              <div class="terminal-dots">
+                <span class="dot dot-r"></span>
+                <span class="dot dot-y"></span>
+                <span class="dot dot-g"></span>
+              </div>
+              <span class="terminal-title">Terminal &mdash; <span id="term_path_display">student@linux-lab: ~</span></span>
+              <div style="display:flex; align-items:center; gap:8px; margin-left:auto;">
+                <span class="term-kbd-hint" style="font-family:var(--font-mono); font-size:10px; color:#94a3b8;"><kbd style="background:#1e293b; color:#cbd5e1; border:1px solid #334155; padding:1px 5px; border-radius:3px; font-size:9.5px;">Ctrl+L</kbd> Clear &bull; <kbd style="background:#1e293b; color:#cbd5e1; border:1px solid #334155; padding:1px 5px; border-radius:3px; font-size:9.5px;">Ctrl+F</kbd> Focus</span>
+                <button type="button" id="term_clear_btn" class="term-mini-btn" title="Clear terminal (Ctrl+L)">Clear</button>
+              </div>
+            </div>
+            <div class="terminal-body" id="term_body">
+              <div id="term_history"></div>
+              <div class="term-input-row">
+                <span class="term-prompt">$</span>
+                <input type="text" id="term_input" class="term-input-field" autocomplete="off" spellcheck="false" placeholder="Type systemctl, ls, cd, cat, systemd-analyze or click chips..." />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -907,6 +1075,13 @@ function updateTarget() {
 }
 
 document.addEventListener("click", e => {
+  const termCmdBtn = e.target.closest("[data-term-cmd]");
+  if (termCmdBtn) {
+    executeTerminalCommand(termCmdBtn.dataset.termCmd);
+    if (termInputEl) termInputEl.focus();
+    return;
+  }
+
   const t = e.target.closest("[data-a]");
   if (!t) return;
   const a = t.dataset.a;
@@ -935,6 +1110,532 @@ document.addEventListener("click", e => {
     }
   }
 });
+
+// SIMULATED TERMINAL ENGINE (screenshort3.png WIREFRAME)
+const termHistoryEl = $("term_history");
+const termInputEl = $("term_input");
+const termBodyEl = $("term_body");
+const termWindowEl = $("term_window");
+const termPathDisplayEl = $("term_path_display");
+const cmdHistoryList = [];
+let cmdHistoryIndex = -1;
+
+let currentDefaultTarget = "graphical.target";
+let simulatedCwd = "/home/student";
+
+const simulatedUnits = {
+  "ssh.service": { name: "ssh.service", desc: "OpenBSD Secure Shell server", state: "running", active: "active (running)", pid: 842, mem: "6.8M", cpu: "180ms" },
+  "nginx.service": { name: "nginx.service", desc: "A high performance web server", state: "running", active: "active (running)", pid: 914, mem: "14.2M", cpu: "450ms" },
+  "snapd.service": { name: "snapd.service", desc: "Snap Daemon", state: "running", active: "active (running)", pid: 712, mem: "42.1M", cpu: "1.240s" },
+  "systemd-networkd.service": { name: "systemd-networkd.service", desc: "Network Configuration", state: "running", active: "active (running)", pid: 560, mem: "8.4M", cpu: "890ms" },
+  "systemd-journald.service": { name: "systemd-journald.service", desc: "Journal Service", state: "running", active: "active (running)", pid: 410, mem: "18.2M", cpu: "65ms" },
+  "cron.service": { name: "cron.service", desc: "Regular background program processing daemon", state: "running", active: "active (running)", pid: 820, mem: "3.1M", cpu: "120ms" },
+  "multi-user.target": { name: "multi-user.target", desc: "Multi-User System", state: "active", active: "active", isTarget: true },
+  "graphical.target": { name: "graphical.target", desc: "Graphical Interface", state: "active", active: "active", isTarget: true },
+  "rescue.target": { name: "rescue.target", desc: "Rescue Mode", state: "dead", active: "inactive (dead)", isTarget: true },
+  "emergency.target": { name: "emergency.target", desc: "Emergency Mode", state: "dead", active: "inactive (dead)", isTarget: true },
+  "sysinit.target": { name: "sysinit.target", desc: "System Initialization", state: "active", active: "active", isTarget: true },
+  "basic.target": { name: "basic.target", desc: "Basic System", state: "active", active: "active", isTarget: true }
+};
+
+const virtualFS = {
+  "/home/student": {
+    "Desktop": { type: "dir" },
+    "Documents": { type: "dir" },
+    "Downloads": { type: "dir" },
+    "Music": { type: "dir" },
+    "Pictures": { type: "dir" },
+    "Videos": { type: "dir" },
+    ".bashrc": { type: "file", content: '# ~/.bashrc: executed by bash(1) for non-login shells.\nexport HISTCONTROL=ignoreboth\nshopt -s histappend\nHISTSIZE=1000\nalias ll="ls -alF"\nalias la="ls -A"' },
+    "boot-notes.txt": { type: "file", content: '=== Linux Boot & Systemd Architecture Reference ===\n1. sysinit.target   : Mounts core filesystems, initializes swap and encrypted disks\n2. basic.target     : Core sockets, system timers, bus communication\n3. multi-user.target: Headless enterprise networking server environment (Runlevel 3)\n4. graphical.target : Full desktop GUI environment with display manager (Runlevel 5)\n5. systemd-analyze  : Pinpoints slow startup services to accelerate boot duration' }
+  },
+  "/home/student/Documents": {
+    "systemd-commands.txt": { type: "file", content: 'Common systemctl Operations:\n• systemctl get-default\n• sudo systemctl set-default multi-user.target\n• sudo systemctl isolate rescue.target\n• systemctl status ssh\n• systemd-analyze blame' }
+  },
+  "/home/student/Desktop": {},
+  "/etc/systemd/system": {
+    "default.target": { type: "symlink", target: "/usr/lib/systemd/system/graphical.target" },
+    "multi-user.target.wants": { type: "dir" },
+    "graphical.target.wants": { type: "dir" },
+    "nginx.service": { type: "file", content: '[Unit]\nDescription=The NGINX HTTP and reverse proxy server\nAfter=network.target remote-fs.target\n\n[Service]\nType=forking\nExecStart=/usr/sbin/nginx -g "daemon on;"\n\n[Install]\nWantedBy=multi-user.target' }
+  },
+  "/usr/lib/systemd/system": {
+    "sysinit.target": { type: "file", content: '[Unit]\nDescription=System Initialization\nDocumentation=man:systemd.special(7)\nConflicts=emergency.service emergency.target' },
+    "basic.target": { type: "file", content: '[Unit]\nDescription=Basic System\nDocumentation=man:systemd.special(7)\nRequires=sysinit.target\nAfter=sysinit.target' },
+    "multi-user.target": { type: "file", content: '[Unit]\nDescription=Multi-User System\nDocumentation=man:systemd.special(7)\nRequires=basic.target\nConflicts=rescue.service rescue.target\nAfter=basic.target rescue.service rescue.target\nAllowIsolate=yes' },
+    "graphical.target": { type: "file", content: '[Unit]\nDescription=Graphical Interface\nDocumentation=man:systemd.special(7)\nRequires=multi-user.target\nWants=display-manager.service\nConflicts=rescue.service rescue.target\nAfter=multi-user.target rescue.service rescue.target display-manager.service\nAllowIsolate=yes' },
+    "rescue.target": { type: "file", content: '[Unit]\nDescription=Rescue Mode\nDocumentation=man:systemd.special(7)\nRequires=sysinit.target\nAfter=sysinit.target\nAllowIsolate=yes' },
+    "emergency.target": { type: "file", content: '[Unit]\nDescription=Emergency Mode\nDocumentation=man:systemd.special(7)\nAllowIsolate=yes' },
+    "ssh.service": { type: "file", content: '[Unit]\nDescription=OpenBSD Secure Shell server\nAfter=network.target auditd.service\n\n[Service]\nExecStart=/usr/sbin/sshd -D\n\n[Install]\nWantedBy=multi-user.target' },
+    "snapd.service": { type: "file", content: '[Unit]\nDescription=Snap Daemon\nAfter=network.service\n\n[Service]\nExecStart=/usr/lib/snapd/snapd\n\n[Install]\nWantedBy=multi-user.target' }
+  },
+  "/etc": {
+    "os-release": { type: "file", content: 'NAME="Ubuntu"\nVERSION="24.04.1 LTS (Noble Numbat)"\nID=ubuntu\nID_LIKE=debian\nPRETTY_NAME="Ubuntu 24.04.1 LTS"\nVERSION_ID="24.04"\nHOME_URL="https://www.ubuntu.com/"' }
+  },
+  "/": {
+    "bin": { type: "dir" },
+    "boot": { type: "dir" },
+    "dev": { type: "dir" },
+    "etc": { type: "dir" },
+    "home": { type: "dir" },
+    "lib": { type: "dir" },
+    "proc": { type: "dir" },
+    "sys": { type: "dir" },
+    "usr": { type: "dir" },
+    "var": { type: "dir" }
+  }
+};
+
+function escapeHtml(str) {
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function resolvePath(target) {
+  if (!target || target === "~") return "/home/student";
+  if (target.startsWith("~/")) return "/home/student/" + target.slice(2);
+  let absolute = target.startsWith("/") ? target : (simulatedCwd === "/" ? "/" + target : simulatedCwd + "/" + target);
+  const parts = absolute.split("/").filter(Boolean);
+  const stack = [];
+  for (const p of parts) {
+    if (p === ".") continue;
+    if (p === "..") {
+      if (stack.length > 0) stack.pop();
+    } else {
+      stack.push(p);
+    }
+  }
+  return "/" + stack.join("/");
+}
+
+function updateTerminalPathTitle() {
+  const display = simulatedCwd.startsWith("/home/student")
+    ? (simulatedCwd === "/home/student" ? "~" : "~" + simulatedCwd.slice("/home/student".length))
+    : simulatedCwd;
+  if (termPathDisplayEl) {
+    termPathDisplayEl.textContent = `student@linux-lab: ${display}`;
+  }
+}
+
+function handleCd(targetPath) {
+  const dest = resolvePath(targetPath);
+  const parent = dest.substring(0, dest.lastIndexOf("/")) || "/";
+  const name = dest.substring(dest.lastIndexOf("/") + 1);
+
+  if (virtualFS[dest] || (virtualFS[parent] && virtualFS[parent][name] && virtualFS[parent][name].type === "dir")) {
+    if (!virtualFS[dest]) virtualFS[dest] = {};
+    simulatedCwd = dest;
+    updateTerminalPathTitle();
+    return "";
+  }
+  return `bash: cd: ${targetPath}: No such file or directory`;
+}
+
+function handleLs(args) {
+  let showAll = false;
+  let showLong = false;
+  let targetPath = "";
+
+  for (const arg of args) {
+    if (arg === "-a" || arg === "-la" || arg === "-al") showAll = true;
+    if (arg === "-l" || arg === "-la" || arg === "-al") showLong = true;
+    if (!arg.startsWith("-")) targetPath = arg;
+  }
+
+  const dir = targetPath ? resolvePath(targetPath) : simulatedCwd;
+  const folder = virtualFS[dir];
+  if (!folder) {
+    return `ls: cannot access '${targetPath || dir}': No such file or directory`;
+  }
+
+  const entries = Object.keys(folder).filter(name => showAll || !name.startsWith("."));
+  if (entries.length === 0) return "";
+
+  if (showLong) {
+    const lines = [`total ${entries.length * 4}`];
+    for (const name of entries) {
+      const item = folder[name];
+      const isDir = item.type === "dir";
+      const isSym = item.type === "symlink";
+      const perms = isDir ? "drwxr-xr-x" : (isSym ? "lrwxrwxrwx" : "-rw-r--r--");
+      const size = isDir ? "4096" : (item.content ? item.content.length : (isSym ? item.target.length : "1024"));
+      const coloredName = isDir 
+        ? `<span class="tok-k" style="font-weight:700;">${name}</span>`
+        : (isSym ? `<span class="tok-s" style="font-weight:700;">${name}</span> -> ${item.target}` : `<span>${name}</span>`);
+      lines.push(`${perms} 2 student student ${size.toString().padStart(5, " ")} Nov 23 15:30 ${coloredName}`);
+    }
+    return lines.join("\n");
+  } else {
+    return entries.map(name => {
+      const item = folder[name];
+      if (item.type === "dir") return `<span class="tok-k" style="font-weight:700;">${name}</span>`;
+      if (item.type === "symlink") return `<span class="tok-s" style="font-weight:700;">${name}</span>`;
+      return `<span>${name}</span>`;
+    }).join("  ");
+  }
+}
+
+function handleCat(args) {
+  if (args.length === 0) return "cat: missing file operand";
+  const fileArg = args[0];
+  const fullPath = resolvePath(fileArg);
+  const parentDir = fullPath.substring(0, fullPath.lastIndexOf("/")) || "/";
+  const fileName = fullPath.substring(fullPath.lastIndexOf("/") + 1);
+
+  if (virtualFS[parentDir] && virtualFS[parentDir][fileName]) {
+    const item = virtualFS[parentDir][fileName];
+    if (item.type === "dir") return `cat: ${fileArg}: Is a directory`;
+    if (item.type === "symlink") {
+      const symDest = resolvePath(item.target);
+      const symParent = symDest.substring(0, symDest.lastIndexOf("/")) || "/";
+      const symFile = symDest.substring(symDest.lastIndexOf("/") + 1);
+      if (virtualFS[symParent] && virtualFS[symParent][symFile]) {
+        return escapeHtml(virtualFS[symParent][symFile].content || "");
+      }
+    }
+    return escapeHtml(item.content || "");
+  }
+  return `cat: ${fileArg}: No such file or directory`;
+}
+
+function handleTouch(args) {
+  if (args.length === 0) return "touch: missing file operand";
+  const filename = args[0];
+  if (!virtualFS[simulatedCwd]) virtualFS[simulatedCwd] = {};
+  virtualFS[simulatedCwd][filename] = { type: "file", content: "" };
+  return "";
+}
+
+function handleMkdir(args) {
+  if (args.length === 0) return "mkdir: missing operand";
+  const dirName = args[0];
+  if (!virtualFS[simulatedCwd]) virtualFS[simulatedCwd] = {};
+  virtualFS[simulatedCwd][dirName] = { type: "dir" };
+  const newPath = resolvePath(dirName);
+  if (!virtualFS[newPath]) virtualFS[newPath] = {};
+  return "";
+}
+
+function handleSystemctl(args) {
+  if (args.length === 0 || (args[0] === "status" && args.length === 1)) {
+    return `● linux-lab\n    State: <span class="tok-s">running</span>\n    Units: 284 loaded (incl. loaded aliases)\n     Jobs: 0 queued\n   Failed: 0 units\n    Since: Thu 2026-11-23 13:16:00 UTC; 2h 14min ago\n  systemd: 255.4-1ubuntu8 (x86_64)`;
+  }
+
+  const sub = args[0].toLowerCase();
+  const unit = args[1] || "";
+  const normalizedUnit = unit.endsWith(".service") || unit.endsWith(".target") ? unit : unit + ".service";
+
+  switch (sub) {
+    case "get-default":
+      return `<span class="tok-k">${currentDefaultTarget}</span>`;
+
+    case "set-default": {
+      if (!unit) return "Failed to set default target: Unit name required.";
+      const targetUnit = unit.endsWith(".target") ? unit : unit + ".target";
+      currentDefaultTarget = targetUnit;
+      if (virtualFS["/etc/systemd/system"] && virtualFS["/etc/systemd/system"]["default.target"]) {
+        virtualFS["/etc/systemd/system"]["default.target"].target = `/usr/lib/systemd/system/${targetUnit}`;
+      }
+      return `Removed /etc/systemd/system/default.target.\nCreated symlink /etc/systemd/system/default.target -> /usr/lib/systemd/system/${targetUnit}.`;
+    }
+
+    case "isolate": {
+      if (!unit) return "Failed to isolate: Target unit name required.";
+      const targetUnit = unit.endsWith(".target") ? unit : unit + ".target";
+      if (targetUnit === "rescue.target") {
+        return `<span style="color:#fbbf24;font-weight:700;">Broadcast message from root@linux-lab on pts/0:</span>\nThe system is going down to rescue mode NOW!\n[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Stopped target Graphical Interface.\n[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Stopped Multi-User System.\n[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Reached target Rescue Mode.`;
+      } else if (targetUnit === "multi-user.target") {
+        return `[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Stopped target Graphical Interface.\n[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Stopped Simple Desktop Display Manager.\n[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Reached target Multi-User System.`;
+      } else if (targetUnit === "graphical.target") {
+        return `[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Started Simple Desktop Display Manager.\n[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Reached target Graphical Interface.`;
+      } else if (targetUnit === "emergency.target") {
+        return `<span style="color:#ef4444;font-weight:700;">Broadcast message from root@linux-lab:</span>\nEntering emergency mode. Minimal root shell active.\n[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Reached target Emergency Mode.`;
+      }
+      return `[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Reached target ${targetUnit}.`;
+    }
+
+    case "status": {
+      const u = simulatedUnits[normalizedUnit] || simulatedUnits[unit];
+      if (u) {
+        if (u.isTarget) {
+          return `● ${u.name} - ${u.desc}\n     Loaded: loaded (/usr/lib/systemd/system/${u.name}; static)\n     Active: <span class="tok-s">${u.active}</span> since Thu 2026-11-23 13:16:00 UTC\n       Docs: man:systemd.special(7)`;
+        }
+        return `● ${u.name} - ${u.desc}\n     Loaded: loaded (/usr/lib/systemd/system/${u.name}; enabled; preset: enabled)\n     Active: <span class="tok-s">${u.active}</span> since Thu 2026-11-23 13:16:02 UTC; 2h 14min ago\n   Main PID: ${u.pid}\n     Memory: ${u.mem}\n        CPU: ${u.cpu}\n     CGroup: /system.slice/${u.name}\n             └─${u.pid} /usr/sbin/${u.name.replace(".service","")}`;
+      }
+      return `Unit ${unit || normalizedUnit} could not be found.`;
+    }
+
+    case "start":
+      return `[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Started ${unit || "unit"}.`;
+
+    case "stop":
+      return `[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Stopped ${unit || "unit"}.`;
+
+    case "restart":
+      return `[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Stopped ${unit || "unit"}.\n[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Started ${unit || "unit"}.`;
+
+    case "reload":
+      return `[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] Reloaded configuration for ${unit || "unit"}.`;
+
+    case "enable":
+      return `Created symlink /etc/systemd/system/multi-user.target.wants/${normalizedUnit} -> /usr/lib/systemd/system/${normalizedUnit}.`;
+
+    case "disable":
+      return `Removed /etc/systemd/system/multi-user.target.wants/${normalizedUnit}.`;
+
+    case "is-active": {
+      const u = simulatedUnits[normalizedUnit] || simulatedUnits[unit];
+      return u && (u.state === "running" || u.state === "active") ? `<span class="tok-s">active</span>` : `<span style="color:#ef4444;">inactive</span>`;
+    }
+
+    case "is-enabled":
+      return `<span class="tok-s">enabled</span>`;
+
+    case "is-failed":
+      return `<span class="tok-s">active</span>`;
+
+    case "mask":
+      return `Created symlink /etc/systemd/system/${normalizedUnit} -> /dev/null.`;
+
+    case "unmask":
+      return `Removed /etc/systemd/system/${normalizedUnit}.`;
+
+    case "daemon-reload":
+      return `[  <span style="color:#4ade80;font-weight:700;">OK</span>  ] System manager configuration reloaded.`;
+
+    case "list-units": {
+      const isTarget = args.some(a => a.includes("target"));
+      const isFailed = args.some(a => a.includes("failed"));
+      if (isFailed) return `  UNIT LOAD ACTIVE SUB DESCRIPTION\n0 loaded units listed.`;
+      if (isTarget) {
+        return `UNIT                   LOAD   ACTIVE SUB    DESCRIPTION\n<span class="tok-k">basic.target</span>           loaded <span class="tok-s">active</span> active Basic System\n<span class="tok-k">cryptsetup.target</span>      loaded <span class="tok-s">active</span> active Local Encrypted Volumes\n<span class="tok-k">getty.target</span>           loaded <span class="tok-s">active</span> active Login Prompts\n<span class="tok-k">graphical.target</span>       loaded <span class="tok-s">active</span> active Graphical Interface\n<span class="tok-k">multi-user.target</span>      loaded <span class="tok-s">active</span> active Multi-User System\n<span class="tok-k">network.target</span>         loaded <span class="tok-s">active</span> active Network\n<span class="tok-k">rescue.target</span>          loaded active active Rescue Mode\n<span class="tok-k">sysinit.target</span>         loaded <span class="tok-s">active</span> active System Initialization\n<span class="tok-k">timers.target</span>          loaded <span class="tok-s">active</span> active Timers\n\n9 targets listed.`;
+      }
+      return `UNIT                         LOAD   ACTIVE SUB     DESCRIPTION\n<span class="tok-k">cron.service</span>                 loaded <span class="tok-s">active</span> running Regular background program processing daemon\n<span class="tok-k">dbus.service</span>                 loaded <span class="tok-s">active</span> running D-Bus System Message Bus\n<span class="tok-k">nginx.service</span>                loaded <span class="tok-s">active</span> running A high performance web server\n<span class="tok-k">snapd.service</span>                loaded <span class="tok-s">active</span> running Snap Daemon\n<span class="tok-k">ssh.service</span>                  loaded <span class="tok-s">active</span> running OpenBSD Secure Shell server\n<span class="tok-k">systemd-journald.service</span>     loaded <span class="tok-s">active</span> running Journal Service\n<span class="tok-k">systemd-networkd.service</span>     loaded <span class="tok-s">active</span> running Network Configuration\n<span class="tok-k">graphical.target</span>             loaded <span class="tok-s">active</span> active  Graphical Interface\n<span class="tok-k">multi-user.target</span>            loaded <span class="tok-s">active</span> active  Multi-User System\n\n9 units listed.`;
+    }
+
+    case "list-unit-files":
+      return `UNIT FILE                              STATE           PRESET\n<span class="tok-k">cron.service</span>                           enabled         enabled\n<span class="tok-k">nginx.service</span>                          enabled         enabled\n<span class="tok-k">snapd.service</span>                          enabled         enabled\n<span class="tok-k">ssh.service</span>                            enabled         enabled\n<span class="tok-k">graphical.target</span>                       static          -\n<span class="tok-k">multi-user.target</span>                      static          -\n<span class="tok-k">rescue.target</span>                          static          -\n\n7 unit files listed.`;
+
+    case "reboot":
+    case "poweroff":
+      return `Broadcast message from student@linux-lab:\nThe system is powering down NOW!`;
+
+    default:
+      return `Unknown systemctl operation '${sub}'. Try: get-default, set-default, isolate, status, start, stop, restart, list-units.`;
+  }
+}
+
+function handleSystemdAnalyze(args) {
+  const sub = args[0] ? args[0].toLowerCase() : "time";
+  switch (sub) {
+    case "time":
+      return `Startup finished in <span class="tok-n">1.842s</span> (firmware) + <span class="tok-n">2.120s</span> (kernel) + <span class="tok-n">1.632s</span> (userspace) = <span class="tok-s">5.594s</span>\n${currentDefaultTarget} reached after 1.632s in userspace`;
+
+    case "blame":
+      return `<span style="color:#ef4444;font-weight:700;">1.240s</span> <span class="tok-k">snapd.service</span>\n  <span class="tok-n">890ms</span> <span class="tok-k">systemd-networkd.service</span>\n  <span class="tok-n">450ms</span> <span class="tok-k">nginx.service</span>\n  <span style="color:#cbd5e1;">320ms</span> <span class="tok-k">mariadb.service</span>\n  <span style="color:#cbd5e1;">180ms</span> <span class="tok-k">ssh.service</span>\n  <span style="color:#cbd5e1;">120ms</span> <span class="tok-k">cron.service</span>\n   <span style="color:#cbd5e1;">65ms</span> <span class="tok-k">systemd-journald.service</span>`;
+
+    case "critical-chain": {
+      const u = args[1] || currentDefaultTarget;
+      return `<span class="tok-k">${u}</span> @1.632s\n└─<span class="tok-k">multi-user.target</span> @1.631s\n  └─<span class="tok-k">nginx.service</span> @1.181s <span class="tok-n">+450ms</span>\n    └─<span class="tok-k">network.target</span> @1.180s\n      └─<span class="tok-k">systemd-networkd.service</span> @290ms <span class="tok-n">+890ms</span>\n        └─<span class="tok-k">basic.target</span> @285ms\n          └─<span class="tok-k">sysinit.target</span> @240ms`;
+    }
+
+    case "verify":
+      return `All unit files successfully passed configuration syntax verification.`;
+
+    case "plot":
+      return `Use "systemd-analyze plot > boot-timeline.svg" to export graphical SVG startup timeline.`;
+
+    default:
+      return `Startup finished in <span class="tok-n">1.842s</span> (firmware) + <span class="tok-n">2.120s</span> (kernel) + <span class="tok-n">1.632s</span> (userspace) = <span class="tok-s">5.594s</span>\n${currentDefaultTarget} reached after 1.632s in userspace`;
+  }
+}
+
+function handleJournalctl(args) {
+  const unit = args.find((a, i) => args[i - 1] === "-u") || "";
+  const filter = unit ? ` for ${unit}` : "";
+  return `-- Boot e4c3b2a1-0f9e-8d7c-6b5a-4f3e2d1c0b9a${filter} --\nNov 23 13:16:00 linux-lab systemd[1]: Started System Initialization.\nNov 23 13:16:01 linux-lab systemd[1]: Reached target Basic System.\nNov 23 13:16:02 linux-lab sshd[842]: Server listening on 0.0.0.0 port 22.\nNov 23 13:16:03 linux-lab nginx[914]: Started nginx reverse proxy server.\nNov 23 13:16:04 linux-lab systemd[1]: Reached target Multi-User System.\nNov 23 13:16:05 linux-lab systemd[1]: Reached target Graphical Interface.\nNov 23 13:16:05 linux-lab systemd[1]: Startup finished in 5.594s.`;
+}
+
+function parseCommandLine(text) {
+  const tokens = [];
+  let current = "";
+  let inQuotes = false;
+  let quoteChar = "";
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if ((ch === '"' || ch === "'") && (!inQuotes || quoteChar === ch)) {
+      inQuotes = !inQuotes;
+      quoteChar = inQuotes ? ch : "";
+    } else if (/\s/.test(ch) && !inQuotes) {
+      if (current) {
+        tokens.push(current);
+        current = "";
+      }
+    } else {
+      current += ch;
+    }
+  }
+  if (current) tokens.push(current);
+  return tokens;
+}
+
+function runSimulatedCommand(raw) {
+  const tokens = parseCommandLine(raw.trim());
+  if (tokens.length === 0) return "";
+  let prog = tokens[0].toLowerCase();
+  let args = tokens.slice(1);
+  if (prog === "sudo" && args.length > 0) {
+    prog = args[0].toLowerCase();
+    args = args.slice(1);
+  }
+
+  if (prog === "systemctl") {
+    return handleSystemctl(args);
+  } else if (prog === "systemd-analyze") {
+    return handleSystemdAnalyze(args);
+  } else if (prog === "journalctl") {
+    return handleJournalctl(args);
+  } else if (prog === "pwd") {
+    return simulatedCwd;
+  } else if (prog === "cd") {
+    return handleCd(args[0]);
+  } else if (prog === "ls") {
+    return handleLs(args);
+  } else if (prog === "cat") {
+    return handleCat(args);
+  } else if (prog === "touch") {
+    return handleTouch(args);
+  } else if (prog === "mkdir") {
+    return handleMkdir(args);
+  } else if (prog === "echo") {
+    const text = args.join(" ");
+    return text.replace(/\$USER/g, "student")
+               .replace(/\$HOSTNAME/g, "linux-lab")
+               .replace(/\$SHELL/g, "/bin/bash")
+               .replace(/\$PWD/g, simulatedCwd)
+               .replace(/\$PATH/g, "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
+  } else if (prog === "whoami") {
+    return "student";
+  } else if (prog === "id") {
+    return "uid=1000(student) gid=1000(student) groups=1000(student),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev)";
+  } else if (prog === "uname") {
+    if (args.includes("-r")) return "6.8.0-generic";
+    if (args.includes("-a")) return "Linux linux-lab 6.8.0-generic #42-Ubuntu SMP PREEMPT_DYNAMIC x86_64 GNU/Linux";
+    return "Linux";
+  } else if (prog === "date") {
+    return new Date().toUTCString();
+  } else if (prog === "uptime") {
+    return " 15:30:00 up 2:14, 1 user, load average: 0.12, 0.08, 0.05";
+  } else if (prog === "free") {
+    return "               total        used        free      shared  buff/cache   available\nMem:           7.7Gi       2.1Gi       3.8Gi       142Mi       1.8Gi       5.3Gi\nSwap:          2.0Gi          0B       2.0Gi";
+  } else if (prog === "ps") {
+    return "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 168420 13450 ?        Ss   13:16   0:01 /sbin/init\nroot       410  0.0  0.2  48200 18632 ?        Ss   13:16   0:00 /usr/lib/systemd/systemd-journald\nroot       842  0.0  0.1  18420  6952 ?        Ss   13:16   0:00 /usr/sbin/sshd -D\nroot       914  0.0  0.1  54200 14500 ?        Ss   13:16   0:00 nginx: master process\nstudent   1042  0.0  0.0  14500  5120 pts/0    Ss   13:16   0:00 bash\nstudent   1250  0.0  0.0  12400  3200 pts/0    R+   15:30   0:00 ps aux";
+  } else if (prog === "hostnamectl") {
+    return "   Static hostname: linux-lab\n         Icon name: computer-vm\n           Chassis: vm\n        Machine ID: 9f7b1e4a3d2c8b0a5f6e7d8c9b0a1e2f\n           Boot ID: e4c3b2a1-0f9e-8d7c-6b5a-4f3e2d1c0b9a\n  Operating System: Ubuntu 24.04.1 LTS\n            Kernel: Linux 6.8.0-generic\n      Architecture: x86-64";
+  } else if (prog === "timedatectl") {
+    return "               Local time: Thu 2026-11-23 15:30:00 UTC\n           Universal time: Thu 2026-11-23 15:30:00 UTC\n                 RTC time: Thu 2026-11-23 15:30:00\n                Time zone: UTC (UTC, +0000)\nSystem clock synchronized: yes\n              NTP service: active";
+  } else if (prog === "localectl") {
+    return "   System Locale: LANG=en_US.UTF-8\n       VC Keymap: n/a\n      X11 Layout: us";
+  } else if (prog === "loginctl") {
+    return "SESSION  UID USER    SEAT  TTY\n      1 1000 student seat0 tty2\n\n1 sessions listed.";
+  } else if (prog === "help") {
+    return `Available systemd & shell commands:\n  • <span class="tok-k">systemctl get-default</span> / <span class="tok-k">set-default &lt;target&gt;</span>\n  • <span class="tok-k">systemctl isolate &lt;target&gt;</span> (multi-user | graphical | rescue)\n  • <span class="tok-k">systemctl status &lt;unit&gt;</span> (ssh | nginx | snapd | graphical.target)\n  • <span class="tok-k">systemctl start | stop | restart | reload &lt;unit&gt;</span>\n  • <span class="tok-k">systemctl enable | disable | is-active | is-enabled &lt;unit&gt;</span>\n  • <span class="tok-k">systemctl list-units</span> [--type=target | --type=service]\n  • <span class="tok-k">systemd-analyze</span> (time | blame | critical-chain | verify)\n  • <span class="tok-k">journalctl</span> (-u &lt;unit&gt; | -xe | -b)\n  • <span class="tok-k">hostnamectl</span> | <span class="tok-k">timedatectl</span> | <span class="tok-k">localectl</span> | <span class="tok-k">loginctl</span>\n  • <span class="tok-s">ls (-la)</span> | <span class="tok-s">cd &lt;dir&gt;</span> | <span class="tok-s">pwd</span> | <span class="tok-s">cat &lt;file&gt;</span> | <span class="tok-s">mkdir</span> | <span class="tok-s">touch</span>\n  • Shortcuts: <kbd>Ctrl+L</kbd> Clear &bull; <kbd>Ctrl+F</kbd> Focus terminal input`;
+  }
+  return `bash: ${escapeHtml(prog)}: command not found. Type "help" or click any command button above.`;
+}
+
+function executeTerminalCommand(raw) {
+  const cmd = (raw || "").trim();
+  if (!cmd) return;
+
+  if (cmd.toLowerCase() === "clear") {
+    if (termHistoryEl) termHistoryEl.innerHTML = "";
+    if (termInputEl) termInputEl.value = "";
+    if (termBodyEl) termBodyEl.scrollTop = termBodyEl.scrollHeight;
+    return;
+  }
+
+  cmdHistoryList.push(cmd);
+  cmdHistoryIndex = cmdHistoryList.length;
+
+  const resultOutput = runSimulatedCommand(cmd);
+
+  const entry = document.createElement("div");
+  entry.className = "term-entry";
+  entry.innerHTML = `<div class="term-line-cmd"><span class="term-prompt">$</span> <span>${escapeHtml(cmd)}</span></div>${resultOutput ? `<div class="term-line-out">${resultOutput}</div>` : ""}`;
+  termHistoryEl.appendChild(entry);
+
+  if (termInputEl) termInputEl.value = "";
+  if (termBodyEl) termBodyEl.scrollTop = termBodyEl.scrollHeight;
+}
+
+function initTerminal() {
+  if (!termHistoryEl) return;
+  const intro = document.createElement("div");
+  intro.className = "term-entry";
+  intro.innerHTML = `<div class="term-line-out" style="padding-left:0; color:#94a3b8;">Linux 6.8.0-generic &bull; systemd 255.4-1ubuntu8 &bull; student@linux-lab<br>Press <kbd style="background:#1e293b; color:#cbd5e1; border:1px solid #334155; padding:1px 4px; border-radius:3px;">Ctrl+F</kbd> anywhere to focus &bull; <kbd style="background:#1e293b; color:#cbd5e1; border:1px solid #334155; padding:1px 4px; border-radius:3px;">Ctrl+L</kbd> to clear &bull; Type "help" for commands.</div><div class="term-line-cmd" style="margin-top:6px;"><span class="term-prompt">$</span> <span>systemctl get-default</span></div><div class="term-line-out"><span class="tok-k">graphical.target</span></div>`;
+  termHistoryEl.appendChild(intro);
+  updateTerminalPathTitle();
+}
+
+initTerminal();
+
+if (termWindowEl && termInputEl) {
+  termWindowEl.addEventListener("click", () => termInputEl.focus());
+}
+
+if (termInputEl) {
+  termInputEl.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      executeTerminalCommand(termInputEl.value);
+    } else if (e.key === "ArrowUp") {
+      if (cmdHistoryList.length > 0) {
+        if (cmdHistoryIndex > 0) cmdHistoryIndex--;
+        termInputEl.value = cmdHistoryList[cmdHistoryIndex] || "";
+      }
+      e.preventDefault();
+    } else if (e.key === "ArrowDown") {
+      if (cmdHistoryIndex < cmdHistoryList.length - 1) {
+        cmdHistoryIndex++;
+        termInputEl.value = cmdHistoryList[cmdHistoryIndex];
+      } else {
+        cmdHistoryIndex = cmdHistoryList.length;
+        termInputEl.value = "";
+      }
+      e.preventDefault();
+    }
+  });
+}
+
+// Global keyboard shortcuts: Ctrl+L (Clear) & Ctrl+F (Focus terminal)
+window.addEventListener("keydown", e => {
+  if ((e.ctrlKey || e.metaKey) && (e.key === "l" || e.key === "L")) {
+    e.preventDefault();
+    if (termHistoryEl) termHistoryEl.innerHTML = "";
+    if (termInputEl) {
+      termInputEl.value = "";
+      termInputEl.focus();
+    }
+  } else if ((e.ctrlKey || e.metaKey) && (e.key === "f" || e.key === "F")) {
+    e.preventDefault();
+    if (termInputEl && termWindowEl) {
+      termWindowEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      termInputEl.focus();
+      termWindowEl.classList.add("term-focused-flash");
+      setTimeout(() => termWindowEl.classList.remove("term-focused-flash"), 1200);
+    }
+  }
+});
+
+const clearBtn = $("term_clear_btn");
+if (clearBtn) {
+  clearBtn.addEventListener("click", () => {
+    if (termHistoryEl) termHistoryEl.innerHTML = "";
+    if (termInputEl) {
+      termInputEl.value = "";
+      termInputEl.focus();
+    }
+  });
+}
 
 updateStudio();
 </script>

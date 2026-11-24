@@ -416,7 +416,7 @@ p {
     <!-- THE OFFICIAL LINUX SYMBOL: TUX THE PENGUIN -->
     <div style="display:flex;align-items:center;justify-content:center;margin:14px 0 18px;">
       <div style="width:104px;height:104px;background:var(--tint);border-radius:12px;border:1px solid var(--tint-bd);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px;box-shadow:0 2px 8px rgba(23,32,44,0.03);">
-        <img src="tux.svg" alt="Tux the Official Linux Mascot" style="width:100%;height:100%;object-fit:contain;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux the Official Linux Mascot" style="width:100%;height:100%;object-fit:contain;">
       </div>
     </div>
 
@@ -443,7 +443,7 @@ p {
               <button type="button" class="chip" data-a="dom" data-d="cloud">Cloud Server</button>
               <button type="button" class="chip" data-a="dom" data-d="mobile">Android + IoT</button>
               <button type="button" class="chip" data-a="dom" data-d="military">Military</button>
-              <button type="button" class="chip" data-a="dom" data-d="spacex">SpaceX</button>
+              <button type="button" class="chip" data-a="dom" data-d="space">Space Research</button>
             </div>
           </div>
 
@@ -554,12 +554,12 @@ p {
                 <text x="363" y="114" class="node-mono" style="font-size:8px;">Radar Defense</text>
                 <text x="363" y="126" class="node-mono" style="font-size:8px;">Combat Telemetry</text>
 
-                <!-- Domain 5: SpaceX -->
-                <rect id="dom_n_spacex" x="418" y="68" width="94" height="72" class="node-rect st-pass" data-a="dom" data-d="spacex" style="cursor:pointer;" />
-                <text x="465" y="84" class="node-text" style="font-size:10px;">SpaceX</text>
-                <text x="465" y="98" class="node-mono" fill="var(--ok)" style="font-weight:800;font-size:9.5px;">Falcon 9 Rocket</text>
-                <text x="465" y="114" class="node-mono" style="font-size:8px;">Autonomous Flight</text>
-                <text x="465" y="126" class="node-mono" style="font-size:8px;">Dragon Capsule</text>
+                <!-- Domain 5: Space Research -->
+                <rect id="dom_n_space" x="418" y="68" width="94" height="72" class="node-rect st-pass" data-a="dom" data-d="space" style="cursor:pointer;" />
+                <text x="465" y="84" class="node-text" style="font-size:10px;">Space Research</text>
+                <text x="465" y="98" class="node-mono" fill="var(--ok)" style="font-weight:800;font-size:9.5px;">NASA &amp; ISS</text>
+                <text x="465" y="114" class="node-mono" style="font-size:8px;">Perseverance Rover</text>
+                <text x="465" y="126" class="node-mono" style="font-size:8px;">Deep Space Probes</text>
 
                 <!-- Bottom Convergence Rail -->
                 <path d="M 57 140 L 57 156 M 159 140 L 159 156 M 261 140 L 261 156 M 363 140 L 363 156 M 465 140 L 465 156" class="flow-line line-blue" />
@@ -570,24 +570,9 @@ p {
                 <!-- Bottom Summary Card -->
                 <rect x="10" y="174" width="500" height="66" rx="8" fill="var(--ink)" stroke="var(--primary)" stroke-width="1.2" />
                 <text x="260" y="194" class="node-mono" fill="#38bdf8" style="font-size:11.5px;font-weight:800;">Global Dominance - Universal Scalability</text>
-                <text x="260" y="212" class="node-mono" fill="#ffffff">Click any domain button above to view real-world mission photo and telemetry</text>
+                <text x="260" y="212" class="node-mono" fill="#ffffff">Click any domain button above to inspect real-world architecture and telemetry</text>
                 <text x="260" y="228" class="node-mono" fill="#93c5fd" style="font-size:9px;">High Reliability - Crash-Resilient - Hardened Open-Source Kernel</text>
               </svg>
-            </div>
-
-            <!-- Image Reference Card (Shown when a specific domain is active) -->
-            <div id="where_img_card" style="display:none;margin-top:4px;">
-              <div style="position:relative;background:#0d131f;border-radius:10px;overflow:hidden;border:1px solid var(--tint-bd);box-shadow:0 3px 12px rgba(15,23,42,0.12);">
-                <img id="where_img" src="supercomputer.jpg" alt="Real-World Linux Reference" style="width:100%;height:210px;object-fit:contain;background:#0b111e;display:block;">
-                <div id="where_badge" style="position:absolute;top:10px;left:10px;background:rgba(21,113,186,0.92);color:#ffffff;padding:4px 10px;border-radius:6px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.03em;">Supercomputers &bull; 100% Top 500</div>
-              </div>
-              <div style="margin-top:8px;padding:9px 12px;background:var(--paper);border:1px solid var(--line);border-radius:8px;">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
-                  <h3 id="where_caption_title" style="margin:0;font-size:13.5px;font-weight:800;color:var(--ink);">Frontier Exascale Supercomputer</h3>
-                  <button type="button" class="chip" data-a="dom" data-d="all" style="padding:2px 10px;font-size:11px;">View All Domains</button>
-                </div>
-                <p id="where_caption_desc" style="margin:0;font-size:12px;color:var(--muted);line-height:1.45;">Frontier supercomputer at Oak Ridge National Laboratory runs custom Linux achieving over 1.1 exaflops computing speed.</p>
-              </div>
             </div>
           </div>
 
@@ -780,12 +765,12 @@ const DATA = {
   where: {
     all: {
       lab: "2. Where Linux Is Used: Ubiquitous Global Presence",
-      code: `Supercomputers : 500 of the world's 500 fastest supercomputers run Linux (100%)\nCloud Workloads: Over 90% of all public cloud workloads on AWS, GCP, and Azure\nMobile Devices : Over 3 billion active smartphones running Android (Linux Kernel)\nDefense & Space: US Navy Aegis systems, SpaceX Falcon 9, and NASA Mars rovers`,
+      code: `Supercomputers : 500 of the world's 500 fastest supercomputers run Linux (100%)\nCloud Workloads: Over 90% of all public cloud workloads on AWS, GCP, and Azure\nMobile Devices : Over 3 billion active smartphones running Android (Linux Kernel)\nDefense & Space: US Navy Aegis systems, NASA deep space rovers, and the ISS`,
       explain: "Linux powers the vast majority of critical global computational infrastructure from pocket phones to scientific clusters."
     },
     super: {
       lab: "Supercomputers: 100% Top 500 Worldwide",
-      code: `Adoption : 100% (All 500 fastest machines in the global Top500 list)\nSystem   : Frontier (Oak Ridge) - Aurora (Argonne) - Fugaku (RIKEN)\nHardware : 8.7+ Million CPU & GPU Cores with Slingshot-11 Interconnect\nOS Core  : Cray Linux Environment (CLE) optimized for parallel calculations`,
+      code: `Adoption : 100% (All 500 fastest machines in the global Top500 list)\nSystem   : Summit & Frontier (Oak Ridge) - Aurora (Argonne) - Fugaku (RIKEN)\nHardware : Millions of high-performance GPU and CPU nodes linked with ultra-fast interconnects\nOS Core  : Optimized enterprise Linux environment tuned specifically for scientific calculations`,
       explain: "Every single top supercomputer runs Linux because scientists can fine-tune the kernel for extreme performance."
     },
     cloud: {
@@ -803,10 +788,10 @@ const DATA = {
       code: `Adoption : US Navy Aegis combat systems, drone command telemetry, and sonar arrays\nSystems  : Hardened Red Hat Enterprise Linux (RHEL) and DISA STIG security profiles\nIsolation: Air-gapped networks, mandatory access control, and cryptographic hardware tokens\nReliability: Zero kernel crashes during critical radar tracking and automated countermeasure defense`,
       explain: "Defense departments run hardened Linux systems to protect radar guidance and naval combat communication channels."
     },
-    spacex: {
-      lab: "SpaceX Aerospace & Autonomous Spaceflight",
-      code: `Hardware : Triple-redundant x86 dual-core processors voting on navigation decisions\nOS Core  : Stripped-down custom Linux kernel running real-time deterministic C++ code\nMissions : Falcon 9 booster propulsive landings, Falcon Heavy, and Dragon spacecraft\nResilience: Fault-tolerant voting logic discards corrupted calculation cycles instantly`,
-      explain: "SpaceX flight computers run customized Linux to calculate navigation trajectories and execute automated booster landings."
+    space: {
+      lab: "Space Research & Autonomous Planetary Missions",
+      code: `Platform : NASA Jet Propulsion Laboratory & International Space Station\nHardware : Radiation-hardened flight controllers & rover microprocessors\nKernel   : Real-time patched Linux operating system for telemetry and navigation\nMission  : Mars Perseverance rover, Ingenuity helicopter, and orbital satellites`,
+      explain: "NASA and space exploration agencies run Linux flight computers to execute interplanetary navigation and scientific discovery."
     }
   },
   advantages: {
@@ -925,80 +910,28 @@ function updateStudio() {
   }
 }
 
-const DOMAIN_DETAILS = {
-  super: {
-    img: "supercomputer.jpg",
-    badge: "Supercomputers \u2022 100% Top 500",
-    title: "Frontier Exascale Supercomputer",
-    desc: "Frontier supercomputer at Oak Ridge National Laboratory runs custom Linux achieving over 1.1 exaflops computing speed."
-  },
-  cloud: {
-    img: "cloud-server.jpg",
-    badge: "Cloud Infrastructure \u2022 90%+ Market",
-    title: "Enterprise Cloud Datacenter Server Racks",
-    desc: "High-density server racks host millions of automated Linux virtual machines and production container clusters worldwide."
-  },
-  mobile: {
-    img: "android-iot.jpg",
-    badge: "Android & IoT \u2022 3+ Billion Devices",
-    title: "Android Mobile Device & Smart IoT Ecosystem",
-    desc: "Modern touch devices and smart embedded controllers rely directly upon optimized Linux kernels for operations."
-  },
-  military: {
-    img: "military-linux.jpg",
-    badge: "Military & Defense \u2022 Mission Critical",
-    title: "US Navy Combat Information Center Console",
-    desc: "Naval warships and tactical air defense networks deploy hardened real-time Linux for mission-critical combat coordination."
-  },
-  spacex: {
-    img: "spacex-falcon9.jpg",
-    badge: "SpaceX & Aerospace \u2022 Autonomous Flight",
-    title: "SpaceX Falcon 9 Rocket & Dragon Spacecraft",
-    desc: "Falcon 9 rockets run dual-core x86 Linux flight computers executing autonomous booster re-entry guidance trajectories."
-  }
-};
-
 function renderWhere() {
   document.querySelectorAll("[data-a='dom']").forEach(b => {
     if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.d === activeDom);
   });
 
-  const svgMap = $("where_svg_map");
-  const imgCard = $("where_img_card");
+  const data = DATA.where[activeDom] || DATA.where.all;
+  renderInspector(data);
 
-  if (activeDom === "all") {
-    if (svgMap) svgMap.style.display = "block";
-    if (imgCard) imgCard.style.display = "none";
-    renderInspector(DATA.where.all);
+  const nodes = {
+    super: $("dom_n_super"),
+    cloud: $("dom_n_cloud"),
+    mobile: $("dom_n_mobile"),
+    military: $("dom_n_military"),
+    space: $("dom_n_space")
+  };
 
-    const nodes = {
-      super: $("dom_n_super"),
-      cloud: $("dom_n_cloud"),
-      mobile: $("dom_n_mobile"),
-      military: $("dom_n_military"),
-      spacex: $("dom_n_spacex")
-    };
-    Object.entries(nodes).forEach(([k, el]) => {
-      if (!el) return;
-      el.setAttribute("class", "node-rect st-pass");
-      el.style.opacity = "1";
-    });
-  } else {
-    if (svgMap) svgMap.style.display = "none";
-    if (imgCard) imgCard.style.display = "block";
-
-    const detail = DOMAIN_DETAILS[activeDom];
-    const data = DATA.where[activeDom] || DATA.where.all;
-
-    if (detail) {
-      $("where_img").src = detail.img;
-      $("where_img").alt = detail.title;
-      $("where_badge").textContent = detail.badge;
-      $("where_caption_title").textContent = detail.title;
-      $("where_caption_desc").textContent = detail.desc;
-    }
-    renderInspector(data);
-  }
+  Object.entries(nodes).forEach(([k, el]) => {
+    if (!el) return;
+    const isSelected = activeDom === "all" || activeDom === k;
+    el.setAttribute("class", "node-rect " + (isSelected ? "st-pass" : "st-active"));
+    el.style.opacity = isSelected ? "1" : "0.38";
+  });
 }
 
 function renderAdvantages() {

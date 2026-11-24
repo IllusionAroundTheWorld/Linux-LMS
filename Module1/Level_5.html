@@ -435,6 +435,19 @@ code {
   stroke: var(--ok);
 }
 
+.video-thumb-link {
+  cursor: pointer;
+}
+
+.video-thumb-link:hover img {
+  transform: scale(1.025);
+}
+
+.video-thumb-link:hover div svg {
+  transform: scale(1.1);
+  filter: drop-shadow(0 6px 18px rgba(255, 0, 0, 0.55));
+}
+
 </style>
 </head>
 <body>
@@ -477,136 +490,149 @@ code {
 
         <div class="chart-card">
           <span class="lab">Live Virtual Machine Display Simulator (SVG)</span>
-          <svg class="svg-flowchart" viewBox="0 0 520 270">
+          <svg class="svg-flowchart" viewBox="0 0 540 280">
             <!-- VM Window Chrome -->
-            <rect x="10" y="8" width="500" height="254" rx="10" fill="#0d131f" stroke="#1e293b" stroke-width="1.5" />
-            <rect x="10" y="8" width="500" height="30" rx="10" fill="#151e2e" />
+            <rect x="10" y="8" width="520" height="264" rx="10" fill="#0d131f" stroke="#1e293b" stroke-width="1.5" />
+            <rect x="10" y="8" width="520" height="30" rx="10" fill="#151e2e" />
             <!-- Window Circles -->
             <circle cx="28" cy="23" r="4.5" fill="#ef4444" />
             <circle cx="42" cy="23" r="4.5" fill="#f59e0b" />
             <circle cx="56" cy="23" r="4.5" fill="#10b981" />
-            <text x="260" y="24" class="node-mono" fill="#94a3b8" text-anchor="middle" font-weight="700">Virtual Machine Manager &bull; Ubuntu-24.04-Lab [64-bit]</text>
+            <text x="270" y="24" class="node-mono" fill="#94a3b8" text-anchor="middle" font-weight="700">Virtual Machine Manager &bull; Ubuntu-24.04-Lab [64-bit]</text>
 
             <!-- 7-Step Progress Rail inside VM Chrome -->
-            <path d="M 40 54 L 480 54" stroke="#243046" stroke-width="2" />
-            <path id="progress_line" d="M 40 54 L 40 54" stroke="var(--ok)" stroke-width="2.5" />
+            <path d="M 45 54 L 495 54" stroke="#243046" stroke-width="2" />
+            <path id="progress_line" d="M 45 54 L 45 54" stroke="var(--ok)" stroke-width="2.5" />
 
             <!-- Progress Step Indicators -->
-            <g id="dot_1"><circle cx="40" cy="54" r="8" fill="var(--ok)" /><text x="40" y="55" class="node-mono" fill="#fff" font-size="8px" text-anchor="middle">1</text></g>
-            <g id="dot_2"><circle cx="113" cy="54" r="8" fill="#243046" /><text x="113" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">2</text></g>
-            <g id="dot_3"><circle cx="186" cy="54" r="8" fill="#243046" /><text x="186" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">3</text></g>
-            <g id="dot_4"><circle cx="260" cy="54" r="8" fill="#243046" /><text x="260" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">4</text></g>
-            <g id="dot_5"><circle cx="333" cy="54" r="8" fill="#243046" /><text x="333" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">5</text></g>
-            <g id="dot_6"><circle cx="406" cy="54" r="8" fill="#243046" /><text x="406" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">6</text></g>
-            <g id="dot_7"><circle cx="480" cy="54" r="8" fill="#243046" /><text x="480" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">7</text></g>
+            <g id="dot_1"><circle cx="45" cy="54" r="8" fill="var(--ok)" /><text x="45" y="55" class="node-mono" fill="#fff" font-size="8px" text-anchor="middle">1</text></g>
+            <g id="dot_2"><circle cx="120" cy="54" r="8" fill="#243046" /><text x="120" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">2</text></g>
+            <g id="dot_3"><circle cx="195" cy="54" r="8" fill="#243046" /><text x="195" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">3</text></g>
+            <g id="dot_4"><circle cx="270" cy="54" r="8" fill="#243046" /><text x="270" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">4</text></g>
+            <g id="dot_5"><circle cx="345" cy="54" r="8" fill="#243046" /><text x="345" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">5</text></g>
+            <g id="dot_6"><circle cx="420" cy="54" r="8" fill="#243046" /><text x="420" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">6</text></g>
+            <g id="dot_7"><circle cx="495" cy="54" r="8" fill="#243046" /><text x="495" y="55" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="middle">7</text></g>
 
             <!-- Dynamic Installation Canvas Area -->
             <!-- STEP 1: Download ISO -->
             <g id="view_step1">
-              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
-              <rect x="50" y="90" width="60" height="60" rx="8" fill="var(--tint)" stroke="var(--primary)" />
-              <text x="80" y="124" class="node-mono" fill="var(--primary-dark)" font-size="13px" font-weight="800" text-anchor="middle">.ISO</text>
-              <text x="130" y="104" class="node-text" fill="#fff" text-anchor="start">Download - ISO &amp; Hypervisor</text>
-              <text x="130" y="122" class="node-mono" fill="#93c5fd" text-anchor="start">File: ubuntu-24.04-desktop-amd64.iso (4.8 GB)</text>
-              <text x="130" y="140" class="node-mono" fill="#94a3b8" text-anchor="start">Hypervisor: VMware Workstation / VirtualBox</text>
-              <!-- Progress bar -->
-              <rect x="130" y="154" width="330" height="14" rx="4" fill="#0d131f" stroke="#243046" />
-              <rect x="132" y="156" width="326" height="10" rx="3" fill="var(--ok)" />
-              <text x="295" y="162" class="node-mono" fill="#fff" font-size="8px" font-weight="700" text-anchor="middle">100% Downloaded &bull; Verified SHA-256 Checksum</text>
+              <rect x="25" y="74" width="490" height="140" rx="8" fill="#131d2e" stroke="#243046" />
+              <rect x="40" y="86" width="60" height="58" rx="8" fill="var(--tint)" stroke="var(--primary)" />
+              <text x="70" y="119" class="node-mono" fill="var(--primary-dark)" font-size="13px" font-weight="800" text-anchor="middle">.ISO</text>
+              <text x="115" y="98" class="node-text" fill="#fff" font-weight="700" text-anchor="start">Download &bull; ISO Image &amp; Hypervisor</text>
+              <text x="115" y="116" class="node-mono" fill="#93c5fd" text-anchor="start">File: ubuntu-24.04-desktop-amd64.iso (4.8 GB)</text>
+              <text x="115" y="134" class="node-mono" fill="#94a3b8" text-anchor="start">Hypervisor: VMware Workstation Player / VirtualBox</text>
+              <!-- Polished Download & Verification Card -->
+              <rect x="40" y="152" width="460" height="50" rx="7" fill="#0d131f" stroke="#243046" />
+              <rect x="52" y="162" width="436" height="7" rx="3.5" fill="#1e293b" />
+              <rect x="52" y="162" width="436" height="7" rx="3.5" fill="var(--ok)" />
+              <text x="52" y="186" class="node-mono" fill="#4ade80" font-weight="700" font-size="9.5px" text-anchor="start">&#10003; 100% Downloaded (4.8 GB Complete)</text>
+              <text x="488" y="186" class="node-mono" fill="#38bdf8" font-weight="600" font-size="9.5px" text-anchor="end">&#10003; Verified SHA-256 Hash Checksum</text>
             </g>
 
             <!-- STEP 2: Create VM Profile -->
             <g id="view_step2" style="display:none;">
-              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
-              <text x="50" y="96" class="node-text" fill="#fff" text-anchor="start">Configure - VM Name &amp; OS</text>
-              <rect x="50" y="110" width="420" height="26" rx="5" fill="#0d131f" stroke="var(--primary)" />
-              <text x="65" y="124" class="node-mono" fill="#94a3b8" text-anchor="start">Virtual Machine Name:</text>
-              <text x="230" y="124" class="node-mono" fill="#38bdf8" font-weight="700" text-anchor="start">Ubuntu-24.04-Lab</text>
-              <rect x="50" y="144" width="205" height="26" rx="5" fill="#0d131f" stroke="#243046" />
-              <text x="65" y="158" class="node-mono" fill="#94a3b8" text-anchor="start">Type:</text>
-              <text x="120" y="158" class="node-mono" fill="#4ade80" font-weight="700" text-anchor="start">Linux</text>
-              <rect x="265" y="144" width="205" height="26" rx="5" fill="#0d131f" stroke="#243046" />
-              <text x="280" y="158" class="node-mono" fill="#94a3b8" text-anchor="start">Version:</text>
-              <text x="345" y="158" class="node-mono" fill="#fbbf24" font-weight="700" text-anchor="start">Ubuntu (64-bit)</text>
-              <text x="50" y="193" class="node-mono" fill="#93c5fd" text-anchor="start">&#10003; 64-bit Virtual Hardware Profile Registered in Hypervisor</text>
+              <rect x="25" y="74" width="490" height="140" rx="8" fill="#131d2e" stroke="#243046" />
+              <text x="40" y="96" class="node-text" fill="#fff" font-weight="700" text-anchor="start">Configure &bull; VM Name &amp; Guest OS Profile</text>
+              <rect x="40" y="108" width="460" height="28" rx="6" fill="#0d131f" stroke="var(--primary)" />
+              <text x="54" y="123" class="node-mono" fill="#94a3b8" text-anchor="start">Virtual Machine Name:</text>
+              <text x="210" y="123" class="node-mono" fill="#38bdf8" font-weight="700" text-anchor="start">Ubuntu-24.04-Lab</text>
+              <rect x="40" y="142" width="225" height="28" rx="6" fill="#0d131f" stroke="#243046" />
+              <text x="54" y="157" class="node-mono" fill="#94a3b8" text-anchor="start">Type:</text>
+              <text x="100" y="157" class="node-mono" fill="#4ade80" font-weight="700" text-anchor="start">Linux (POSIX Compliant)</text>
+              <rect x="275" y="142" width="225" height="28" rx="6" fill="#0d131f" stroke="#243046" />
+              <text x="289" y="157" class="node-mono" fill="#94a3b8" text-anchor="start">Version:</text>
+              <text x="350" y="157" class="node-mono" fill="#fbbf24" font-weight="700" text-anchor="start">Ubuntu (64-bit)</text>
+              <rect x="40" y="176" width="460" height="26" rx="6" fill="#0d131f" stroke="#1e293b" />
+              <text x="54" y="190" class="node-mono" fill="#93c5fd" text-anchor="start">&#10003; 64-bit Virtual Hardware Profile Registered in Hypervisor</text>
             </g>
 
             <!-- STEP 3: Allocate RAM & CPU -->
             <g id="view_step3" style="display:none;">
-              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
-              <text x="50" y="96" class="node-text" fill="#fff" text-anchor="start">Allocate - RAM &amp; CPU Cores</text>
+              <rect x="25" y="74" width="490" height="140" rx="8" fill="#131d2e" stroke="#243046" />
+              <text x="40" y="96" class="node-text" fill="#fff" font-weight="700" text-anchor="start">Allocate &bull; Memory (RAM) &amp; Virtual CPU Cores</text>
               <!-- RAM Bar -->
-              <text x="50" y="118" class="node-mono" fill="#93c5fd" text-anchor="start">Base Memory (RAM): 4096 MB (4 GB)</text>
-              <rect x="50" y="126" width="420" height="14" rx="4" fill="#0d131f" stroke="#243046" />
-              <rect x="52" y="128" width="160" height="10" rx="3" fill="var(--ok)" />
-              <text x="460" y="134" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="end">Host: 16 GB Max</text>
+              <rect x="40" y="106" width="460" height="32" rx="6" fill="#0d131f" stroke="#243046" />
+              <text x="54" y="117" class="node-mono" fill="#93c5fd" font-size="9px" text-anchor="start">Base Memory (RAM): 4096 MB (4 GB Assigned)</text>
+              <text x="488" y="117" class="node-mono" fill="#94a3b8" font-size="8.5px" text-anchor="end">Host: 16 GB Max</text>
+              <rect x="54" y="124" width="432" height="6" rx="3" fill="#1e293b" />
+              <rect x="54" y="124" width="165" height="6" rx="3" fill="var(--ok)" />
               <!-- CPU Bar -->
-              <text x="50" y="156" class="node-mono" fill="#fbbf24" text-anchor="start">Processors: 2 Virtual CPU Cores</text>
-              <rect x="50" y="164" width="420" height="14" rx="4" fill="#0d131f" stroke="#243046" />
-              <rect x="52" y="166" width="130" height="10" rx="3" fill="var(--primary)" />
-              <text x="460" y="172" class="node-mono" fill="#94a3b8" font-size="8px" text-anchor="end">Host: 8 Cores Max</text>
-              <text x="50" y="196" class="node-mono" fill="#4ade80" text-anchor="start">&#10003; Safe allocation: Does not starve host physical operating system</text>
+              <rect x="40" y="142" width="460" height="32" rx="6" fill="#0d131f" stroke="#243046" />
+              <text x="54" y="153" class="node-mono" fill="#fbbf24" font-size="9px" text-anchor="start">Processors: 2 Virtual CPU Cores (vCPUs Assigned)</text>
+              <text x="488" y="153" class="node-mono" fill="#94a3b8" font-size="8.5px" text-anchor="end">Host: 8 Cores Max</text>
+              <rect x="54" y="160" width="432" height="6" rx="3" fill="#1e293b" />
+              <rect x="54" y="160" width="145" height="6" rx="3" fill="var(--primary)" />
+              <rect x="40" y="178" width="460" height="24" rx="5" fill="#0d131f" stroke="#1e293b" />
+              <text x="54" y="191" class="node-mono" fill="#4ade80" text-anchor="start">&#10003; Safe allocation: Does not starve host physical operating system</text>
             </g>
 
             <!-- STEP 4: Virtual Disk Creation -->
             <g id="view_step4" style="display:none;">
-              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
-              <text x="50" y="96" class="node-text" fill="#fff" text-anchor="start">Provision - Virtual Disk (25GB)</text>
-              <rect x="50" y="110" width="420" height="30" rx="5" fill="#0d131f" stroke="#243046" />
-              <text x="65" y="126" class="node-mono" fill="#38bdf8" text-anchor="start">Disk File: /VMs/Ubuntu-24.04-Lab/root_disk.vdi</text>
-              <rect x="50" y="148" width="420" height="30" rx="5" fill="#0d131f" stroke="var(--ok)" />
-              <text x="65" y="164" class="node-mono" fill="#4ade80" text-anchor="start">Storage Type: Dynamically Allocated (Expands up to 25.00 GB)</text>
-              <text x="50" y="196" class="node-mono" fill="#93c5fd" text-anchor="start">&#10003; Uses physical storage only as files are written inside the VM</text>
+              <rect x="25" y="74" width="490" height="140" rx="8" fill="#131d2e" stroke="#243046" />
+              <text x="40" y="96" class="node-text" fill="#fff" font-weight="700" text-anchor="start">Provision &bull; Virtual Hard Disk (25 GB)</text>
+              <rect x="40" y="108" width="460" height="28" rx="6" fill="#0d131f" stroke="#243046" />
+              <text x="54" y="123" class="node-mono" fill="#38bdf8" text-anchor="start">Disk File: /VMs/Ubuntu-24.04-Lab/root_disk.vdi</text>
+              <rect x="40" y="142" width="460" height="28" rx="6" fill="#0d131f" stroke="var(--ok)" />
+              <text x="54" y="157" class="node-mono" fill="#4ade80" font-weight="700" text-anchor="start">Storage Type: Dynamically Allocated &bull; Max Capacity: 25.00 GB</text>
+              <rect x="40" y="176" width="460" height="26" rx="6" fill="#0d131f" stroke="#1e293b" />
+              <text x="54" y="190" class="node-mono" fill="#93c5fd" text-anchor="start">&#10003; Uses physical storage only as files are written inside the VM</text>
             </g>
 
             <!-- STEP 5: Mount ISO & Power On -->
             <g id="view_step5" style="display:none;">
-              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
-              <text x="50" y="96" class="node-text" fill="#fff" text-anchor="start">Mount - Attach ISO &amp; Power On</text>
-              <rect x="50" y="110" width="420" height="30" rx="5" fill="#0d131f" stroke="#243046" />
-              <text x="65" y="126" class="node-mono" fill="#fbbf24" text-anchor="start">Virtual Optical Drive: [Attached] ubuntu-24.04-desktop.iso</text>
-              <!-- Power On Button -->
-              <rect x="50" y="148" width="140" height="30" rx="6" fill="var(--ok)" />
-              <text x="120" y="164" class="node-mono" fill="#fff" font-weight="700" text-anchor="middle">&#9654; VM STATE: RUNNING</text>
-              <text x="205" y="164" class="node-mono" fill="#38bdf8" text-anchor="start">UEFI Firmware Handshake: Booting from Live ISO...</text>
-              <text x="50" y="196" class="node-mono" fill="#93c5fd" text-anchor="start">&#10003; Guest firmware reads GRUB bootloader from virtual optical medium</text>
+              <rect x="25" y="74" width="490" height="140" rx="8" fill="#131d2e" stroke="#243046" />
+              <text x="40" y="96" class="node-text" fill="#fff" font-weight="700" text-anchor="start">Mount &bull; Attach ISO &amp; Power On Virtual Machine</text>
+              <rect x="40" y="108" width="460" height="28" rx="6" fill="#0d131f" stroke="#243046" />
+              <text x="54" y="123" class="node-mono" fill="#fbbf24" font-weight="700" text-anchor="start">Virtual Optical Drive: [Attached] ubuntu-24.04-desktop.iso</text>
+              <!-- Power On Button & Handshake -->
+              <rect x="40" y="142" width="145" height="28" rx="6" fill="var(--ok)" />
+              <text x="112" y="157" class="node-mono" fill="#fff" font-weight="700" text-anchor="middle">&#9654; VM STATE: RUNNING</text>
+              <rect x="195" y="142" width="305" height="28" rx="6" fill="#0d131f" stroke="#243046" />
+              <text x="207" y="157" class="node-mono" fill="#38bdf8" text-anchor="start">UEFI Firmware Handshake: Booting Live ISO...</text>
+              <rect x="40" y="176" width="460" height="26" rx="6" fill="#0d131f" stroke="#1e293b" />
+              <text x="54" y="190" class="node-mono" fill="#93c5fd" text-anchor="start">&#10003; Guest firmware reads GRUB bootloader from virtual optical medium</text>
             </g>
 
             <!-- STEP 6: Run Guided Installer -->
             <g id="view_step6" style="display:none;">
-              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="#243046" />
-              <text x="50" y="96" class="node-text" fill="#fff" text-anchor="start">Install - Guided OS Setup</text>
-              <rect x="50" y="108" width="420" height="24" rx="4" fill="#0d131f" stroke="#243046" />
-              <text x="65" y="121" class="node-mono" fill="#38bdf8" text-anchor="start">Setup: English &bull; Minimal Installation &bull; Install OpenSSH Server</text>
-              <rect x="50" y="138" width="420" height="24" rx="4" fill="#0d131f" stroke="var(--primary)" />
-              <text x="65" y="151" class="node-mono" fill="#4ade80" text-anchor="start">Disk: Erase virtual disk and install Ubuntu (Safe in isolated sandbox)</text>
-              <!-- Install progress bar -->
-              <rect x="50" y="168" width="420" height="16" rx="4" fill="#0d131f" stroke="#243046" />
-              <rect x="52" y="170" width="340" height="12" rx="3" fill="var(--primary)" />
-              <text x="260" y="177" class="node-mono" fill="#fff" font-size="9px" font-weight="700" text-anchor="middle">Copying files &amp; configuring Linux kernel... (85%)</text>
-              <text x="50" y="198" class="node-mono" fill="#fbbf24" text-anchor="start">&#10003; Administrator user created: 'student' with sudo privileges</text>
+              <rect x="25" y="74" width="490" height="140" rx="8" fill="#131d2e" stroke="#243046" />
+              <text x="40" y="96" class="node-text" fill="#fff" font-weight="700" text-anchor="start">Install &bull; Guided Ubuntu Setup in Progress</text>
+              <rect x="40" y="108" width="460" height="28" rx="6" fill="#0d131f" stroke="#243046" />
+              <text x="54" y="123" class="node-mono" fill="#38bdf8" text-anchor="start">Setup: English &bull; Minimal Installation &bull; OpenSSH &bull; Erase Virtual Disk</text>
+              <!-- Install progress card -->
+              <rect x="40" y="142" width="460" height="34" rx="6" fill="#0d131f" stroke="#243046" />
+              <rect x="52" y="150" width="436" height="6" rx="3" fill="#1e293b" />
+              <rect x="52" y="150" width="370" height="6" rx="3" fill="var(--primary)" />
+              <text x="52" y="167" class="node-mono" fill="#93c5fd" font-size="9px" text-anchor="start">Copying files &amp; configuring Linux kernel...</text>
+              <text x="488" y="167" class="node-mono" fill="#60a5fa" font-weight="700" font-size="9px" text-anchor="end">85% Complete</text>
+              <!-- Administrator account card -->
+              <rect x="40" y="182" width="460" height="24" rx="6" fill="#0d131f" stroke="#10b981" stroke-opacity="0.5" />
+              <text x="54" y="195" class="node-mono" fill="#4ade80" font-weight="700" text-anchor="start">&#10003; Administrator user created: &apos;student&apos; with sudo privileges enabled</text>
             </g>
 
             <!-- STEP 7: First Boot & Desktop Ready -->
             <g id="view_step7" style="display:none;">
-              <rect x="30" y="74" width="460" height="135" rx="8" fill="#131d2e" stroke="var(--ok)" />
-              <text x="50" y="96" class="node-text" fill="#4ade80" text-anchor="start">Boot - First Desktop Login</text>
+              <rect x="25" y="74" width="490" height="140" rx="8" fill="#131d2e" stroke="var(--ok)" />
+              <text x="40" y="96" class="node-text" fill="#4ade80" font-weight="700" text-anchor="start">Boot &bull; First Desktop Login</text>
               <!-- GNOME Desktop Frame inside VM -->
-              <rect x="50" y="108" width="420" height="80" rx="6" fill="#1e1e2e" stroke="#313244" />
+              <rect x="40" y="106" width="460" height="74" rx="6" fill="#1e1e2e" stroke="#313244" />
               <!-- Desktop Top Bar -->
-              <rect x="50" y="108" width="420" height="16" rx="6" fill="#11111b" />
-              <text x="65" y="117" class="node-mono" fill="#cdd6f4" font-size="8px" text-anchor="start">Activities</text>
-              <text x="260" y="117" class="node-mono" fill="#cdd6f4" font-size="8px" text-anchor="middle">Nov 23 12:00 PM</text>
+              <rect x="40" y="106" width="460" height="16" rx="6" fill="#11111b" />
+              <text x="54" y="115" class="node-mono" fill="#cdd6f4" font-size="8px" text-anchor="start">Activities</text>
+              <text x="270" y="115" class="node-mono" fill="#cdd6f4" font-size="8px" text-anchor="middle">Nov 23 12:00 PM</text>
               <!-- Desktop center message -->
-              <text x="260" y="145" class="node-mono" fill="#4ade80" font-weight="800" font-size="12px" text-anchor="middle">&#10003; Ubuntu 24.04 LTS Desktop Successfully Installed!</text>
-              <text x="260" y="165" class="node-mono" fill="#93c5fd" text-anchor="middle">Virtual ISO unmounted &bull; System ready for Linux command line practice</text>
-              <text x="50" y="200" class="node-mono" fill="#4ade80" text-anchor="start">&#10003; Installation complete &bull; Snapshot taken: 'Fresh-Clean-Install'</text>
+              <text x="270" y="139" class="node-mono" fill="#4ade80" font-weight="800" font-size="11.5px" text-anchor="middle">&#10003; Ubuntu 24.04 LTS Desktop Successfully Installed!</text>
+              <text x="270" y="157" class="node-mono" fill="#93c5fd" font-size="9px" text-anchor="middle">Virtual ISO unmounted &bull; Environment ready for Linux command line</text>
+              <rect x="40" y="184" width="460" height="22" rx="5" fill="#0d131f" stroke="#1e293b" />
+              <text x="54" y="196" class="node-mono" fill="#4ade80" font-size="9px" text-anchor="start">&#10003; Installation complete &bull; Snapshot taken: &apos;Fresh-Clean-Install&apos;</text>
             </g>
 
             <!-- Bottom Step Explanation Strip -->
-            <rect x="30" y="218" width="460" height="34" rx="6" fill="#151e2e" stroke="#243046" />
-            <text x="45" y="236" class="node-mono" fill="var(--ok)" id="vm_step_tag" text-anchor="start">Step 1 of 7</text>
-            <text x="130" y="236" class="node-mono" fill="#f1f5f9" id="vm_step_title" text-anchor="start">Download ISO: Obtain Linux installation image &amp; hypervisor software</text>
+            <rect x="25" y="222" width="490" height="38" rx="6" fill="#151e2e" stroke="#243046" />
+            <rect x="36" y="229" width="82" height="24" rx="4" fill="#0d131f" stroke="var(--ok)" />
+            <text x="77" y="242" class="node-mono" fill="#4ade80" font-weight="700" font-size="9.5px" text-anchor="middle" id="vm_step_tag">Step 1 of 7</text>
+            <text x="130" y="242" class="node-mono" fill="#f1f5f9" font-size="10px" font-weight="600" id="vm_step_title" text-anchor="start">Download ISO &bull; Verify SHA-256 Checksum</text>
           </svg>
         </div>
       </div>
@@ -631,15 +657,19 @@ code {
     <!-- VIDEO REFERENCE (Rule 18) -->
     <h2 class="sh"><span class="st">&bull;</span>Video Reference: Install Ubuntu on Virtual Machine (VMware)</h2>
     <div class="box" style="padding:14px;">
-      <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;">
-        <iframe 
-          src="https://www.youtube-nocookie.com/embed/4vGspukBcys" 
-          title="Ubuntu on VMware in Minutes! How to Download &amp; Install Ubuntu Desktop Step-by-Step" 
-          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen>
-        </iframe>
-      </div>
+      <a href="https://www.youtube.com/watch?v=4vGspukBcys" target="_blank" rel="noopener noreferrer" class="video-thumb-link" style="position:relative;display:block;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;text-decoration:none;">
+        <img 
+          src="https://img.youtube.com/vi/4vGspukBcys/maxresdefault.jpg" 
+          alt="Video Thumbnail: Ubuntu on VMware in Minutes" 
+          style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease;" 
+        />
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);transition:transform 0.25s ease;">
+          <svg viewBox="0 0 68 48" width="68" height="48" style="filter:drop-shadow(0 4px 14px rgba(0,0,0,0.6));">
+            <path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#ff0000"></path>
+            <path d="M 45,24 27,14 27,34" fill="#ffffff"></path>
+          </svg>
+        </div>
+      </a>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-top:10px;">
         <div>
           <b style="font-size:13.5px;color:var(--ink)">Ubuntu on VMware in Minutes! (r2schools)</b>
@@ -710,49 +740,49 @@ let playTimer = null;
 const INSTALL_STEPS = {
   1: {
     tag: "Step 1 of 7",
-    title: "Download ISO: Obtain Linux installation image & hypervisor software",
+    title: "Download ISO • Verify SHA-256 Checksum",
     lab: "Step 1: Download ISO & Hypervisor Software",
     code: `Hypervisor   : VMware Workstation Player or Oracle VirtualBox\nDistribution : Ubuntu 24.04 LTS Desktop (64-bit)\nImage File   : ubuntu-24.04-desktop-amd64.iso (4.8 GB)\nIntegrity    : Verify SHA-256 hash checksum before creation`,
     explain: "Obtain your preferred hypervisor software along with the official distribution ISO installation disc image."
   },
   2: {
     tag: "Step 2 of 7",
-    title: "Create VM: Initialize virtual machine profile & operating system type",
+    title: "Create VM Profile • Configure 64-bit Linux Guest",
     lab: "Step 2: Create Virtual Machine Profile",
     code: `VM Name      : Ubuntu-24.04-Lab\nGuest OS     : Linux\nArchitecture : Ubuntu (64-bit)\nCommand      : VBoxManage createvm --name "Ubuntu-24.04-Lab" --ostype "Ubuntu_64" --register`,
     explain: "Create a new virtual machine profile and configure the guest operating system type appropriately."
   },
   3: {
     tag: "Step 3 of 7",
-    title: "Allocate Hardware: Assign RAM memory and virtual CPU cores",
+    title: "Allocate Hardware • Assign 4GB RAM & 2 vCPUs",
     lab: "Step 3: Allocate RAM & Virtual CPU Cores",
     code: `RAM Memory   : 4096 MB (4 GB) • Optimal balance for host & guest\nVirtual CPUs : 2 vCPUs • Smooth multi-threaded application performance\nNested Virt  : Enable Intel VT-x / AMD-V CPU hardware acceleration\nCommand      : VBoxManage modifyvm "Ubuntu-24.04-Lab" --memory 4096 --cpus 2`,
     explain: "Assign sufficient processor cores and memory from your physical host computer for smooth performance."
   },
   4: {
     tag: "Step 4 of 7",
-    title: "Provision Storage: Create dynamically allocated virtual hard disk",
+    title: "Provision Storage • Create 25 GB Virtual Disk",
     lab: "Step 4: Provision Virtual Hard Disk (25 GB)",
     code: `Disk Format  : VDI (VirtualBox) or VMDK (VMware Workstation)\nDisk Size    : 25.00 GB virtual storage capacity\nAllocation   : Dynamically Allocated (expands on physical disk on-demand)\nCommand      : VBoxManage createmedium disk --filename "root_disk.vdi" --size 25600`,
     explain: "Create a dynamically allocated virtual hard disk image to store the guest operating system."
   },
   5: {
     tag: "Step 5 of 7",
-    title: "Mount ISO & Power: Attach optical media and boot into live environment",
+    title: "Mount Live ISO • Attach Optical Disc & Power On",
     lab: "Step 5: Mount ISO & Power On Virtual Machine",
     code: `Controller   : IDE / SATA Virtual Optical Drive\nOptical Disc : ubuntu-24.04-desktop-amd64.iso (Live Boot Medium)\nBoot Order   : DVD-ROM -> Virtual Hard Disk -> Network\nCommand      : VBoxManage storageattach "Ubuntu-24.04-Lab" --type dvddrive --medium ubuntu.iso`,
     explain: "Insert the virtual ISO installation disk into the optical drive and power on the VM."
   },
   6: {
     tag: "Step 6 of 7",
-    title: "Guided Installer: Partition virtual disk & configure administrator",
+    title: "Guided Installer • Partition Disk & Setup Admin",
     lab: "Step 6: Run Graphical OS Installer",
     code: `Language     : English (United States) • Minimal Installation\nPartitioning : Guided - Entire Virtual Disk (Safely inside container!)\nAccount      : User 'student' • Sudo administrative rights granted\nStatus       : Copying binary packages and compiling Linux initramfs`,
     explain: "Follow the graphical installer prompts to partition the virtual disk and create your administrator account."
   },
   7: {
     tag: "Step 7 of 7",
-    title: "First Boot: Eject ISO medium and launch GNOME desktop environment",
+    title: "First Desktop Boot • Unmount ISO & Launch GNOME",
     lab: "Step 7: First Boot & Desktop Ready",
     code: `Eject Media  : Optical drive unmounted • Guest boots from virtual hard disk\nDisplay      : GNOME 46 Wayland Desktop Environment initialized\nNetwork      : NAT adapter connected • IP 10.0.2.15 with internet access\nSafety       : Host computer completely untouched and fully protected`,
     explain: "Eject the virtual installation medium and restart the virtual machine to reach your desktop."
@@ -787,8 +817,8 @@ function updateInstallation() {
 
   const progLine = $("progress_line");
   if (progLine) {
-    const xTargets = [40, 40, 113, 186, 260, 333, 406, 480];
-    progLine.setAttribute("d", `M 40 54 L ${xTargets[activeStep]} 54`);
+    const xTargets = [45, 45, 120, 195, 270, 345, 420, 495];
+    progLine.setAttribute("d", `M 45 54 L ${xTargets[activeStep]} 54`);
   }
 
   const data = INSTALL_STEPS[activeStep];

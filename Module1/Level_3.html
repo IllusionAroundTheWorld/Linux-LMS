@@ -597,14 +597,14 @@ code {
           <label class="lab">Select Architecture View:</label>
           <div class="chips">
             <button type="button" class="chip on" data-a="md" data-m="tiers">1. 4 Core Tiers</button>
-            <button type="button" class="chip" data-a="md" data-m="spaces">2. Memory Spaces</button>
-            <button type="button" class="chip" data-a="md" data-m="syscall">3. System Call Bridge</button>
+            <button type="button" class="chip" data-a="md" data-m="userspace">2. User Space</button>
+            <button type="button" class="chip" data-a="md" data-m="kernelspace">3. Kernel Space</button>
           </div>
 
-          <!-- Tier Selection Subchips -->
-          <div id="sub_chips_tier" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
-            <label class="lab" style="font-size:10px">Inspect Specific Layer:</label>
-            <div class="chips" style="margin:0">
+          <!-- Dynamic Subchips Bar -->
+          <div id="sub_chips_box" style="margin-top:4px;border-top:1px dashed var(--line);padding-top:4px;">
+            <label class="lab" id="sub_chips_label" style="font-size:10px">Inspect Specific Layer:</label>
+            <div class="chips" id="sub_chips_container" style="margin:0">
               <button type="button" class="chip on" data-a="tier" data-t="all">All 4 Tiers</button>
               <button type="button" class="chip" data-a="tier" data-t="app">Tier 4: Application</button>
               <button type="button" class="chip" data-a="tier" data-t="shell">Tier 3: Shell</button>
@@ -615,95 +615,33 @@ code {
         </div>
 
         <div class="chart-card">
-          <!-- 4 Core Tiers Concentric Onion Rings View -->
-          <div id="fc_tiers">
-            <span class="lab">Concentric Onion Ring Hierarchy (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 500 210">
-              <!-- Tier 4: Application (Outer Ring) -->
-              <rect id="t_n4" x="10" y="6" width="480" height="198" rx="16" class="node-rect st-active" data-a="tier" data-t="app" style="cursor:pointer;" />
-              <text x="250" y="24" class="node-text" style="font-weight:800;">Tier 4: APPLICATION (Outer Ring &bull; User Software)</text>
+          <span class="lab">Concentric Onion Ring Hierarchy (SVG)</span>
+          <svg class="svg-flowchart" viewBox="0 0 500 210">
+            <!-- Tier 4: Application (Outer Ring) -->
+            <g id="g_t4" data-a="tier" data-t="app" style="cursor:pointer;transition:all 0.25s ease;">
+              <rect id="t_n4" x="10" y="6" width="480" height="198" rx="16" class="node-rect st-active" />
+              <text id="t_txt4" x="250" y="24" class="node-text" style="font-weight:800;">Tier 4: APPLICATION (Outer Ring &bull; User Software)</text>
+            </g>
 
-              <!-- Tier 3: Shell (Third Ring) -->
-              <rect id="t_n3" x="40" y="40" width="420" height="152" rx="14" class="node-rect st-active" data-a="tier" data-t="shell" style="cursor:pointer;" />
-              <text x="250" y="58" class="node-text" style="font-weight:700;">Tier 3: SHELL (Command Interpreter &bull; CLI)</text>
+            <!-- Tier 3: Shell (Third Ring) -->
+            <g id="g_t3" data-a="tier" data-t="shell" style="cursor:pointer;transition:all 0.25s ease;">
+              <rect id="t_n3" x="40" y="40" width="420" height="152" rx="14" class="node-rect st-active" />
+              <text id="t_txt3" x="250" y="58" class="node-text" style="font-weight:700;">Tier 3: SHELL (Command Interpreter &bull; CLI)</text>
+            </g>
 
-              <!-- Tier 2: Kernel (Second Ring) -->
-              <rect id="t_n2" x="75" y="76" width="350" height="106" rx="12" class="node-rect st-pass" data-a="tier" data-t="kernel" style="cursor:pointer;" />
-              <text x="250" y="94" class="node-text" style="font-weight:700;">Tier 2: KERNEL (Core OS Engine &bull; Ring 0)</text>
+            <!-- Tier 2: Kernel (Second Ring) -->
+            <g id="g_t2" data-a="tier" data-t="kernel" style="cursor:pointer;transition:all 0.25s ease;">
+              <rect id="t_n2" x="75" y="76" width="350" height="106" rx="12" class="node-rect st-pass" />
+              <text id="t_txt2" x="250" y="94" class="node-text" style="font-weight:700;">Tier 2: KERNEL (Core OS Engine &bull; Ring 0)</text>
+            </g>
 
-              <!-- Tier 1: Hardware (Center Core) -->
-              <rect id="t_n1" x="115" y="114" width="270" height="58" rx="8" fill="var(--ink)" data-a="tier" data-t="hw" style="cursor:pointer;" />
-              <text x="250" y="134" class="node-mono" fill="#fff" style="font-weight:700;">Tier 1: HARDWARE (Physical Base)</text>
-              <text x="250" y="152" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">CPU &bull; RAM &bull; Storage &bull; System Buses</text>
-            </svg>
-          </div>
-
-          <!-- Memory Spaces Flowchart -->
-          <!-- Memory Spaces Flowchart -->
-          <div id="fc_spaces" style="display:none;">
-            <span class="lab">Memory Isolation Domain Flowchart (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 220">
-              <!-- User Space Block -->
-              <rect x="20" y="8" width="480" height="72" rx="8" class="node-rect st-active" />
-              <text x="260" y="24" class="node-text" style="font-weight:800;">USER SPACE (Ring 3 - Restricted Privilege)</text>
-              <text x="260" y="44" class="node-mono">Applications - Shells - Web Daemons - Desktop Software</text>
-              <text x="260" y="64" class="node-mono" fill="var(--muted)">Fault Isolated - Application Crashes Cannot Corrupt Operating System</text>
-
-              <!-- Connector from User Space into Bridge Pill -->
-              <path d="M 260 80 L 260 87" class="flow-line line-blue" />
-
-              <!-- Solid Pill Badge for System Call Interface (No Floating Text!) -->
-              <rect x="95" y="87" width="330" height="22" rx="5" fill="var(--tint)" stroke="var(--primary)" stroke-width="1.25" />
-              <text x="260" y="98" class="branch-label" fill="var(--primary)" style="font-weight:700;">System Call Interface Bridge (read, write, open)</text>
-
-              <!-- Connector from Bridge Pill into Kernel Space with Arrowhead -->
-              <path d="M 260 109 L 260 119" class="flow-line line-blue" />
-              <polygon points="260,120 256,113 264,113" fill="var(--primary)" />
-
-              <!-- Kernel Space Block -->
-              <rect x="20" y="120" width="480" height="88" rx="8" fill="var(--ink)" />
-              <text x="260" y="140" class="node-mono" fill="#93c5fd" style="font-weight:800;">KERNEL SPACE (Ring 0 - Privileged Hardware Control)</text>
-              <text x="260" y="162" class="node-mono" fill="#fff">Process Scheduler - Memory Management - Device Drivers</text>
-              <text x="260" y="184" class="node-mono" fill="#38bdf8">Direct Control - CPU Cores - NVMe Storage - RAM - Network Cards</text>
-            </svg>
-          </div>
-
-          <!-- System Call Bridge Flowchart -->
-          <div id="fc_syscall" style="display:none;">
-            <span class="lab">System Call Execution Flowchart (SVG)</span>
-            <svg class="svg-flowchart" viewBox="0 0 520 220">
-              <!-- Step 1 -->
-              <rect x="25" y="8" width="470" height="34" rx="7" class="node-rect st-active" />
-              <text x="260" y="25" class="node-text">1. User Application Calls Library Function (e.g., write())</text>
-
-              <!-- Arrow into Step 2 -->
-              <path d="M 260 42 L 260 55" class="flow-line line-blue" />
-              <polygon points="260,56 256,49 264,49" fill="var(--primary)" />
-
-              <!-- Step 2 -->
-              <rect x="25" y="56" width="470" height="38" rx="7" class="node-rect st-pass" />
-              <text x="260" y="70" class="node-text">2. System Call Trap - CPU Switches from Ring 3 to Ring 0</text>
-              <text x="260" y="85" class="node-mono">CPU Registers Safely Pass Arguments to Protected Kernel Memory</text>
-
-              <!-- Arrow into Step 3 -->
-              <path d="M 260 94 L 260 107" class="flow-line line-pass" />
-              <polygon points="260,108 256,101 264,101" fill="var(--ok)" />
-
-              <!-- Step 3 -->
-              <rect x="25" y="108" width="470" height="38" rx="7" class="node-rect st-pass" />
-              <text x="260" y="122" class="node-text">3. Kernel VFS &amp; Device Driver Execution</text>
-              <text x="260" y="137" class="node-mono">Permission Verified - DMA Block Transfers Data to NVMe Storage</text>
-
-              <!-- Arrow into Step 4 -->
-              <path d="M 260 146 L 260 159" class="flow-line line-blue" />
-              <polygon points="260,160 256,153 264,153" fill="var(--primary)" />
-
-              <!-- Step 4 -->
-              <rect x="25" y="160" width="470" height="48" rx="6" fill="var(--ink)" />
-              <text x="260" y="178" class="node-mono" fill="#fff" style="font-weight:700;">4. Control Returns Safely to User Application in Ring 3</text>
-              <text x="260" y="196" class="node-mono" fill="#93c5fd">Function Returns Status Code (Bytes Written) - CPU Resets Privilege</text>
-            </svg>
-          </div>
+            <!-- Tier 1: Hardware (Center Core) -->
+            <g id="g_t1" data-a="tier" data-t="hw" style="cursor:pointer;transition:all 0.25s ease;">
+              <rect id="t_n1" x="115" y="114" width="270" height="58" rx="8" fill="var(--ink)" stroke="#38bdf8" stroke-width="1.5" />
+              <text id="t_txt1" x="250" y="134" class="node-mono" fill="#fff" style="font-weight:700;">Tier 1: HARDWARE (Physical Base)</text>
+              <text id="t_sub1" x="250" y="152" class="node-mono" fill="#93c5fd" style="font-size:9.5px;">CPU &bull; RAM &bull; Storage &bull; System Buses</text>
+            </g>
+          </svg>
         </div>
       </div>
 
@@ -788,104 +726,156 @@ const TIERS = {
     code: `Tier 4: APPLICATION • Runs user software (Web browser, Editor)\nTier 3: SHELL       • Translates typed commands for system\nTier 2: KERNEL      • Core engine managing CPU and memory\nTier 1: HARDWARE    • Physical machine (Processor, RAM, SSD)`,
     explain: "Linux architecture cleanly separates user programs from hardware across four distinct, coordinated levels."
   },
+  user_all: {
+    lab: "Domain View: User Space (Tiers 3 & 4)",
+    code: `Execution Domain : Ring 3 Restricted Mode (Tiers 3 & 4)\nIncluded Layers  : Tier 4 Application + Tier 3 Shell\nPrimary Purpose  : Executes user software and processes terminal commands\nMemory Isolation : Protected virtual memory prevents direct hardware access\nSecurity Gateway : Calls Kernel services safely through glibc library`,
+    explain: "User space executes non-privileged applications safely while preventing programs from damaging operating system memory."
+  },
+  kern_all: {
+    lab: "Domain View: Kernel & Hardware Space (Tiers 1 & 2)",
+    code: `Execution Domain : Ring 0 Full Privilege Mode (Tiers 1 & 2)\nIncluded Layers  : Tier 2 Kernel Core + Tier 1 Physical Hardware\nCore Subsystems  : Process Scheduler, Virtual Memory, VFS, Device Drivers\nHardware Control : Direct management of CPU cores, RAM, and NVMe SSDs\nPrivilege Level  : Executes supervisor CPU instructions with unrestricted power`,
+    explain: "Kernel space operates in privileged Ring 0 to control system hardware and resources."
+  },
   app: {
     lab: "Tier 4: APPLICATION Details",
-    code: `Role     : Runs user programs and desktop tools\nExamples : Web browser, text editor, media player`,
+    code: `Layer    : Tier 4 Outer Ring (User Space)\nRole     : Runs user programs and desktop tools\nExamples : Web browser, text editor, media player`,
     explain: "Applications provide the friendly tools and software that people use every single day."
   },
   shell: {
     lab: "Tier 3: SHELL Details",
-    code: `Role     : Translates user commands for the system\nExamples : Bash shell, Zsh, command line terminal`,
+    code: `Layer    : Tier 3 Middle Ring (User Space)\nRole     : Translates user commands for the system\nExamples : Bash shell, Zsh, command line terminal`,
     explain: "The shell listens to user input and translates it into clear system requests."
   },
   kernel: {
     lab: "Tier 2: KERNEL Details",
-    code: `Role     : Controls CPU, memory, and devices\nExamples : Linux Kernel 6.8 engine, system drivers`,
+    code: `Layer    : Tier 2 Inner Ring (Kernel Space)\nRole     : Controls CPU, memory, and devices\nExamples : Linux Kernel 6.8 engine, system drivers`,
     explain: "The kernel is the core engine managing computer memory, processor power, and hardware."
   },
   hw: {
     lab: "Tier 1: HARDWARE Details",
-    code: `Role     : Executes electrical binary calculations\nExamples : CPU processor, RAM memory, SSD storage`,
+    code: `Layer    : Tier 1 Center Core (Physical Base)\nRole     : Executes electrical binary calculations\nExamples : CPU processor, RAM memory, SSD storage`,
     explain: "Hardware represents the physical electronic parts like the processor, memory chips, and storage."
   }
 };
 
-const TOPICS = {
-  spaces: {
-    lab: "Memory Spaces Isolation (Ring 0 & Ring 3)",
-    code: `User Space (Ring 3)   • Low privilege domain for safe user apps\nKernel Space (Ring 0) • Full privilege domain controlling hardware\nBoundary Protection   • Crashes in User Space cannot crash Kernel\nSystem Call Trap      • The single secure pathway between spaces`,
-    explain: "Kernel space runs with full CPU power while user space protects everyday applications."
-  },
-  syscall: {
-    lab: "System Call Bridge (Syscall Dispatch)",
-    code: `User Space App        • Requests resource using standard C library\nCPU Mode Switch       • Safely elevates execution from Ring 3 to Ring 0\nKernel Syscall Table  • Validates caller identity and parameters\nHardware Driver       • Carries out physical I/O transfer on disk`,
-    explain: "The system call bridge securely transfers instructions between user space and kernel drivers."
-  }
-};
+function renderSubChips() {
+  const container = $("sub_chips_container");
+  const label = $("sub_chips_label");
+  if (!container || !label) return;
 
-function updateStudio() {
-  document.querySelectorAll("[data-a='md']").forEach(b => b.classList.toggle("on", b.dataset.m === activeTopic));
-
-  if (activeTopic === "tiers") {
-    $("fc_tiers").style.display = "block";
-    $("fc_spaces").style.display = "none";
-    $("fc_syscall").style.display = "none";
-    $("sub_chips_tier").style.display = "block";
-    updateTier();
-  } else if (activeTopic === "spaces") {
-    $("fc_tiers").style.display = "none";
-    $("fc_spaces").style.display = "block";
-    $("fc_syscall").style.display = "none";
-    $("sub_chips_tier").style.display = "none";
-    const data = TOPICS.spaces;
-    $("insp_lab").textContent = data.lab;
-    $("insp_code").innerHTML = highlightSyntax(data.code);
-    const res = $("insp_res");
-    res.textContent = data.explain;
-    res.className = "res ok";
+  if (activeTopic === "userspace") {
+    label.textContent = "Inspect User Space Layers:";
+    container.innerHTML = `
+      <button type="button" class="chip ${activeTier === 'user_all' ? 'on' : ''}" data-a="tier" data-t="user_all">Both User Tiers (3 &amp; 4)</button>
+      <button type="button" class="chip ${activeTier === 'app' ? 'on' : ''}" data-a="tier" data-t="app">Tier 4: Application</button>
+      <button type="button" class="chip ${activeTier === 'shell' ? 'on' : ''}" data-a="tier" data-t="shell">Tier 3: Shell</button>
+    `;
+  } else if (activeTopic === "kernelspace") {
+    label.textContent = "Inspect Kernel & Hardware Layers:";
+    container.innerHTML = `
+      <button type="button" class="chip ${activeTier === 'kern_all' ? 'on' : ''}" data-a="tier" data-t="kern_all">Both Kernel Tiers (1 &amp; 2)</button>
+      <button type="button" class="chip ${activeTier === 'kernel' ? 'on' : ''}" data-a="tier" data-t="kernel">Tier 2: Kernel</button>
+      <button type="button" class="chip ${activeTier === 'hw' ? 'on' : ''}" data-a="tier" data-t="hw">Tier 1: Hardware</button>
+    `;
   } else {
-    $("fc_tiers").style.display = "none";
-    $("fc_spaces").style.display = "none";
-    $("fc_syscall").style.display = "block";
-    $("sub_chips_tier").style.display = "none";
-    const data = TOPICS.syscall;
-    $("insp_lab").textContent = data.lab;
-    $("insp_code").innerHTML = highlightSyntax(data.code);
-    const res = $("insp_res");
-    res.textContent = data.explain;
-    res.className = "res ok";
+    label.textContent = "Inspect Specific Layer:";
+    container.innerHTML = `
+      <button type="button" class="chip ${activeTier === 'all' ? 'on' : ''}" data-a="tier" data-t="all">All 4 Tiers</button>
+      <button type="button" class="chip ${activeTier === 'app' ? 'on' : ''}" data-a="tier" data-t="app">Tier 4: Application</button>
+      <button type="button" class="chip ${activeTier === 'shell' ? 'on' : ''}" data-a="tier" data-t="shell">Tier 3: Shell</button>
+      <button type="button" class="chip ${activeTier === 'kernel' ? 'on' : ''}" data-a="tier" data-t="kernel">Tier 2: Kernel</button>
+      <button type="button" class="chip ${activeTier === 'hw' ? 'on' : ''}" data-a="tier" data-t="hw">Tier 1: Hardware</button>
+    `;
   }
 }
 
-function updateTier() {
-  document.querySelectorAll("[data-a='tier']").forEach(b => {
-    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.t === activeTier);
+function updateStudio() {
+  document.querySelectorAll("[data-a='md']").forEach(b => {
+    if (b.tagName === "BUTTON") b.classList.toggle("on", b.dataset.m === activeTopic);
   });
 
+  renderSubChips();
+
+  const g = { 4: $("g_t4"), 3: $("g_t3"), 2: $("g_t2"), 1: $("g_t1") };
+  const n = { 4: $("t_n4"), 3: $("t_n3"), 2: $("t_n2"), 1: $("t_n1") };
+  const levelMap = { app: 4, shell: 3, kernel: 2, hw: 1 };
+
+  if (activeTier === "all") {
+    // All 4 Tiers: full opacity on all layers
+    for (let i = 1; i <= 4; i++) {
+      if (g[i]) g[i].style.opacity = "1";
+      if (i > 1 && n[i]) n[i].setAttribute("class", "node-rect st-active");
+    }
+    if (n[1]) {
+      n[1].setAttribute("fill", "var(--ink)");
+      n[1].setAttribute("stroke", "#38bdf8");
+    }
+  } else if (activeTier === "user_all") {
+    // Top Level: User Space (Tiers 3 & 4) -> Inside content (Tiers 1 & 2) will NOT hide, also highlighted!
+    g[4].style.opacity = "1";
+    g[3].style.opacity = "1";
+    n[4].setAttribute("class", "node-rect st-pass");
+    n[3].setAttribute("class", "node-rect st-pass");
+
+    // Inside content (Tiers 2 & 1) will NOT hide; also highlighted!
+    g[2].style.opacity = "1";
+    g[1].style.opacity = "1";
+    n[2].setAttribute("class", "node-rect st-active");
+    n[1].setAttribute("fill", "var(--ink)");
+    n[1].setAttribute("stroke", "#38bdf8");
+  } else if (activeTier === "kern_all") {
+    // Inside Content: Kernel Space (Tiers 1 & 2) -> Top Level (Tiers 3 & 4) will NOT be highlighted!
+    g[4].style.opacity = "0.18";
+    g[3].style.opacity = "0.18";
+    n[4].setAttribute("class", "node-rect st-active");
+    n[3].setAttribute("class", "node-rect st-active");
+
+    // Inside Content (Tiers 2 & 1) focus highlighted!
+    g[2].style.opacity = "1";
+    g[1].style.opacity = "1";
+    n[2].setAttribute("class", "node-rect st-pass");
+    n[1].setAttribute("fill", "#0d131f");
+    n[1].setAttribute("stroke", "#10b981");
+  } else {
+    // Specific Tier Selected:
+    const target = levelMap[activeTier] || 4;
+
+    // Apply Hierarchical Layer Highlighting Rule:
+    for (let i = 1; i <= 4; i++) {
+      if (!g[i] || !n[i]) continue;
+      if (i > target) {
+        // Top-level content above selected layer is NOT highlighted:
+        g[i].style.opacity = "0.18";
+        if (i > 1) n[i].setAttribute("class", "node-rect st-active");
+      } else if (i === target) {
+        // Selected layer is focus highlighted:
+        g[i].style.opacity = "1";
+        if (i === 1) {
+          n[1].setAttribute("fill", "var(--ok)");
+          n[1].setAttribute("stroke", "#4ade80");
+        } else {
+          n[i].setAttribute("class", "node-rect st-pass");
+        }
+      } else {
+        // Inside content will NOT hide; it also gets highlighted:
+        g[i].style.opacity = "1";
+        if (i === 1) {
+          n[1].setAttribute("fill", "var(--ink)");
+          n[1].setAttribute("stroke", "#38bdf8");
+        } else {
+          n[i].setAttribute("class", "node-rect st-active");
+        }
+      }
+    }
+  }
+
+  // Update Telemetry
   const data = TIERS[activeTier] || TIERS.all;
   $("insp_lab").textContent = data.lab;
   $("insp_code").innerHTML = highlightSyntax(data.code);
   const res = $("insp_res");
   res.textContent = data.explain;
   res.className = "res ok";
-
-  const nodes = {
-    app: $("t_n4"),
-    shell: $("t_n3"),
-    kernel: $("t_n2"),
-    hw: $("t_n1")
-  };
-
-  Object.entries(nodes).forEach(([k, el]) => {
-    if (!el) return;
-    const isSelected = activeTier === "all" || activeTier === k;
-    if (k === "hw") {
-      el.setAttribute("fill", isSelected ? (activeTier === k ? "var(--ok)" : "var(--ink)") : "#64748b");
-    } else {
-      el.setAttribute("class", "node-rect " + (isSelected ? (activeTier === k ? "st-pass" : "st-active") : "st-active"));
-      el.style.opacity = isSelected ? "1" : "0.45";
-    }
-  });
 }
 
 document.addEventListener("click", e => {
@@ -895,10 +885,24 @@ document.addEventListener("click", e => {
 
   if (a === "md") {
     activeTopic = t.dataset.m;
+    if (activeTopic === "userspace") activeTier = "user_all";
+    else if (activeTopic === "kernelspace") activeTier = "kern_all";
+    else activeTier = "all";
     updateStudio();
   } else if (a === "tier") {
     activeTier = t.dataset.t;
-    updateTier();
+    if (activeTier === "app" || activeTier === "shell") {
+      if (activeTopic === "kernelspace") activeTopic = "userspace";
+    } else if (activeTier === "kernel" || activeTier === "hw") {
+      if (activeTopic === "userspace") activeTopic = "kernelspace";
+    } else if (activeTier === "user_all") {
+      activeTopic = "userspace";
+    } else if (activeTier === "kern_all") {
+      activeTopic = "kernelspace";
+    } else if (activeTier === "all") {
+      activeTopic = "tiers";
+    }
+    updateStudio();
   } else if (a === "qc") {
     const opt = +t.dataset.o;
     const chips = $("qc_chips").querySelectorAll(".chip");
